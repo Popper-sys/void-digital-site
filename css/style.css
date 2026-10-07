@@ -283,3 +283,36 @@ textarea { min-height: 130px; resize: vertical; }
 .plan .tag { align-self: flex-start; margin: 2px 0 8px; }
 
 .requisites { display: inline-block; margin-top: 6px; font-size: .86rem; }
+
+/* Первый экран: ссылка на Telegram под кнопками */
+.hero-note { margin: 16px 0 0; font-size: .95rem; }
+.hero-note a { color: var(--muted); border-bottom: 1px dashed var(--border); }
+.hero-note a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Финальный блок: две кнопки */
+.cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.cta .btn.btn-outline { background: transparent; color: inherit; border: 1px solid color-mix(in srgb, currentColor 55%, transparent); }
+.cta .btn.btn-outline:hover { background: color-mix(in srgb, currentColor 14%, transparent); color: inherit; }
+
+/* Блок «Бесплатный разбор сайта» */
+.audit {
+  display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 28px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px;
+}
+.audit h2 { margin: 6px 0 10px; }
+.audit p { margin: 0; color: var(--muted); max-width: 640px; }
+@media (max-width: 720px) { .audit { grid-template-columns: 1fr; padding: 24px; } }
+
+/* Закреплённая кнопка на телефоне */
+.sticky-cta { display: none; }
+@media (max-width: 720px) {
+  .sticky-cta {
+    display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: var(--bg);
+    border-top: 1px solid var(--border); transform: translateY(110%); transition: transform .25s;
+  }
+  .sticky-cta.show { transform: none; }
+  .sticky-cta .btn { flex: 1; justify-content: center; }
+  .has-sticky-cta { padding-bottom: 72px; }
+}
+@media (prefers-reduced-motion: reduce) { .sticky-cta { transition: none; } }

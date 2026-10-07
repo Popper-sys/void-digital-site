@@ -74,9 +74,24 @@ if (pageForm) {
   setupLeadForm(pageForm);
 }
 
-// Всплывающая форма: открывается по клику на любой элемент с data-order="Что нужно сделать".
+// Закреплённая кнопка внизу экрана на телефоне (на странице контактов форма и так перед глазами).
+if (!pageForm) {
+  const bar = document.createElement('div');
+  bar.className = 'sticky-cta';
+  bar.innerHTML = `
+    <a class="btn btn-primary" href="contacts.html" data-order="">Рассчитать проект</a>
+    <a class="btn btn-ghost" href="${TELEGRAM_URL}" target="_blank" rel="noopener">Telegram</a>`;
+  document.body.appendChild(bar);
+  document.body.classList.add('has-sticky-cta');
+  const syncBar = () => bar.classList.toggle('show', window.scrollY > 420);
+  window.addEventListener('scroll', syncBar, { passive: true });
+  syncBar();
+}
+
+// Всплывающая форма: открывается по клику на любой элемент с data-order="Что нужно сделать"
+// (пустое значение — без предвыбора) или data-audit (бесплатный разбор сайта).
 // Без поддержки <dialog> такие ссылки просто ведут на страницу контактов.
-const orderTriggers = document.querySelectorAll('[data-order]');
+const orderTriggers = document.querySelectorAll('[data-order], [data-audit]');
 if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
   const dialog = document.createElement('dialog');
   dialog.className = 'modal';
@@ -84,11 +99,12 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
   dialog.innerHTML = `
     <button class="modal-close" type="button" aria-label="Закрыть">×</button>
     <h2 id="modal-title">Оставить заявку</h2>
-    <p class="muted">Расскажите о задаче — ответим с вопросами и предварительной оценкой.</p>
+    <p class="muted" id="modal-lead">Расскажите о задаче — ответим с вопросами и предварительной оценкой.</p>
     <form class="form">
       <label class="hp" aria-hidden="true">Не заполняйте это поле<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
       <label>Ваше имя<input name="name" type="text" required autocomplete="name"></label>
       <label>Телефон, Telegram или email<input name="contact" type="text" required></label>
+      <label class="audit-only" hidden>Ссылка на ваш сайт<input name="site" type="text" inputmode="url" placeholder="example.ru" disabled></label>
       <label>Кто вы
         <select name="client">
           <option value="small">Малый бизнес или эксперт</option>
@@ -98,7 +114,7 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
           <option value="other">Другое</option>
         </select>
       </label>
-      <label>Что нужно сделать
+      <label class="type-label">Что нужно сделать
         <select name="type">
           <option>Лендинг или сайт-визитка</option>
           <option>Интернет-магазин</option>
@@ -106,6 +122,7 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
           <option>Редизайн или доработка сайта</option>
           <option>Сопровождение сайта</option>
           <option>Другое</option>
+          <option>Бесплатный разбор сайта</option>
         </select>
       </label>
       <label>Коротко о задаче<textarea name="message"></textarea></label>
@@ -120,10 +137,29 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
   const modalStatus = modalForm.querySelector('.form-status');
   setupLeadForm(modalForm);
 
+  const titleEl = dialog.querySelector('#modal-title');
+  const leadEl = dialog.querySelector('#modal-lead');
+  const submitBtn = modalForm.querySelector('button[type="submit"]');
+  const auditLabel = modalForm.querySelector('.audit-only');
+  const auditInput = auditLabel.querySelector('input');
+  const typeLabel = modalForm.querySelector('.type-label');
+  const AUDIT = 'Бесплатный разбор сайта';
+
   let lastTrigger = null;
-  const openModal = (order, trigger) => {
+  const openModal = (order, trigger, audit) => {
     lastTrigger = trigger;
-    if ([...typeSelect.options].some((o) => o.value === order)) typeSelect.value = order;
+    // Режим «разбор сайта»: просим ссылку, скрываем выбор типа работ.
+    auditLabel.hidden = !audit;
+    auditInput.disabled = !audit;
+    auditInput.required = audit;
+    typeLabel.hidden = audit;
+    titleEl.textContent = audit ? AUDIT : 'Оставить заявку';
+    leadEl.textContent = audit
+      ? 'Пришлите ссылку — посмотрим, что мешает сайту приводить заявки, и расскажем, что можно улучшить.'
+      : 'Расскажите о задаче — ответим с вопросами и предварительной оценкой.';
+    submitBtn.textContent = audit ? 'Получить разбор' : 'Отправить заявку';
+    if (audit) typeSelect.value = AUDIT;
+    else if ([...typeSelect.options].some((o) => o.value === order)) typeSelect.value = order;
     if (order === 'Интернет-магазин') modalClient.value = 'shop';
     modalStatus.textContent = '';
     dialog.showModal();
@@ -131,13 +167,11 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
   };
 
   orderTriggers.forEach((el) => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      openModal(el.dataset.order, el);
-    });
+    const open = () => openModal(el.dataset.order, el, el.hasAttribute('data-audit'));
+    el.addEventListener('click', (e) => { e.preventDefault(); open(); });
     if (el.getAttribute('role') === 'button') {
       el.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(el.dataset.order, el); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
       });
     }
   });
