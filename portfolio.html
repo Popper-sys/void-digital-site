@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Портфолио — VOID_digital</title>
+  <meta name="description" content="Примеры работ: сайты и лендинги на Tilda.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="index.html">VOID<span>_digital</span></a>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="services.html">Услуги и цены</a></li>
+      <li><a href="portfolio.html" aria-current="page">Портфолио</a></li>
+      <li><a href="blog.html">Блог</a></li>
+      <li><a href="about.html">Обо мне</a></li>
+      <li><a class="btn btn-primary btn-sm" href="contacts.html">Обсудить проект</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="page-title">
+    <div class="container">
+      <span class="eyebrow">Портфолио</span>
+      <h1>Выполненные проекты</h1>
+      <p>Подборка работ на Tilda. Больше примеров — в профиле на Kwork.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:32px">
+    <div class="container">
+      <div class="grid grid-3">
+        <!-- Положите скриншоты в img/portfolio/ (fitness.jpg, event.jpg, crm.jpg) — они подставятся сами. Ссылку на живой сайт добавьте в карточку: <a class="work-link" href="..." target="_blank" rel="noopener">Открыть сайт →</a> -->
+        <article class="card work reveal">
+          <div class="work-thumb">
+            <img src="img/portfolio/fitness.jpg" alt="Скриншот сайта фитнес-студии" loading="lazy" onerror="this.remove()">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
+          </div>
+          <div class="work-body">
+            <span class="tag">Сайт-визитка</span><span class="tag">Tilda</span>
+            <h3>Сайт фитнес-студии</h3>
+            <p class="muted">Тёмная тема, расписание занятий с цветовой маркировкой, карточки тренеров и калькулятор тренировок.</p>
+          </div>
+        </article>
+        <article class="card work reveal">
+          <div class="work-thumb">
+            <img src="img/portfolio/event.jpg" alt="Скриншот лендинга мероприятия" loading="lazy" onerror="this.remove()">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
+          </div>
+          <div class="work-body">
+            <span class="tag">Лендинг</span><span class="tag">Tilda</span>
+            <h3>Лендинг мероприятия</h3>
+            <p class="muted">Лендинг на Tilda для организаторов выставки: регистрация участников и понятная структура.</p>
+          </div>
+        </article>
+        <article class="card work reveal">
+          <div class="work-thumb">
+            <img src="img/portfolio/crm.jpg" alt="Скриншот доработанного сайта" loading="lazy" onerror="this.remove()">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
+          </div>
+          <div class="work-body">
+            <span class="tag">Доработка</span><span class="tag">CRM</span>
+            <h3>Исправление и интеграция с CRM</h3>
+            <p class="muted">Починка существующего сайта и настройка передачи заявок в CRM.</p>
+          </div>
+        </article>
+      </div>
+      <p class="notice reveal" style="margin-top:28px">
+        Скоро здесь появятся скриншоты и ссылки на работающие сайты. Пока смотрите полное портфолио и отзывы на
+        <a href="https://kwork.ru/user/void_digital" target="_blank" rel="noopener">Kwork</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="container"><div class="cta reveal">
+      <h2>Хотите такой же результат?</h2>
+      <p>Расскажите о проекте — предложу решение и назову сроки.</p>
+      <a class="btn" href="contacts.html">Обсудить проект</a>
+    </div></div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID_digital. Создание и сопровождение сайтов.</div>
+    <ul class="footer-links">
+      <li><a href="services.html">Услуги</a></li>
+      <li><a href="portfolio.html">Портфолио</a></li>
+      <li><a href="blog.html">Блог</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+      <li><a href="https://kwork.ru/user/void_digital" target="_blank" rel="noopener">Kwork</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

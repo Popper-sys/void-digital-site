@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Контакты — VOID_digital</title>
+  <meta name="description" content="Свяжитесь со мной, чтобы обсудить создание или сопровождение сайта.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="index.html">VOID<span>_digital</span></a>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="services.html">Услуги и цены</a></li>
+      <li><a href="portfolio.html">Портфолио</a></li>
+      <li><a href="blog.html">Блог</a></li>
+      <li><a href="about.html">Обо мне</a></li>
+      <li><a class="btn btn-primary btn-sm" href="contacts.html" aria-current="page">Обсудить проект</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="page-title">
+    <div class="container">
+      <span class="eyebrow">Контакты</span>
+      <h1>Обсудим ваш проект</h1>
+      <p>Заполните форму или напишите напрямую — отвечу с вопросами и предварительной оценкой.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:32px">
+    <div class="container contact-grid">
+      <div class="reveal">
+        <h2>Свяжитесь удобным способом</h2>
+        <ul class="contact-list">
+          <li><strong>Kwork</strong><a href="https://kwork.ru/user/void_digital" target="_blank" rel="noopener">kwork.ru/user/void_digital</a></li>
+          <!-- TODO: укажите свои контакты -->
+          <li><strong>Telegram</strong><a href="https://t.me/your_username" target="_blank" rel="noopener">@your_username</a></li>
+          <li><strong>Email</strong><a href="mailto:hello@example.com">hello@example.com</a></li>
+        </ul>
+      </div>
+
+      <form id="contact-form" class="form card reveal">
+        <label class="hp" aria-hidden="true">Не заполняйте это поле<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+        <label>Ваше имя
+          <input name="name" type="text" required autocomplete="name">
+        </label>
+        <label>Телефон, Telegram или email
+          <input name="contact" type="text" required>
+        </label>
+        <label>Что нужно сделать
+          <select name="type">
+            <option>Лендинг или сайт-визитка</option>
+            <option>Интернет-магазин</option>
+            <option>Веб-приложение или бот</option>
+            <option>Редизайн или доработка сайта</option>
+            <option>Сопровождение сайта</option>
+            <option>Другое</option>
+          </select>
+        </label>
+        <label>Коротко о задаче
+          <textarea name="message"></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Отправить заявку</button>
+        <p id="form-status" class="form-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID_digital. Создание и сопровождение сайтов.</div>
+    <ul class="footer-links">
+      <li><a href="services.html">Услуги</a></li>
+      <li><a href="portfolio.html">Портфолио</a></li>
+      <li><a href="blog.html">Блог</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+      <li><a href="https://kwork.ru/user/void_digital" target="_blank" rel="noopener">Kwork</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
