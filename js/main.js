@@ -22,19 +22,22 @@ if ('IntersectionObserver' in window) {
 }
 
 // Форма заявки: отправка в Telegram через серверную функцию (functions/lead.js).
-// Если функция недоступна (локально или не настроена) — открываем письмо как запасной вариант.
-const CONTACT_EMAIL = 'hello@example.com'; // TODO: укажите свою почту
+// Если функция недоступна (локально или не настроена) — показываем ссылку на Telegram.
+const TELEGRAM_URL = 'https://t.me/aa343432';
 const LEAD_ENDPOINT = '/api/lead';
 const form = document.getElementById('contact-form');
 if (form) {
   const status = document.getElementById('form-status');
   const button = form.querySelector('button[type="submit"]');
 
-  const mailtoFallback = (d) => {
-    const subject = `Заявка с сайта: ${d.type}`;
-    const body = `Имя: ${d.name}\nКонтакт: ${d.contact}\nЧто нужно: ${d.type}\n\n${d.message}`;
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    status.textContent = `Не удалось отправить напрямую — открываем почту. Или напишите на ${CONTACT_EMAIL}.`;
+  const showFallback = () => {
+    status.textContent = 'Не удалось отправить заявку. Напишите мне в Telegram: ';
+    const link = document.createElement('a');
+    link.href = TELEGRAM_URL;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = '@aa343432';
+    status.appendChild(link);
   };
 
   form.addEventListener('submit', async (e) => {
@@ -52,7 +55,7 @@ if (form) {
       form.reset();
       status.textContent = 'Спасибо! Заявка отправлена, отвечу в ближайшее время.';
     } catch {
-      mailtoFallback(data);
+      showFallback();
     } finally {
       button.disabled = false;
     }

@@ -25,6 +25,6 @@ python -m http.server 8080
 
 ## Что заменить
 
-- `js/main.js` → `CONTACT_EMAIL`; `contacts.html` → email и Telegram-ссылка.
+- Контакты: Telegram в `contacts.html` и `js/main.js` (`TELEGRAM_URL`). Email не указан — добавьте строку в `contacts.html`, если нужен.
 - Скриншоты портфолио: положите в `img/portfolio/` файлы `fitness.jpg`, `event.jpg`, `crm.jpg` (16:10) — подставятся автоматически.
 - Новая статья блога: скопируйте `blog-brief.html`, поменяйте текст и добавьте карточку в `blog.html`.
