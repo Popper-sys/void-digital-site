@@ -1,4 +1,4 @@
-# VOID_digital — сайт
+# VOID | digital — сайт
 
 Статический сайт (HTML/CSS/JS) + одна серверная функция для заявок в Telegram.
 
