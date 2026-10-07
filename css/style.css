@@ -281,3 +281,5 @@ textarea { min-height: 130px; resize: vertical; }
 }
 .modal-close:hover { color: var(--text); background: var(--surface-2); }
 .plan .tag { align-self: flex-start; margin: 2px 0 8px; }
+
+.requisites { display: inline-block; margin-top: 6px; font-size: .86rem; }
