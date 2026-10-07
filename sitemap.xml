@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://void-digital.ru/</loc><priority>1.0</priority></url>
+  <url><loc>https://void-digital.ru/about.html</loc><priority>0.8</priority></url>
+  <url><loc>https://void-digital.ru/blog-brief.html</loc><priority>0.6</priority></url>
+  <url><loc>https://void-digital.ru/blog-landing-vs-site.html</loc><priority>0.6</priority></url>
+  <url><loc>https://void-digital.ru/blog.html</loc><priority>0.8</priority></url>
+  <url><loc>https://void-digital.ru/contacts.html</loc><priority>0.8</priority></url>
+  <url><loc>https://void-digital.ru/portfolio.html</loc><priority>0.8</priority></url>
+  <url><loc>https://void-digital.ru/services.html</loc><priority>0.8</priority></url>
+</urlset>
