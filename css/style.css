@@ -316,3 +316,6 @@ textarea { min-height: 130px; resize: vertical; }
   .has-sticky-cta { padding-bottom: 72px; }
 }
 @media (prefers-reduced-motion: reduce) { .sticky-cta { transition: none; } }
+
+/* Атрибут hidden должен скрывать даже элементы со своим display */
+[hidden] { display: none !important; }
