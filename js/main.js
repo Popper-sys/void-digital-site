@@ -27,6 +27,13 @@ const TELEGRAM_URL = 'https://t.me/aa343432';
 const LEAD_ENDPOINT = '/api/lead';
 const form = document.getElementById('contact-form');
 if (form) {
+  // Предвыбор типа клиента по ссылке: contacts.html?client=shop
+  const preset = new URLSearchParams(location.search).get('client');
+  const clientSelect = form.querySelector('select[name="client"]');
+  if (preset && clientSelect && [...clientSelect.options].some((o) => o.value === preset)) {
+    clientSelect.value = preset;
+  }
+
   const status = document.getElementById('form-status');
   const button = form.querySelector('button[type="submit"]');
 

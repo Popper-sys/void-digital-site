@@ -4,6 +4,28 @@
 
 const clip = (v, n) => String(v ?? '').trim().slice(0, n);
 
+// Тип клиента: выбранный в форме и автометка по ключевым словам в тексте заявки.
+const SEGMENTS = {
+  small: 'Малый бизнес / эксперт',
+  shop: 'Интернет-магазин',
+  b2b: 'Компания / B2B',
+  tender: 'Тендер / госзаказ',
+  other: 'Другое',
+};
+// Слова с «=» в начале ищутся как отдельные слова (чтобы «git» не находилось в «digital»).
+const KEYWORDS = {
+  shop: ['=1с', '=1c', 'маркетплейс', 'wildberries', 'вайлдберриз', '=ozon', '=озон', 'каталог', 'корзин', 'интернет-магазин', 'интернет магазин', 'эквайринг'],
+  b2b: ['=api', 'staging', '=git', 'корпоратив', 'портал', 'документаци', 'интеграци', '=b2b', '=crm', '=erp', 'личный кабинет'],
+  tender: ['тендер', 'госзакуп', 'госзаказ', '44-фз', '223-фз', '=тз', 'техническое задание', 'договор', '=акт', 'закупк'],
+  small: ['лендинг', 'визитк', 'эксперт', 'записаться'],
+};
+const autoTags = (text) => {
+  const t = ` ${text.toLowerCase().replace(/[^a-zа-яё0-9-]+/g, ' ')} `;
+  return Object.keys(KEYWORDS).filter((k) =>
+    KEYWORDS[k].some((w) => (w.startsWith('=') ? t.includes(` ${w.slice(1)} `) : t.includes(w.replace(/\s+/g, ' ')))),
+  );
+};
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
@@ -23,6 +45,8 @@ exports.handler = async (event) => {
   const contact = clip(data.contact, 150);
   const type = clip(data.type, 100);
   const message = clip(data.message, 2000);
+  const client = Object.prototype.hasOwnProperty.call(SEGMENTS, data.client) ? data.client : 'other';
+  const tags = autoTags(`${type} ${message}`).filter((k) => k !== client);
   if (!name || !contact) return { statusCode: 400, body: 'Missing fields' };
 
   const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -31,7 +55,9 @@ exports.handler = async (event) => {
 
   const text =
     `📩 Новая заявка с сайта\n\n` +
-    `Имя: ${name}\nКонтакт: ${contact}\nЗадача: ${type || '—'}\n\n${message || '(без описания)'}`;
+    `🏷 Тип клиента: ${SEGMENTS[client]}` +
+    (tags.length ? `\n🔎 Похоже также: ${tags.map((k) => SEGMENTS[k]).join(', ')}` : '') +
+    `\n\nИмя: ${name}\nКонтакт: ${contact}\nЗадача: ${type || '—'}\n\n${message || '(без описания)'}`;
 
   try {
     const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
