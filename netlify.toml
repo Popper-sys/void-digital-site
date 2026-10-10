@@ -1,6 +1,8 @@
+# Конфигурация для Netlify (больше не используется как основной хостинг, оставлена для возврата).
+# Основной хостинг: Cloudflare Pages, функция заявок лежит в functions/api/lead.js.
 [build]
   publish = "."
-  functions = "functions"
+  functions = "legacy-netlify"
 
 [[redirects]]
   from = "/api/lead"
