@@ -335,3 +335,5 @@ textarea { min-height: 130px; resize: vertical; }
 .case-list { margin: 0; display: grid; gap: 4px; }
 .case-list dt { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--accent); margin-top: 10px; }
 .case-list dd { margin: 0; color: var(--muted); }
+
+.plan .plan-note { font-size: .88rem; color: var(--muted); margin: 0 0 18px; }
