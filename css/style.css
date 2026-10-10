@@ -306,14 +306,16 @@ textarea { min-height: 130px; resize: vertical; }
 /* Закреплённая кнопка на телефоне */
 .sticky-cta { display: none; }
 @media (max-width: 720px) {
+  /* Панель приподнята над плашкой «Powered by Netlify» (она закреплена справа внизу и перекрывала кнопки) */
   .sticky-cta {
-    display: flex; gap: 10px; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
-    padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: var(--bg);
-    border-top: 1px solid var(--border); transform: translateY(110%); transition: transform .25s;
+    display: flex; gap: 8px; position: fixed; left: 12px; right: 12px;
+    bottom: calc(68px + env(safe-area-inset-bottom)); z-index: 40;
+    padding: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 999px;
+    box-shadow: var(--shadow); transform: translateY(260%); transition: transform .25s;
   }
   .sticky-cta.show { transform: none; }
-  .sticky-cta .btn { flex: 1; justify-content: center; }
-  .has-sticky-cta { padding-bottom: 72px; }
+  .sticky-cta .btn { flex: 1; justify-content: center; padding: 11px 14px; font-size: .95rem; white-space: nowrap; }
+  .has-sticky-cta { padding-bottom: 140px; }
 }
 @media (prefers-reduced-motion: reduce) { .sticky-cta { transition: none; } }
 
