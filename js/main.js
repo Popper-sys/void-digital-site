@@ -117,6 +117,7 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
       <label class="type-label">Что нужно сделать
         <select name="type">
           <option>Лендинг или сайт-визитка</option>
+          <option>Сайт компании</option>
           <option>Интернет-магазин</option>
           <option>Веб-приложение или бот</option>
           <option>Редизайн или доработка сайта</option>
@@ -126,6 +127,7 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
         </select>
       </label>
       <label>Коротко о задаче<textarea name="message"></textarea></label>
+      <label class="consent"><input name="consent" type="checkbox" required> <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html" target="_blank" rel="noopener">политику конфиденциальности</a></span></label>
       <button class="btn btn-primary" type="submit">Отправить заявку</button>
       <p class="form-status" role="status"></p>
     </form>`;

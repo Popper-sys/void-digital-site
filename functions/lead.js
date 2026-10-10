@@ -41,6 +41,9 @@ exports.handler = async (event) => {
   // Honeypot: боты заполняют скрытое поле — молча «принимаем» и выбрасываем.
   if (data.website) return { statusCode: 200, body: 'ok' };
 
+  // Без согласия на обработку персональных данных заявку не принимаем.
+  if (!data.consent) return { statusCode: 400, body: 'Consent required' };
+
   const name = clip(data.name, 100);
   const contact = clip(data.contact, 150);
   const type = clip(data.type, 100);

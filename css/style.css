@@ -319,3 +319,17 @@ textarea { min-height: 130px; resize: vertical; }
 
 /* Атрибут hidden должен скрывать даже элементы со своим display */
 [hidden] { display: none !important; }
+
+/* Согласие на обработку персональных данных */
+.form label.consent { display: flex; align-items: flex-start; gap: 10px; font-size: .88rem; color: var(--muted); font-weight: 400; }
+.form label.consent input { width: auto; flex: none; margin-top: 3px; }
+.form label.consent a { text-decoration: underline; }
+
+/* Кейсы */
+.case { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+.case .work-thumb { aspect-ratio: 3 / 2; }
+.case-body { padding: 24px 28px 28px; }
+.case-body h3 { margin: 8px 0 14px; }
+.case-list { margin: 0; display: grid; gap: 4px; }
+.case-list dt { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; color: var(--accent); margin-top: 10px; }
+.case-list dd { margin: 0; color: var(--muted); }
