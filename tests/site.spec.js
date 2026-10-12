@@ -41,6 +41,26 @@ test('калькулятор: лендинг + CRM = 18 000 – 24 000 ₽', asy
   await expect(box.locator('[data-calc-time]')).toHaveText('Срок: 1–2 недели');
 });
 
+test('калькулятор: «Добавить 3D в расчёт» отмечает опцию, лендинг + 3D = 23 000 – 30 000 ₽', async ({ page }) => {
+  await page.goto('index.html');
+  await page.locator('[data-add-3d]').click();
+  const box = page.locator('#calc-box');
+  await box.locator('[data-calc-next]').click();
+  await expect(box.locator('input[name=calc-extra][value="3d"]')).toBeChecked();
+  await box.locator('[data-calc-next]').click();
+  await box.locator('[data-calc-next]').click();
+  expect(clean(await box.locator('[data-calc-price]').textContent())).toBe('23 000 – 30 000 ₽');
+});
+
+test('тёмная зона внизу главной загружается без ошибок: 3D или запасная сфера', async ({ page }) => {
+  const errors = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  await page.goto('index.html');
+  await page.locator('.deep-final').scrollIntoViewIfNeeded();
+  await expect(page.locator('html')).toHaveClass(/deep-3d|no-webgl/, { timeout: 15000 });
+  expect(errors).toEqual([]);
+});
+
 test('калькулятор: для магазина опция «Онлайн-оплата» скрыта', async ({ page }) => {
   await page.goto('index.html');
   const box = page.locator('#calc-box');

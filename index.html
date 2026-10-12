@@ -47,6 +47,7 @@
       {"@type": "Question", "name": "Можно ли получать заявки не в Telegram, а в CRM, 1С или WhatsApp?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Заявки можно отправлять в MAX, WhatsApp, Viber, на почту или сразу в CRM: Битрикс24, amoCRM, 1С, а для зарубежных компаний в HubSpot или Salesforce. Если у вас уже есть своя система, встроим сайт в неё через API или вебхуки, ничего не меняя в привычной работе."}},
       {"@type": "Question", "name": "Будет ли сайт виден в ответах нейросетей?", "acceptedAnswer": {"@type": "Answer", "text": "Готовим сайт к этому с первого дня: структурированные данные Schema.org, файл llms.txt с кратким описанием бизнеса, открытый доступ для поисковых и ИИ-роботов, цены, условия и ответы на частые вопросы текстом на странице. Так ChatGPT, Алиса и другие ИИ-помощники лучше понимают ваше предложение и чаще могут его рекомендовать. Гарантировать место в ответах нейросетей не может никто, но шансы это заметно повышает."}},
       {"@type": "Question", "name": "Можно увидеть, как будет выглядеть сайт, до оплаты?", "acceptedAnswer": {"@type": "Answer", "text": "Да. После заявки мы бесплатно сделаем первую страницу вашего сайта и покажем, как может выглядеть ваш бизнес, личный бренд или лицо компании в интернете."}},
+      {"@type": "Question", "name": "Можно добавить на сайт 3D, как на этой странице?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Живой 3D-объект, стекло, свет и анимацию при прокрутке добавляем к любому тарифу за 8 000 ₽. Сцена считается прямо в браузере и подгружается, только когда посетитель до неё долистал, поэтому первый экран не тормозит. На слабых телефонах показываем облегчённую версию, а если в системе отключена анимация, сцена остаётся неподвижной."}},
       {"@type": "Question", "name": "Кому принадлежит сайт?", "acceptedAnswer": {"@type": "Answer", "text": "Вам: домен, хостинг, доступы и исходные файлы передаём заказчику."}},
       {"@type": "Question", "name": "Как проходит оплата?", "acceptedAnswer": {"@type": "Answer", "text": "Частями: 50% на старте, 50% после приёмки сайта. Работаем как ИП по договору, с актами."}}
     ]
@@ -56,7 +57,8 @@
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=fdd81c0f">
+  <link rel="stylesheet" href="css/style.css?v=46f58f1f">
+  <script type="importmap">{ "imports": { "three": "/vendor/three/three.module.min.js" } }</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -220,29 +222,6 @@
     </div>
   </section>
 
-  <!-- 4а. Отзывы (после пакета бонусов) -->
-  <section class="section">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2>Что говорят заказчики</h2>
-      </div>
-      <div class="quotes">
-        <figure class="card quote quote-featured reveal">
-          <p>«Дизайн прям залетел, тёмная тема, всё по красоте. Особенно понравилось расписание. По общению всё супер, правки вносили быстро, без нервов.»</p>
-          <figcaption>Сайт-визитка для фитнес-студии</figcaption>
-        </figure>
-        <figure class="card quote reveal">
-          <p>«Спасибо за качественную и оперативную работу по созданию лендинга!»</p>
-          <figcaption>Лендинг</figcaption>
-        </figure>
-        <figure class="card quote reveal">
-          <p>«Была проблема по сайту, всё починили, заявки в CRM настроили — всё приходит и отправляется. Спасибо, сильно выручили!»</p>
-          <figcaption>Доработка сайта</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
   <!-- 4б. Интеграции: куда ещё можно отправлять заявки -->
   <section class="section alt" id="integrations">
     <div class="container">
@@ -377,6 +356,7 @@
             <label class="opt"><input type="checkbox" name="calc-extra" value="booking"><span><b>Онлайн-запись</b><small>+4 000 ₽</small></span></label>
             <label class="opt"><input type="checkbox" name="calc-extra" value="texts"><span><b>Тексты под ключ</b><small>+4 000 ₽</small></span></label>
             <label class="opt"><input type="checkbox" name="calc-extra" value="en"><span><b>Английская версия</b><small>+8 000 ₽</small></span></label>
+            <label class="opt"><input type="checkbox" name="calc-extra" value="3d"><span><b>3D-сцена и анимации</b><small>+8 000 ₽ · живой объект и эффекты при прокрутке, как внизу этой страницы</small></span></label>
           </div>
         </fieldset>
 
@@ -429,11 +409,37 @@
         <div class="step reveal"><h3>Вёрстка и подключения</h3><p>Собираем сайт, адаптируем под телефоны, подключаем Telegram-бот, Метрику и формы.</p></div>
         <div class="step reveal"><h3>Запуск и поддержка</h3><p>Подключаем домен, проверяем заявки вживую. Первые 30 дней правки бесплатны.</p></div>
       </div>
+      <p class="deep-bridge reveal"><a href="#wow">Листайте дальше: покажем, каким ещё может быть ваш сайт <span aria-hidden="true">↓</span></a></p>
+    </div>
+  </section>
+
+  <!-- Тёмная зона: страница уходит в глубину, дальше живёт 3D-сцена (js/deep.js → js/scene3d.js) -->
+  <div class="deep" id="deep">
+  <div class="deep-stage" aria-hidden="true"><canvas class="deep-canvas"></canvas></div>
+  <div class="deep-fade" data-scene="fade" data-scene-follow="#wow [data-scene-target]" aria-hidden="true"></div>
+
+  <!-- 7б. Добивка: сайт может выглядеть дороже. Объект встаёт в .wow-stage -->
+  <section class="section deep-wow" id="wow" data-scene="wow">
+    <div class="container wow">
+      <div class="wow-text reveal">
+        <h2>Ваш сайт может выглядеть дороже, чем стоит</h2>
+        <p class="wow-lead">Живое 3D, стекло, свет и движение при прокрутке обычно ассоциируются с крупными агентствами и большими бюджетами. Мы собираем такие сцены сами, поэтому добавляем их к любому тарифу. Сайт выглядит современнее и технологичнее, чем у конкурентов, и запоминается с первого экрана.</p>
+        <ul class="wow-points">
+          <li>Объект на этой странице живой: наведите курсор или коснитесь его</li>
+          <li>Сцена подгружается, только когда до неё долистали, и не тормозит первый экран</li>
+          <li>На телефоне облегчённая версия: оставить заявку так же просто</li>
+        </ul>
+        <div class="wow-actions">
+          <a class="btn btn-primary btn-lg" href="#calc" data-add-3d>Добавить 3D в расчёт</a>
+          <span class="wow-price">+8 000 ₽ к любому тарифу</span>
+        </div>
+      </div>
+      <div class="wow-stage" data-scene-target aria-hidden="true"></div>
     </div>
   </section>
 
   <!-- 8. Гарантии -->
-  <section class="section alt" id="guarantees">
+  <section class="section alt" id="guarantees" data-scene="guarantees">
     <div class="container">
       <div class="section-head reveal">
         <h2>Работаем по договору, без сюрпризов</h2>
@@ -468,10 +474,10 @@
     </div>
   </section>
 
-  <!-- 9. Кто делает сайт -->
-  <section class="section">
+  <!-- 9. Кто делает сайт: объект встаёт на место знака -->
+  <section class="section" data-scene="who">
     <div class="container me reveal">
-      <img src="img/void-mark.webp" alt="VOID | digital" width="400" height="400" loading="lazy">
+      <img src="img/void-mark.webp" alt="VOID | digital" width="400" height="400" loading="lazy" data-scene-target>
       <div>
         <h2>Кто делает ваш сайт</h2>
         <p class="muted">VOID | digital — сайты для малого бизнеса под ключ. Работаем напрямую, без менеджеров-посредников: вы общаетесь с исполнителем — тем, кто проектирует, рисует и запускает ваш сайт. Поэтому быстро выходим на связь, не теряем детали и отвечаем за результат.</p>
@@ -485,7 +491,7 @@
 
 
   <!-- 11. Частые вопросы -->
-  <section class="section alt" id="faq">
+  <section class="section alt" id="faq" data-scene="faq">
     <div class="container faq-wrap">
       <div class="section-head reveal">
         <h2>Частые вопросы</h2>
@@ -494,6 +500,7 @@
       <details class="reveal"><summary>Сколько времени займёт разработка?</summary><p>Сайт-визитка — от 3 до 7 дней, лендинг — 1–2 недели, сайт компании — 2–3 недели, интернет-магазин — 3–5 недель. Срок прописываем в договоре; на него влияет, как быстро согласуем макет и материалы.</p></details>
       <details class="reveal"><summary>Что нужно от меня для старта?</summary><p>30 минут на бриф и материалы, если они есть: логотип, тексты, фото, примеры сайтов, которые нравятся. Если чего-то нет — поможем со структурой и текстами и подберём изображения.</p></details>
       <details class="reveal"><summary>На чём вы делаете сайты: Tilda или код?</summary><p>И так, и так: подберём под задачу. Tilda удобна, если хотите сами менять тексты и цены. Сайт на коде быстрее загружается и может работать без ежемесячной платы за конструктор.</p></details>
+      <details class="reveal"><summary>Можно добавить на сайт 3D, как на этой странице?</summary><p>Да. Живой 3D-объект, стекло, свет и анимацию при прокрутке добавляем к любому тарифу за 8 000 ₽. Сцена считается прямо в браузере и подгружается, только когда посетитель до неё долистал, поэтому первый экран не тормозит. На слабых телефонах показываем облегчённую версию, а если в системе отключена анимация, сцена остаётся неподвижной.</p></details>
       <details class="reveal"><summary>Можно увидеть, как будет выглядеть сайт, до оплаты?</summary><p>Да. После заявки мы бесплатно сделаем первую страницу вашего сайта и покажем, как может выглядеть ваш бизнес, личный бренд или лицо компании в интернете.</p></details>
       <details class="reveal"><summary>Что если мне не понравится дизайн?</summary><p>Сначала согласуем прототип и дизайн-макет. Вносим правки до вашего «да» без доплат и только потом переходим к вёрстке.</p></details>
       <details class="reveal"><summary>Кому принадлежит сайт?</summary><p>Вам: домен, хостинг, доступы и исходные файлы передаём после запуска.</p></details>
@@ -505,7 +512,7 @@
   </section>
 
   <!-- 12. Бесплатный разбор -->
-  <section class="section">
+  <section class="section" data-scene="audit">
     <div class="container">
       <div class="audit reveal">
         <div>
@@ -517,10 +524,11 @@
     </div>
   </section>
 
-  <!-- 13. Финальный призыв -->
-  <section class="section">
+  <!-- 13. Финальный призыв: полное погружение, объект над заголовком -->
+  <section class="section deep-final" data-scene="final">
     <div class="container">
       <div class="cta reveal">
+        <div class="final-stage" data-scene-target aria-hidden="true"></div>
         <h2>Посчитаем ваш сайт?</h2>
         <p>Ответьте на 3 вопроса и увидите цену и срок, а после заявки мы бесплатно сделаем первую страницу вашего сайта. Или напишите в Telegram: ответим и сориентируем по цене.</p>
         <div class="cta-actions">
@@ -530,9 +538,10 @@
       </div>
     </div>
   </section>
+  </div>
 </main>
 
-<footer class="site-footer">
+<footer class="site-footer deep-footer">
   <div class="container footer-grid">
     <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
     <ul class="footer-links">
@@ -545,7 +554,8 @@
     </ul>
   </div>
 </footer>
-<script src="js/main.js?v=8209431c"></script>
+<script src="js/main.js?v=d617d83e"></script>
+<script type="module" src="js/deep.js?v=2"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

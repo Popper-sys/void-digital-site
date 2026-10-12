@@ -106,6 +106,7 @@ if (calcBox) {
     booking: { label: 'Онлайн-запись', price: 4000 },
     texts: { label: 'Тексты под ключ', price: 4000 },
     en: { label: 'Английская версия', price: 8000 },
+    '3d': { label: '3D-сцена и анимации', price: 8000 },
   };
   const GIFTS = ['Telegram-бот для заявок', 'Яндекс Метрика с целями', 'SEO и ИИ-старт: поиск и нейросети', 'Политика конфиденциальности и согласие', '30 дней правок после запуска'];
   const GIFTS_SMALL = ['Telegram-бот для заявок', 'Политика конфиденциальности и согласие'];
@@ -114,6 +115,12 @@ if (calcBox) {
   // Неразрывные пробелы: тире не начинает строку, «₽» не отрывается от суммы
   const range = (a, b) => `${num(a)} – ${num(b)} ₽`;
   const roundUp = (n) => Math.ceil(n / 1000) * 1000;
+
+  // «Добавить 3D в расчёт» из тёмной зоны: отмечаем опцию, ссылка сама прокрутит к калькулятору
+  document.querySelectorAll('[data-add-3d]').forEach((a) => a.addEventListener('click', () => {
+    const opt = calcBox.querySelector('input[name="calc-extra"][value="3d"]');
+    if (opt) { opt.checked = true; opt.dispatchEvent(new Event('change', { bubbles: true })); }
+  }));
 
   const kindNow = () => calcBox.querySelector('input[name="calc-kind"]:checked')?.value || 'landing';
 
