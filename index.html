@@ -44,6 +44,7 @@
     "mainEntity": [
       {"@type": "Question", "name": "Сколько стоит сайт?", "acceptedAnswer": {"@type": "Answer", "text": "Сайт-визитка — от 5 000 ₽, лендинг — от 15 000 ₽, сайт компании — от 35 000 ₽, интернет-магазин — от 60 000 ₽. Точную сумму фиксируем в договоре после короткого брифа."}},
       {"@type": "Question", "name": "Сколько времени займёт разработка?", "acceptedAnswer": {"@type": "Answer", "text": "Сайт-визитка — от 3 до 7 дней, лендинг — 1–2 недели, сайт компании — 2–3 недели, интернет-магазин — 3–5 недель. Срок прописываем в договоре."}},
+      {"@type": "Question", "name": "Можно ли получать заявки не в Telegram, а в CRM, 1С или WhatsApp?", "acceptedAnswer": {"@type": "Answer", "text": "Да. Заявки можно отправлять в MAX, WhatsApp, Viber, на почту или сразу в CRM: Битрикс24, amoCRM, 1С, а для зарубежных компаний в HubSpot или Salesforce. Если у вас уже есть своя система, встроим сайт в неё через API или вебхуки, ничего не меняя в привычной работе."}},
       {"@type": "Question", "name": "Будет ли сайт виден в ответах нейросетей?", "acceptedAnswer": {"@type": "Answer", "text": "Готовим сайт к этому с первого дня: структурированные данные Schema.org, файл llms.txt с кратким описанием бизнеса, открытый доступ для поисковых и ИИ-роботов, цены, условия и ответы на частые вопросы текстом на странице. Так ChatGPT, Алиса и другие ИИ-помощники лучше понимают ваше предложение и чаще могут его рекомендовать. Гарантировать место в ответах нейросетей не может никто, но шансы это заметно повышает."}},
       {"@type": "Question", "name": "Кому принадлежит сайт?", "acceptedAnswer": {"@type": "Answer", "text": "Вам: домен, хостинг, доступы и исходные файлы передаём заказчику."}},
       {"@type": "Question", "name": "Как проходит оплата?", "acceptedAnswer": {"@type": "Answer", "text": "Частями: 50% на старте, 50% после приёмки сайта. Работаем как ИП по договору, с актами."}}
@@ -54,7 +55,7 @@
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=7f36847e">
+  <link rel="stylesheet" href="css/style.css?v=c27a7ab3">
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -124,7 +125,7 @@
         </article>
         <article class="pain-row reveal">
           <p class="pain-q">«Заявки теряются в почте»</p>
-          <div><h3>Каждая заявка сразу в Telegram</h3><p>Бот присылает имя, контакт и задачу за секунды. Вы отвечаете первым, пока клиент не ушёл к конкурентам.</p></div>
+          <div><h3>Каждая заявка сразу в Telegram</h3><p>Бот присылает имя, контакт и задачу за секунды. Вы отвечаете первым, пока клиент не ушёл к конкурентам. Удобнее MAX, WhatsApp или ваша CRM? Настроим и туда.</p></div>
         </article>
         <article class="pain-row reveal">
           <p class="pain-q">«С телефона неудобно»</p>
@@ -236,6 +237,22 @@
   </section>
 
   <!-- 5. Цены -->
+  <!-- 4б. Интеграции: куда ещё можно отправлять заявки -->
+  <section class="section" id="integrations">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Заявки туда, где вы уже работаете</h2>
+        <p>Telegram лишь один из вариантов. Отправим заявки в любой мессенджер, почту или CRM и встроим сайт в вашу текущую систему, ничего в ней не ломая.</p>
+      </div>
+      <div class="integrations reveal">
+        <div class="integr-group"><h3>Мессенджеры и почта</h3><ul class="integr-list"><li>Telegram</li><li>MAX</li><li>WhatsApp</li><li>Viber</li><li>Электронная почта</li></ul></div>
+        <div class="integr-group"><h3>CRM и учёт: Россия и СНГ</h3><ul class="integr-list"><li>Битрикс24</li><li>amoCRM</li><li>1С</li></ul></div>
+        <div class="integr-group"><h3>CRM: США и Европа</h3><ul class="integr-list"><li>HubSpot</li><li>Salesforce</li></ul></div>
+        <p class="integr-note">И любой другой сервис, у которого есть API или вебхуки. Telegram-бот входит в подарок, интеграцию с CRM можно добавить в калькуляторе, остальные каналы считаем по задаче и называем цену заранее.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="prices">
     <div class="container">
       <div class="section-head reveal">
@@ -472,6 +489,7 @@
       <details class="reveal"><summary>Что если мне не понравится дизайн?</summary><p>Сначала согласуем прототип и дизайн-макет. Вносим правки до вашего «да» без доплат и только потом переходим к вёрстке.</p></details>
       <details class="reveal"><summary>Кому принадлежит сайт?</summary><p>Вам: домен, хостинг, доступы и исходные файлы передаём после запуска.</p></details>
       <details class="reveal"><summary>Как проходит оплата?</summary><p>Частями: 50% на старте, 50% после приёмки сайта. Работаем как ИП по договору, с актами.</p></details>
+      <details class="reveal"><summary>Можно ли получать заявки не в Telegram, а в CRM, 1С или WhatsApp?</summary><p>Да. Заявки можно отправлять в MAX, WhatsApp, Viber, на почту или сразу в CRM: Битрикс24, amoCRM, 1С, а для зарубежных компаний в HubSpot или Salesforce. Если у вас уже есть своя система, встроим сайт в неё через API или вебхуки, ничего не меняя в привычной работе.</p></details>
       <details class="reveal"><summary>Будет ли сайт виден в ответах нейросетей?</summary><p>Готовим сайт к этому с первого дня: структурированные данные Schema.org, файл llms.txt с кратким описанием бизнеса, открытый доступ для поисковых и ИИ-роботов, цены, условия и ответы на частые вопросы текстом на странице. Так ChatGPT, Алиса и другие ИИ-помощники лучше понимают ваше предложение и чаще могут его рекомендовать. Гарантировать место в ответах нейросетей не может никто, но шансы это заметно повышает.</p></details>
       <details class="reveal"><summary>Что будет после запуска?</summary><p>30 дней правок бесплатно, гарантия 1 год на нашу работу. Дальше — сопровождение и доработки по задаче, цену называем заранее.</p></details>
     </div>
