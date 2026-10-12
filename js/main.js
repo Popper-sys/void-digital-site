@@ -106,16 +106,24 @@ if (calcBox) {
   const range = (a, b) => `${num(a)} – ${num(b)} ₽`;
   const roundUp = (n) => Math.ceil(n / 1000) * 1000;
 
+  const kindNow = () => calcBox.querySelector('input[name="calc-kind"]:checked')?.value || 'landing';
+
+  // Для магазина онлайн-оплата уже входит в базовую цену и срок — прячем опцию, чтобы её не выбрали повторно
+  const payOption = calcBox.querySelector('input[name="calc-extra"][value="pay"]');
+  const syncExtras = () => {
+    const shop = kindNow() === 'shop';
+    payOption.closest('.opt').hidden = shop;
+    if (shop) payOption.checked = false;
+  };
+
   const estimate = () => {
-    const kind = calcBox.querySelector('input[name="calc-kind"]:checked')?.value || 'landing';
+    const kind = kindNow();
     const k = KINDS[kind];
     const extras = [...calcBox.querySelectorAll('input[name="calc-extra"]:checked')].map((i) => i.value);
-    // Для магазина онлайн-оплата уже входит в базовую цену и срок
-    const paid = extras.filter((e) => !(kind === 'shop' && e === 'pay'));
-    const add = paid.reduce((sum, e) => sum + EXTRAS[e].price, 0);
+    const add = extras.reduce((sum, e) => sum + EXTRAS[e].price, 0);
     const min = k.base + add;
     const max = k.max ? k.max + add : roundUp(min * 1.3);
-    const time = paid.length >= 2 ? `${k.time} + 3–5 дней на подключения` : k.time;
+    const time = extras.length >= 2 ? `${k.time} + 3–5 дней на подключения` : k.time;
     const when = calcBox.querySelector('input[name="calc-when"]:checked')?.value || '—';
     return { kind, k, extras, min, max, time, when, gifts: k.gifts === 'small' ? GIFTS_SMALL : GIFTS };
   };
@@ -125,18 +133,23 @@ if (calcBox) {
   const label = calcBox.querySelector('[data-calc-label]');
   const back = calcBox.querySelector('[data-calc-back]');
   const next = calcBox.querySelector('[data-calc-next]');
+  const note = calcBox.querySelector('[data-calc-note]');
+  const NOTE = note.textContent;
+  const NOTE_UNKNOWN = 'Диапазон — от сайта-визитки до сайта компании. Подберём формат на коротком брифе и назовём точную цену до начала работ; в договоре она не изменится без вашего согласия.';
   let current = 0;
 
   const renderResult = () => {
     const r = estimate();
     calcBox.querySelector('[data-calc-price]').textContent = range(r.min, r.max);
     calcBox.querySelector('[data-calc-time]').textContent = `Срок: ${r.time}`;
+    note.textContent = r.kind === 'unknown' ? NOTE_UNKNOWN : NOTE;
     const list = calcBox.querySelector('[data-calc-gifts]');
     list.replaceChildren(...r.gifts.map((g) => Object.assign(document.createElement('li'), { textContent: g })));
   };
 
   const show = (i) => {
     current = Math.max(0, Math.min(i, steps.length - 1));
+    syncExtras();
     steps.forEach((s, n) => { s.hidden = n !== current; });
     const last = current === steps.length - 1;
     bar.style.width = `${((current + 1) / steps.length) * 100}%`;
@@ -236,7 +249,8 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
         </select>
       </label>
       <label>Коротко о задаче<textarea name="message"></textarea></label>
-      <label class="consent"><input name="consent" type="checkbox" required> <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html" target="_blank" rel="noopener">политику конфиденциальности</a></span></label>
+      <label class="consent"><input name="consent" type="checkbox" required> <span>Даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a></span></label>
+      <p class="form-legal">Как мы обрабатываем данные — в <a href="privacy.html" target="_blank" rel="noopener">политике конфиденциальности</a>.</p>
       <button class="btn btn-primary" type="submit">Отправить заявку</button>
       <p class="form-status" role="status"></p>
     </form>`;
@@ -266,7 +280,7 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
     typeLabel.hidden = audit;
     titleEl.textContent = audit ? AUDIT : 'Оставить заявку';
     leadEl.textContent = audit
-      ? 'Пришлите ссылку — разберём главную страницу и пришлём 3–5 конкретных правок.'
+      ? 'Пришлите ссылку — посмотрим первый экран, формы и мобильную версию и пришлём короткий список правок. Доступы не нужны.'
       : 'Расскажите о задаче — ответим с вопросами и предварительной оценкой.';
     submitBtn.textContent = audit ? 'Получить разбор' : 'Отправить заявку';
     if (audit) typeSelect.value = AUDIT;

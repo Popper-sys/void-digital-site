@@ -332,6 +332,9 @@ textarea { min-height: 130px; resize: vertical; }
 .form label.consent { display: flex; align-items: flex-start; gap: 10px; font-size: .88rem; color: var(--muted); font-weight: 400; }
 .form label.consent input { width: auto; flex: none; margin-top: 3px; }
 .form label.consent a { text-decoration: underline; }
+/* Ссылка на политику — отдельно от согласия (152-ФЗ, ст. 9: согласие оформляется отдельно от иных документов) */
+.form .form-legal { margin: -8px 0 0; font-size: .8rem; color: var(--muted); }
+.form .form-legal a { text-decoration: underline; }
 
 /* Кейсы */
 .case { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
@@ -364,7 +367,9 @@ section[id] { scroll-margin-top: 84px; }
 }
 .chips li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--success); flex: none; }
 
+.hero-side { min-width: 0; }
 .hero-visual { position: relative; padding: 18px 10px 40px 26px; }
+.hero-demo-note { margin: 12px 0 0; font-size: .78rem; color: var(--muted); }
 .browser {
   background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
   box-shadow: var(--shadow-lg); overflow: hidden; transform: rotate(-1.5deg);
@@ -492,7 +497,7 @@ section[id] { scroll-margin-top: 84px; }
 @media (max-width: 900px) {
   .stack, .calc { grid-template-columns: 1fr; }
   .stack-total { position: static; }
-  .hero-visual { max-width: 560px; }
+  .hero-side { max-width: 560px; }
 }
 @media (max-width: 720px) {
   .me { grid-template-columns: 1fr; gap: 20px; }

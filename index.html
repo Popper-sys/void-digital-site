@@ -45,7 +45,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="css/style.css?v=583e5aa0">
+  <link rel="stylesheet" href="css/style.css?v=5fab665c">
 </head>
 <body>
 <header class="site-header">
@@ -89,21 +89,24 @@
           <div><strong>13 проектов</strong><span>в портфолио</span></div>
         </div>
       </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="browser">
-          <div class="browser-bar"><i></i><i></i><i></i><span>ваш-сайт.ru</span></div>
-          <img src="img/portfolio/veniki.webp" alt="" width="660" height="440">
-        </div>
-        <div class="metric-chip">Яндекс Метрика: <b>+1 заявка</b></div>
-        <div class="tg-toast">
-          <div class="tg-ava">V</div>
-          <div>
-            <strong>Заявки с сайта</strong>
-            <span>📩 Новая заявка</span>
-            <span>Анна · лендинг для салона</span>
+      <div class="hero-side" aria-hidden="true">
+        <div class="hero-visual">
+          <div class="browser">
+            <div class="browser-bar"><i></i><i></i><i></i><span>ваш-сайт.ru</span></div>
+            <img src="img/portfolio/veniki.webp" alt="" width="660" height="440">
           </div>
-          <time>сейчас</time>
+          <div class="metric-chip">Яндекс Метрика: <b>+1 заявка</b></div>
+          <div class="tg-toast">
+            <div class="tg-ava">V</div>
+            <div>
+              <strong>Заявки с сайта</strong>
+              <span>📩 Новая заявка</span>
+              <span>Анна · лендинг для салона</span>
+            </div>
+            <time>сейчас</time>
+          </div>
         </div>
+        <p class="hero-demo-note">Пример интерфейса: заявка в Telegram и цель в Метрике</p>
       </div>
     </div>
   </section>
@@ -198,7 +201,7 @@
           </li>
           <li class="stack-item reveal">
             <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></svg></div>
-            <div><h3>Политика ПДн и согласие в формах</h3><p>Документы по 152-ФЗ, чтобы формы на сайте собирали данные клиентов законно.</p></div>
+            <div><h3>Политика ПДн и согласие в формах</h3><p>Разместим политику и отдельный текст согласия, подготовленные по вашим данным об операторе и целях обработки.</p></div>
             <div class="stack-price"><s>от 1 500 ₽</s><b>0 ₽</b></div>
           </li>
           <li class="stack-item reveal">
@@ -237,6 +240,7 @@
             <li>Публикация и запуск</li>
           </ul>
           <div class="plan-gifts"><b>В подарок</b><span>Telegram-бот для заявок</span><span>Политика ПДн и согласие</span></div>
+          <p class="plan-note">Отдельно оплачиваются домен и платные сервисы.</p>
           <a class="btn btn-ghost" href="#calc" data-calc="visitka">Рассчитать</a>
         </article>
         <article class="card plan featured reveal">
@@ -249,9 +253,10 @@
             <li>Дизайн в Figma и адаптивная вёрстка</li>
             <li>Формы, pop-up, анимации</li>
             <li>Подключение CRM и аналитики</li>
-            <li>Домен и запуск</li>
+            <li>Подключение домена и запуск</li>
           </ul>
           <div class="plan-gifts"><b>В подарок — бонусы на 14 500 ₽</b><span>Telegram-бот, Метрика с целями, SEO-старт, политика ПДн, 30 дней правок</span></div>
+          <p class="plan-note">Отдельно оплачиваются домен, хостинг, платные сервисы и сложные интеграции.</p>
           <a class="btn btn-primary" href="#calc" data-calc="landing">Рассчитать</a>
         </article>
         <article class="card plan reveal">
@@ -263,9 +268,10 @@
             <li>Дизайн в Figma и адаптивная вёрстка</li>
             <li>Формы, CRM, аналитика, уведомления</li>
             <li>Базовая SEO-подготовка</li>
-            <li>Домен, запуск, передача доступов</li>
+            <li>Подключение домена, запуск, передача доступов</li>
           </ul>
           <div class="plan-gifts"><b>В подарок — бонусы на 14 500 ₽</b><span>Telegram-бот, Метрика с целями, SEO-старт, политика ПДн, 30 дней правок</span></div>
+          <p class="plan-note">Отдельно оплачиваются домен, хостинг, платные сервисы и сложные интеграции.</p>
           <a class="btn btn-ghost" href="#calc" data-calc="company">Рассчитать</a>
         </article>
       </div>
@@ -337,7 +343,7 @@
         </fieldset>
 
         <fieldset class="calc-step" data-step="3" hidden>
-          <legend>Когда нужен сайт?</legend>
+          <legend>Когда нужен сайт? <small>на цену не влияет — чтобы спланировать старт</small></legend>
           <div class="opts">
             <label class="opt"><input type="radio" name="calc-when" value="Как можно скорее" checked><span><b>Как можно скорее</b><small>начнём на этой неделе</small></span></label>
             <label class="opt"><input type="radio" name="calc-when" value="В течение месяца"><span><b>В течение месяца</b><small>спокойно, по плану</small></span></label>
@@ -350,14 +356,15 @@
           <p class="calc-price" data-calc-price>15 000 – 20 000 ₽</p>
           <p class="calc-time" data-calc-time>Срок: 1–2 недели</p>
           <div class="calc-gifts"><b>В подарок к сайту</b><ul class="list" data-calc-gifts></ul></div>
-          <p class="calc-note">Это ориентир по нашему прайсу. Точную цену и срок зафиксируем в договоре после брифа — дороже она не станет без вашего согласия.</p>
+          <p class="calc-note" data-calc-note>Это ориентир по нашему прайсу: нижняя граница — выбранный состав, верхняя — с запасом на объём, который уточним на брифе (число блоков, тексты, сложность дизайна). Итоговую цену и срок зафиксируем в договоре до начала работ, без вашего согласия она не изменится.</p>
           <form class="form calc-lead" id="calc-lead">
-            <h3>Закрепить цену и получить план работ</h3>
-            <p>Пришлём расчёт и план по шагам в Telegram или на почту.</p>
+            <h3>Получить расчёт и план работ</h3>
+            <p>Пришлём расчёт и план по шагам в Telegram или на почту. Уточним задачу и состав работ, затем зафиксируем сумму и сроки в договоре.</p>
             <label class="hp" aria-hidden="true">Не заполняйте это поле<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
             <label>Ваше имя<input name="name" type="text" required autocomplete="name"></label>
             <label>Телефон, Telegram или email<input name="contact" type="text" required></label>
-            <label class="consent"><input name="consent" type="checkbox" required> <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html" target="_blank" rel="noopener">политику конфиденциальности</a></span></label>
+            <label class="consent"><input name="consent" type="checkbox" required> <span>Даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a></span></label>
+            <p class="form-legal">Как мы обрабатываем данные — в <a href="privacy.html" target="_blank" rel="noopener">политике конфиденциальности</a>.</p>
             <button class="btn btn-primary btn-lg" type="submit">Получить расчёт и план</button>
             <p class="form-status" role="status"></p>
           </form>
@@ -492,7 +499,7 @@
         <div>
           <span class="eyebrow">Уже есть сайт?</span>
           <h2>Бесплатный разбор: что мешает получать заявки</h2>
-          <p>Пришлите ссылку — разберём главную страницу и пришлём 3–5 конкретных правок: первый экран, кнопки и формы, мобильная версия, доверие.</p>
+          <p>Пришлите ссылку — посмотрим первый экран, формы и мобильную версию и пришлём короткий список правок, которые стоит сделать в первую очередь. Доступы к сайту и Метрике не нужны.</p>
         </div>
         <a class="btn btn-primary" href="contacts.html" data-audit>Получить бесплатный разбор</a>
       </div>
@@ -527,7 +534,7 @@
     </ul>
   </div>
 </footer>
-<script src="js/main.js?v=0d789b31"></script>
+<script src="js/main.js?v=48e4aff8"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
