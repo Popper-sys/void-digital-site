@@ -49,7 +49,9 @@ exports.handler = async (event) => {
   const type = clip(data.type, 100);
   const message = clip(data.message, 2000);
   const site = clip(data.site, 200);
+  const estimate = clip(data.estimate, 160);
   const isAudit = type === 'Бесплатный разбор сайта';
+  const isCalc = data.source === 'calc';
   const client = Object.prototype.hasOwnProperty.call(SEGMENTS, data.client) ? data.client : 'other';
   const tags = autoTags(`${type} ${message}`).filter((k) => k !== client);
   if (!name || !contact) return { statusCode: 400, body: 'Missing fields' };
@@ -59,12 +61,18 @@ exports.handler = async (event) => {
   if (!token || !chatId) return { statusCode: 500, body: 'Not configured' };
 
   const text =
-    (isAudit ? `🔍 Заявка на бесплатный разбор сайта\n\n` : `📩 Новая заявка с сайта\n\n`) +
+    (isAudit
+      ? `🔍 Заявка на бесплатный разбор сайта\n\n`
+      : isCalc
+        ? `🧮 Заявка из калькулятора стоимости\n\n`
+        : `📩 Новая заявка с сайта\n\n`) +
     `🏷 Тип клиента: ${SEGMENTS[client]}` +
     (tags.length ? `\n🔎 Похоже также: ${tags.map((k) => SEGMENTS[k]).join(', ')}` : '') +
     `\n\nИмя: ${name}\nКонтакт: ${contact}\n` +
     (site ? `Сайт: ${site}\n` : '') +
-    `Задача: ${type || '—'}\n\n${message || '(без описания)'}`;
+    `Задача: ${type || '—'}\n` +
+    (estimate ? `💰 Расчёт: ${estimate}\n` : '') +
+    `\n${message || '(без описания)'}`;
 
   try {
     const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {

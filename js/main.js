@@ -6,6 +6,10 @@ if (toggle && links) {
     const open = links.classList.toggle('open');
     toggle.setAttribute('aria-expanded', String(open));
   });
+  // Закрываем меню после перехода по якорю на этой же странице
+  links.addEventListener('click', (e) => {
+    if (e.target.closest('a')) { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+  });
 }
 
 // Плавное появление блоков
@@ -21,42 +25,45 @@ if ('IntersectionObserver' in window) {
   items.forEach((el) => el.classList.add('visible'));
 }
 
-// Форма заявки: отправка в Telegram через серверную функцию (functions/lead.js).
+// Заявки: отправка в Telegram через серверную функцию (functions/api/lead.js).
 // Если функция недоступна (локально или не настроена) — показываем ссылку на Telegram.
-// Одна и та же логика работает для формы на странице контактов и для всплывающей формы.
 const TELEGRAM_URL = 'https://t.me/aa343432';
 const LEAD_ENDPOINT = '/api/lead';
 
-const setupLeadForm = (form) => {
+const sendLead = async (data) => {
+  const res = await fetch(LEAD_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) throw new Error(String(res.status));
+};
+
+const showFallback = (status) => {
+  status.textContent = 'Не удалось отправить заявку. Напишите мне в Telegram: ';
+  const link = document.createElement('a');
+  link.href = TELEGRAM_URL;
+  link.target = '_blank';
+  link.rel = 'noopener';
+  link.textContent = '@aa343432';
+  status.appendChild(link);
+};
+
+// Общая логика формы: собрать поля (+ дополнительные данные), отправить, показать результат.
+const setupLeadForm = (form, extra = () => ({})) => {
   const status = form.querySelector('.form-status');
   const button = form.querySelector('button[type="submit"]');
-
-  const showFallback = () => {
-    status.textContent = 'Не удалось отправить заявку. Напишите мне в Telegram: ';
-    const link = document.createElement('a');
-    link.href = TELEGRAM_URL;
-    link.target = '_blank';
-    link.rel = 'noopener';
-    link.textContent = '@aa343432';
-    status.appendChild(link);
-  };
-
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(form));
+    const data = { ...Object.fromEntries(new FormData(form)), ...extra() };
     button.disabled = true;
     status.textContent = 'Отправляем…';
     try {
-      const res = await fetch(LEAD_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error(String(res.status));
+      await sendLead(data);
       form.reset();
       status.textContent = 'Спасибо! Заявка отправлена, отвечу в ближайшее время.';
     } catch {
-      showFallback();
+      showFallback(status);
     } finally {
       button.disabled = false;
     }
@@ -74,12 +81,114 @@ if (pageForm) {
   setupLeadForm(pageForm);
 }
 
+// Калькулятор стоимости на главной
+const calcBox = document.getElementById('calc-box');
+if (calcBox) {
+  const KINDS = {
+    visitka: { label: 'Сайт-визитка', base: 5000, time: 'от 3 до 7 дней', gifts: 'small' },
+    landing: { label: 'Лендинг', base: 15000, time: '1–2 недели' },
+    company: { label: 'Сайт компании', base: 35000, time: '2–3 недели' },
+    shop: { label: 'Интернет-магазин', base: 60000, time: '3–5 недель' },
+    unknown: { label: 'Пока не знаю — подобрать формат', base: 5000, max: 35000, time: '1–3 недели' },
+  };
+  const EXTRAS = {
+    pay: { label: 'Онлайн-оплата', price: 5000 },
+    quiz: { label: 'Квиз или калькулятор', price: 4000 },
+    crm: { label: 'Интеграция с CRM', price: 3000 },
+    booking: { label: 'Онлайн-запись', price: 4000 },
+    texts: { label: 'Тексты под ключ', price: 4000 },
+    en: { label: 'Английская версия', price: 8000 },
+  };
+  const GIFTS = ['Telegram-бот для заявок', 'Яндекс Метрика с целями', 'SEO-старт и Яндекс Вебмастер', 'Политика ПДн и согласие в формах', '30 дней правок после запуска'];
+  const GIFTS_SMALL = ['Telegram-бот для заявок', 'Политика ПДн и согласие в формах'];
+
+  const num = (n) => n.toLocaleString('ru-RU');
+  const range = (a, b) => `${num(a)} – ${num(b)} ₽`;
+  const roundUp = (n) => Math.ceil(n / 1000) * 1000;
+
+  const estimate = () => {
+    const kind = calcBox.querySelector('input[name="calc-kind"]:checked')?.value || 'landing';
+    const k = KINDS[kind];
+    const extras = [...calcBox.querySelectorAll('input[name="calc-extra"]:checked')].map((i) => i.value);
+    // Для магазина онлайн-оплата уже входит в базовую цену и срок
+    const paid = extras.filter((e) => !(kind === 'shop' && e === 'pay'));
+    const add = paid.reduce((sum, e) => sum + EXTRAS[e].price, 0);
+    const min = k.base + add;
+    const max = k.max ? k.max + add : roundUp(min * 1.3);
+    const time = paid.length >= 2 ? `${k.time} + 3–5 дней на подключения` : k.time;
+    const when = calcBox.querySelector('input[name="calc-when"]:checked')?.value || '—';
+    return { kind, k, extras, min, max, time, when, gifts: k.gifts === 'small' ? GIFTS_SMALL : GIFTS };
+  };
+
+  const steps = [...calcBox.querySelectorAll('[data-step]')];
+  const bar = calcBox.querySelector('.calc-progress span');
+  const label = calcBox.querySelector('[data-calc-label]');
+  const back = calcBox.querySelector('[data-calc-back]');
+  const next = calcBox.querySelector('[data-calc-next]');
+  let current = 0;
+
+  const renderResult = () => {
+    const r = estimate();
+    calcBox.querySelector('[data-calc-price]').textContent = range(r.min, r.max);
+    calcBox.querySelector('[data-calc-time]').textContent = `Срок: ${r.time}`;
+    const list = calcBox.querySelector('[data-calc-gifts]');
+    list.replaceChildren(...r.gifts.map((g) => Object.assign(document.createElement('li'), { textContent: g })));
+  };
+
+  const show = (i) => {
+    current = Math.max(0, Math.min(i, steps.length - 1));
+    steps.forEach((s, n) => { s.hidden = n !== current; });
+    const last = current === steps.length - 1;
+    bar.style.width = `${((current + 1) / steps.length) * 100}%`;
+    label.textContent = last ? 'Готово — ваш расчёт' : `Шаг ${current + 1} из ${steps.length - 1}`;
+    back.hidden = current === 0;
+    next.hidden = last;
+    next.textContent = current === steps.length - 2 ? 'Показать стоимость' : 'Далее';
+    if (last) renderResult();
+  };
+
+  next.addEventListener('click', () => show(current + 1));
+  back.addEventListener('click', () => show(current - 1));
+
+  // Кнопки «Рассчитать» в тарифах: выбираем тип сайта и сразу переходим ко второму шагу
+  document.querySelectorAll('[data-calc]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const radio = calcBox.querySelector(`input[name="calc-kind"][value="${btn.dataset.calc}"]`);
+      if (radio) radio.checked = true;
+      show(1);
+    });
+  });
+
+  const leadForm = calcBox.querySelector('#calc-lead');
+  setupLeadForm(leadForm, () => {
+    const r = estimate();
+    const extras = r.extras.map((e) => EXTRAS[e].label).join(', ') || 'ничего';
+    return {
+      source: 'calc',
+      client: r.kind === 'shop' ? 'shop' : 'small',
+      type: r.k.label,
+      estimate: `${range(r.min, r.max)}, срок ${r.time}`,
+      message: `Подключить: ${extras}\nКогда нужен сайт: ${r.when}`,
+    };
+  });
+
+  // Переход со страницы услуг: index.html?calc=landing#calc — тип сайта уже выбран
+  const presetKind = new URLSearchParams(location.search).get('calc');
+  if (presetKind && Object.prototype.hasOwnProperty.call(KINDS, presetKind)) {
+    calcBox.querySelector(`input[name="calc-kind"][value="${presetKind}"]`).checked = true;
+    show(1);
+  } else {
+    show(0);
+  }
+}
+
 // Закреплённая кнопка внизу экрана на телефоне (на странице контактов форма и так перед глазами).
 if (!pageForm) {
+  const calcHref = calcBox ? '#calc' : 'index.html#calc';
   const bar = document.createElement('div');
   bar.className = 'sticky-cta';
   bar.innerHTML = `
-    <a class="btn btn-primary" href="contacts.html" data-order="">Рассчитать проект</a>
+    <a class="btn btn-primary" href="${calcHref}">Рассчитать стоимость</a>
     <a class="btn btn-ghost" href="${TELEGRAM_URL}" target="_blank" rel="noopener">Telegram</a>`;
   document.body.appendChild(bar);
   document.body.classList.add('has-sticky-cta');
@@ -157,7 +266,7 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
     typeLabel.hidden = audit;
     titleEl.textContent = audit ? AUDIT : 'Оставить заявку';
     leadEl.textContent = audit
-      ? 'Пришлите ссылку — посмотрю, что мешает сайту приводить заявки, и расскажу, что можно улучшить.'
+      ? 'Пришлите ссылку — разберу главную страницу и пришлю 3–5 конкретных правок.'
       : 'Расскажите о задаче — отвечу с вопросами и предварительной оценкой.';
     submitBtn.textContent = audit ? 'Получить разбор' : 'Отправить заявку';
     if (audit) typeSelect.value = AUDIT;

@@ -3,28 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VOID | digital — сайты для малого бизнеса</title>
-  <meta name="description" content="VOID | digital: сайты для малого бизнеса от структуры и дизайна до работающих форм заявок. Лендинги, сайты компаний, интернет-магазины, доработки и сопровождение.">
+  <title>VOID | digital — сайты для малого бизнеса, заявки сразу в Telegram</title>
+  <meta name="description" content="Лендинги и сайты для малого бизнеса под ключ за 1–3 недели. Заявки с сайта сразу в Telegram, Яндекс Метрика и 30 дней правок в подарок. Цена фиксируется в договоре. Рассчитайте стоимость за 1 минуту.">
   <link rel="canonical" href="https://void-digital.ru/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="VOID | digital">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="VOID | digital — сайты для малого бизнеса">
-  <meta property="og:description" content="VOID | digital: сайты для малого бизнеса от структуры и дизайна до работающих форм заявок. Лендинги, сайты компаний, интернет-магазины, доработки и сопровождение.">
+  <meta property="og:title" content="VOID | digital — сайты для малого бизнеса, заявки сразу в Telegram">
+  <meta property="og:description" content="Лендинги и сайты под ключ за 1–3 недели. Telegram-бот для заявок, Метрика и 30 дней правок в подарок. Рассчитайте стоимость за 1 минуту.">
   <meta property="og:url" content="https://void-digital.ru/">
-    <script type="application/ld+json">
+  <meta property="og:image" content="https://void-digital.ru/img/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "VOID | digital",
     "legalName": "ИП Лосуков Даниил Васильевич",
     "url": "https://void-digital.ru/",
-    "description": "Дизайн и разработка сайтов: лендинги, сайты компаний, интернет-магазины, доработки и сопровождение.",
+    "image": "https://void-digital.ru/img/og-cover.jpg",
+    "description": "Лендинги и сайты для малого бизнеса под ключ: дизайн, разработка, запуск, заявки в Telegram.",
     "taxID": "244312594492",
     "areaServed": "RU",
     "knowsLanguage": "ru",
+    "priceRange": "от 5000 ₽",
     "sameAs": ["https://t.me/aa343432"],
-    "serviceType": ["Создание сайтов", "Лендинги и сайты-визитки", "Интернет-магазины", "Доработка и сопровождение сайтов"]
+    "serviceType": ["Создание сайтов", "Лендинги и сайты-визитки", "Сайты компаний", "Интернет-магазины", "Доработка и сопровождение сайтов"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Сколько стоит сайт?", "acceptedAnswer": {"@type": "Answer", "text": "Сайт-визитка — от 5 000 ₽, лендинг — от 15 000 ₽, сайт компании — от 35 000 ₽, интернет-магазин — от 60 000 ₽. Точную сумму фиксирую в договоре после короткого брифа."}},
+      {"@type": "Question", "name": "Сколько времени займёт разработка?", "acceptedAnswer": {"@type": "Answer", "text": "Сайт-визитка — от 3 до 7 дней, лендинг — 1–2 недели, сайт компании — 2–3 недели, интернет-магазин — 3–5 недель. Срок прописываю в договоре."}},
+      {"@type": "Question", "name": "Кому принадлежит сайт?", "acceptedAnswer": {"@type": "Answer", "text": "Вам: домен, хостинг, доступы и исходные файлы передаю заказчику."}},
+      {"@type": "Question", "name": "Как проходит оплата?", "acceptedAnswer": {"@type": "Answer", "text": "Частями: 50% на старте, 50% после приёмки сайта. Работаю как ИП по договору, с актами."}}
+    ]
   }
   </script>
   <link rel="stylesheet" href="css/style.css">
@@ -37,187 +55,411 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
     <ul class="nav-links">
-      <li><a href="index.html" aria-current="page">Главная</a></li>
       <li><a href="services.html">Услуги и цены</a></li>
       <li><a href="portfolio.html">Портфолио</a></li>
-      <li><a href="blog.html">Блог</a></li>
       <li><a href="about.html">Обо мне</a></li>
-      <li><a class="btn btn-primary btn-sm" href="contacts.html">Обсудить проект</a></li>
+      <li><a href="blog.html">Блог</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+      <li><a class="btn btn-primary btn-sm" href="#calc">Рассчитать стоимость</a></li>
     </ul>
   </div>
 </header>
 
 <main>
-  <section class="hero">
+  <!-- 1. Первый экран: оффер + визуал «заявка пришла в Telegram» -->
+  <section class="hero hero-v2">
     <div class="container hero-grid">
       <div>
-        <span class="eyebrow">Дизайн и разработка сайтов</span>
-        <h1>Сайты для малого бизнеса: от структуры до работающих заявок</h1>
-        <p class="lead">Проектирую, разрабатываю и настраиваю формы обращений. Работаю напрямую и согласовываю стоимость до начала работ.</p>
+        <span class="eyebrow">Сайты для малого бизнеса · под ключ</span>
+        <h1>Сайт, который собирает заявки и&nbsp;сразу присылает их вам в&nbsp;<em>Telegram</em></h1>
+        <p class="lead">Лендинги и сайты под ключ за 1–3 недели: структура, дизайн, запуск. В подарок — Telegram-бот для заявок, Яндекс Метрика и 30 дней правок после запуска.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="contacts.html" data-order="">Рассчитать проект</a>
-          <a class="btn btn-ghost" href="portfolio.html">Посмотреть работы</a>
+          <a class="btn btn-primary btn-lg" href="#calc">Рассчитать стоимость за 1 минуту</a>
+          <a class="btn btn-ghost btn-lg" href="#works">Смотреть работы</a>
         </div>
-        <p class="hero-note"><a href="https://t.me/aa343432" target="_blank" rel="noopener">Или сразу напишите в Telegram: получите предварительную оценку →</a></p>
+        <ul class="chips" aria-label="Условия работы">
+          <li>Договор и ИП</li>
+          <li>Цена фиксируется заранее</li>
+          <li>Оплата частями</li>
+          <li>Гарантия 1 год</li>
+        </ul>
         <div class="hero-stats">
           <div><strong>от 5 000 ₽</strong><span>сайт-визитка</span></div>
-          <div><strong>1–3 недели</strong><span>лендинг или сайт компании</span></div>
-          <div><strong>гибкая</strong><span>цена небольших доработок</span></div>
+          <div><strong>1–3 недели</strong><span>от брифа до запуска</span></div>
+          <div><strong>13 проектов</strong><span>в портфолио</span></div>
         </div>
       </div>
-      <div class="mock" aria-hidden="true">
-        <div class="mock-bar"><i></i><i></i><i></i></div>
-        <div class="mock-body">
-          <div class="mock-line w60"></div>
-          <div class="mock-line w80"></div>
-          <div class="mock-line w40"></div>
-          <div class="mock-line accent"></div>
-          <div class="mock-cards"><div></div><div></div><div></div></div>
-          <div class="mock-line w80"></div>
-          <div class="mock-line w60"></div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="browser">
+          <div class="browser-bar"><i></i><i></i><i></i><span>ваш-сайт.ru</span></div>
+          <img src="img/portfolio/veniki.webp" alt="" width="660" height="440">
+        </div>
+        <div class="metric-chip">Яндекс Метрика: <b>+1 заявка</b></div>
+        <div class="tg-toast">
+          <div class="tg-ava">V</div>
+          <div>
+            <strong>Заявки с сайта</strong>
+            <span>📩 Новая заявка</span>
+            <span>Анна · лендинг для салона</span>
+          </div>
+          <time>сейчас</time>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section alt">
+  <!-- 2. Боли → решения -->
+  <section class="section alt" id="why">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Что делаю</span>
-        <h2>Всё, что нужно сайту — в одном месте</h2>
-        <p>От идеи и прототипа до запуска и регулярной поддержки.</p>
+        <span class="eyebrow">Почему так происходит</span>
+        <h2>Почему сайты не приносят заявки — и что я делаю иначе</h2>
+        <p>Красивая картинка не продаёт сама. Сайт должен вести человека к заявке и не терять её по дороге.</p>
       </div>
       <div class="grid grid-4">
-        <article class="card card-action reveal" data-order="Лендинг или сайт-визитка" role="button" tabindex="0" aria-haspopup="dialog">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></div>
-          <h3>Лендинги и визитки</h3>
-          <p>Быстрые одностраничные сайты для услуг, мероприятий и малого бизнеса.</p>
-          <span class="card-cta">Оставить заявку →</span>
+        <article class="card pain reveal">
+          <p class="pain-q">«Заходят и сразу уходят»</p>
+          <h3>Понятное предложение за 5 секунд</h3>
+          <p>Первый экран отвечает на главное: что вы предлагаете, для кого и почему вам. Кнопка заявки всегда под рукой.</p>
         </article>
+        <article class="card pain reveal">
+          <p class="pain-q">«Заявки теряются в почте»</p>
+          <h3>Каждая заявка — сразу в Telegram</h3>
+          <p>Бот присылает имя, контакт и задачу за секунды. Вы отвечаете первым, пока клиент не ушёл к конкурентам.</p>
+        </article>
+        <article class="card pain reveal">
+          <p class="pain-q">«Не доверяют и уходят сравнивать»</p>
+          <h3>Доверие с первого экрана</h3>
+          <p>Работы, отзывы, реквизиты, понятные цены и сроки — всё, что снимает сомнения до звонка.</p>
+        </article>
+        <article class="card pain reveal">
+          <p class="pain-q">«С телефона неудобно»</p>
+          <h3>Сначала — мобильная версия</h3>
+          <p>Большинство заходит со смартфона: крупные кнопки, быстрая загрузка, связь в один клик.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Работы -->
+  <section class="section" id="works">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Портфолио</span>
+        <h2>Сайты, которые я сделал полностью — от структуры до запуска</h2>
+        <p>Недвижимость, опт, личный бренд, промышленность — подход один: понятное предложение и путь к заявке.</p>
+      </div>
+      <div class="grid grid-4">
+        <a class="card work reveal" href="portfolio.html">
+          <div class="work-thumb"><img src="img/portfolio/sotsvetie.webp" alt="Сайт жилого комплекса «Соцветие»" width="660" height="440" loading="lazy"></div>
+          <div class="work-body"><span class="tag">Недвижимость</span><h3>ЖК «Соцветие»</h3></div>
+        </a>
+        <a class="card work reveal" href="portfolio.html">
+          <div class="work-thumb"><img src="img/portfolio/veniki.webp" alt="Сайт оптовой продажи банных веников" width="660" height="440" loading="lazy"></div>
+          <div class="work-body"><span class="tag">Опт</span><h3>Банные веники оптом</h3></div>
+        </a>
+        <a class="card work reveal" href="portfolio.html">
+          <div class="work-thumb"><img src="img/portfolio/expert.webp" alt="Личный сайт предпринимателя и спикера" width="660" height="440" loading="lazy"></div>
+          <div class="work-body"><span class="tag">Личный бренд</span><h3>Сайт предпринимателя и спикера</h3></div>
+        </a>
+        <a class="card work reveal" href="portfolio.html">
+          <div class="work-thumb"><img src="img/portfolio/spectech.webp" alt="Сайт компании по ремонту спецтехники" width="660" height="440" loading="lazy"></div>
+          <div class="work-body"><span class="tag">Промышленность</span><h3>Ремонт спецтехники</h3></div>
+        </a>
+      </div>
+      <p class="reveal" style="margin-top:24px"><a class="btn btn-ghost" href="portfolio.html">Смотреть все 13 работ →</a></p>
+    </div>
+  </section>
+
+  <!-- 4. Пакет: сайт + бонусы -->
+  <section class="section alt" id="bonus">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Что вы получаете</span>
+        <h2>Не просто сайт, а готовая система получения заявок</h2>
+        <p>К лендингу и сайту компании — пять бонусов, без которых сайт работает вполсилы.</p>
+      </div>
+      <div class="stack">
+        <ul class="stack-list">
+          <li class="stack-item reveal">
+            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></div>
+            <div><h3>Telegram-бот для заявок</h3><p>Каждая заявка за секунды у вас в Telegram — не теряется и не ждёт в почте.</p></div>
+            <div class="stack-price"><s>от 3 000 ₽</s><b>0 ₽</b></div>
+          </li>
+          <li class="stack-item reveal">
+            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></div>
+            <div><h3>Яндекс Метрика с целями</h3><p>Видно, сколько людей пришло на сайт и сколько из них оставили заявку.</p></div>
+            <div class="stack-price"><s>от 2 000 ₽</s><b>0 ₽</b></div>
+          </li>
+          <li class="stack-item reveal">
+            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+            <div><h3>SEO-старт</h3><p>Мета-теги, карта сайта, подключение к Яндекс Вебмастеру и быстрая загрузка — чтобы сайт находили.</p></div>
+            <div class="stack-price"><s>от 3 000 ₽</s><b>0 ₽</b></div>
+          </li>
+          <li class="stack-item reveal">
+            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></svg></div>
+            <div><h3>Политика ПДн и согласие в формах</h3><p>Документы по 152-ФЗ, чтобы формы на сайте собирали данные клиентов законно.</p></div>
+            <div class="stack-price"><s>от 1 500 ₽</s><b>0 ₽</b></div>
+          </li>
+          <li class="stack-item reveal">
+            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></div>
+            <div><h3>30 дней правок после запуска</h3><p>Поменять текст, цены или фото в первый месяц — бесплатно.</p></div>
+            <div class="stack-price"><s>от 5 000 ₽</s><b>0 ₽</b></div>
+          </li>
+        </ul>
+        <div class="stack-total reveal">
+          <span class="eyebrow">Бонусы на сумму</span>
+          <div class="big">14 500 ₽</div>
+          <p>Бесплатно к лендингу и сайту компании. К сайту-визитке — Telegram-бот для заявок и политика ПДн.</p>
+          <a class="btn btn-lg" href="#calc">Рассчитать свой сайт</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Цены -->
+  <section class="section" id="prices">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Цены</span>
+        <h2>Понятные цены — фиксирую в договоре</h2>
+        <p>Без скрытых доплат: всё, что входит в работу, прописываю до старта.</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card plan reveal">
+          <h3>Сайт-визитка</h3>
+          <div class="amount">от 5 000 ₽</div>
+          <p class="muted">одностраничный сайт, до 5 блоков · от 3 дней</p>
+          <ul class="list">
+            <li>Структура и дизайн блоков</li>
+            <li>Адаптация под телефоны</li>
+            <li>Форма заявки</li>
+            <li>Публикация и запуск</li>
+          </ul>
+          <div class="plan-gifts"><b>В подарок</b><span>Telegram-бот для заявок</span><span>Политика ПДн и согласие</span></div>
+          <a class="btn btn-ghost" href="#calc" data-calc="visitka">Рассчитать</a>
+        </article>
+        <article class="card plan featured reveal">
+          <h3>Лендинг под ключ</h3>
+          <span class="tag">Популярное</span>
+          <div class="amount">от 15 000 ₽</div>
+          <p class="muted">продающая страница под вашу услугу · 1–2 недели</p>
+          <ul class="list">
+            <li>Анализ задачи и аудитории</li>
+            <li>Дизайн в Figma и адаптивная вёрстка</li>
+            <li>Формы, pop-up, анимации</li>
+            <li>Подключение CRM и аналитики</li>
+            <li>Домен и запуск</li>
+          </ul>
+          <div class="plan-gifts"><b>В подарок — бонусы на 14 500 ₽</b><span>Telegram-бот, Метрика с целями, SEO-старт, политика ПДн, 30 дней правок</span></div>
+          <a class="btn btn-primary" href="#calc" data-calc="landing">Рассчитать</a>
+        </article>
+        <article class="card plan reveal">
+          <h3>Сайт компании</h3>
+          <div class="amount">от 35 000 ₽</div>
+          <p class="muted">многостраничный сайт с разделами · 2–3 недели</p>
+          <ul class="list">
+            <li>Структура разделов под задачи бизнеса</li>
+            <li>Дизайн в Figma и адаптивная вёрстка</li>
+            <li>Формы, CRM, аналитика, уведомления</li>
+            <li>Базовая SEO-подготовка</li>
+            <li>Домен, запуск, передача доступов</li>
+          </ul>
+          <div class="plan-gifts"><b>В подарок — бонусы на 14 500 ₽</b><span>Telegram-бот, Метрика с целями, SEO-старт, политика ПДн, 30 дней правок</span></div>
+          <a class="btn btn-ghost" href="#calc" data-calc="company">Рассчитать</a>
+        </article>
+      </div>
+
+      <div class="grid grid-3 also">
         <article class="card card-action reveal" data-order="Интернет-магазин" role="button" tabindex="0" aria-haspopup="dialog">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6 5 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg></div>
           <h3>Интернет-магазины</h3>
-          <p>Каталог, корзина и приём оплаты — под масштаб вашего ассортимента.</p>
-          <span class="card-cta">Оставить заявку →</span>
+          <p>Каталог, корзина, онлайн-оплата, интеграции с 1С и маркетплейсами.</p>
+          <p class="price">от 60 000 ₽</p>
         </article>
         <article class="card card-action reveal" data-order="Веб-приложение или бот" role="button" tabindex="0" aria-haspopup="dialog">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14"/></svg></div>
-          <h3>Веб-приложения и боты</h3>
-          <p>Калькуляторы, формы, интеграции с CRM и Telegram-боты под задачу.</p>
-          <span class="card-cta">Оставить заявку →</span>
+          <h3>Боты и интеграции</h3>
+          <p>Telegram-боты, калькуляторы, личные кабинеты, связка сайта с CRM.</p>
+          <p class="price">Стоимость <small>— по задаче</small></p>
         </article>
-        <article class="card card-action reveal" data-order="Сопровождение сайта" role="button" tabindex="0" aria-haspopup="dialog">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div>
-          <h3>Сопровождение</h3>
-          <p>Правки, обновления, доработки и мелкие баги — без поиска нового исполнителя.</p>
-          <span class="card-cta">Оставить заявку →</span>
+        <article class="card card-action reveal" data-order="Редизайн или доработка сайта" role="button" tabindex="0" aria-haspopup="dialog">
+          <h3>Доработка и сопровождение</h3>
+          <p>Исправлю ошибки, настрою формы и заявки, обновлю дизайн готового сайта.</p>
+          <p class="price">Стоимость <small>— по задаче, назову заранее</small></p>
         </article>
       </div>
-      <p class="reveal" style="margin-top:28px"><a href="services.html">Подробнее об услугах и ценах →</a></p>
-    </div>
-  </section>
 
-  <section class="section" id="for-whom">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Для кого</span>
-        <h2>Для малого бизнеса и магазинов</h2>
-        <p>Основное, чем я занимаюсь: понятные сайты, которые быстро запускаются и начинают собирать заявки.</p>
-      </div>
-      <div class="grid grid-2">
-        <article class="card reveal">
-          <h3>Малый бизнес и эксперты</h3>
-          <p>Нужен понятный сайт, который быстро запустится и начнёт собирать заявки.</p>
-          <ul class="list">
-            <li>Запуск за считанные дни</li>
-            <li>Формы заявок, CRM и уведомления в Telegram</li>
-            <li>Простое управление контентом</li>
-            <li>Поддержка после запуска</li>
-          </ul>
-          <p style="margin-top:18px"><a class="btn btn-ghost btn-sm" href="contacts.html?client=small">Обсудить</a></p>
-        </article>
-        <article class="card reveal">
-          <h3>Интернет-магазины</h3>
-          <p>Каталог, корзина и оплата, чтобы всё работало быстро и безопасно.</p>
-          <ul class="list">
-            <li>Каталог, корзина и онлайн-оплата</li>
-            <li>Интеграции с 1С и маркетплейсами</li>
-            <li>Скорость загрузки и защита данных покупателей</li>
-            <li>Запас на рост ассортимента</li>
-          </ul>
-          <p style="margin-top:18px"><a class="btn btn-ghost btn-sm" href="contacts.html?client=shop">Обсудить</a></p>
-        </article>
+      <div class="b2b-strip reveal">
+        <p><strong>Для компаний и тендеров.</strong> Работа строго по ТЗ, этапы, Git, тестовая и рабочая среды, договор, акты и документация.</p>
+        <a class="btn btn-ghost btn-sm" href="services.html#b2b">Подробнее</a>
       </div>
     </div>
   </section>
 
-  <section class="section alt" id="for-companies">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Для компаний и закупок</span>
-        <h2>Корпоративная разработка и работа по ТЗ</h2>
-        <p>Отдельный формат для сайтов как части процессов компании и для участников тендеров: этапы, документы, согласование.</p>
+  <!-- 6. Калькулятор -->
+  <section class="section alt" id="calc">
+    <div class="container calc">
+      <div class="calc-intro reveal">
+        <span class="eyebrow">Калькулятор</span>
+        <h2>Узнайте стоимость сайта за 1 минуту</h2>
+        <p class="muted">Три вопроса — и вы увидите ориентировочную цену и срок. Точную сумму фиксирую в договоре после короткого брифа.</p>
+        <ul class="list">
+          <li>Цена по моему прайсу, без «от 100 000 ₽ после созвона»</li>
+          <li>Бонусы к сайту — сразу в расчёте</li>
+          <li>Ни к чему не обязывает</li>
+        </ul>
       </div>
-      <div class="grid grid-2">
-        <article class="card reveal">
-          <h3>Корпоративные сайты и B2B</h3>
-          <p>Сайт компании как часть процессов: продуманная структура, интеграции, порядок в разработке.</p>
-          <ul class="list">
-            <li>Архитектура разделов под задачи бизнеса</li>
-            <li>Интеграции и API</li>
-            <li>Разработка по этапам: Git, тестовая и рабочая среды</li>
-            <li>Документация и передача проекта</li>
-          </ul>
-          <p style="margin-top:18px"><a class="btn btn-ghost btn-sm" href="contacts.html?client=b2b">Обсудить</a></p>
-        </article>
-        <article class="card reveal">
-          <h3>Тендеры и госзаказ</h3>
-          <p>Чёткие требования, прозрачные сроки и документы.</p>
-          <ul class="list">
-            <li>Работа строго по ТЗ</li>
-            <li>Договор, акты и отчётность</li>
-            <li>Прозрачные сроки и смета</li>
-            <li>Подтверждающие документы по запросу</li>
-          </ul>
-          <p style="margin-top:18px"><a class="btn btn-ghost btn-sm" href="contacts.html?client=tender">Обсудить</a></p>
-        </article>
+
+      <div class="calc-box reveal" id="calc-box">
+        <div class="calc-progress" aria-hidden="true"><span></span></div>
+        <p class="calc-steplabel" data-calc-label>Шаг 1 из 3</p>
+
+        <fieldset class="calc-step" data-step="1">
+          <legend>Какой сайт нужен?</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="calc-kind" value="visitka"><span><b>Сайт-визитка</b><small>1 страница, до 5 блоков</small></span></label>
+            <label class="opt"><input type="radio" name="calc-kind" value="landing" checked><span><b>Лендинг</b><small>продающая страница под услугу</small></span></label>
+            <label class="opt"><input type="radio" name="calc-kind" value="company"><span><b>Сайт компании</b><small>несколько страниц и разделов</small></span></label>
+            <label class="opt"><input type="radio" name="calc-kind" value="shop"><span><b>Интернет-магазин</b><small>каталог, корзина, оплата</small></span></label>
+            <label class="opt"><input type="radio" name="calc-kind" value="unknown"><span><b>Пока не знаю</b><small>подберу формат под задачу</small></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="calc-step" data-step="2" hidden>
+          <legend>Что подключить? <small>можно несколько или ничего</small></legend>
+          <div class="opts">
+            <label class="opt"><input type="checkbox" name="calc-extra" value="pay"><span><b>Онлайн-оплата</b><small>+5 000 ₽</small></span></label>
+            <label class="opt"><input type="checkbox" name="calc-extra" value="quiz"><span><b>Квиз или калькулятор</b><small>+4 000 ₽</small></span></label>
+            <label class="opt"><input type="checkbox" name="calc-extra" value="crm"><span><b>Интеграция с CRM</b><small>+3 000 ₽</small></span></label>
+            <label class="opt"><input type="checkbox" name="calc-extra" value="booking"><span><b>Онлайн-запись</b><small>+4 000 ₽</small></span></label>
+            <label class="opt"><input type="checkbox" name="calc-extra" value="texts"><span><b>Тексты под ключ</b><small>+4 000 ₽</small></span></label>
+            <label class="opt"><input type="checkbox" name="calc-extra" value="en"><span><b>Английская версия</b><small>+8 000 ₽</small></span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="calc-step" data-step="3" hidden>
+          <legend>Когда нужен сайт?</legend>
+          <div class="opts">
+            <label class="opt"><input type="radio" name="calc-when" value="Как можно скорее" checked><span><b>Как можно скорее</b><small>начнём на этой неделе</small></span></label>
+            <label class="opt"><input type="radio" name="calc-when" value="В течение месяца"><span><b>В течение месяца</b><small>спокойно, по плану</small></span></label>
+            <label class="opt"><input type="radio" name="calc-when" value="Пока присматриваюсь"><span><b>Пока присматриваюсь</b><small>хочу понять бюджет</small></span></label>
+          </div>
+        </fieldset>
+
+        <div class="calc-step" data-step="4" hidden>
+          <p class="calc-label">Ориентировочная стоимость</p>
+          <p class="calc-price" data-calc-price>15 000 – 20 000 ₽</p>
+          <p class="calc-time" data-calc-time>Срок: 1–2 недели</p>
+          <div class="calc-gifts"><b>В подарок к сайту</b><ul class="list" data-calc-gifts></ul></div>
+          <p class="calc-note">Это ориентир по моему прайсу. Точную цену и срок зафиксирую в договоре после брифа — дороже она не станет без вашего согласия.</p>
+          <form class="form calc-lead" id="calc-lead">
+            <h3>Закрепить цену и получить план работ</h3>
+            <p>Пришлю расчёт и план по шагам в Telegram или на почту.</p>
+            <label class="hp" aria-hidden="true">Не заполняйте это поле<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
+            <label>Ваше имя<input name="name" type="text" required autocomplete="name"></label>
+            <label>Телефон, Telegram или email<input name="contact" type="text" required></label>
+            <label class="consent"><input name="consent" type="checkbox" required> <span>Согласен на обработку персональных данных и принимаю <a href="privacy.html" target="_blank" rel="noopener">политику конфиденциальности</a></span></label>
+            <button class="btn btn-primary btn-lg" type="submit">Получить расчёт и план</button>
+            <p class="form-status" role="status"></p>
+          </form>
+        </div>
+
+        <div class="calc-nav">
+          <button class="btn btn-ghost" type="button" data-calc-back hidden>← Назад</button>
+          <button class="btn btn-primary" type="button" data-calc-next>Далее</button>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- 7. Как работаю -->
   <section class="section">
     <div class="container">
       <div class="section-head reveal">
         <span class="eyebrow">Как работаю</span>
-        <h2>Не шаблон из случайных блоков</h2>
-        <p>Сначала разбираюсь в задаче и аудитории, потом строю структуру и дизайн.</p>
+        <h2>От заявки до запуска — 4 шага</h2>
+        <p>Вы всегда знаете, на каком этапе проект и что будет дальше.</p>
       </div>
       <div class="grid grid-4 steps">
-        <div class="card step reveal"><h3>Бриф</h3><p>Обсуждаю с вами бизнес, аудиторию, цель сайта и примеры, которые вам нравятся.</p></div>
-        <div class="card step reveal"><h3>Структура и дизайн</h3><p>Прототип и визуальная концепция в Figma — согласую с вами до вёрстки.</p></div>
-        <div class="card step reveal"><h3>Вёрстка</h3><p>Собираю сайт, адаптирую под планшеты и телефоны.</p></div>
-        <div class="card step reveal"><h3>Запуск и поддержка</h3><p>Подключаю домен, формы, аналитику. После запуска остаюсь на связи.</p></div>
+        <div class="card step reveal"><h3>Бриф · 30 минут</h3><p>Обсуждаем цели, аудиторию и примеры, которые вам нравятся. Фиксирую цену и срок в договоре.</p></div>
+        <div class="card step reveal"><h3>Структура и дизайн</h3><p>Прототип и дизайн в Figma. Вношу правки до согласования — без доплат — и только потом верстаю.</p></div>
+        <div class="card step reveal"><h3>Вёрстка и подключения</h3><p>Собираю сайт, адаптирую под телефоны, подключаю Telegram-бот, Метрику и формы.</p></div>
+        <div class="card step reveal"><h3>Запуск и поддержка</h3><p>Подключаю домен, проверяю заявки вживую. Первые 30 дней правок — бесплатно.</p></div>
       </div>
     </div>
   </section>
 
+  <!-- 8. Гарантии -->
+  <section class="section alt" id="guarantees">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Гарантии</span>
+        <h2>Работаю по договору — без сюрпризов</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card guarantee reveal">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+          <div><h3>Цена фиксируется в договоре</h3><p>Сумма не вырастет в процессе: всё, что входит в работу, прописано до старта.</p></div>
+        </div>
+        <div class="card guarantee reveal">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></div>
+          <div><h3>Сроки в договоре</h3><p>Этапы и даты согласуем заранее — вы знаете, что и когда будет готово.</p></div>
+        </div>
+        <div class="card guarantee reveal">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20M16 15h2"/></svg></div>
+          <div><h3>Оплата частями</h3><p>50% — на старте, 50% — после того, как вы примете готовый сайт.</p></div>
+        </div>
+        <div class="card guarantee reveal">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg></div>
+          <div><h3>Правки дизайна без доплат</h3><p>Дорабатываю макет, пока вы не скажете «да». Вёрстку начинаю только после согласования.</p></div>
+        </div>
+        <div class="card guarantee reveal">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3"/></svg></div>
+          <div><h3>Сайт и доступы — ваши</h3><p>Домен, хостинг, админка и исходники передаю вам. Никакой зависимости от исполнителя.</p></div>
+        </div>
+        <div class="card guarantee reveal">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <div><h3>Гарантия 1 год</h3><p>Если в моей работе что-то сломается — исправлю бесплатно.</p></div>
+        </div>
+      </div>
+      <p class="legal-line reveal">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182 · <a href="https://www.rusprofile.ru/ip/326246800121182" target="_blank" rel="noopener">проверить в реестре</a></p>
+    </div>
+  </section>
+
+  <!-- 9. Кто делает сайт -->
+  <section class="section">
+    <div class="container me reveal">
+      <img src="img/daniil.webp" alt="Даниил, основатель VOID | digital" width="400" height="400" loading="lazy">
+      <div>
+        <span class="eyebrow">Кто делает ваш сайт</span>
+        <h2>Привет, я Даниил — делаю сайты лично</h2>
+        <p class="muted">Вы общаетесь напрямую со мной: без менеджеров и «испорченного телефона». Сам продумываю структуру, рисую дизайн и запускаю сайт — поэтому отвечаю за каждую деталь.</p>
+        <ul class="me-facts">
+          <li>ИП, договор и акты</li>
+          <li>13 проектов в портфолио</li>
+          <li>Figma · Tilda · HTML/CSS/JS</li>
+        </ul>
+        <p style="margin-top:18px"><a href="about.html">Подробнее обо мне →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. Отзывы -->
   <section class="section alt">
     <div class="container">
       <div class="section-head reveal">
         <span class="eyebrow">Отзывы</span>
         <h2>Что говорят заказчики</h2>
-        <p>Отзывы моих заказчиков.</p>
       </div>
       <div class="grid grid-3">
-        <figure class="card reveal" style="margin:0">
+        <figure class="card quote reveal" style="margin:0">
           <p>«Дизайн прям залетел, тёмная тема, всё по красоте. Особенно понравилось расписание. По общению всё супер, правки вносили быстро, без нервов.»</p>
-          <figcaption class="muted" style="margin-top:14px;font-size:.9rem">Сайт-визитка</figcaption>
+          <figcaption class="muted" style="margin-top:14px;font-size:.9rem">Сайт-визитка для фитнес-студии</figcaption>
         </figure>
-        <figure class="card reveal" style="margin:0">
-          <p>«Спасибо за качественную и оперативную работу…»</p>
+        <figure class="card quote reveal" style="margin:0">
+          <p>«Спасибо за качественную и оперативную работу по созданию лендинга!»</p>
           <figcaption class="muted" style="margin-top:14px;font-size:.9rem">Лендинг</figcaption>
         </figure>
-        <figure class="card reveal" style="margin:0">
+        <figure class="card quote reveal" style="margin:0">
           <p>«Была проблема по сайту, всё починили, заявки в CRM настроили — всё приходит и отправляется. Спасибо, сильно выручили!»</p>
           <figcaption class="muted" style="margin-top:14px;font-size:.9rem">Доработка сайта</figcaption>
         </figure>
@@ -225,26 +467,46 @@
     </div>
   </section>
 
+  <!-- 11. Частые вопросы -->
+  <section class="section" id="faq">
+    <div class="container faq-wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Вопросы</span>
+        <h2>Частые вопросы</h2>
+      </div>
+      <details class="reveal"><summary>Сколько стоит сайт?</summary><p>Сайт-визитка — от 5 000 ₽, лендинг — от 15 000 ₽, сайт компании — от 35 000 ₽, интернет-магазин — от 60 000 ₽. Ориентир можно получить в калькуляторе выше, точную сумму фиксирую в договоре после короткого брифа.</p></details>
+      <details class="reveal"><summary>Сколько времени займёт разработка?</summary><p>Сайт-визитка — от 3 до 7 дней, лендинг — 1–2 недели, сайт компании — 2–3 недели, интернет-магазин — 3–5 недель. Срок прописываю в договоре; на него влияет, как быстро согласуем макет и материалы.</p></details>
+      <details class="reveal"><summary>Что нужно от меня для старта?</summary><p>30 минут на бриф и материалы, если они есть: логотип, тексты, фото, примеры сайтов, которые нравятся. Если чего-то нет — помогу со структурой и текстами и подберу изображения.</p></details>
+      <details class="reveal"><summary>На чём вы делаете сайты: Tilda или код?</summary><p>И так, и так — подберу под задачу. Tilda удобна, если хотите сами менять тексты и цены. Сайт на коде быстрее загружается и может работать без ежемесячной платы за конструктор.</p></details>
+      <details class="reveal"><summary>Что если мне не понравится дизайн?</summary><p>Сначала согласуем прототип и дизайн-макет. Вношу правки до вашего «да» без доплат и только потом перехожу к вёрстке.</p></details>
+      <details class="reveal"><summary>Кому принадлежит сайт?</summary><p>Вам: домен, хостинг, доступы и исходные файлы передаю после запуска.</p></details>
+      <details class="reveal"><summary>Как проходит оплата?</summary><p>Частями: 50% на старте, 50% после приёмки сайта. Работаю как ИП по договору, с актами.</p></details>
+      <details class="reveal"><summary>Что будет после запуска?</summary><p>30 дней правок бесплатно, гарантия 1 год на мою работу. Дальше — сопровождение и доработки по задаче, цену называю заранее.</p></details>
+    </div>
+  </section>
+
+  <!-- 12. Бесплатный разбор -->
   <section class="section alt">
     <div class="container">
       <div class="audit reveal">
         <div>
-          <span class="eyebrow">Бесплатно</span>
-          <h2>Не знаете, что не так с вашим сайтом?</h2>
-          <p>Пришлите ссылку — посмотрю, что мешает сайту приводить заявки, и расскажу, что можно улучшить: структура, дизайн, мобильная версия, кнопки и формы.</p>
+          <span class="eyebrow">Уже есть сайт?</span>
+          <h2>Бесплатный разбор: что мешает получать заявки</h2>
+          <p>Пришлите ссылку — разберу главную страницу и пришлю 3–5 конкретных правок: первый экран, кнопки и формы, мобильная версия, доверие.</p>
         </div>
         <a class="btn btn-primary" href="contacts.html" data-audit>Получить бесплатный разбор</a>
       </div>
     </div>
   </section>
 
+  <!-- 13. Финальный призыв -->
   <section class="section">
     <div class="container">
       <div class="cta reveal">
-        <h2>Давайте сделаем сайт, который работает на ваш бизнес</h2>
-        <p>Опишите проект в двух словах — отвечу с оценкой сроков и стоимости.</p>
+        <h2>Посчитаем ваш сайт?</h2>
+        <p>Ответьте на 3 вопроса — увидите цену и срок. Или напишите в Telegram — отвечу лично.</p>
         <div class="cta-actions">
-          <a class="btn" href="contacts.html" data-order="">Рассчитать проект</a>
+          <a class="btn" href="#calc">Рассчитать стоимость</a>
           <a class="btn btn-outline" href="https://t.me/aa343432" target="_blank" rel="noopener">Написать в Telegram</a>
         </div>
       </div>
