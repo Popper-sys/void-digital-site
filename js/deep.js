@@ -27,7 +27,7 @@ if (deep && canvas) {
       import('./scene3d.js?v=2')
         .then((m) => m.start(deep, canvas))
         .catch(fallback);
-    }, { rootMargin: '900px 0px' });
+    }, { rootMargin: '1800px 0px' }); // заранее, примерно за два экрана: к моменту прокрутки сцена готова
     io.observe(deep);
   }
 }
