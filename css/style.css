@@ -10,17 +10,19 @@
   --font-display: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   /* Сильная кривая для входа/выхода и откликов (стандарты Эмиля Ковальски) */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --bg: #fafaf9;
+  /* Одна семья серых — нейтрально-холодная (раньше тёплый фон смешивался с холодным текстом) */
+  --bg: #fafafa;
   --surface: #ffffff;
-  --surface-2: #f3f2ef;
-  --text: #1c1b1f;
-  --muted: #5f5d66;
-  --border: #e4e2dc;
+  --surface-2: #f4f4f5;
+  --text: #18181b;
+  --muted: #5d5d66;
+  --border: #e4e4e7;
   --accent: #4f46e5;
   --accent-hover: #4338ca;
   --accent-soft: #eceafd;
   --on-accent: #ffffff;
-  --radius: 14px;
+  /* Правило радиусов: кнопки и плашки — пилюли, карточки и панели — 16 px, крупные блоки — 24 px, поля — 10 px */
+  --radius: 16px;
   --shadow: 0 1px 2px rgba(20, 20, 30, .05), 0 8px 24px rgba(20, 20, 30, .06);
   --shadow-lg: 0 2px 6px rgba(20, 20, 30, .06), 0 24px 60px -18px rgba(20, 20, 40, .28);
   --success: #16a34a;
@@ -73,6 +75,17 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; margin: 0 0 .5e
 h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); font-weight: 800; letter-spacing: -.03em; }
 h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); font-weight: 800; letter-spacing: -.025em; }
 h3 { font-size: 1.15rem; font-weight: 700; }
+/* Без «висячих» слов в заголовках и последних строках абзацев */
+h1, h2, h3 { text-wrap: balance; }
+p, li, figcaption { text-wrap: pretty; }
+
+/* Ссылка «Перейти к содержимому» — видна только при переходе клавишей Tab */
+.skip-link {
+  position: absolute; left: 12px; top: -60px; z-index: 100; padding: 10px 16px; border-radius: 10px;
+  background: var(--text); color: var(--bg); font-weight: 600; transition: top 150ms var(--ease-out);
+}
+.skip-link:focus { top: 12px; color: var(--bg); }
+.nowrap { white-space: nowrap; }
 p { margin: 0 0 1em; }
 
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 max(20px, env(safe-area-inset-right, 0px)) 0 max(20px, env(safe-area-inset-left, 0px)); }
@@ -216,6 +229,14 @@ summary::-webkit-details-marker { display: none; }
 summary::after { content: "+"; color: var(--accent); font-size: 1.4rem; line-height: 1; }
 details[open] summary::after { content: "−"; }
 details p { color: var(--muted); padding-bottom: 18px; margin: 0; }
+/* Плавное раскрытие ответа (там, где браузер умеет анимировать height: auto) */
+@supports (interpolate-size: allow-keywords) {
+  :root { interpolate-size: allow-keywords; }
+  details::details-content { height: 0; overflow: clip; transition: height 240ms var(--ease-out), content-visibility 240ms allow-discrete; }
+  details[open]::details-content { height: auto; }
+  @media (prefers-reduced-motion: reduce) { details::details-content { transition: none; } }
+}
+@keyframes menu-in { from { opacity: 0; translate: 0 -6px; } }
 
 /* Forms */
 .form { display: grid; gap: 16px; }
@@ -231,6 +252,16 @@ textarea { min-height: 130px; resize: vertical; }
 .contact-list { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 14px; }
 .contact-list strong { display: block; font-size: .85rem; color: var(--muted); font-weight: 500; }
 .form-status { font-size: .92rem; color: var(--muted); min-height: 1.4em; }
+/* Успешная отправка — редкое событие, поэтому с отметкой и коротким появлением */
+.form-status.is-success {
+  display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 12px;
+  background: color-mix(in srgb, var(--success) 12%, transparent); color: var(--text); font-weight: 600;
+  animation: success-in 260ms var(--ease-out);
+}
+.form-status.is-success svg { color: var(--success); flex: none; }
+@keyframes success-in { from { opacity: 0; scale: .96; } }
+/* Цены — табличными цифрами, чтобы суммы не «прыгали» */
+.plan .amount, .calc-price, .stack-total .big, .stack-price { font-variant-numeric: tabular-nums; }
 
 /* Page title */
 .page-title { padding: 64px 0 24px; }
@@ -272,7 +303,7 @@ textarea { min-height: 130px; resize: vertical; }
     display: none; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; align-items: stretch;
     gap: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 8px 20px 16px;
   }
-  .nav-links.open { display: flex; }
+  .nav-links.open { display: flex; animation: menu-in 180ms var(--ease-out); }
   .nav-links li { padding: 10px 0; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .section { padding: 52px 0; }
@@ -308,6 +339,17 @@ textarea { min-height: 130px; resize: vertical; }
   background: var(--surface); color: var(--text); box-shadow: var(--shadow);
 }
 .modal::backdrop { background: rgba(10, 10, 16, .6); }
+/* Окно заявки появляется (220 мс), уходит быстрее (150 мс); без поддержки allow-discrete — просто без анимации */
+.modal {
+  opacity: 1; transform: none;
+  transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out), overlay 220ms allow-discrete, display 220ms allow-discrete;
+}
+.modal:not([open]) { opacity: 0; transform: scale(.96); transition-duration: 150ms; }
+@starting-style { .modal[open] { opacity: 0; transform: scale(.96); } }
+.modal::backdrop { transition: background-color 220ms ease, overlay 220ms allow-discrete, display 220ms allow-discrete; }
+.modal:not([open])::backdrop { background-color: rgba(10, 10, 16, 0); }
+@starting-style { .modal[open]::backdrop { background-color: rgba(10, 10, 16, 0); } }
+@media (prefers-reduced-motion: reduce) { .modal, .modal:not([open]) { transform: none; } }
 .modal h2 { margin: 0 0 6px; font-size: 1.4rem; }
 .modal > .muted { margin: 0 0 18px; }
 .modal-close {
@@ -355,6 +397,9 @@ textarea { min-height: 130px; resize: vertical; }
   .has-sticky-cta { padding-bottom: 84px; }
 }
 @media (max-width: 359px) { .sticky-cta .btn { font-size: .88rem; } }
+/* Полная подпись «Рассчитать стоимость», где помещается; на узких экранах — «Рассчитать» */
+.sticky-cta .lbl-short { display: none; }
+@media (max-width: 399px) { .sticky-cta .lbl-long { display: none; } .sticky-cta .lbl-short { display: inline; } }
 @media (prefers-reduced-motion: reduce) { .sticky-cta { transition: none; } }
 
 /* Атрибут hidden должен скрывать даже элементы со своим display */
@@ -394,14 +439,18 @@ section[id] { scroll-margin-top: 84px; }
 .hero-v2 h1 em { font-style: normal; color: var(--accent); }
 /* Вторая строка заголовка — механика (Telegram) мельче главного обещания, чтобы заголовок читался быстрее */
 .hero-v2 h1 .h1-sub { display: block; margin-top: .3em; font-size: .6em; line-height: 1.25; letter-spacing: -.01em; }
-.chips { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 10px; }
-.chips li {
-  display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;
-  background: var(--surface); border: 1px solid var(--border); font-size: .88rem; font-weight: 500;
+/* Полоса доверия сразу под первым экраном (раньше — плашки с цветными точками внутри экрана) */
+.trust-bar { background: var(--surface); border-block: 1px solid var(--border); }
+.trust-list { list-style: none; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 28px; padding-block: 18px; margin: 0 auto; }
+.trust-list li { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: .95rem; }
+.trust-list svg { color: var(--accent); flex: none; }
+@media (max-width: 720px) {
+  .trust-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; padding-block: 16px; }
+  .trust-list li { font-size: .88rem; align-items: flex-start; }
+  .trust-list svg { margin-top: 2px; }
 }
-.chips li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--success); flex: none; }
 
-.hero-side { min-width: 0; }
+.hero-side { min-width: 0; margin: 0; }
 .hero-visual { position: relative; padding: 18px 10px 40px 26px; }
 .hero-demo-note { margin: 12px 0 0; font-size: .78rem; color: var(--muted); }
 .browser {
@@ -415,28 +464,21 @@ section[id] { scroll-margin-top: 84px; }
 .browser-bar i:nth-child(3) { background: #27c93f; }
 .browser-bar span { margin-left: 10px; font-size: .75rem; color: var(--muted); background: var(--surface); padding: 3px 12px; border-radius: 999px; }
 .browser img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
-.tg-toast {
-  position: absolute; left: 0; bottom: 0; width: min(310px, 86%);
-  display: grid; grid-template-columns: 42px 1fr auto; gap: 10px; align-items: start;
-  padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
-  box-shadow: var(--shadow-lg); font-size: .82rem; line-height: 1.4; animation: pop-in 420ms var(--ease-out) 300ms both;
+/* Настоящий скриншот заявки из Telegram поверх снимка сайта */
+.tg-shot {
+  position: absolute; left: 0; bottom: 0; width: min(290px, 72%); height: auto;
+  border-radius: 14px; box-shadow: var(--shadow-lg); animation: pop-in 420ms var(--ease-out) 300ms both;
 }
-.tg-ava { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #2aabee, #229ed9); color: #fff; display: grid; place-items: center; font-weight: 700; }
-.tg-toast strong { display: block; font-size: .88rem; }
-.tg-toast span { display: block; color: var(--muted); }
-.tg-toast time { color: var(--muted); font-size: .72rem; }
-.metric-chip {
-  position: absolute; top: 0; right: 0; padding: 9px 14px; border-radius: 12px;
-  background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-lg);
-  font-size: .84rem; font-weight: 600; animation: pop-in 420ms var(--ease-out) 550ms both;
-}
-.metric-chip b { color: var(--success); }
-@keyframes pop-in { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .tg-toast, .metric-chip { animation: none; } }
+@keyframes pop-in { from { opacity: 0; translate: 0 14px; scale: .97; } to { opacity: 1; translate: 0 0; scale: 1; } }
+@media (prefers-reduced-motion: reduce) { .tg-shot { animation: reveal-fade 200ms ease-out 200ms both; } }
 
-/* Почему сайты не приносят заявки */
-.pain-q { font-size: .9rem; font-weight: 500; font-style: italic; color: var(--muted); margin: 0 0 12px; }
-.pain h3 { margin-bottom: 8px; }
+/* Почему сайты не приносят заявки: строки «проблема → решение» вместо ряда карточек */
+.pain-rows { border-top: 1px solid var(--border); }
+.pain-row { display: grid; grid-template-columns: minmax(200px, .75fr) 1.25fr; gap: 10px 48px; padding: 28px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
+.pain-row h3 { margin: 0 0 6px; }
+.pain-row p { margin: 0; color: var(--muted); }
+.pain-q { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; font-style: italic; color: var(--text); margin: 0; }
+@media (max-width: 720px) { .pain-row { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; } }
 
 /* Пакет: сайт + бонусы */
 .stack { display: grid; grid-template-columns: 1.15fr .85fr; gap: 28px; align-items: start; }
@@ -461,9 +503,33 @@ section[id] { scroll-margin-top: 84px; }
 .plan-gifts { margin: 0 0 20px; padding: 12px 14px; border-radius: 12px; background: var(--accent-soft); font-size: .88rem; }
 .plan-gifts b { display: block; color: var(--accent); margin-bottom: 4px; }
 .plan-gifts span { display: block; color: var(--text); }
-.also { margin-top: 20px; }
-.also .card { padding: 22px 24px; }
-.also .price { margin-top: 10px; }
+/* Другие услуги — одной строкой с разделителями, а не третьим рядом одинаковых карточек */
+.also-list { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.also-item { position: relative; padding: 22px 48px 22px 24px; cursor: pointer; transition: background-color 150ms ease; }
+.also-item + .also-item { border-left: 1px solid var(--border); }
+.also-item h3 { font-size: 1.02rem; margin: 0 0 6px; }
+.also-item p { color: var(--muted); font-size: .92rem; margin: 0 0 10px; }
+.also-item .price { font-weight: 700; margin: 0; color: var(--text); }
+.also-item .price small { font-weight: 400; color: var(--muted); font-size: .88rem; }
+.also-item::after { content: "→"; position: absolute; top: 22px; right: 22px; color: var(--accent); font-weight: 600; }
+.also-item:active { background: var(--surface-2); }
+.also-item:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+@media (max-width: 900px) {
+  .also-list { grid-template-columns: 1fr; }
+  .also-item + .also-item { border-left: 0; border-top: 1px solid var(--border); }
+}
+
+/* Рекомендуемый тариф — выделен цветом (инверсия), а не только рамкой */
+.plan.featured { background: var(--text); color: var(--bg); border-color: var(--text); box-shadow: var(--shadow-lg); }
+.plan.featured h3, .plan.featured .amount { color: var(--bg); }
+.plan.featured .muted, .plan.featured .list li, .plan.featured .plan-note { color: color-mix(in srgb, var(--bg) 74%, var(--text)); }
+.plan.featured .list li::before { border-color: currentColor; }
+.plan.featured .plan-gifts { background: color-mix(in srgb, var(--bg) 12%, transparent); }
+.plan.featured .plan-gifts b, .plan.featured .plan-gifts span { color: var(--bg); }
+.plan.featured .tag { background: var(--accent); color: var(--on-accent); }
+/* Плашка «Популярное» в углу — цены и списки трёх тарифов начинаются на одной высоте */
+.plan { position: relative; }
+.plan > .tag { position: absolute; top: 26px; right: 24px; margin: 0; }
 .b2b-strip {
   display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 24px;
   margin-top: 20px; padding: 22px 26px; border: 1px dashed var(--border); border-radius: var(--radius); background: var(--surface);
@@ -481,6 +547,10 @@ section[id] { scroll-margin-top: 84px; }
 .calc-steplabel { font-size: .82rem; color: var(--muted); margin: 0 0 18px; }
 .calc-step { border: 0; margin: 0; padding: 0; min-width: 0; }
 .calc-step legend { font-weight: 700; font-size: 1.15rem; margin-bottom: 14px; padding: 0; }
+/* Смена шага калькулятора — короткий сдвиг с проявлением, а не мгновенная подмена */
+.calc-step:not([hidden]) { animation: step-in 220ms var(--ease-out); }
+@keyframes step-in { from { opacity: 0; translate: 10px 0; } }
+@media (prefers-reduced-motion: reduce) { .calc-step:not([hidden]) { animation: reveal-fade 150ms ease-out; } }
 .calc-step legend small { font-weight: 400; color: var(--muted); font-size: .85rem; margin-left: 6px; }
 .opts { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .opt { position: relative; display: block; cursor: pointer; font-weight: 400; }
@@ -493,6 +563,8 @@ section[id] { scroll-margin-top: 84px; }
 .opt small { color: var(--muted); font-size: .84rem; }
 .opt:active span { transform: scale(.98); transition-duration: 80ms; }
 .opt input:checked + span { border-color: var(--accent); background: var(--accent-soft); }
+/* Нечётный последний вариант — на всю ширину, чтобы сетка оставалась симметричной */
+.opts > .opt:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .opt input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
 .calc-nav { display: flex; gap: 12px; margin-top: 22px; }
 .calc-nav [data-calc-next] { margin-left: auto; }
@@ -522,7 +594,18 @@ section[id] { scroll-margin-top: 84px; }
 .me-facts li { padding: 6px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: .88rem; }
 
 /* Отзывы */
-.quote { position: relative; padding-top: 44px; }
+.quote { position: relative; padding-top: 44px; margin: 0; }
+.quote figcaption { margin-top: 14px; font-size: .9rem; color: var(--muted); }
+/* Отзывы: один крупный и два компактных — не ряд одинаковых карточек */
+.quotes { display: grid; grid-template-columns: 1.35fr 1fr; gap: 20px; }
+.quotes .quote-featured { grid-row: span 2; padding: 36px 40px; display: flex; flex-direction: column; justify-content: center; }
+.quotes .quote-featured::before { position: static; display: block; margin-bottom: 4px; }
+.quotes .quote-featured p { font-family: var(--font-display); font-size: 1.3rem; line-height: 1.45; font-weight: 600; color: var(--text); }
+@media (max-width: 900px) { .quotes { grid-template-columns: 1fr; } .quotes .quote-featured { grid-row: auto; padding: 28px 26px; } }
+/* Мелкие отступы вместо встроенных style */
+.section.section-tight { padding-top: 8px; }
+.works-more { margin-top: 24px; }
+.me-more { margin-top: 18px; }
 .quote::before { content: "\201C"; position: absolute; top: 8px; left: 26px; font-size: 3.6rem; line-height: 1; color: var(--accent); font-family: Georgia, serif; }
 
 /* FAQ на главной */
@@ -595,4 +678,6 @@ section[id] { scroll-margin-top: 84px; }
   .modal-close:hover { color: var(--text); background: var(--surface-2); }
   .hero-note a:hover { color: var(--accent); border-color: var(--accent); }
   .opt:hover span { border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); }
+  .also-item:hover { background: var(--surface-2); }
+  .skip-link:hover { color: var(--bg); }
 }

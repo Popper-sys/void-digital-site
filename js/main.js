@@ -49,23 +49,31 @@ const showFallback = (status) => {
   status.appendChild(link);
 };
 
+// Отметка для успешной отправки (иконка check-circle из Phosphor, MIT)
+const CHECK_ICON = '<svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>';
+
 // Общая логика формы: собрать поля (+ дополнительные данные), отправить, показать результат.
 const setupLeadForm = (form, extra = () => ({})) => {
   const status = form.querySelector('.form-status');
   const button = form.querySelector('button[type="submit"]');
+  const label = button.textContent;
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const data = { ...Object.fromEntries(new FormData(form)), ...extra() };
     button.disabled = true;
-    status.textContent = 'Отправляем…';
+    button.textContent = 'Отправляем…';
+    status.classList.remove('is-success');
+    status.textContent = '';
     try {
       await sendLead(data);
       form.reset();
-      status.textContent = 'Спасибо! Заявка отправлена, ответим в ближайшее время.';
+      status.classList.add('is-success');
+      status.innerHTML = `${CHECK_ICON}<span>Заявка у нас. Ответим в Telegram или по контакту, который вы указали.</span>`;
     } catch {
       showFallback(status);
     } finally {
       button.disabled = false;
+      button.textContent = label;
     }
   });
 };
@@ -103,7 +111,8 @@ if (calcBox) {
   const GIFTS_SMALL = ['Telegram-бот для заявок', 'Политика конфиденциальности и согласие'];
 
   const num = (n) => n.toLocaleString('ru-RU');
-  const range = (a, b) => `${num(a)} – ${num(b)} ₽`;
+  // Неразрывные пробелы: тире не начинает строку, «₽» не отрывается от суммы
+  const range = (a, b) => `${num(a)} – ${num(b)} ₽`;
   const roundUp = (n) => Math.ceil(n / 1000) * 1000;
 
   const kindNow = () => calcBox.querySelector('input[name="calc-kind"]:checked')?.value || 'landing';
@@ -218,7 +227,7 @@ if (!pageForm) {
   const bar = document.createElement('div');
   bar.className = 'sticky-cta';
   bar.innerHTML = `
-    <a class="btn btn-primary" href="${calcHref}">Рассчитать цену</a>
+    <a class="btn btn-primary" href="${calcHref}"><span class="lbl-long">Рассчитать стоимость</span><span class="lbl-short">Рассчитать</span></a>
     <a class="btn btn-ghost" href="${TELEGRAM_URL}" target="_blank" rel="noopener">Telegram</a>`;
   document.body.appendChild(bar);
   document.body.classList.add('has-sticky-cta');

@@ -49,10 +49,14 @@
     ]
   }
   </script>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=ea6367ae">
+  <link rel="stylesheet" href="css/style.css?v=acaca66d">
 </head>
 <body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
 <header class="site-header">
   <div class="container nav">
     <a class="logo" href="index.html">VOID<span class="sep">|</span><span class="dig">digital</span></a>
@@ -70,45 +74,40 @@
   </div>
 </header>
 
-<main>
+<main id="main">
   <!-- 1. Первый экран: оффер + визуал «заявка пришла в Telegram» -->
   <section class="hero hero-v2">
     <div class="container hero-grid">
       <div>
         <h1>Сайт, который собирает заявки <span class="h1-sub">и&nbsp;сразу присылает их&nbsp;вам&nbsp;в&nbsp;<em>Telegram</em></span></h1>
-        <p class="lead">Сайты и лендинги для малого бизнеса под ключ — от&nbsp;5&nbsp;000&nbsp;₽ и&nbsp;за&nbsp;1–3&nbsp;недели. В подарок — Telegram-бот для заявок, Яндекс Метрика и 30 дней правок после запуска.</p>
+        <p class="lead">Сайты для малого бизнеса под&nbsp;ключ&nbsp;— от&nbsp;5&nbsp;000&nbsp;₽ за&nbsp;<span class="nowrap">1–3&nbsp;недели</span>. Telegram-бот, Яндекс Метрика и 30&nbsp;дней правок&nbsp;— в&nbsp;подарок.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary btn-lg" href="#calc">Рассчитать стоимость за 1 минуту</a>
+          <a class="btn btn-primary btn-lg" href="#calc">Рассчитать стоимость</a>
           <a class="btn btn-ghost btn-lg" href="#works">Смотреть работы</a>
         </div>
-        <ul class="chips" aria-label="Условия работы">
-          <li>Договор и ИП</li>
-          <li>Цена фиксируется заранее</li>
-          <li>Оплата частями</li>
-          <li>Гарантия 1 год</li>
-        </ul>
       </div>
-      <div class="hero-side" aria-hidden="true">
+      <figure class="hero-side">
         <div class="hero-visual">
-          <div class="browser">
+          <div class="browser" aria-hidden="true">
             <div class="browser-bar"><i></i><i></i><i></i><span>ваш-сайт.ru</span></div>
-            <img src="img/portfolio/veniki.webp" alt="" width="660" height="440" fetchpriority="high">
+            <img src="img/portfolio/sotsvetie.webp" alt="" width="660" height="440" fetchpriority="high">
           </div>
-          <div class="metric-chip">Яндекс Метрика: <b>+1 заявка</b></div>
-          <div class="tg-toast">
-            <div class="tg-ava">V</div>
-            <div>
-              <strong>Заявки с сайта</strong>
-              <span>🧮 Заявка из калькулятора</span>
-              <span>Лендинг · 15 000 – 20 000 ₽</span>
-            </div>
-            <time>сейчас</time>
-          </div>
+          <img class="tg-shot" src="img/telegram-lead.webp" alt="Сообщение бота в Telegram: заявка из калькулятора — имя, контакт, задача и расчёт стоимости" width="394" height="279">
         </div>
-        <p class="hero-demo-note">Пример интерфейса: заявка в Telegram и цель в Метрике</p>
-      </div>
+        <figcaption class="hero-demo-note">Так приходит заявка в Telegram — настоящее сообщение нашего бота, данные тестовые</figcaption>
+      </figure>
     </div>
   </section>
+
+  <!-- 1б. Условия работы — полоса доверия сразу под первым экраном -->
+  <div class="trust-bar">
+    <ul class="container trust-list" aria-label="Условия работы">
+      <li><svg width="18" height="18" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>Договор и ИП</li>
+      <li><svg width="18" height="18" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>Цена фиксируется заранее</li>
+      <li><svg width="18" height="18" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>Оплата частями</li>
+      <li><svg width="18" height="18" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>Гарантия 1 год</li>
+    </ul>
+  </div>
 
   <!-- 2. Боли → решения -->
   <section class="section alt" id="why">
@@ -117,21 +116,18 @@
         <h2>Почему сайты не приносят заявки — и что мы делаем иначе</h2>
         <p>Красивая картинка не продаёт сама. Сайт должен вести человека к заявке и не терять её по дороге.</p>
       </div>
-      <div class="grid grid-3">
-        <article class="card pain reveal">
+      <div class="pain-rows">
+        <article class="pain-row reveal">
           <p class="pain-q">«Заходят и сразу уходят»</p>
-          <h3>Понятное предложение за 5 секунд</h3>
-          <p>Первый экран отвечает на главное: что вы предлагаете, для кого и почему вам. Кнопка заявки всегда под рукой.</p>
+          <div><h3>Понятное предложение за 5 секунд</h3><p>Первый экран отвечает на главное: что вы предлагаете, для кого и почему вам. Кнопка заявки всегда под рукой.</p></div>
         </article>
-        <article class="card pain reveal">
+        <article class="pain-row reveal">
           <p class="pain-q">«Заявки теряются в почте»</p>
-          <h3>Каждая заявка — сразу в Telegram</h3>
-          <p>Бот присылает имя, контакт и задачу за секунды. Вы отвечаете первым, пока клиент не ушёл к конкурентам.</p>
+          <div><h3>Каждая заявка — сразу в Telegram</h3><p>Бот присылает имя, контакт и задачу за секунды. Вы отвечаете первым, пока клиент не ушёл к конкурентам.</p></div>
         </article>
-        <article class="card pain reveal">
+        <article class="pain-row reveal">
           <p class="pain-q">«С телефона неудобно»</p>
-          <h3>Сначала — мобильная версия</h3>
-          <p>Большинство заходит со смартфона: крупные кнопки, быстрая загрузка, связь в один клик.</p>
+          <div><h3>Сначала — мобильная версия</h3><p>Большинство заходит со смартфона: крупные кнопки, быстрая загрузка, связь в один клик.</p></div>
         </article>
       </div>
     </div>
@@ -141,7 +137,7 @@
   <section class="section" id="works">
     <div class="container">
       <div class="section-head reveal">
-        <h2>Сайты, которые мы сделали полностью — от структуры до запуска</h2>
+        <h2>Сайты, которые мы сделали от структуры до запуска</h2>
         <p>Недвижимость, опт, личный бренд, промышленность — подход один: понятное предложение и путь к заявке.</p>
       </div>
       <div class="grid grid-4">
@@ -162,28 +158,28 @@
           <div class="work-body"><span class="tag">Промышленность</span><h3>Ремонт спецтехники</h3><p class="work-task">Услуги, проекты и заявка на консультацию</p></div>
         </a>
       </div>
-      <p class="reveal" style="margin-top:24px"><a class="btn btn-ghost" href="portfolio.html">Смотреть все 13 работ →</a></p>
+      <p class="reveal works-more"><a class="btn btn-ghost" href="portfolio.html">Смотреть все 13 работ →</a></p>
     </div>
   </section>
 
   <!-- 3б. Отзывы (вместе с работами — один блок доказательств) -->
-  <section class="section" style="padding-top:8px">
+  <section class="section section-tight">
     <div class="container">
       <div class="section-head reveal">
         <h2>Что говорят заказчики</h2>
       </div>
-      <div class="grid grid-3">
-        <figure class="card quote reveal" style="margin:0">
+      <div class="quotes">
+        <figure class="card quote quote-featured reveal">
           <p>«Дизайн прям залетел, тёмная тема, всё по красоте. Особенно понравилось расписание. По общению всё супер, правки вносили быстро, без нервов.»</p>
-          <figcaption class="muted" style="margin-top:14px;font-size:.9rem">Сайт-визитка для фитнес-студии</figcaption>
+          <figcaption>Сайт-визитка для фитнес-студии</figcaption>
         </figure>
-        <figure class="card quote reveal" style="margin:0">
+        <figure class="card quote reveal">
           <p>«Спасибо за качественную и оперативную работу по созданию лендинга!»</p>
-          <figcaption class="muted" style="margin-top:14px;font-size:.9rem">Лендинг</figcaption>
+          <figcaption>Лендинг</figcaption>
         </figure>
-        <figure class="card quote reveal" style="margin:0">
+        <figure class="card quote reveal">
           <p>«Была проблема по сайту, всё починили, заявки в CRM настроили — всё приходит и отправляется. Спасибо, сильно выручили!»</p>
-          <figcaption class="muted" style="margin-top:14px;font-size:.9rem">Доработка сайта</figcaption>
+          <figcaption>Доработка сайта</figcaption>
         </figure>
       </div>
     </div>
@@ -199,27 +195,27 @@
       <div class="stack">
         <ul class="stack-list">
           <li class="stack-item reveal">
-            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></div>
+            <div class="icon"><svg width="24" height="24" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M228.88,26.19a9,9,0,0,0-9.16-1.57L17.06,103.93a14.22,14.22,0,0,0,2.43,27.21L72,141.45V200a15.92,15.92,0,0,0,10,14.83,15.91,15.91,0,0,0,17.51-3.73l25.32-26.26L165,220a15.88,15.88,0,0,0,10.51,4,16.3,16.3,0,0,0,5-.79,15.85,15.85,0,0,0,10.67-11.63L231.77,35A9,9,0,0,0,228.88,26.19Zm-61.14,36L78.15,126.35l-49.6-9.73ZM88,200V152.52l24.79,21.74Zm87.53,8L92.85,135.5l119-85.29Z"/></svg></div>
             <div><h3>Telegram-бот для заявок</h3><p>Каждая заявка за секунды у вас в Telegram — не теряется и не ждёт в почте.</p></div>
             <div class="stack-price"><s>от 3 000 ₽</s><b>0 ₽</b></div>
           </li>
           <li class="stack-item reveal">
-            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></div>
+            <div class="icon"><svg width="24" height="24" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/></svg></div>
             <div><h3>Яндекс Метрика с целями</h3><p>Видно, сколько людей пришло на сайт и сколько из них оставили заявку.</p></div>
             <div class="stack-price"><s>от 2 000 ₽</s><b>0 ₽</b></div>
           </li>
           <li class="stack-item reveal">
-            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+            <div class="icon"><svg width="24" height="24" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></svg></div>
             <div><h3>SEO-старт</h3><p>Мета-теги, карта сайта, подключение к Яндекс Вебмастеру и быстрая загрузка — чтобы сайт находили.</p></div>
             <div class="stack-price"><s>от 3 000 ₽</s><b>0 ₽</b></div>
           </li>
           <li class="stack-item reveal">
-            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/></svg></div>
+            <div class="icon"><svg width="24" height="24" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></svg></div>
             <div><h3>Политика конфиденциальности и согласие</h3><p>Разместим политику и отдельный текст согласия, подготовленные по вашим данным об операторе и целях обработки.</p></div>
             <div class="stack-price"><s>от 1 500 ₽</s><b>0 ₽</b></div>
           </li>
           <li class="stack-item reveal">
-            <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></div>
+            <div class="icon"><svg width="24" height="24" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-38.34-85.66a8,8,0,0,1,0,11.32l-48,48a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L116,164.69l42.34-42.35A8,8,0,0,1,169.66,122.34Z"/></svg></div>
             <div><h3>30 дней правок после запуска</h3><p>Поменять текст, цены или фото в первый месяц — бесплатно.</p></div>
             <div class="stack-price"><s>от 5 000 ₽</s><b>0 ₽</b></div>
           </li>
@@ -238,14 +234,14 @@
   <section class="section" id="prices">
     <div class="container">
       <div class="section-head reveal">
-        <h2>Понятные цены — фиксируем в договоре</h2>
+        <h2>Понятные цены, зафиксированные в договоре</h2>
         <p>Без скрытых доплат: всё, что входит в работу, прописываем до старта.</p>
       </div>
       <div class="grid grid-3">
         <article class="card plan reveal">
           <h3>Сайт-визитка</h3>
           <div class="amount">от 5 000 ₽</div>
-          <p class="muted">одностраничный сайт, до 5 блоков · от 3 дней</p>
+          <p class="muted">одностраничный сайт, до&nbsp;5&nbsp;блоков&nbsp;· от&nbsp;3&nbsp;дней</p>
           <ul class="list">
             <li>Структура и дизайн блоков</li>
             <li>Адаптация под телефоны</li>
@@ -254,13 +250,13 @@
           </ul>
           <div class="plan-gifts"><b>В подарок</b><span>Telegram-бот для заявок</span><span>Политика конфиденциальности и согласие</span></div>
           <p class="plan-note">Отдельно оплачиваются домен и платные сервисы.</p>
-          <a class="btn btn-ghost" href="#calc" data-calc="visitka">Рассчитать</a>
+          <a class="btn btn-ghost" href="#calc" data-calc="visitka">Рассчитать стоимость</a>
         </article>
         <article class="card plan featured reveal">
           <h3>Лендинг под ключ</h3>
           <span class="tag">Популярное</span>
           <div class="amount">от 15 000 ₽</div>
-          <p class="muted">продающая страница под вашу услугу · 1–2 недели</p>
+          <p class="muted">продающая страница под вашу услугу&nbsp;· 1–2&nbsp;недели</p>
           <ul class="list">
             <li>Анализ задачи и аудитории</li>
             <li>Дизайн в Figma и адаптивная вёрстка</li>
@@ -270,12 +266,12 @@
           </ul>
           <div class="plan-gifts"><b>В подарок — бонусы на 14 500 ₽</b><span>Telegram-бот, Метрика с целями, SEO-старт, политика конфиденциальности, 30 дней правок</span></div>
           <p class="plan-note">Отдельно оплачиваются домен, хостинг, платные сервисы и сложные интеграции.</p>
-          <a class="btn btn-primary" href="#calc" data-calc="landing">Рассчитать</a>
+          <a class="btn btn-primary" href="#calc" data-calc="landing">Рассчитать стоимость</a>
         </article>
         <article class="card plan reveal">
           <h3>Сайт компании</h3>
           <div class="amount">от 35 000 ₽</div>
-          <p class="muted">многостраничный сайт с разделами · 2–3 недели</p>
+          <p class="muted">многостраничный сайт с&nbsp;разделами&nbsp;· 2–3&nbsp;недели</p>
           <ul class="list">
             <li>Структура разделов под задачи бизнеса</li>
             <li>Дизайн в Figma и адаптивная вёрстка</li>
@@ -285,22 +281,22 @@
           </ul>
           <div class="plan-gifts"><b>В подарок — бонусы на 14 500 ₽</b><span>Telegram-бот, Метрика с целями, SEO-старт, политика конфиденциальности, 30 дней правок</span></div>
           <p class="plan-note">Отдельно оплачиваются домен, хостинг, платные сервисы и сложные интеграции.</p>
-          <a class="btn btn-ghost" href="#calc" data-calc="company">Рассчитать</a>
+          <a class="btn btn-ghost" href="#calc" data-calc="company">Рассчитать стоимость</a>
         </article>
       </div>
 
-      <div class="grid grid-3 also">
-        <article class="card card-action reveal" data-order="Интернет-магазин" role="button" tabindex="0" aria-haspopup="dialog">
+      <div class="also-list">
+        <article class="also-item reveal" data-order="Интернет-магазин" role="button" tabindex="0" aria-haspopup="dialog">
           <h3>Интернет-магазины</h3>
           <p>Каталог, корзина, онлайн-оплата, интеграции с 1С и маркетплейсами.</p>
           <p class="price">от 60 000 ₽</p>
         </article>
-        <article class="card card-action reveal" data-order="Веб-приложение или бот" role="button" tabindex="0" aria-haspopup="dialog">
+        <article class="also-item reveal" data-order="Веб-приложение или бот" role="button" tabindex="0" aria-haspopup="dialog">
           <h3>Боты и интеграции</h3>
           <p>Telegram-боты, калькуляторы, личные кабинеты, связка сайта с CRM.</p>
           <p class="price">Стоимость <small>— по задаче</small></p>
         </article>
-        <article class="card card-action reveal" data-order="Редизайн или доработка сайта" role="button" tabindex="0" aria-haspopup="dialog">
+        <article class="also-item reveal" data-order="Редизайн или доработка сайта" role="button" tabindex="0" aria-haspopup="dialog">
           <h3>Доработка и сопровождение</h3>
           <p>Исправим ошибки, настроим формы и заявки, обновим дизайн готового сайта.</p>
           <p class="price">Стоимость <small>— по задаче, назовём заранее</small></p>
@@ -394,12 +390,12 @@
   <section class="section">
     <div class="container">
       <div class="section-head reveal">
-        <h2>От заявки до запуска — 4 шага</h2>
+        <h2>Четыре шага от заявки до запуска</h2>
         <p>Вы всегда знаете, на каком этапе проект и что будет дальше.</p>
       </div>
       <div class="steps-line">
         <div class="step reveal"><h3>Бриф · 30 минут</h3><p>Обсуждаем цели, аудиторию и примеры, которые вам нравятся. Фиксируем цену и срок в договоре.</p></div>
-        <div class="step reveal"><h3>Структура и дизайн</h3><p>Прототип и дизайн в Figma. Вносим правки до согласования — без доплат — и только потом верстаем.</p></div>
+        <div class="step reveal"><h3>Структура и дизайн</h3><p>Прототип и дизайн в Figma. Вносим правки до&nbsp;согласования&nbsp;— без&nbsp;доплат&nbsp;— и&nbsp;только потом верстаем.</p></div>
         <div class="step reveal"><h3>Вёрстка и подключения</h3><p>Собираем сайт, адаптируем под телефоны, подключаем Telegram-бот, Метрику и формы.</p></div>
         <div class="step reveal"><h3>Запуск и поддержка</h3><p>Подключаем домен, проверяем заявки вживую. Первые 30 дней правок — бесплатно.</p></div>
       </div>
@@ -414,27 +410,27 @@
       </div>
       <div class="grid grid-3 guarantees-list">
         <div class="guarantee reveal">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+          <div class="icon"><svg width="24" height="24" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Z"/></svg></div>
           <div><h3>Цена фиксируется в договоре</h3><p>Сумма не вырастет в процессе: всё, что входит в работу, прописано до старта.</p></div>
         </div>
         <div class="guarantee reveal">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></div>
+          <div class="icon"><svg width="24" height="24" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"/></svg></div>
           <div><h3>Сроки в договоре</h3><p>Этапы и даты согласуем заранее — вы знаете, что и когда будет готово.</p></div>
         </div>
         <div class="guarantee reveal">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20M16 15h2"/></svg></div>
+          <div class="icon"><svg width="24" height="24" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48Zm0,16V88H32V64Zm0,128H32V104H224v88Zm-16-24a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h32A8,8,0,0,1,208,168Zm-64,0a8,8,0,0,1-8,8H120a8,8,0,0,1,0-16h16A8,8,0,0,1,144,168Z"/></svg></div>
           <div><h3>Оплата частями</h3><p>50% — на старте, 50% — после того, как вы примете готовый сайт.</p></div>
         </div>
         <div class="guarantee reveal">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg></div>
+          <div class="icon"><svg width="24" height="24" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M227.32,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H216a8,8,0,0,0,0-16H115.32l112-112A16,16,0,0,0,227.32,73.37ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.69,147.32,64l24-24L216,84.69Z"/></svg></div>
           <div><h3>Правки дизайна без доплат</h3><p>Дорабатываем макет, пока вы не скажете «да». Вёрстку начинаем только после согласования.</p></div>
         </div>
         <div class="guarantee reveal">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3"/></svg></div>
+          <div class="icon"><svg width="24" height="24" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M216.57,39.43A80,80,0,0,0,83.91,120.78L28.69,176A15.86,15.86,0,0,0,24,187.31V216a16,16,0,0,0,16,16H72a8,8,0,0,0,8-8V208H96a8,8,0,0,0,8-8V184h16a8,8,0,0,0,5.66-2.34l9.56-9.57A79.73,79.73,0,0,0,160,176h.1A80,80,0,0,0,216.57,39.43ZM224,98.1c-1.09,34.09-29.75,61.86-63.89,61.9H160a63.7,63.7,0,0,1-23.65-4.51,8,8,0,0,0-8.84,1.68L116.69,168H96a8,8,0,0,0-8,8v16H72a8,8,0,0,0-8,8v16H40V187.31l58.83-58.82a8,8,0,0,0,1.68-8.84A63.72,63.72,0,0,1,96,95.92c0-34.14,27.81-62.8,61.9-63.89A64,64,0,0,1,224,98.1ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></svg></div>
           <div><h3>Сайт и доступы — ваши</h3><p>Домен, хостинг, админка и исходники передаём вам. Никакой зависимости от исполнителя.</p></div>
         </div>
         <div class="guarantee reveal">
-          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+          <div class="icon"><svg width="24" height="24" aria-hidden="true" viewBox="0 0 256 256" fill="currentColor"><path d="M225.86,102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28,23.51,138.44,16,128,16s-18.27,7.51-25.18,14.14c-3.94,3.77-8,7.67-11.57,9.14C88,40.64,82.56,40.72,77.31,40.8c-9.76.15-20.82.31-28.51,8S41,67.55,40.8,77.31c-.08,5.25-.16,10.67-1.52,13.94-1.47,3.56-5.37,7.63-9.14,11.57C23.51,109.72,16,117.56,16,128s7.51,18.27,14.14,25.18c3.77,3.94,7.67,8,9.14,11.57,1.36,3.27,1.44,8.69,1.52,13.94.15,9.76.31,20.82,8,28.51s18.75,7.85,28.51,8c5.25.08,10.67.16,13.94,1.52,3.56,1.47,7.63,5.37,11.57,9.14C109.72,232.49,117.56,240,128,240s18.27-7.51,25.18-14.14c3.94-3.77,8-7.67,11.57-9.14,3.27-1.36,8.69-1.44,13.94-1.52,9.76-.15,20.82-.31,28.51-8s7.85-18.75,8-28.51c.08-5.25.16-10.67,1.52-13.94,1.47-3.56,5.37-7.63,9.14-11.57C232.49,146.28,240,138.44,240,128S232.49,109.73,225.86,102.82Zm-11.55,39.29c-4.79,5-9.75,10.17-12.38,16.52-2.52,6.1-2.63,13.07-2.73,19.82-.1,7-.21,14.33-3.32,17.43s-10.39,3.22-17.43,3.32c-6.75.1-13.72.21-19.82,2.73-6.35,2.63-11.52,7.59-16.52,12.38S132,224,128,224s-9.15-4.92-14.11-9.69-10.17-9.75-16.52-12.38c-6.1-2.52-13.07-2.63-19.82-2.73-7-.1-14.33-.21-17.43-3.32s-3.22-10.39-3.32-17.43c-.1-6.75-.21-13.72-2.73-19.82-2.63-6.35-7.59-11.52-12.38-16.52S32,132,32,128s4.92-9.15,9.69-14.11,9.75-10.17,12.38-16.52c2.52-6.1,2.63-13.07,2.73-19.82.1-7,.21-14.33,3.32-17.43S70.51,56.9,77.55,56.8c6.75-.1,13.72-.21,19.82-2.73,6.35-2.63,11.52-7.59,16.52-12.38S124,32,128,32s9.15,4.92,14.11,9.69,10.17,9.75,16.52,12.38c6.1,2.52,13.07,2.63,19.82,2.73,7,.1,14.33.21,17.43,3.32s3.22,10.39,3.32,17.43c.1,6.75.21,13.72,2.73,19.82,2.63,6.35,7.59,11.52,12.38,16.52S224,124,224,128,219.08,137.15,214.31,142.11ZM173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34Z"/></svg></div>
           <div><h3>Гарантия 1 год</h3><p>Если в нашей работе что-то сломается — исправим бесплатно.</p></div>
         </div>
       </div>
@@ -452,7 +448,7 @@
         <ul class="me-facts">
           <li>Figma · Tilda · HTML/CSS/JS</li>
         </ul>
-        <p style="margin-top:18px"><a href="about.html">Подробнее о нас →</a></p>
+        <p class="me-more"><a href="about.html">Подробнее о нас →</a></p>
       </div>
     </div>
   </section>
@@ -516,7 +512,7 @@
     </ul>
   </div>
 </footer>
-<script src="js/main.js?v=b9c75222"></script>
+<script src="js/main.js?v=dd0c25d4"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
