@@ -312,17 +312,18 @@ textarea { min-height: 130px; resize: vertical; }
 /* Закреплённая кнопка на телефоне */
 .sticky-cta { display: none; }
 @media (max-width: 720px) {
-  /* Панель приподнята над плашкой «Powered by Netlify» (она закреплена справа внизу и перекрывала кнопки) */
+  /* Две кнопки одинаковой ширины, панель у нижнего края экрана (с учётом «чёлки» и полоски жестов) */
   .sticky-cta {
-    display: flex; gap: 8px; position: fixed; left: 12px; right: 12px;
-    bottom: calc(68px + env(safe-area-inset-bottom)); z-index: 40;
-    padding: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 999px;
-    box-shadow: var(--shadow); transform: translateY(260%); transition: transform .25s;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; position: fixed; left: 12px; right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 40;
+    padding: 6px; background: var(--bg); border: 1px solid var(--border); border-radius: 999px;
+    box-shadow: var(--shadow); transform: translateY(calc(100% + 24px)); transition: transform .25s;
   }
   .sticky-cta.show { transform: none; }
-  .sticky-cta .btn { flex: 1; justify-content: center; padding: 11px 14px; font-size: .95rem; white-space: nowrap; }
-  .has-sticky-cta { padding-bottom: 140px; }
+  .sticky-cta .btn { min-width: 0; padding: 12px 10px; font-size: .95rem; white-space: nowrap; }
+  .has-sticky-cta { padding-bottom: 84px; }
 }
+@media (max-width: 359px) { .sticky-cta .btn { font-size: .88rem; } }
 @media (prefers-reduced-motion: reduce) { .sticky-cta { transition: none; } }
 
 /* Атрибут hidden должен скрывать даже элементы со своим display */
@@ -360,6 +361,8 @@ section[id] { scroll-margin-top: 84px; }
 }
 .hero-v2 h1 { max-width: 640px; }
 .hero-v2 h1 em { font-style: normal; color: var(--accent); }
+/* Вторая строка заголовка — механика (Telegram) мельче главного обещания, чтобы заголовок читался быстрее */
+.hero-v2 h1 .h1-sub { display: block; margin-top: .3em; font-size: .6em; line-height: 1.25; letter-spacing: -.01em; }
 .chips { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 10px; }
 .chips li {
   display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px;

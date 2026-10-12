@@ -201,11 +201,19 @@ if (!pageForm) {
   const bar = document.createElement('div');
   bar.className = 'sticky-cta';
   bar.innerHTML = `
-    <a class="btn btn-primary" href="${calcHref}">Рассчитать стоимость</a>
+    <a class="btn btn-primary" href="${calcHref}">Рассчитать цену</a>
     <a class="btn btn-ghost" href="${TELEGRAM_URL}" target="_blank" rel="noopener">Telegram</a>`;
   document.body.appendChild(bar);
   document.body.classList.add('has-sticky-cta');
-  const syncBar = () => bar.classList.toggle('show', window.scrollY > 420);
+  // Прячем панель, пока человек в калькуляторе или вводит текст: она не должна закрывать форму и клавиатуру
+  let inCalc = false;
+  let typing = false;
+  const syncBar = () => bar.classList.toggle('show', window.scrollY > 420 && !inCalc && !typing);
+  if (calcBox && 'IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => { inCalc = entry.intersectionRatio > 0.2; syncBar(); }, { threshold: [0, 0.2, 0.4] }).observe(calcBox);
+  }
+  document.addEventListener('focusin', (e) => { if (e.target.matches('input, textarea, select')) { typing = true; syncBar(); } });
+  document.addEventListener('focusout', () => { typing = false; syncBar(); });
   window.addEventListener('scroll', syncBar, { passive: true });
   syncBar();
 }
