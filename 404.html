@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Страница отдаётся на любом несуществующем адресе (в т.ч. вложенном), поэтому все ссылки — от корня сайта -->
+  <base href="/">
+  <title>Страница не найдена — VOID | digital</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Такой страницы нет. Перейдите на главную, в портфолио или рассчитайте стоимость сайта.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="index.html">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="services.html">Услуги и цены</a></li>
+      <li><a href="portfolio.html">Портфолио</a></li>
+      <li><a href="about.html">О нас</a></li>
+      <li><a href="blog.html">Блог</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+      <li><a class="btn btn-primary btn-sm" href="index.html#calc">Рассчитать стоимость</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+  <section class="page-title">
+    <div class="container">
+      <span class="eyebrow">Ошибка 404</span>
+      <h1>Такой страницы нет</h1>
+      <p>Возможно, ссылка устарела или в адресе опечатка. Выберите, куда перейти, — или сразу посчитайте стоимость своего сайта.</p>
+      <div class="hero-actions" style="margin-top:28px">
+        <a class="btn btn-primary" href="index.html#calc">Рассчитать стоимость</a>
+        <a class="btn btn-ghost" href="index.html">На главную</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:32px">
+    <div class="container grid grid-3">
+      <a class="card card-link" href="services.html">
+        <h3>Услуги и цены</h3>
+        <p>Сайт-визитка, лендинг, сайт компании — с бонусами и понятными сроками.</p>
+        <span class="more">Смотреть тарифы →</span>
+      </a>
+      <a class="card card-link" href="portfolio.html">
+        <h3>Портфолио</h3>
+        <p>13 проектов: лендинги и сайты для бизнеса.</p>
+        <span class="more">Смотреть работы →</span>
+      </a>
+      <a class="card card-link" href="https://t.me/aa343432" target="_blank" rel="noopener">
+        <h3>Написать в Telegram</h3>
+        <p>Расскажите о задаче — ответим и сориентируем по цене.</p>
+        <span class="more">Открыть чат →</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+    <ul class="footer-links">
+      <li><a href="services.html">Услуги</a></li>
+      <li><a href="portfolio.html">Портфолио</a></li>
+      <li><a href="blog.html">Блог</a></li>
+      <li><a href="contacts.html">Контакты</a></li>
+      <li><a href="privacy.html">Политика конфиденциальности</a></li>
+      <li><a href="https://t.me/aa343432" target="_blank" rel="noopener">Telegram</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

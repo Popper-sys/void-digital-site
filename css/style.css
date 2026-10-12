@@ -507,3 +507,8 @@ section[id] { scroll-margin-top: 84px; }
   .stack-item .icon { display: none; }
   .btn-lg { width: 100%; }
 }
+
+/* Карточки-ссылки (страница 404) */
+.card-link { display: block; color: var(--text); }
+.card-link:hover { color: var(--text); }
+.card-link .more { display: inline-block; margin-top: 14px; color: var(--accent); font-weight: 600; }

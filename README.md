@@ -16,6 +16,8 @@ python -m http.server 8080
 - Репозиторий: `Popper-sys/void-digital-site`, ветка `main`. Каждый push в `main` автоматически публикуется.
 - Настройки проекта Pages: **Framework preset: None**, **Build command: пусто**, **Build output directory: `/`** (корень репозитория).
 - Функция заявок: `functions/api/lead.js` (маршрут `POST /api/lead`).
+- `404.html` обязателен: без него Pages считает сайт одностраничным приложением и на любой несуществующий адрес отдаёт главную с кодом 200 (дубли в поиске). В нём `<base href="/">`, потому что он открывается и на вложенных адресах.
+- `_redirects` прячет служебные файлы (`README.md`, `netlify.toml`, `legacy-netlify/`): корень репозитория публикуется целиком, а редиректы Pages срабатывают даже для существующих файлов.
 - Переменные окружения (Settings → Variables and Secrets, тип **Secret**, окружение Production и Preview):
   - `TELEGRAM_BOT_TOKEN` — токен бота от @BotFather
   - `TELEGRAM_CHAT_ID` — chat_id получателя
