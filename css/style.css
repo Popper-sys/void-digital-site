@@ -481,7 +481,6 @@ section[id] { scroll-margin-top: 84px; }
 .me img { width: 220px; height: 220px; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow-lg); }
 .me-facts { list-style: none; padding: 0; margin: 18px 0 0; display: flex; flex-wrap: wrap; gap: 8px 10px; }
 .me-facts li { padding: 6px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: .88rem; }
-.about-photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow-lg); margin-bottom: 20px; }
 
 /* Отзывы */
 .quote { position: relative; padding-top: 44px; }
