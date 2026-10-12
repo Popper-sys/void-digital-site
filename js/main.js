@@ -40,7 +40,7 @@ const sendLead = async (data) => {
 };
 
 const showFallback = (status) => {
-  status.textContent = 'Не удалось отправить заявку. Напишите мне в Telegram: ';
+  status.textContent = 'Не удалось отправить заявку. Напишите нам в Telegram: ';
   const link = document.createElement('a');
   link.href = TELEGRAM_URL;
   link.target = '_blank';
@@ -61,7 +61,7 @@ const setupLeadForm = (form, extra = () => ({})) => {
     try {
       await sendLead(data);
       form.reset();
-      status.textContent = 'Спасибо! Заявка отправлена, отвечу в ближайшее время.';
+      status.textContent = 'Спасибо! Заявка отправлена, ответим в ближайшее время.';
     } catch {
       showFallback(status);
     } finally {
@@ -208,7 +208,7 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
   dialog.innerHTML = `
     <button class="modal-close" type="button" aria-label="Закрыть">×</button>
     <h2 id="modal-title">Оставить заявку</h2>
-    <p class="muted" id="modal-lead">Расскажите о задаче — отвечу с вопросами и предварительной оценкой.</p>
+    <p class="muted" id="modal-lead">Расскажите о задаче — ответим с вопросами и предварительной оценкой.</p>
     <form class="form">
       <label class="hp" aria-hidden="true">Не заполняйте это поле<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
       <label>Ваше имя<input name="name" type="text" required autocomplete="name"></label>
@@ -266,8 +266,8 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
     typeLabel.hidden = audit;
     titleEl.textContent = audit ? AUDIT : 'Оставить заявку';
     leadEl.textContent = audit
-      ? 'Пришлите ссылку — разберу главную страницу и пришлю 3–5 конкретных правок.'
-      : 'Расскажите о задаче — отвечу с вопросами и предварительной оценкой.';
+      ? 'Пришлите ссылку — разберём главную страницу и пришлём 3–5 конкретных правок.'
+      : 'Расскажите о задаче — ответим с вопросами и предварительной оценкой.';
     submitBtn.textContent = audit ? 'Получить разбор' : 'Отправить заявку';
     if (audit) typeSelect.value = AUDIT;
     else if ([...typeSelect.options].some((o) => o.value === order)) typeSelect.value = order;
