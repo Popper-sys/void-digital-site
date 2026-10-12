@@ -3,3 +3,5 @@
 /netlify.toml / 301
 /legacy-netlify/* / 301
 /scripts/* / 301
+/tests/* / 301
+/.github/* / 301

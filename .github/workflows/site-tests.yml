@@ -1,0 +1,31 @@
+name: Автотесты сайта
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: tests
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Установка Playwright
+        run: npm install --no-audit --no-fund && npx playwright install --with-deps chromium webkit
+      - name: Тесты (Chrome + Safari/iPhone)
+        run: npx playwright test
+      - name: Отчёт при ошибке
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: tests/playwright-report
+          retention-days: 7

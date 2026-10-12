@@ -1,0 +1,11 @@
+{
+  "name": "void-digital-site-tests",
+  "private": true,
+  "description": "Автотесты сайта void-digital.ru (Playwright). Запускаются в GitHub Actions при каждом push.",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.48.2"
+  }
+}
