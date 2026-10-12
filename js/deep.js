@@ -3,7 +3,7 @@
 const root = document.documentElement;
 const deep = document.getElementById('deep');
 const canvas = deep?.querySelector('.deep-canvas');
-const SCENE = './scene3d.js?v=2';
+const SCENE = './scene3d.js?v=3';
 
 const fallback = () => root.classList.add('no-webgl');
 

@@ -60,6 +60,9 @@ const NOISE = /* glsl */`
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const coarse = matchMedia('(pointer: coarse)').matches;
+// Облегчённый режим для телефонов и слабых устройств: без постобработки, без разложения света в стекле,
+// ниже чёткость и реже сетка. Внешне почти то же, а кадров в разы больше
+const lite = coarse || (navigator.hardwareConcurrency || 8) <= 4 || (navigator.deviceMemory || 8) <= 4;
 
 export function start(deep, canvas) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
@@ -91,7 +94,7 @@ function init(deep, canvas, renderer) {
   renderer.setClearColor(BG, 1);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.0;
-  let dpr = Math.min(devicePixelRatio, 2);
+  let dpr = Math.min(devicePixelRatio, lite ? 1.5 : 2);
   renderer.setPixelRatio(dpr);
 
   const scene = new THREE.Scene();
@@ -102,13 +105,18 @@ function init(deep, canvas, renderer) {
   scene.environment = pmrem.fromScene(makeStudio(), 0.02).texture;
   pmrem.dispose();
 
-  // Постобработка: сглаживание (MSAA) + мягкое свечение только самых ярких бликов
-  const rt = new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: 4 });
-  const composer = new EffectComposer(renderer, rt);
-  composer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), coarse ? 0.45 : 0.6, 0.55, 0.8);
-  composer.addPass(bloom);
-  composer.addPass(new OutputPass());
+  // Постобработка (только в полном режиме): сглаживание (MSAA) + мягкое свечение самых ярких бликов.
+  // В облегчённом режиме рисуем сразу на экран со встроенным сглаживанием холста
+  let composer = null;
+  let bloom = null;
+  if (!lite) {
+    const rt = new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: 4 });
+    composer = new EffectComposer(renderer, rt);
+    composer.addPass(new RenderPass(scene, camera));
+    bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.6, 0.55, 0.8);
+    composer.addPass(bloom);
+    composer.addPass(new OutputPass());
+  }
 
   // ---------- Фон: тёмная плоскость с мягкими цветными пятнами
   const backdropUniforms = {
@@ -200,11 +208,11 @@ function init(deep, canvas, renderer) {
     transmission: 1,
     thickness: 1.3,
     ior: 1.6,
-    dispersion: 6,
+    dispersion: lite ? 0 : 6,
     iridescence: 0.85,
     iridescenceIOR: 1.35,
     iridescenceThicknessRange: [120, 700],
-    clearcoat: 1,
+    clearcoat: lite ? 0 : 1,
     clearcoatRoughness: 0.03,
     attenuationColor: new THREE.Color('#8b7bff'),
     attenuationDistance: 4.5,
@@ -255,7 +263,7 @@ function init(deep, canvas, renderer) {
         #endif`);
   };
   // Индексированная плотная сфера: край гладкий, без граней
-  const blob = new THREE.Mesh(coarse ? new THREE.SphereGeometry(1, 256, 192) : new THREE.SphereGeometry(1, 384, 288), glass);
+  const blob = new THREE.Mesh(lite ? new THREE.SphereGeometry(1, 176, 132) : new THREE.SphereGeometry(1, 384, 288), glass);
   blob.frustumCulled = false;
   rig.add(blob);
 
@@ -263,22 +271,24 @@ function init(deep, canvas, renderer) {
   const ringMat = new THREE.MeshBasicMaterial({ color: new THREE.Color('#8b7bff') });
   const ringMat2 = new THREE.MeshBasicMaterial({ color: new THREE.Color('#5ec8ff') });
   const rings = new THREE.Group();
-  const ring = new THREE.Mesh(new THREE.TorusGeometry(1.95, 0.012, 16, 360), ringMat);
-  const ring2 = new THREE.Mesh(new THREE.TorusGeometry(2.35, 0.008, 16, 360), ringMat2);
+  const ring = new THREE.Mesh(new THREE.TorusGeometry(1.95, 0.012, lite ? 8 : 16, lite ? 200 : 360), ringMat);
+  const ring2 = new THREE.Mesh(new THREE.TorusGeometry(2.35, 0.008, lite ? 8 : 16, lite ? 200 : 360), ringMat2);
   ring.rotation.set(1.25, 0.25, 0);
   ring2.rotation.set(1.05, -0.5, 0.4);
   rings.add(ring, ring2);
   rig.add(rings);
 
   // Хромовые спутники и одна светящаяся искра
-  const chrome = new THREE.MeshPhysicalMaterial({ color: 0xf0eeff, metalness: 1, roughness: 0.08, clearcoat: 1, envMapIntensity: 1.6 });
+  const chrome = lite
+    ? new THREE.MeshStandardMaterial({ color: 0xf0eeff, metalness: 1, roughness: 0.08, envMapIntensity: 1.6 })
+    : new THREE.MeshPhysicalMaterial({ color: 0xf0eeff, metalness: 1, roughness: 0.08, clearcoat: 1, envMapIntensity: 1.6 });
   const spark = new THREE.MeshBasicMaterial({ color: new THREE.Color('#ff7bd5').multiplyScalar(3) });
   const sats = [
     { r: 1.95, size: 0.12, speed: 0.35, tilt: 1.25, phase: 0, mat: chrome },
     { r: 2.35, size: 0.07, speed: -0.22, tilt: 1.05, phase: 2.2, mat: chrome },
     { r: 1.6, size: 0.04, speed: 0.6, tilt: 0.4, phase: 4.1, mat: spark },
   ].map((s) => {
-    const m = new THREE.Mesh(new THREE.SphereGeometry(s.size, 64, 48), s.mat);
+    const m = new THREE.Mesh(new THREE.SphereGeometry(s.size, lite ? 32 : 64, lite ? 24 : 48), s.mat);
     rig.add(m);
     return { ...s, mesh: m };
   });
@@ -292,7 +302,7 @@ function init(deep, canvas, renderer) {
   scene.add(key, pA, pB);
 
   // Звёздная пыль
-  const dustCount = coarse ? 260 : 520;
+  const dustCount = lite ? 220 : 520;
   const dustPos = new Float32Array(dustCount * 3);
   for (let i = 0; i < dustCount; i++) {
     dustPos[i * 3] = (Math.random() - 0.5) * 18;
@@ -353,8 +363,10 @@ function init(deep, canvas, renderer) {
     const w = innerWidth;
     const h = innerHeight;
     renderer.setSize(w, h, false);
-    composer.setPixelRatio(dpr);
-    composer.setSize(w, h);
+    if (composer) {
+      composer.setPixelRatio(dpr);
+      composer.setSize(w, h);
+    }
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
     halfH = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
@@ -467,7 +479,9 @@ function init(deep, canvas, renderer) {
   let intro = reduce || instant ? 1 : 0;
   let introRippled = intro === 1;
   let frames = 0;
-  let slowFrames = 0;
+  let slowAcc = 0;
+  let slowN = 0;
+  let bloomAllowed = true;
   const clock = new THREE.Clock();
   const elastic = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -9 * t) * Math.cos(t * Math.PI * 2.6));
   const easeOut = (t) => 1 - Math.pow(1 - Math.min(Math.max(t, 0), 1), 3);
@@ -559,8 +573,8 @@ function init(deep, canvas, renderer) {
     backdropUniforms.uTime.value = time;
     backdropUniforms.uCenter.value.set(rig.position.x * 1.8, rig.position.y * 1.8);
 
-    bloom.strength = cur.bl;
-    bloom.enabled = cur.bl > 0.02;
+    const useBloom = composer && bloomAllowed && cur.bl > 0.02;
+    if (bloom) bloom.strength = cur.bl;
 
     // Пыль: появляется после первого блока, в финале летит навстречу, быстрее при быстрой прокрутке
     dust.visible = cur.r > 0.01;
@@ -578,16 +592,28 @@ function init(deep, canvas, renderer) {
     }
     dustMat.size = 0.045 + Math.min(warp, 3) * 0.012;
 
-    composer.render(dt);
+    if (useBloom) composer.render(dt);
+    else renderer.render(scene, camera);
 
-    // Если первые секунды кадры тяжёлые, немного снижаем чёткость
-    if (frames < 150) {
-      frames++;
-      if (frames > 30 && dt > 1 / 40) slowFrames++;
-      if (frames === 150 && slowFrames > 50 && dpr > 1.25) {
-        dpr = Math.max(1.25, dpr * 0.75);
-        renderer.setPixelRatio(dpr);
-        measure();
+    // Автоподстройка: если кадры стабильно тяжелее ~45 в секунду, по шагам снижаем чёткость,
+    // затем отключаем свечение. Первые кадры (сборка шейдеров) не считаем
+    frames++;
+    if (frames > 40) {
+      slowAcc += dt;
+      slowN++;
+      if (slowN >= 60) {
+        const avg = slowAcc / slowN;
+        slowAcc = 0;
+        slowN = 0;
+        if (avg > 1 / 45) {
+          if (dpr > 1.01) {
+            dpr = Math.max(1, dpr * 0.8);
+            renderer.setPixelRatio(dpr);
+            measure();
+          } else if (bloomAllowed && composer) {
+            bloomAllowed = false;
+          }
+        }
       }
     }
   }
