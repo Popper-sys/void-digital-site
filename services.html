@@ -2,7 +2,11 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
   <title>Услуги и цены — VOID | digital</title>
   <meta name="description" content="Сайт-визитка от 5 000 ₽, лендинг от 15 000 ₽, сайт компании от 35 000 ₽. Бонусы к тарифам, оплата 50/50, цена фиксируется в договоре.">
   <link rel="canonical" href="https://void-digital.ru/services">
@@ -14,7 +18,8 @@
   <meta property="og:url" content="https://void-digital.ru/services">
   <meta property="og:image" content="https://void-digital.ru/img/og-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="css/style.css?v=9e8c42c9">
+  <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css?v=ea6367ae">
 </head>
 <body>
 <header class="site-header">
@@ -62,7 +67,7 @@
           <li>Форма заявки</li>
           <li>Публикация и запуск</li>
         </ul>
-        <div class="plan-gifts"><b>В подарок</b><span>Telegram-бот для заявок</span><span>Политика ПДн и согласие в формах</span></div>
+        <div class="plan-gifts"><b>В подарок</b><span>Telegram-бот для заявок</span><span>Политика конфиденциальности и согласие</span></div>
         <p class="plan-note">Срок: от 3 до 7 дней. Отдельно оплачиваются домен и платные сервисы.</p>
         <a class="btn btn-ghost" href="index.html?calc=visitka#calc">Рассчитать</a>
       </article>
@@ -78,7 +83,7 @@
           <li>Подключение CRM и аналитики</li>
           <li>Подключение домена и запуск</li>
         </ul>
-        <div class="plan-gifts"><b>В подарок — бонусы на 14 500 ₽</b><span>Telegram-бот для заявок, Яндекс Метрика с целями, SEO-старт, политика ПДн, 30 дней правок после запуска</span></div>
+        <div class="plan-gifts"><b>В подарок — бонусы на 14 500 ₽</b><span>Telegram-бот для заявок, Яндекс Метрика с целями, SEO-старт, политика конфиденциальности, 30 дней правок после запуска</span></div>
         <p class="plan-note">Срок: 1–2 недели. Отдельно оплачиваются домен, хостинг, платные сервисы и сложные интеграции.</p>
         <a class="btn btn-primary" href="index.html?calc=landing#calc">Рассчитать</a>
       </article>
@@ -93,7 +98,7 @@
           <li>Базовая SEO-подготовка</li>
           <li>Подключение домена, запуск, передача доступов</li>
         </ul>
-        <div class="plan-gifts"><b>В подарок — бонусы на 14 500 ₽</b><span>Telegram-бот для заявок, Яндекс Метрика с целями, SEO-старт, политика ПДн, 30 дней правок после запуска</span></div>
+        <div class="plan-gifts"><b>В подарок — бонусы на 14 500 ₽</b><span>Telegram-бот для заявок, Яндекс Метрика с целями, SEO-старт, политика конфиденциальности, 30 дней правок после запуска</span></div>
         <p class="plan-note">Срок: 2–3 недели, зависит от объёма. Отдельно оплачиваются домен, хостинг, платные сервисы и сложные интеграции.</p>
         <a class="btn btn-ghost" href="index.html?calc=company#calc">Рассчитать</a>
       </article>
@@ -204,7 +209,7 @@
     </ul>
   </div>
 </footer>
-<script src="js/main.js?v=91260003"></script>
+<script src="js/main.js?v=b9c75222"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

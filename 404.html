@@ -2,13 +2,18 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
   <!-- Страница отдаётся на любом несуществующем адресе (в т.ч. вложенном), поэтому все ссылки — от корня сайта -->
   <base href="/">
   <title>Страница не найдена — VOID | digital</title>
   <meta name="robots" content="noindex">
   <meta name="description" content="Такой страницы нет. Перейдите на главную, в портфолио или рассчитайте стоимость сайта.">
-  <link rel="stylesheet" href="css/style.css?v=9e8c42c9">
+  <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css?v=ea6367ae">
 </head>
 <body>
 <header class="site-header">
@@ -75,7 +80,7 @@
     </ul>
   </div>
 </footer>
-<script src="js/main.js?v=91260003"></script>
+<script src="js/main.js?v=b9c75222"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

@@ -99,8 +99,8 @@ if (calcBox) {
     texts: { label: 'Тексты под ключ', price: 4000 },
     en: { label: 'Английская версия', price: 8000 },
   };
-  const GIFTS = ['Telegram-бот для заявок', 'Яндекс Метрика с целями', 'SEO-старт и Яндекс Вебмастер', 'Политика ПДн и согласие в формах', '30 дней правок после запуска'];
-  const GIFTS_SMALL = ['Telegram-бот для заявок', 'Политика ПДн и согласие в формах'];
+  const GIFTS = ['Telegram-бот для заявок', 'Яндекс Метрика с целями', 'SEO-старт и Яндекс Вебмастер', 'Политика конфиденциальности и согласие', '30 дней правок после запуска'];
+  const GIFTS_SMALL = ['Telegram-бот для заявок', 'Политика конфиденциальности и согласие'];
 
   const num = (n) => n.toLocaleString('ru-RU');
   const range = (a, b) => `${num(a)} – ${num(b)} ₽`;
@@ -152,7 +152,7 @@ if (calcBox) {
     syncExtras();
     steps.forEach((s, n) => { s.hidden = n !== current; });
     const last = current === steps.length - 1;
-    bar.style.width = `${((current + 1) / steps.length) * 100}%`;
+    bar.style.transform = `scaleX(${(current + 1) / steps.length})`;
     label.textContent = last ? 'Готово — ваш расчёт' : `Шаг ${current + 1} из ${steps.length - 1}`;
     back.hidden = current === 0;
     next.hidden = last;
@@ -185,12 +185,29 @@ if (calcBox) {
     };
   });
 
+  // Выбор в калькуляторе переживает обновление страницы (sessionStorage может быть недоступен — тогда просто без памяти)
+  const STORE = 'void-calc';
+  const save = () => {
+    const state = [...calcBox.querySelectorAll('input[name^="calc-"]')].filter((i) => i.checked).map((i) => `${i.name}=${i.value}`);
+    try { sessionStorage.setItem(STORE, JSON.stringify(state)); } catch { /* приватный режим */ }
+  };
+  const restore = () => {
+    let state = null;
+    try { state = JSON.parse(sessionStorage.getItem(STORE)); } catch { /* нет доступа */ }
+    if (!Array.isArray(state) || !state.length) return false;
+    calcBox.querySelectorAll('input[name^="calc-"]').forEach((i) => { i.checked = state.includes(`${i.name}=${i.value}`); });
+    return true;
+  };
+  calcBox.addEventListener('change', (e) => { if (e.target.name?.startsWith('calc-')) save(); });
+
   // Переход со страницы услуг: index.html?calc=landing#calc — тип сайта уже выбран
   const presetKind = new URLSearchParams(location.search).get('calc');
   if (presetKind && Object.prototype.hasOwnProperty.call(KINDS, presetKind)) {
     calcBox.querySelector(`input[name="calc-kind"][value="${presetKind}"]`).checked = true;
+    save();
     show(1);
   } else {
+    restore();
     show(0);
   }
 }
@@ -233,7 +250,7 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
     <form class="form">
       <label class="hp" aria-hidden="true">Не заполняйте это поле<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
       <label>Ваше имя<input name="name" type="text" required autocomplete="name"></label>
-      <label>Телефон, Telegram или email<input name="contact" type="text" required></label>
+      <label>Телефон, Telegram или email<input name="contact" type="text" required minlength="5" autocomplete="tel" placeholder="+7 900 000-00-00 или @username"></label>
       <label class="audit-only" hidden>Ссылка на ваш сайт<input name="site" type="text" inputmode="url" placeholder="example.ru" disabled></label>
       <label>Кто вы
         <select name="client">

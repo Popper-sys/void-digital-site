@@ -2,7 +2,11 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
   <title>Портфолио — VOID | digital</title>
   <meta name="description" content="Примеры работ: лендинги и сайты для разных ниш.">
   <link rel="canonical" href="https://void-digital.ru/portfolio">
@@ -14,7 +18,8 @@
   <meta property="og:url" content="https://void-digital.ru/portfolio">
   <meta property="og:image" content="https://void-digital.ru/img/og-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="css/style.css?v=9e8c42c9">
+  <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css?v=ea6367ae">
 </head>
 <body>
 <header class="site-header">
@@ -47,7 +52,7 @@
     <div class="container">
       <div class="section-head reveal"><span class="eyebrow">Избранное</span><h2>Четыре проекта, которые мы сделали полностью</h2></div>
       <div class="grid grid-2">
-        <article class="card case reveal">
+        <article class="card case reveal" id="sotsvetie">
           <div class="work-thumb">
             <img src="img/portfolio/sotsvetie.webp" alt="Главный экран сайта жилого комплекса «Соцветие»" width="660" height="440" loading="lazy">
           </div>
@@ -62,7 +67,7 @@
             </dl>
           </div>
         </article>
-        <article class="card case reveal">
+        <article class="card case reveal" id="veniki">
           <div class="work-thumb">
             <img src="img/portfolio/veniki.webp" alt="Главный экран сайта оптовой продажи банных веников" width="660" height="440" loading="lazy">
           </div>
@@ -77,7 +82,7 @@
             </dl>
           </div>
         </article>
-        <article class="card case reveal">
+        <article class="card case reveal" id="expert">
           <div class="work-thumb">
             <img src="img/portfolio/expert.webp" alt="Главный экран личного сайта предпринимателя и спикера" width="660" height="440" loading="lazy">
           </div>
@@ -92,7 +97,7 @@
             </dl>
           </div>
         </article>
-        <article class="card case reveal">
+        <article class="card case reveal" id="spectech">
           <div class="work-thumb">
             <img src="img/portfolio/spectech.webp" alt="Главный экран сайта: Ремонт и обслуживание спецтехники" width="660" height="440" loading="lazy">
           </div>
@@ -231,7 +236,7 @@
     </ul>
   </div>
 </footer>
-<script src="js/main.js?v=91260003"></script>
+<script src="js/main.js?v=b9c75222"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
