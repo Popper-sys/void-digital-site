@@ -464,7 +464,7 @@ section[id] { scroll-margin-top: 84px; }
 .browser-bar i:nth-child(3) { background: #27c93f; }
 .browser-bar span { margin-left: 10px; font-size: .75rem; color: var(--muted); background: var(--surface); padding: 3px 12px; border-radius: 999px; }
 .browser img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
-/* Настоящий скриншот заявки из Telegram поверх снимка сайта */
+/* Сообщение бота о заявке (текст как в functions/api/lead.js, отрисовано в 3x) поверх снимка сайта */
 .tg-shot {
   position: absolute; left: 0; bottom: 0; width: min(290px, 72%); height: auto;
   border-radius: 14px; box-shadow: var(--shadow-lg); animation: pop-in 420ms var(--ease-out) 300ms both;
