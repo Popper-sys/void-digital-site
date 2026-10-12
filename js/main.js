@@ -234,13 +234,23 @@ if (!pageForm) {
   // Прячем панель, пока человек в калькуляторе или вводит текст: она не должна закрывать форму и клавиатуру
   let inCalc = false;
   let typing = false;
-  const syncBar = () => bar.classList.toggle('show', window.scrollY > 420 && !inCalc && !typing);
+  let pastTop = false;
+  const syncBar = () => bar.classList.toggle('show', pastTop && !inCalc && !typing);
   if (calcBox && 'IntersectionObserver' in window) {
     new IntersectionObserver(([entry]) => { inCalc = entry.intersectionRatio > 0.2; syncBar(); }, { threshold: [0, 0.2, 0.4] }).observe(calcBox);
   }
   document.addEventListener('focusin', (e) => { if (e.target.matches('input, textarea, select')) { typing = true; syncBar(); } });
   document.addEventListener('focusout', () => { typing = false; syncBar(); });
-  window.addEventListener('scroll', syncBar, { passive: true });
+  // Метка на 420px от верха страницы: панель появляется, когда она ушла выше экрана (без слушателя scroll)
+  const sentinel = document.createElement('div');
+  sentinel.className = 'sticky-sentinel';
+  sentinel.setAttribute('aria-hidden', 'true');
+  document.body.prepend(sentinel);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => { pastTop = !entry.isIntersecting && entry.boundingClientRect.top < 0; syncBar(); }).observe(sentinel);
+  } else {
+    pastTop = true;
+  }
   syncBar();
 }
 
