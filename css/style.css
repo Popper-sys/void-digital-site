@@ -863,6 +863,8 @@ section[id] { scroll-margin-top: 84px; }
 }
 
 /* За кнопками первого экрана — мягкое переливающееся свечение, чтобы стеклу было что преломлять */
+/* Свечение шире кнопок: обрезаем по краю первого экрана, иначе на телефоне страница становится шире экрана */
+.hero-v2 { overflow: hidden; overflow: clip; }
 .hero-actions { position: relative; isolation: isolate; }
 .hero-actions::before { content: ""; position: absolute; z-index: -1; inset: -40px -60px; pointer-events: none;
   background: radial-gradient(closest-side at 30% 55%, color-mix(in srgb, var(--accent) 28%, transparent), transparent),
