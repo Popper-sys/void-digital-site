@@ -57,7 +57,7 @@
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=46f58f1f">
+  <link rel="stylesheet" href="css/style.css?v=27238651">
   <script type="importmap">{ "imports": { "three": "/vendor/three/three.module.min.js" } }</script>
 </head>
 <body>
@@ -84,7 +84,7 @@
   <section class="hero hero-v2">
     <div class="container hero-grid">
       <div>
-        <h1>Сайт, который собирает заявки <span class="h1-sub">и&nbsp;сразу присылает их&nbsp;вам&nbsp;в&nbsp;<em>Telegram</em></span></h1>
+        <h1 class="h1-words"><span class="w" style="--i:0">Сайт,</span> <span class="w" style="--i:1">который</span> <span class="w" style="--i:2">собирает</span> <span class="w" style="--i:3">заявки</span> <span class="h1-sub"><span class="w" style="--i:4">и&nbsp;сразу</span> <span class="w" style="--i:5">присылает</span> <span class="w" style="--i:6">их&nbsp;вам&nbsp;в&nbsp;<em>Telegram</em></span></span></h1>
         <p class="lead">Сайты для малого бизнеса под&nbsp;ключ от&nbsp;5&nbsp;000&nbsp;₽ за&nbsp;<span class="nowrap">1–3&nbsp;недели</span>. Telegram-бот, Яндекс Метрика и 30&nbsp;дней правок в&nbsp;подарок.</p>
         <div class="hero-actions">
           <a class="btn btn-primary btn-lg" href="#calc">Рассчитать стоимость</a>
@@ -98,6 +98,7 @@
             <img src="img/portfolio/sotsvetie.webp" alt="" width="660" height="440" fetchpriority="high">
           </div>
           <img class="tg-shot" src="img/telegram-lead.webp?v=2" alt="Сообщение бота в Telegram: заявка из калькулятора — имя, контакт, задача и расчёт стоимости" width="394" height="225">
+          <span class="tg-ping" aria-hidden="true"></span>
         </div>
         <figcaption class="hero-demo-note">Так заявка приходит вам в Telegram от нашего бота.</figcaption>
       </figure>
@@ -555,6 +556,7 @@
   </div>
 </footer>
 <script src="js/main.js?v=d617d83e"></script>
+<script src="js/hero-fx.js?v=1" defer></script>
 <script type="module" src="js/deep.js?v=5"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>

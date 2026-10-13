@@ -460,6 +460,52 @@ section[id] { scroll-margin-top: 84px; }
 @keyframes pop-in { from { opacity: 0; translate: 0 14px; scale: .97; } to { opacity: 1; translate: 0 0; scale: 1; } }
 @media (prefers-reduced-motion: reduce) { .tg-shot { animation: reveal-fade 200ms ease-out 200ms both; } }
 
+/* ---------- Первый экран оживает (js/hero-fx.js только для мыши) ----------
+   Заголовок проявляется по словам, затем «приходит» заявка в Telegram с сигналом,
+   макет браузера наклоняется за курсором, кнопки тянутся к курсору, по главной пробегает блик.
+   Всё на opacity/transform/filter, без 3D-движка: первый экран не тяжелеет. */
+.js .h1-words .w { display: inline-block; animation: word-in 520ms var(--ease-out) calc(var(--i) * 55ms) both; }
+@keyframes word-in { from { opacity: 0; translate: 0 .35em; filter: blur(6px); } to { opacity: 1; translate: 0 0; filter: blur(0); } }
+/* «Telegram» подсвечивается последним */
+.js .hero-v2 h1 em { background: linear-gradient(90deg, var(--accent) 0 40%, color-mix(in srgb, var(--accent) 35%, #fff) 50%, var(--accent) 60% 100%) 100% 0 / 260% 100% no-repeat;
+  -webkit-background-clip: text; background-clip: text; color: transparent; animation: em-shine 1.1s ease-in-out 700ms both; }
+@keyframes em-shine { from { background-position: 100% 0; } to { background-position: 0 0; } }
+
+/* Заявка прилетает после заголовка, с лёгким перелётом, потом мягко покачивается */
+.tg-shot { z-index: 2; animation: tg-in 640ms cubic-bezier(.34, 1.56, .64, 1) 750ms both, tg-float 6s ease-in-out 1.6s infinite; }
+@keyframes tg-in { from { opacity: 0; translate: -18px 26px; scale: .9; } to { opacity: 1; translate: 0 0; scale: 1; } }
+@keyframes tg-float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+/* Сигнал «новая заявка»: два расходящихся контура вокруг сообщения */
+.tg-ping { position: absolute; left: 0; bottom: 0; z-index: 1; width: min(290px, 72%); aspect-ratio: 394 / 225; border-radius: var(--radius); pointer-events: none; }
+.tg-ping::before, .tg-ping::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--accent); opacity: 0; animation: tg-ping 1.2s var(--ease-out) 1.25s both; }
+.tg-ping::after { animation-delay: 1.55s; }
+@keyframes tg-ping { 0% { opacity: 0; scale: 1; } 12% { opacity: .7; scale: 1; } 100% { opacity: 0; scale: 1.12; } }
+/* Пока макет не на экране, анимации стоят на старте (класс ставит js/hero-fx.js) */
+.tg-wait .tg-shot, .tg-wait .tg-ping::before, .tg-wait .tg-ping::after { animation-play-state: paused; }
+
+/* Макет браузера: объём и блик стекла за курсором */
+.browser { position: relative; transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotate(-1.5deg); transition: transform 700ms var(--ease-out); }
+.browser.is-tilting { transition-duration: 160ms; }
+.browser::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 400ms ease;
+  background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, .22), transparent 60%); }
+.browser.is-tilting::after { opacity: 1; }
+
+/* Кнопки: притяжение к курсору и блик по главной (при загрузке и наведении) */
+.hero-actions .btn.magnetic { transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, transform 160ms var(--ease-out), translate 300ms var(--ease-out); }
+.hero-actions .btn-primary { position: relative; overflow: hidden; isolation: isolate; }
+.hero-actions .btn-primary::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; translate: -120% 0;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, .45) 50%, transparent 70%); animation: btn-sheen 900ms ease-in-out 1.5s both; }
+@keyframes btn-sheen { from { translate: -120% 0; } to { translate: 120% 0; } }
+@media (hover: hover) { .hero-actions .btn-primary:hover::after { animation: btn-sheen 800ms ease-in-out both; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .h1-words .w { animation: reveal-fade 200ms ease-out both; }
+  .js .hero-v2 h1 em { animation: none; background-position: 0 0; }
+  .tg-shot { animation: reveal-fade 200ms ease-out 200ms both; }
+  .tg-ping { display: none; }
+  .hero-actions .btn-primary::after { animation: none; }
+}
+
 /* Почему сайты не приносят заявки: строки «проблема → решение» вместо ряда карточек */
 .pain-rows { border-top: 1px solid var(--border); }
 .pain-row { display: grid; grid-template-columns: minmax(200px, .75fr) 1.25fr; gap: 10px 48px; padding: 28px 0; border-bottom: 1px solid var(--border); align-items: baseline; }
@@ -762,4 +808,71 @@ section[id] { scroll-margin-top: 84px; }
 @media (max-width: 900px) {
   .wow { grid-template-columns: 1fr; gap: 12px; min-height: 0; }
   .wow-stage { order: -1; width: min(70vw, 300px); }
+}
+
+/* ---------- Жидкое стекло: шапка, панель на телефоне, второстепенные кнопки, тёмная зона ----------
+   Только CSS: размытие того, что под элементом, светлая кромка сверху и тень внутри снизу.
+   Ставим точечно (крупные площади стеклом не покрываем), главная кнопка остаётся сплошной — у неё только кромка. */
+:root {
+  --glass-tint: rgba(255, 255, 255, .5);
+  --glass-edge: rgba(255, 255, 255, .7);
+  --glass-rim: inset 0 1px 0 rgba(255, 255, 255, .9), inset 0 -1px 2px rgba(20, 20, 40, .08), 0 6px 20px -10px rgba(40, 30, 110, .35);
+  --glass-blur: blur(14px) saturate(180%);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --glass-tint: rgba(28, 28, 36, .45); --glass-edge: rgba(255, 255, 255, .14);
+    --glass-rim: inset 0 1px 0 rgba(255, 255, 255, .16), inset 0 -1px 2px rgba(0, 0, 0, .35), 0 8px 24px -10px rgba(0, 0, 0, .6); }
+}
+.deep, .deep-footer { --glass-tint: rgba(22, 22, 32, .38); --glass-edge: rgba(255, 255, 255, .16);
+  --glass-rim: inset 0 1px 0 rgba(255, 255, 255, .22), inset 0 -1px 3px rgba(0, 0, 0, .4), 0 10px 30px -12px rgba(0, 0, 0, .7); }
+
+/* Фиолетовая плашка призыва на внутренних страницах: стекло светлое и почти прозрачное */
+.cta { --glass-tint: rgba(255, 255, 255, .14); --glass-edge: rgba(255, 255, 255, .42); }
+.deep .cta { --glass-tint: rgba(22, 22, 32, .38); --glass-edge: rgba(255, 255, 255, .16); }
+
+/* Шапка: контент проплывает под ней и размывается */
+.site-header { background: color-mix(in srgb, var(--bg) 62%, transparent); -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+  border-bottom-color: color-mix(in srgb, var(--border) 70%, transparent); box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--glass-edge) 60%, transparent); }
+
+/* Стеклянная кнопка */
+.btn-ghost, .cta .btn.btn-outline, .deep .cta .btn.btn-outline {
+  position: relative; isolation: isolate; overflow: hidden;
+  background: var(--glass-tint); border-color: var(--glass-edge); box-shadow: var(--glass-rim);
+  -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur);
+}
+/* Блик на верхней половине стекла */
+.btn-ghost::before, .cta .btn.btn-outline::before { content: ""; position: absolute; inset: 1px 1px 50% 1px; z-index: -1; border-radius: 999px 999px 40% 40% / 999px 999px 100% 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, .45), rgba(255, 255, 255, 0)); opacity: .6; pointer-events: none; transition: opacity 200ms ease; }
+.deep .btn-ghost::before, .deep .cta .btn.btn-outline::before, .deep-footer .btn-ghost::before { opacity: .22; }
+@media (prefers-color-scheme: dark) { .btn-ghost::before, .cta .btn.btn-outline::before { opacity: .2; } }
+/* Главная кнопка: сплошной цвет, но со стеклянной кромкой */
+.btn-primary { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), inset 0 -2px 6px rgba(0, 0, 0, .18), 0 8px 22px -10px color-mix(in srgb, var(--accent) 80%, transparent); }
+/* Нажатие: стекло «продавливается» */
+.btn-ghost:active, .cta .btn.btn-outline:active { box-shadow: inset 0 2px 6px rgba(20, 20, 40, .15), inset 0 -1px 0 var(--glass-edge); }
+@media (hover: hover) and (pointer: fine) {
+  .btn-ghost:hover { background: color-mix(in srgb, var(--glass-tint) 70%, var(--accent-soft)); }
+  .btn-ghost:hover::before, .cta .btn.btn-outline:hover::before { opacity: 1; }
+  .deep .btn-ghost:hover::before, .deep .cta .btn.btn-outline:hover::before { opacity: .35; }
+}
+
+/* Панель на телефоне: стеклянная пилюля над контентом */
+@media (max-width: 720px) {
+  .sticky-cta { background: var(--glass-tint); border-color: var(--glass-edge); box-shadow: var(--glass-rim), var(--shadow);
+    -webkit-backdrop-filter: var(--glass-blur); backdrop-filter: var(--glass-blur); }
+  .sticky-cta .btn-ghost { background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+
+/* За кнопками первого экрана — мягкое переливающееся свечение, чтобы стеклу было что преломлять */
+.hero-actions { position: relative; isolation: isolate; }
+.hero-actions::before { content: ""; position: absolute; z-index: -1; inset: -40px -60px; pointer-events: none;
+  background: radial-gradient(closest-side at 30% 55%, color-mix(in srgb, var(--accent) 28%, transparent), transparent),
+              radial-gradient(closest-side at 72% 45%, rgba(94, 200, 255, .28), transparent),
+              radial-gradient(closest-side at 55% 70%, rgba(255, 123, 213, .18), transparent);
+  animation: glass-glow 9s ease-in-out infinite alternate; }
+@keyframes glass-glow { from { translate: -14px 0; scale: 1; } to { translate: 18px -6px; scale: 1.08; } }
+@media (prefers-reduced-motion: reduce) { .hero-actions::before { animation: none; } }
+
+/* Без поддержки размытия: стекло становится плотнее, чтобы текст читался */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header, .sticky-cta, .btn-ghost, .cta .btn.btn-outline { background: var(--surface); }
 }
