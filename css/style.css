@@ -909,3 +909,10 @@ section[id] { scroll-margin-top: 84px; }
   .deep-footer .footer-grid { flex-direction: column; align-items: center; text-align: center; gap: 4px; }
   .deep-footer .footer-links { justify-content: center; }
 }
+
+/* Телефон: гарантии и «кто делает» ближе друг к другу (реквизиты теперь только в подписи внизу) */
+@media (max-width: 720px) {
+  .deep #guarantees { padding-bottom: 20px; }
+  .deep [data-scene="who"] { padding-top: 8px; }
+  .deep .me { gap: 12px; }
+}
