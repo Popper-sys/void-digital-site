@@ -5,15 +5,16 @@ ErrorDocument 404 /404.html
 AddDefaultCharset utf-8
 
 RewriteEngine On
-# https и без www
-RewriteCond %{REQUEST_URI} !^/\.well-known/
-RewriteCond %{HTTPS} off
-RewriteCond %{HTTP:X-Forwarded-Proto} !https
-RewriteCond %{HTTP_HOST} ^(www\.)?void-digital\.ru$ [NC]
-RewriteRule ^ https://void-digital.ru%{REQUEST_URI} [R=301,L]
-RewriteCond %{REQUEST_URI} !^/\.well-known/
-RewriteCond %{HTTP_HOST} ^www\.void-digital\.ru$ [NC]
-RewriteRule ^ https://void-digital.ru%{REQUEST_URI} [R=301,L]
+# https и без www — ВРЕМЕННО ВЫКЛЮЧЕНО, пока на ihc не выпущен SSL-сертификат
+#RewriteCond %{REQUEST_URI} !^/\.well-known/
+#RewriteCond %{HTTPS} off
+#RewriteCond %{HTTP:X-Forwarded-Proto} !https
+#RewriteCond %{HTTP_HOST} ^(www\.)?void-digital\.ru$ [NC]
+#RewriteRule ^ https://void-digital.ru%{REQUEST_URI} [R=301,L]
+#RewriteCond %{REQUEST_URI} !^/\.well-known/
+#RewriteCond %{HTTP_HOST} ^www\.void-digital\.ru$ [NC]
+#RewriteRule ^ https://void-digital.ru%{REQUEST_URI} [R=301,L]
+#
 
 # Заявки: /api/lead → PHP-обработчик
 RewriteRule ^api/lead/?$ api/lead.php [L]
