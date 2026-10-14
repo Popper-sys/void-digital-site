@@ -1,9 +1,9 @@
 name: Выкладка на ihc.ru
 
-# После каждого push в main файлы сайта заливаются по FTP на хостинг ihc.ru:
+# После каждого push в main файлы сайта заливаются по SSH (rsync) на хостинг ihc.ru:
 # в папку боевого домена и в папку технического адреса (на нём проверяем без домена).
-# Логин и пароль FTP хранятся только в секретах репозитория: FTP_USER, FTP_PASSWORD.
-# Основной FTP-аккаунт p1068934 смотрит в /home/p1068934/, сайты лежат в www/<домен>/.
+# Логин и пароль хостинга хранятся только в секретах репозитория: FTP_USER, FTP_PASSWORD (они же для SSH).
+# Сайты лежат в /home/p1068934/www/<домен>/. Папки, которых ещё нет на хостинге, пропускаются.
 on:
   push:
     branches: [main]
@@ -17,29 +17,28 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    strategy:
-      fail-fast: false
-      max-parallel: 1
-      matrix:
-        dir: [www/void-digital.ru/, www/p1068934.ihc.xyz/]
+    env:
+      HOST: p1068934.ftp.ihc.ru
+      SSHPASS: ${{ secrets.FTP_PASSWORD }}
+      USER: ${{ secrets.FTP_USER }}
     steps:
       - uses: actions/checkout@v4
-      - name: Заливка по FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: p1068934.ftp.ihc.ru
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ${{ matrix.dir }}
-          exclude: |
-            **/.git*
-            **/.git*/**
-            .github/**
-            tests/**
-            scripts/**
-            functions/**
-            legacy-netlify/**
-            README.md
-            netlify.toml
-            _redirects
-            lead-config.php
+      - name: Подготовка
+        run: |
+          sudo apt-get install -y -qq sshpass rsync >/dev/null
+          mkdir -p ~/.ssh && ssh-keyscan -T 20 "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+      - name: Заливка по SSH
+        run: |
+          SSH="sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=30"
+          for d in void-digital.ru p1068934.ihc.xyz; do
+            if $SSH "$USER@$HOST" "test -d www/$d"; then
+              echo "→ www/$d"
+              rsync -rlz --delete --checksum -e "$SSH" \
+                --exclude '.git*' --exclude '.github/' --exclude 'tests/' --exclude 'scripts/' \
+                --exclude 'functions/' --exclude 'legacy-netlify/' --exclude 'README.md' \
+                --exclude 'netlify.toml' --exclude '_redirects' --exclude 'lead-config.php' \
+                ./ "$USER@$HOST:www/$d/"
+            else
+              echo "Папки www/$d на хостинге пока нет, пропускаю"
+            fi
+          done
