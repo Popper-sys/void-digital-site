@@ -3,7 +3,7 @@ name: Выкладка на ihc.ru
 # После каждого push в main файлы сайта заливаются по FTP на хостинг ihc.ru:
 # в папку боевого домена и в папку технического адреса (на нём проверяем без домена).
 # Логин и пароль FTP хранятся только в секретах репозитория: FTP_USER, FTP_PASSWORD.
-# FTP-аккаунт для выкладки смотрит в папку /home/p1068934/www/, поэтому пути ниже относительно неё.
+# Основной FTP-аккаунт p1068934 смотрит в /home/p1068934/, сайты лежат в www/<домен>/.
 on:
   push:
     branches: [main]
@@ -20,7 +20,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        dir: [void-digital.ru/, p1068934.ihc.xyz/]
+        dir: [www/void-digital.ru/, www/p1068934.ihc.xyz/]
     steps:
       - uses: actions/checkout@v4
       - name: Заливка по FTP
