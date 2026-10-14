@@ -42,13 +42,7 @@ jobs:
               echo "Папки www/$d на хостинге пока нет, пропускаю"
             fi
           done
-      - name: Диагностика сервера (временно)
+      - name: Проверка связи с Cloudflare (только коды ответа)
         run: |
           SSH="sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=30"
-          $SSH "$USER@$HOST" '
-            echo "== php"; php -v | head -1; php -m | grep -iE "curl|mbstring|json" | tr "\n" " "; echo
-            echo "== telegram"; curl -sS -m 15 -o /dev/null -w "%{http_code} %{time_total}s\n" https://api.telegram.org/ || echo "curl failed"
-            echo "== config"; ls -la www/p1068934.ihc.xyz/lead-config.php; php -r "\$c=include \"www/p1068934.ihc.xyz/lead-config.php\"; echo is_array(\$c)?\"array keys: \".implode(\",\",array_keys(\$c)).\" token_len=\".strlen(\$c[\"TELEGRAM_BOT_TOKEN\"]??\"\").\" chat_len=\".strlen(\$c[\"TELEGRAM_CHAT_ID\"]??\"\"):\"NOT ARRAY\";"; echo
-            echo "== lint"; php -l www/p1068934.ihc.xyz/api/lead.php
-            echo "== logs"; ls -la logs | tail -5; for f in logs/*error*; do echo "-- $f"; tail -n 15 "$f"; done
-          '
+          $SSH "$USER@$HOST" 'printf "pages.dev /api/lead (ждём 405): "; curl -s -m 15 -o /dev/null -w "%{http_code}\n" https://void-digital-site.pages.dev/api/lead; php -l www/p1068934.ihc.xyz/api/lead.php'

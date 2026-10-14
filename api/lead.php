@@ -69,36 +69,36 @@ $client = isset($data['client']) && is_string($data['client']) && isset($SEGMENT
 $tags = array_values(array_filter(auto_tags("$type $message", $KEYWORDS), function ($k) use ($client) { return $k !== $client; }));
 if ($name === '' || $contact === '') reply(400, 'Missing fields');
 
-// Ищем настройки уровнем выше папки сайта, затем в корне сайта (там файл закрыт в .htaccess и ничего не выводит)
+// С хостинга ihc.ru api.telegram.org недоступен, поэтому заявка уходит через функцию Cloudflare Pages
+// (functions/api/lead.js): она хранит токен бота и сама отправляет сообщение в Telegram.
+// Если Telegram станет доступен напрямую, можно положить lead-config.php с токеном (см. начало файла).
 $config = [];
 foreach ([dirname(__DIR__, 2) . '/lead-config.php', dirname(__DIR__) . '/lead-config.php'] as $configFile) {
-    if (@is_file($configFile)) { $config = include $configFile; break; }
+    if (@is_file($configFile)) { $c = include $configFile; if (is_array($c)) $config = $c; break; }
 }
-$token = $config['TELEGRAM_BOT_TOKEN'] ?? getenv('TELEGRAM_BOT_TOKEN');
-$chatId = $config['TELEGRAM_CHAT_ID'] ?? getenv('TELEGRAM_CHAT_ID');
-if (!$token || !$chatId) reply(500, 'Not configured');
+$token = $config['TELEGRAM_BOT_TOKEN'] ?? '';
+$chatId = $config['TELEGRAM_CHAT_ID'] ?? '';
 
-$text = ($isAudit ? "🔍 Заявка на бесплатный разбор сайта\n\n" : ($isCalc ? "🧮 Заявка из калькулятора стоимости\n\n" : "📩 Новая заявка с сайта\n\n"))
-    . '🏷 Тип клиента: ' . $SEGMENTS[$client]
-    . ($tags ? "\n🔎 Похоже также: " . implode(', ', array_map(function ($k) use ($SEGMENTS) { return $SEGMENTS[$k]; }, $tags)) : '')
-    . "\n\nИмя: $name\nКонтакт: $contact\n"
-    . ($site !== '' ? "Сайт: $site\n" : '')
-    . 'Задача: ' . ($type !== '' ? $type : '—') . "\n"
-    . ($estimate !== '' ? "💰 Расчёт: $estimate\n" : '')
-    . "\n" . ($message !== '' ? $message : '(без описания)');
+if ($token && $chatId) {
+    $url = "https://api.telegram.org/bot$token/sendMessage";
+    $payload = json_encode(['chat_id' => $chatId, 'text' => $text], JSON_UNESCAPED_UNICODE);
+} else {
+    $url = 'https://void-digital-site.pages.dev/api/lead';
+    $payload = json_encode($data, JSON_UNESCAPED_UNICODE);
+}
 
-$ch = curl_init("https://api.telegram.org/bot$token/sendMessage");
+$ch = curl_init($url);
 curl_setopt_array($ch, [
     CURLOPT_POST => true,
     CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
-    CURLOPT_POSTFIELDS => json_encode(['chat_id' => $chatId, 'text' => $text], JSON_UNESCAPED_UNICODE),
+    CURLOPT_POSTFIELDS => $payload,
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT => 15,
+    CURLOPT_TIMEOUT => 20,
 ]);
 $res = curl_exec($ch);
 $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
-if ($res === false) reply(502, 'Telegram unreachable');
-if ($code < 200 || $code >= 300) reply(502, 'Telegram error');
+if ($res === false) reply(502, 'Upstream unreachable');
+if ($code < 200 || $code >= 300) reply(502, 'Upstream error');
 
 reply(200, 'ok');
