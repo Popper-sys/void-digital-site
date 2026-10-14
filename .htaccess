@@ -1,0 +1,48 @@
+# Настройки для Apache-хостинга (ihc.ru). На Cloudflare Pages этот файл не используется.
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+AddDefaultCharset utf-8
+
+RewriteEngine On
+# https и без www
+RewriteCond %{REQUEST_URI} !^/\.well-known/
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTP_HOST} ^(www\.)?void-digital\.ru$ [NC]
+RewriteRule ^ https://void-digital.ru%{REQUEST_URI} [R=301,L]
+RewriteCond %{REQUEST_URI} !^/\.well-known/
+RewriteCond %{HTTP_HOST} ^www\.void-digital\.ru$ [NC]
+RewriteRule ^ https://void-digital.ru%{REQUEST_URI} [R=301,L]
+
+# Заявки: /api/lead → PHP-обработчик
+RewriteRule ^api/lead/?$ api/lead.php [L]
+
+# Служебные файлы репозитория не открываются на сайте
+RewriteRule ^(README\.md|netlify\.toml|_redirects|_headers|\.git.*|legacy-netlify|scripts|tests|functions|\.github)(/|$) / [R=301,L]
+
+# Файл с токеном бота никогда не отдаётся по сети
+<Files "lead-config.php">
+  Require all denied
+</Files>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # Страницы перепроверяются при каждом заходе, CSS/JS с ?v=хеш и картинки кэшируются надолго
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(css|js|mjs|woff2|webp|png|jpg|svg|ico)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript application/json image/svg+xml text/plain
+</IfModule>
+
+AddType text/javascript .mjs
+AddType image/webp .webp
+AddType font/woff2 .woff2

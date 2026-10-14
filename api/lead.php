@@ -1,0 +1,104 @@
+<?php
+// Обработчик заявок для обычного PHP-хостинга (ihc.ru): POST /api/lead → Telegram.
+// Повторяет functions/api/lead.js (Cloudflare Pages). Токен и chat_id НЕ хранятся в репозитории:
+// файл lead-config.php кладётся на хостинг уровнем выше папки сайта (или в корень сайта) и возвращает
+//   ['TELEGRAM_BOT_TOKEN' => '…', 'TELEGRAM_CHAT_ID' => '…']
+
+header('Content-Type: text/plain; charset=utf-8');
+header('X-Robots-Tag: noindex');
+
+function reply($status, $body) {
+    http_response_code($status);
+    echo $body;
+    exit;
+}
+
+function clip($v, $n) {
+    return mb_substr(trim(is_scalar($v) ? (string)$v : ''), 0, $n, 'UTF-8');
+}
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') reply(405, 'Method Not Allowed');
+
+$data = json_decode(file_get_contents('php://input'), true);
+if (!is_array($data)) reply(400, 'Bad Request');
+
+// Honeypot: боты заполняют скрытое поле — молча «принимаем» и выбрасываем.
+if (!empty($data['website'])) reply(200, 'ok');
+
+// Без согласия на обработку персональных данных заявку не принимаем.
+if (empty($data['consent'])) reply(400, 'Consent required');
+
+$SEGMENTS = [
+    'small' => 'Малый бизнес / эксперт',
+    'shop' => 'Интернет-магазин',
+    'b2b' => 'Компания / B2B',
+    'tender' => 'Тендер / госзаказ',
+    'other' => 'Другое',
+];
+// Слова с «=» в начале ищутся как отдельные слова (чтобы «git» не находилось в «digital»).
+$KEYWORDS = [
+    'shop' => ['=1с', '=1c', 'маркетплейс', 'wildberries', 'вайлдберриз', '=ozon', '=озон', 'каталог', 'корзин', 'интернет-магазин', 'интернет магазин', 'эквайринг'],
+    'b2b' => ['=api', 'staging', '=git', 'корпоратив', 'портал', 'документаци', 'интеграци', '=b2b', '=crm', '=erp', 'личный кабинет'],
+    'tender' => ['тендер', 'госзакуп', 'госзаказ', '44-фз', '223-фз', '=тз', 'техническое задание', 'договор', '=акт', 'закупк'],
+    'small' => ['лендинг', 'визитк', 'эксперт', 'записаться'],
+];
+
+function auto_tags($text, $KEYWORDS) {
+    $t = ' ' . preg_replace('/[^a-zа-яё0-9-]+/u', ' ', mb_strtolower($text, 'UTF-8')) . ' ';
+    $out = [];
+    foreach ($KEYWORDS as $k => $words) {
+        foreach ($words as $w) {
+            $hit = $w[0] === '='
+                ? mb_strpos($t, ' ' . mb_substr($w, 1, null, 'UTF-8') . ' ', 0, 'UTF-8') !== false
+                : mb_strpos($t, preg_replace('/\s+/u', ' ', $w), 0, 'UTF-8') !== false;
+            if ($hit) { $out[] = $k; break; }
+        }
+    }
+    return $out;
+}
+
+$name = clip($data['name'] ?? '', 100);
+$contact = clip($data['contact'] ?? '', 150);
+$type = clip($data['type'] ?? '', 100);
+$message = clip($data['message'] ?? '', 2000);
+$site = clip($data['site'] ?? '', 200);
+$estimate = clip($data['estimate'] ?? '', 160);
+$isAudit = $type === 'Бесплатный разбор сайта';
+$isCalc = ($data['source'] ?? '') === 'calc';
+$client = isset($data['client']) && is_string($data['client']) && isset($SEGMENTS[$data['client']]) ? $data['client'] : 'other';
+$tags = array_values(array_filter(auto_tags("$type $message", $KEYWORDS), function ($k) use ($client) { return $k !== $client; }));
+if ($name === '' || $contact === '') reply(400, 'Missing fields');
+
+// Ищем настройки уровнем выше папки сайта, затем в корне сайта (там файл закрыт в .htaccess и ничего не выводит)
+$config = [];
+foreach ([dirname(__DIR__, 2) . '/lead-config.php', dirname(__DIR__) . '/lead-config.php'] as $configFile) {
+    if (@is_file($configFile)) { $config = include $configFile; break; }
+}
+$token = $config['TELEGRAM_BOT_TOKEN'] ?? getenv('TELEGRAM_BOT_TOKEN');
+$chatId = $config['TELEGRAM_CHAT_ID'] ?? getenv('TELEGRAM_CHAT_ID');
+if (!$token || !$chatId) reply(500, 'Not configured');
+
+$text = ($isAudit ? "🔍 Заявка на бесплатный разбор сайта\n\n" : ($isCalc ? "🧮 Заявка из калькулятора стоимости\n\n" : "📩 Новая заявка с сайта\n\n"))
+    . '🏷 Тип клиента: ' . $SEGMENTS[$client]
+    . ($tags ? "\n🔎 Похоже также: " . implode(', ', array_map(function ($k) use ($SEGMENTS) { return $SEGMENTS[$k]; }, $tags)) : '')
+    . "\n\nИмя: $name\nКонтакт: $contact\n"
+    . ($site !== '' ? "Сайт: $site\n" : '')
+    . 'Задача: ' . ($type !== '' ? $type : '—') . "\n"
+    . ($estimate !== '' ? "💰 Расчёт: $estimate\n" : '')
+    . "\n" . ($message !== '' ? $message : '(без описания)');
+
+$ch = curl_init("https://api.telegram.org/bot$token/sendMessage");
+curl_setopt_array($ch, [
+    CURLOPT_POST => true,
+    CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
+    CURLOPT_POSTFIELDS => json_encode(['chat_id' => $chatId, 'text' => $text], JSON_UNESCAPED_UNICODE),
+    CURLOPT_RETURNTRANSFER => true,
+    CURLOPT_TIMEOUT => 15,
+]);
+$res = curl_exec($ch);
+$code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+if ($res === false) reply(502, 'Telegram unreachable');
+if ($code < 200 || $code >= 300) reply(502, 'Telegram error');
+
+reply(200, 'ok');

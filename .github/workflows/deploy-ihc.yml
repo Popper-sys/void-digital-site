@@ -1,0 +1,44 @@
+name: Выкладка на ihc.ru
+
+# После каждого push в main файлы сайта заливаются по FTP на хостинг ihc.ru:
+# в папку боевого домена и в папку технического адреса (на нём проверяем без домена).
+# Логин и пароль FTP хранятся только в секретах репозитория: FTP_USER, FTP_PASSWORD.
+# FTP-аккаунт для выкладки смотрит в папку /home/p1068934/www/, поэтому пути ниже относительно неё.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-ihc
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      max-parallel: 1
+      matrix:
+        dir: [void-digital.ru/, p1068934.ihc.xyz/]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Заливка по FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: p1068934.ftp.ihc.ru
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ matrix.dir }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            tests/**
+            scripts/**
+            functions/**
+            legacy-netlify/**
+            README.md
+            netlify.toml
+            _redirects
+            lead-config.php

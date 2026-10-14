@@ -5,3 +5,5 @@
 /scripts/* / 301
 /tests/* / 301
 /.github/* / 301
+/.htaccess / 301
+/api/lead.php / 301
