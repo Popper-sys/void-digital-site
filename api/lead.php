@@ -70,7 +70,7 @@ $tags = array_values(array_filter(auto_tags("$type $message", $KEYWORDS), functi
 if ($name === '' || $contact === '') reply(400, 'Missing fields');
 
 // С хостинга ihc.ru api.telegram.org недоступен, поэтому заявка уходит через функцию Cloudflare Pages
-// (functions/api/lead.js): она хранит токен бота и сама отправляет сообщение в Telegram.
+// (functions/api/lead.js) на адресе lead.void-digital.ru (pages.dev с хостинга тоже заблокирован): она хранит токен бота и сама отправляет сообщение в Telegram.
 // Если Telegram станет доступен напрямую, можно положить lead-config.php с токеном (см. начало файла).
 $config = [];
 foreach ([dirname(__DIR__, 2) . '/lead-config.php', dirname(__DIR__) . '/lead-config.php'] as $configFile) {
@@ -83,7 +83,7 @@ if ($token && $chatId) {
     $url = "https://api.telegram.org/bot$token/sendMessage";
     $payload = json_encode(['chat_id' => $chatId, 'text' => $text], JSON_UNESCAPED_UNICODE);
 } else {
-    $url = 'https://void-digital-site.pages.dev/api/lead';
+    $url = 'https://lead.void-digital.ru/api/lead';
     $payload = json_encode($data, JSON_UNESCAPED_UNICODE);
 }
 

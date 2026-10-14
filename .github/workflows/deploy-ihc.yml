@@ -45,7 +45,7 @@ jobs:
       - name: Проверка связи с сервера (только коды ответа)
         run: |
           SSH="sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=30"
-          for u in https://void-digital-site.pages.dev/api/lead https://void-digital.ru/ https://ya.ru/ https://www.google.com/ https://api.telegram.org/ http://example.com/; do
+          for u in https://lead.void-digital.ru/api/lead; do
             code=$($SSH "$USER@$HOST" "curl -s -m 10 -o /dev/null -w '%{http_code}' $u" || true)
             echo "$u -> $code"
           done
