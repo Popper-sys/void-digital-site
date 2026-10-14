@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
+      fail-fast: false
       max-parallel: 1
       matrix:
         dir: [www/void-digital.ru/, www/p1068934.ihc.xyz/]
