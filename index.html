@@ -57,7 +57,7 @@
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=b27a5e3d">
+  <link rel="stylesheet" href="css/style.css?v=5814adca">
   <script type="importmap">{ "imports": { "three": "/vendor/three/three.module.min.js" } }</script>
 </head>
 <body>
@@ -544,7 +544,10 @@
 <footer class="site-footer deep-footer">
   <!-- Подпись студии: реквизиты ИП крупно и спокойно, как на визитке -->
   <div class="container sign">
-    <p class="sign-mark">VOID<span aria-hidden="true">|</span>digital</p>
+    <div class="sign-stage">
+      <span class="sign-glow" aria-hidden="true"></span>
+      <p class="sign-mark" aria-label="VOID | digital"><span class="sign-letters" aria-hidden="true"><span class="ch" style="--i:0">V</span><span class="ch" style="--i:1">O</span><span class="ch" style="--i:2">I</span><span class="ch" style="--i:3">D</span><span class="bar" style="--i:4">|</span><span class="ch" style="--i:5">d</span><span class="ch" style="--i:6">i</span><span class="ch" style="--i:7">g</span><span class="ch" style="--i:8">i</span><span class="ch" style="--i:9">t</span><span class="ch" style="--i:10">a</span><span class="ch" style="--i:11">l</span></span><span class="sign-shine" aria-hidden="true"><span class="ch">V</span><span class="ch">O</span><span class="ch">I</span><span class="ch">D</span><span class="bar">|</span><span class="ch">d</span><span class="ch">i</span><span class="ch">g</span><span class="ch">i</span><span class="ch">t</span><span class="ch">a</span><span class="ch">l</span></span></p>
+    </div>
     <p class="sign-tag">Создание и сопровождение сайтов</p>
     <dl class="sign-req">
       <div><dt>Индивидуальный предприниматель</dt><dd>Лосуков Даниил Васильевич</dd></div>
@@ -566,7 +569,7 @@
   </div>
 </footer>
 <script src="js/main.js?v=d617d83e"></script>
-<script src="js/hero-fx.js?v=1" defer></script>
+<script src="js/hero-fx.js?v=2" defer></script>
 <script type="module" src="js/deep.js?v=5"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>

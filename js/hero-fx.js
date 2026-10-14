@@ -1,6 +1,24 @@
 // Первый экран: наклон макета браузера за курсором и «магнитные» кнопки.
 // Только для мыши и без системного «уменьшить движение». Появление заголовка и уведомления — в CSS.
 (() => {
+  // Подпись внизу: знак собирается, когда до него долистали; свет за знаком следует за курсором
+  const sign = document.querySelector('.sign');
+  if (sign) {
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { sign.classList.add('in'); io.disconnect(); } }, { threshold: 0.35 });
+      io.observe(sign);
+    } else sign.classList.add('in');
+    const stage = sign.querySelector('.sign-stage');
+    if (stage && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      sign.addEventListener('pointermove', (e) => {
+        const r = stage.getBoundingClientRect();
+        stage.style.setProperty('--gx', `${Math.max(0, Math.min(100, ((e.clientX - r.left) / r.width) * 100)).toFixed(1)}%`);
+        stage.style.setProperty('--gy', `${Math.max(0, Math.min(100, ((e.clientY - r.top) / r.height) * 100)).toFixed(1)}%`);
+      });
+      sign.addEventListener('pointerleave', () => { stage.style.removeProperty('--gx'); stage.style.removeProperty('--gy'); });
+    }
+  }
+
   const hero = document.querySelector('.hero-v2');
   if (!hero) return;
 
