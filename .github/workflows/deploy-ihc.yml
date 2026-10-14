@@ -45,5 +45,7 @@ jobs:
       - name: Проверка связи с сервера (только коды ответа)
         run: |
           SSH="sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=30"
-          $SSH "$USER@$HOST" 'for u in https://void-digital-site.pages.dev/api/lead https://void-digital.ru/ https://ya.ru/ https://www.google.com/ https://api.telegram.org/ http://example.com/ https://script.google.com/; do printf "%s " "$u"; curl -s -m 10 -o /dev/null -w "%{http_code}
-" "$u"; done; echo "proxy env: ${http_proxy:-нет} ${https_proxy:-нет}"'
+          for u in https://void-digital-site.pages.dev/api/lead https://void-digital.ru/ https://ya.ru/ https://www.google.com/ https://api.telegram.org/ http://example.com/; do
+            code=$($SSH "$USER@$HOST" "curl -s -m 10 -o /dev/null -w '%{http_code}' $u")
+            echo "$u -> $code"
+          done
