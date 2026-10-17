@@ -93,6 +93,7 @@ test('на сайте нет форм сбора данных', async ({ page })
   }
   await page.goto('contacts.html');
   await expect(page.locator('#contact-card a.btn')).toHaveAttribute('href', /^https:\/\/t\.me\/aa343432/);
+  await expect(page.locator('.contact-list a[href="mailto:voiddigital@mail.ru"]')).toHaveCount(1);
 });
 
 test('телефон: поля не меньше 16 px и нет горизонтальной прокрутки', async ({ page }, testInfo) => {
