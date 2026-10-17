@@ -954,3 +954,22 @@ section[id] { scroll-margin-top: 84px; }
 .calc-lead { display: grid; gap: 14px; justify-items: start; }
 .modal .btn-lg { justify-self: start; margin-top: 4px; }
 .modal .form-legal { margin-top: 14px; }
+
+/* Контакты: способы связи плитками и значки в подвале */
+.contact-sub { color: var(--muted); margin: 8px 0 0; }
+.contact-methods { list-style: none; padding: 0; margin: 24px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.cm { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); text-decoration: none; transition: border-color .2s, transform .2s var(--ease-out, ease); min-width: 0; }
+.cm:hover { border-color: var(--accent); transform: translateY(-2px); }
+.cm:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.cm-ic { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); color: var(--accent); }
+.cm > span:last-child { min-width: 0; display: grid; }
+.cm small { color: var(--muted); font-size: .8rem; }
+.cm b { font-weight: 600; overflow-wrap: anywhere; }
+.social { list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap; }
+.social a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--border); color: var(--text); transition: color .2s, border-color .2s, background .2s; }
+.social a:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.social a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .cm { transition: none; } .cm:hover { transform: none; } }
+.deep-footer .social { margin: 8px 0; }
+.deep-footer .social a { color: rgba(242, 241, 247, .75); border-color: rgba(255, 255, 255, .14); }
+.deep-footer .social a:hover { color: #fff; border-color: rgba(255, 255, 255, .4); background: rgba(255, 255, 255, .06); }
