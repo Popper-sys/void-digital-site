@@ -42,11 +42,7 @@ jobs:
               echo "Папки www/$d на хостинге пока нет, пропускаю"
             fi
           done
-      - name: Проверка сайта и связи (только коды ответа)
+      - name: Хранилище заявок (без содержимого)
         run: |
           SSH="sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=30"
-          for u in https://void-digital.ru/ https://www.void-digital.ru/ http://void-digital.ru/ https://void-digital.ru/api/lead https://void-digital.ru/nope https://void-digital.ru/README.md https://lead.void-digital.ru/api/lead; do
-            r=$($SSH "$USER@$HOST" "curl -s -m 15 -o /dev/null -w '%{http_code} %{redirect_url} ssl_verify=%{ssl_verify_result}' $u; curl -sk -m 15 -o /dev/null -w ' insecure=%{http_code}' $u" || true)
-            echo "$u -> $r"
-          done
-          $SSH "$USER@$HOST" "echo | openssl s_client -connect void-digital.ru:443 -servername void-digital.ru 2>/dev/null | openssl x509 -noout -issuer -subject -enddate" || true
+          $SSH "$USER@$HOST" 'mkdir -p -m 700 data/leads && ls -ld data/leads && ls -la data/leads | awk "{print \$1, \$5, \$9}" && php -l www/p1068934.ihc.xyz/api/lead.php'

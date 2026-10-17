@@ -84,7 +84,7 @@ test('форма калькулятора: без согласия не отпр
   await form.locator('button[type=submit]').click();
   await expect(form.locator('.form-status.is-success')).toContainText('Заявка у нас');
   expect(sent).toHaveLength(1);
-  expect(sent[0]).toMatchObject({ name: 'Тест', contact: '@test_user', consent: 'on', source: 'calc', type: 'Лендинг' });
+  expect(sent[0]).toMatchObject({ name: 'Тест', contact: '@test_user', consent: 'on', consent_version: '2026-10-17', source: 'calc', type: 'Лендинг' });
 });
 
 test('окно бесплатного разбора просит ссылку на сайт', async ({ page }) => {

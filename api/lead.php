@@ -1,8 +1,8 @@
 <?php
-// Обработчик заявок для обычного PHP-хостинга (ihc.ru): POST /api/lead → Telegram.
-// Повторяет functions/api/lead.js (Cloudflare Pages). Токен и chat_id НЕ хранятся в репозитории:
-// файл lead-config.php кладётся на хостинг уровнем выше папки сайта (или в корень сайта) и возвращает
-//   ['TELEGRAM_BOT_TOKEN' => '…', 'TELEGRAM_CHAT_ID' => '…']
+// Обработчик заявок для PHP-хостинга (ihc.ru): POST /api/lead → запись на сервере в РФ → уведомление в Telegram.
+// Формат сообщения повторяет functions/api/lead.js (Cloudflare Pages). Токен бота в репозитории не хранится:
+// он лежит в Cloudflare (через него идёт уведомление) либо, если Telegram станет доступен с хостинга, в файле
+// lead-config.php: ['TELEGRAM_BOT_TOKEN' => '…', 'TELEGRAM_CHAT_ID' => '…'].
 
 header('Content-Type: text/plain; charset=utf-8');
 header('X-Robots-Tag: noindex');
@@ -69,6 +69,38 @@ $client = isset($data['client']) && is_string($data['client']) && isset($SEGMENT
 $tags = array_values(array_filter(auto_tags("$type $message", $KEYWORDS), function ($k) use ($client) { return $k !== $client; }));
 if ($name === '' || $contact === '') reply(400, 'Missing fields');
 
+// 1) Сначала заявка записывается на сервер в России (152-ФЗ, ч. 5 ст. 18): отдельный закрытый каталог вне публичной папки сайта.
+//    Вместе с ней — подтверждение согласия: время, IP, версия текста согласия. Файлы старше 12 месяцев удаляются.
+$consentVersion = clip($data['consent_version'] ?? '', 20);
+$record = [
+    'at' => date('c'),
+    'ip' => $_SERVER['REMOTE_ADDR'] ?? '',
+    'ua' => mb_substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, 200, 'UTF-8'),
+    'consent' => true,
+    'consent_version' => $consentVersion,
+    'name' => $name, 'contact' => $contact, 'type' => $type, 'site' => $site,
+    'client' => $client, 'estimate' => $estimate, 'message' => $message,
+];
+$stored = false;
+foreach ([dirname(__DIR__, 3) . '/data/leads', dirname(__DIR__, 2) . '/data/leads'] as $dir) {
+    if (!is_dir($dir)) @mkdir($dir, 0700, true);
+    if (is_dir($dir) && is_writable($dir)) {
+        $file = $dir . '/leads-' . date('Y-m') . '.jsonl';
+        $stored = @file_put_contents($file, json_encode($record, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND | LOCK_EX) !== false;
+        if ($stored) {
+            @chmod($file, 0600);
+            // срок хранения — 12 месяцев: месячные файлы старше года удаляем
+            $limit = date('Y-m', strtotime('-12 months'));
+            foreach (glob($dir . '/leads-*.jsonl') ?: [] as $old) {
+                if (preg_match('/leads-(\d{4}-\d{2})\.jsonl$/', $old, $m) && $m[1] < $limit) @unlink($old);
+            }
+            break;
+        }
+    }
+}
+if (!$stored) error_log('lead.php: не удалось записать заявку в хранилище');
+
+// 2) Затем уведомление оператору в Telegram.
 // С хостинга ihc.ru api.telegram.org недоступен, поэтому заявка уходит через функцию Cloudflare Pages
 // (functions/api/lead.js) на адресе lead.void-digital.ru (pages.dev с хостинга тоже заблокирован): она хранит токен бота и сама отправляет сообщение в Telegram.
 // Если Telegram станет доступен напрямую, можно положить lead-config.php с токеном (см. начало файла).

@@ -29,12 +29,14 @@ if ('IntersectionObserver' in window) {
 // Если функция недоступна (локально или не настроена) — показываем ссылку на Telegram.
 const TELEGRAM_URL = 'https://t.me/aa343432';
 const LEAD_ENDPOINT = '/api/lead';
+// Редакция документов «Согласие» и «Политика» на момент отправки (хранится вместе с заявкой как подтверждение согласия)
+const CONSENT_VERSION = '2026-10-17';
 
 const sendLead = async (data) => {
   const res = await fetch(LEAD_ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
+    body: JSON.stringify({ ...data, consent_version: CONSENT_VERSION }),
   });
   if (!res.ok) throw new Error(String(res.status));
 };
@@ -300,8 +302,8 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
         </select>
       </label>
       <label>Коротко о задаче<textarea name="message"></textarea></label>
-      <label class="consent"><input name="consent" type="checkbox" required> <span>Даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a></span></label>
-      <p class="form-legal">Как мы обрабатываем данные — в <a href="privacy.html" target="_blank" rel="noopener">политике конфиденциальности</a>.</p>
+      <label class="consent"><input name="consent" type="checkbox" required> <span>Даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> ИП Лосукову Д. В. (имя, контакт, текст заявки) для связи со мной по заявке</span></label>
+      <p class="form-legal">Заявка сохраняется на сервере в России; чтобы уведомить нас, её также получает Telegram (его серверы могут быть за рубежом). Согласие можно отозвать. Подробнее: <a href="privacy.html" target="_blank" rel="noopener">политика обработки персональных данных</a>.</p>
       <button class="btn btn-primary" type="submit">Отправить заявку</button>
       <p class="form-status" role="status"></p>
     </form>`;
