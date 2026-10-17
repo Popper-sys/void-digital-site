@@ -25,71 +25,9 @@ if ('IntersectionObserver' in window) {
   items.forEach((el) => el.classList.add('visible'));
 }
 
-// Заявки: отправка в Telegram через серверную функцию (functions/api/lead.js).
-// Если функция недоступна (локально или не настроена) — показываем ссылку на Telegram.
+// Сайт не собирает данные: все обращения — в Telegram по ссылке с готовым текстом сообщения.
 const TELEGRAM_URL = 'https://t.me/aa343432';
-const LEAD_ENDPOINT = '/api/lead';
-// Редакция документов «Согласие» и «Политика» на момент отправки (хранится вместе с заявкой как подтверждение согласия)
-const CONSENT_VERSION = '2026-10-17';
-
-const sendLead = async (data) => {
-  const res = await fetch(LEAD_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ...data, consent_version: CONSENT_VERSION }),
-  });
-  if (!res.ok) throw new Error(String(res.status));
-};
-
-const showFallback = (status) => {
-  status.textContent = 'Не удалось отправить заявку. Напишите нам в Telegram: ';
-  const link = document.createElement('a');
-  link.href = TELEGRAM_URL;
-  link.target = '_blank';
-  link.rel = 'noopener';
-  link.textContent = '@aa343432';
-  status.appendChild(link);
-};
-
-// Отметка для успешной отправки (иконка check-circle из Phosphor, MIT)
-const CHECK_ICON = '<svg width="22" height="22" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>';
-
-// Общая логика формы: собрать поля (+ дополнительные данные), отправить, показать результат.
-const setupLeadForm = (form, extra = () => ({})) => {
-  const status = form.querySelector('.form-status');
-  const button = form.querySelector('button[type="submit"]');
-  const label = button.textContent;
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = { ...Object.fromEntries(new FormData(form)), ...extra() };
-    button.disabled = true;
-    button.textContent = 'Отправляем…';
-    status.classList.remove('is-success');
-    status.textContent = '';
-    try {
-      await sendLead(data);
-      form.reset();
-      status.classList.add('is-success');
-      status.innerHTML = `${CHECK_ICON}<span>Заявка у нас. Ответим в Telegram или по контакту, который вы указали.</span>`;
-    } catch {
-      showFallback(status);
-    } finally {
-      button.disabled = false;
-      button.textContent = label;
-    }
-  });
-};
-
-const pageForm = document.getElementById('contact-form');
-if (pageForm) {
-  // Предвыбор типа клиента по ссылке: contacts.html?client=shop
-  const preset = new URLSearchParams(location.search).get('client');
-  const clientSelect = pageForm.querySelector('select[name="client"]');
-  if (preset && clientSelect && [...clientSelect.options].some((o) => o.value === preset)) {
-    clientSelect.value = preset;
-  }
-  setupLeadForm(pageForm);
-}
+const tgLink = (text) => `${TELEGRAM_URL}?text=${encodeURIComponent(text)}`;
 
 // Калькулятор стоимости на главной
 const calcBox = document.getElementById('calc-box');
@@ -163,6 +101,10 @@ if (calcBox) {
     note.textContent = r.kind === 'unknown' ? NOTE_UNKNOWN : NOTE;
     const list = calcBox.querySelector('[data-calc-gifts]');
     list.replaceChildren(...r.gifts.map((g) => Object.assign(document.createElement('li'), { textContent: g })));
+    // Кнопка «Отправить расчёт в Telegram»: сообщение уже содержит расчёт, человек сам решает, отправлять ли его
+    const extras = r.extras.map((e) => EXTRAS[e].label).join(', ') || 'ничего';
+    const tg = calcBox.querySelector('[data-calc-tg]');
+    if (tg) tg.href = tgLink(`Здравствуйте! Посчитал стоимость на сайте: ${r.k.label}, ${range(r.min, r.max)}, срок ${r.time}. Подключить: ${extras}. Когда нужен сайт: ${r.when}.`);
   };
 
   const show = (i) => {
@@ -188,19 +130,6 @@ if (calcBox) {
       if (radio) radio.checked = true;
       show(1);
     });
-  });
-
-  const leadForm = calcBox.querySelector('#calc-lead');
-  setupLeadForm(leadForm, () => {
-    const r = estimate();
-    const extras = r.extras.map((e) => EXTRAS[e].label).join(', ') || 'ничего';
-    return {
-      source: 'calc',
-      client: r.kind === 'shop' ? 'shop' : 'small',
-      type: r.k.label,
-      estimate: `${range(r.min, r.max)}, срок ${r.time}`,
-      message: `Подключить: ${extras}\nКогда нужен сайт: ${r.when}`,
-    };
   });
 
   // Выбор в калькуляторе переживает обновление страницы (sessionStorage может быть недоступен — тогда просто без памяти)
@@ -230,8 +159,8 @@ if (calcBox) {
   }
 }
 
-// Закреплённая кнопка внизу экрана на телефоне (на странице контактов форма и так перед глазами).
-if (!pageForm) {
+// Закреплённая кнопка внизу экрана на телефоне (на странице контактов кнопка Telegram и так перед глазами).
+if (!document.getElementById('contact-card')) {
   const calcHref = calcBox ? '#calc' : 'index.html#calc';
   const bar = document.createElement('div');
   bar.className = 'sticky-cta';
@@ -263,8 +192,8 @@ if (!pageForm) {
   syncBar();
 }
 
-// Всплывающая форма: открывается по клику на любой элемент с data-order="Что нужно сделать"
-// (пустое значение — без предвыбора) или data-audit (бесплатный разбор сайта).
+// Всплывающее окно: открывается по клику на элемент с data-order="Что нужно сделать" (пустое значение — без предвыбора)
+// или data-audit (бесплатный разбор сайта). Внутри — кнопка Telegram с готовым сообщением, формы нет.
 // Без поддержки <dialog> такие ссылки просто ведут на страницу контактов.
 const orderTriggers = document.querySelectorAll('[data-order], [data-audit]');
 if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
@@ -273,75 +202,29 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
   dialog.setAttribute('aria-labelledby', 'modal-title');
   dialog.innerHTML = `
     <button class="modal-close" type="button" aria-label="Закрыть">×</button>
-    <h2 id="modal-title">Оставить заявку</h2>
-    <p class="muted" id="modal-lead">Расскажите о задаче — ответим с вопросами и предварительной оценкой.</p>
-    <form class="form">
-      <label class="hp" aria-hidden="true">Не заполняйте это поле<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
-      <label>Ваше имя<input name="name" type="text" required autocomplete="name"></label>
-      <label>Телефон, Telegram или email<input name="contact" type="text" required minlength="5" autocomplete="tel" placeholder="+7 900 000-00-00 или @username"></label>
-      <label class="audit-only" hidden>Ссылка на ваш сайт<input name="site" type="text" inputmode="url" placeholder="example.ru" disabled></label>
-      <label>Кто вы
-        <select name="client">
-          <option value="small">Малый бизнес или эксперт</option>
-          <option value="shop">Интернет-магазин</option>
-          <option value="b2b">Компания / B2B</option>
-          <option value="tender">Тендер или госзаказ</option>
-          <option value="other">Другое</option>
-        </select>
-      </label>
-      <label class="type-label">Что нужно сделать
-        <select name="type">
-          <option>Лендинг или сайт-визитка</option>
-          <option>Сайт компании</option>
-          <option>Интернет-магазин</option>
-          <option>Веб-приложение или бот</option>
-          <option>Редизайн или доработка сайта</option>
-          <option>Сопровождение сайта</option>
-          <option>Другое</option>
-          <option>Бесплатный разбор сайта</option>
-        </select>
-      </label>
-      <label>Коротко о задаче<textarea name="message"></textarea></label>
-      <label class="consent"><input name="consent" type="checkbox" required> <span>Даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> ИП Лосукову Д. В. (имя, контакт, текст заявки) для связи со мной по заявке</span></label>
-      <p class="form-legal">Заявка сохраняется на сервере в России; чтобы уведомить нас, её также получает Telegram (его серверы могут быть за рубежом). Согласие можно отозвать. Подробнее: <a href="privacy.html" target="_blank" rel="noopener">политика обработки персональных данных</a>.</p>
-      <button class="btn btn-primary" type="submit">Отправить заявку</button>
-      <p class="form-status" role="status"></p>
-    </form>`;
+    <h2 id="modal-title">Написать нам</h2>
+    <p class="muted" id="modal-lead">Расскажите о задаче в Telegram — ответим с вопросами и предварительной оценкой.</p>
+    <a class="btn btn-primary btn-lg" id="modal-tg" href="${TELEGRAM_URL}" target="_blank" rel="noopener">Написать в Telegram</a>
+    <p class="form-legal">Сайт не собирает ваши данные: сообщение вы отправляете сами в Telegram. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">политике обработки персональных данных</a>.</p>`;
   document.body.appendChild(dialog);
-
-  const modalForm = dialog.querySelector('form');
-  const typeSelect = modalForm.querySelector('select[name="type"]');
-  const modalClient = modalForm.querySelector('select[name="client"]');
-  const modalStatus = modalForm.querySelector('.form-status');
-  setupLeadForm(modalForm);
 
   const titleEl = dialog.querySelector('#modal-title');
   const leadEl = dialog.querySelector('#modal-lead');
-  const submitBtn = modalForm.querySelector('button[type="submit"]');
-  const auditLabel = modalForm.querySelector('.audit-only');
-  const auditInput = auditLabel.querySelector('input');
-  const typeLabel = modalForm.querySelector('.type-label');
+  const tgBtn = dialog.querySelector('#modal-tg');
   const AUDIT = 'Бесплатный разбор сайта';
 
   let lastTrigger = null;
   const openModal = (order, trigger, audit) => {
     lastTrigger = trigger;
-    // Режим «разбор сайта»: просим ссылку, скрываем выбор типа работ.
-    auditLabel.hidden = !audit;
-    auditInput.disabled = !audit;
-    auditInput.required = audit;
-    typeLabel.hidden = audit;
-    titleEl.textContent = audit ? AUDIT : 'Оставить заявку';
+    titleEl.textContent = audit ? AUDIT : 'Написать нам';
     leadEl.textContent = audit
-      ? 'Пришлите ссылку — посмотрим первый экран, формы и мобильную версию и пришлём короткий список правок. Доступы не нужны.'
-      : 'Расскажите о задаче — ответим с вопросами и предварительной оценкой.';
-    submitBtn.textContent = audit ? 'Получить разбор' : 'Отправить заявку';
-    if (audit) typeSelect.value = AUDIT;
-    else if ([...typeSelect.options].some((o) => o.value === order)) typeSelect.value = order;
-    if (order === 'Интернет-магазин') modalClient.value = 'shop';
-    modalStatus.textContent = '';
+      ? 'Пришлите ссылку на сайт в Telegram — посмотрим первый экран, формы и мобильную версию и пришлём короткий список правок. Доступы не нужны.'
+      : 'Расскажите о задаче в Telegram — ответим с вопросами и предварительной оценкой.';
+    tgBtn.href = tgLink(audit
+      ? 'Здравствуйте! Хочу бесплатный разбор сайта. Ссылка: '
+      : (order ? `Здравствуйте! Интересует: ${order}.` : 'Здравствуйте! Хочу обсудить проект.'));
     dialog.showModal();
-    modalForm.querySelector('input[name="name"]').focus();
+    tgBtn.focus();
   };
 
   orderTriggers.forEach((el) => {

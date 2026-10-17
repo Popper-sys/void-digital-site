@@ -1,20 +1,10 @@
-// Проверки сайта void-digital.ru. Отправка заявок подменяется (page.route) — в Telegram ничего не уходит.
+// Проверки сайта void-digital.ru. Форм на сайте нет: обращения — кнопки со ссылкой на Telegram.
 const { test, expect } = require('@playwright/test');
 
 const PAGES = ['index.html', 'services.html', 'portfolio.html', 'about.html', 'contacts.html', 'blog.html',
-  'blog-brief.html', 'blog-landing-vs-site.html', 'privacy.html', 'consent.html', '404.html'];
+  'blog-brief.html', 'blog-landing-vs-site.html', 'privacy.html', '404.html'];
 const clean = (s) => s.replace(/\s+/g, ' ').trim();
 const isMobile = (testInfo) => testInfo.project.name.includes('iphone');
-
-// Мок серверной функции: запоминаем, что ушло
-async function mockLead(page) {
-  const sent = [];
-  await page.route('**/api/lead', async (route) => {
-    sent.push(JSON.parse(route.request().postData() || '{}'));
-    await route.fulfill({ status: 200, body: 'ok' });
-  });
-  return sent;
-}
 
 for (const path of PAGES) {
   test(`страница ${path} открывается без ошибок`, async ({ page }) => {
@@ -69,33 +59,40 @@ test('калькулятор: для магазина опция «Онлайн-
   await expect(box.locator('label.opt', { hasText: 'Онлайн-оплата' })).toBeHidden();
 });
 
-test('форма калькулятора: без согласия не отправляется, с согласием — отметка об успехе', async ({ page }) => {
-  const sent = await mockLead(page);
+test('калькулятор: кнопка Telegram содержит расчёт, форм нет', async ({ page }) => {
   await page.goto('index.html?calc=landing#calc');
   const box = page.locator('#calc-box');
   await box.locator('[data-calc-next]').click();
   await box.locator('[data-calc-next]').click();
-  const form = page.locator('#calc-lead');
-  await form.locator('[name=name]').fill('Тест');
-  await form.locator('[name=contact]').fill('@test_user');
-  await form.locator('button[type=submit]').click();
-  expect(sent).toHaveLength(0);
-  await form.locator('[name=consent]').check();
-  await form.locator('button[type=submit]').click();
-  await expect(form.locator('.form-status.is-success')).toContainText('Заявка у нас');
-  expect(sent).toHaveLength(1);
-  expect(sent[0]).toMatchObject({ name: 'Тест', contact: '@test_user', consent: 'on', consent_version: '2026-10-17', source: 'calc', type: 'Лендинг' });
+  const tg = box.locator('[data-calc-tg]');
+  await expect(tg).toBeVisible();
+  const href = decodeURIComponent(await tg.getAttribute('href'));
+  expect(href).toContain('https://t.me/aa343432?text=');
+  expect(href).toContain('Лендинг');
+  expect(href).toContain('₽');
+  await expect(page.locator('form')).toHaveCount(0);
 });
 
-test('окно бесплатного разбора просит ссылку на сайт', async ({ page }) => {
+test('окно бесплатного разбора ведёт в Telegram с готовым сообщением', async ({ page }) => {
   await page.goto('index.html');
   await page.locator('[data-audit]').first().click();
   const dialog = page.locator('dialog.modal');
   await expect(dialog).toBeVisible();
   await expect(dialog.locator('#modal-title')).toHaveText('Бесплатный разбор сайта');
-  await expect(dialog.locator('[name=site]')).toHaveAttribute('required', '');
+  const href = decodeURIComponent(await dialog.locator('#modal-tg').getAttribute('href'));
+  expect(href).toContain('https://t.me/aa343432?text=');
+  expect(href).toContain('разбор');
   await dialog.locator('.modal-close').click();
   await expect(dialog).toBeHidden();
+});
+
+test('на сайте нет форм сбора данных', async ({ page }) => {
+  for (const path of ['index.html', 'contacts.html', 'services.html', 'about.html']) {
+    await page.goto(path);
+    await expect(page.locator('form, input[type=email], input[name=contact]'), path).toHaveCount(0);
+  }
+  await page.goto('contacts.html');
+  await expect(page.locator('#contact-card a.btn')).toHaveAttribute('href', /^https:\/\/t\.me\/aa343432/);
 });
 
 test('телефон: поля не меньше 16 px и нет горизонтальной прокрутки', async ({ page }, testInfo) => {

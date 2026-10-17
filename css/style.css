@@ -944,3 +944,13 @@ section[id] { scroll-margin-top: 84px; }
   .deep [data-scene="who"] { padding-top: 8px; }
   .deep .me { gap: 12px; }
 }
+
+/* Без форм: кнопка Telegram и пояснение (калькулятор, контакты, всплывающее окно) */
+.form-legal { font-size: .8rem; color: var(--muted); margin: 0; }
+.form-legal a { text-decoration: underline; }
+.contact-card { display: grid; gap: 16px; align-content: start; }
+.contact-card h2 { margin: 0; }
+.contact-card > p:not(.form-legal) { color: var(--muted); margin: 0; }
+.calc-lead { display: grid; gap: 14px; justify-items: start; }
+.modal .btn-lg { justify-self: start; margin-top: 4px; }
+.modal .form-legal { margin-top: 14px; }

@@ -22,7 +22,7 @@
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=5814adca">
+  <link rel="stylesheet" href="css/style.css?v=dc260aba">
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -48,7 +48,7 @@
     <div class="container">
       <span class="eyebrow">Контакты</span>
       <h1>Обсудим ваш проект</h1>
-      <p>Заполните форму или напишите напрямую: ответим с вопросами и предварительной оценкой. После заявки бесплатно сделаем первую страницу вашего сайта, чтобы вы увидели, как он может выглядеть.</p>
+      <p>Напишите нам в Telegram: ответим с вопросами и предварительной оценкой. После обращения бесплатно сделаем первую страницу вашего сайта, чтобы вы увидели, как он может выглядеть.</p>
     </div>
   </section>
 
@@ -61,42 +61,12 @@
         </ul>
       </div>
 
-      <form id="contact-form" class="form card reveal lead-form">
-        <label class="hp" aria-hidden="true">Не заполняйте это поле<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
-        <label>Ваше имя
-          <input name="name" type="text" required autocomplete="name">
-        </label>
-        <label>Телефон, Telegram или email
-          <input name="contact" type="text" required minlength="5" autocomplete="tel" placeholder="+7 900 000-00-00 или @username">
-        </label>
-        <label>Кто вы
-          <select name="client">
-            <option value="small">Малый бизнес или эксперт</option>
-            <option value="shop">Интернет-магазин</option>
-            <option value="b2b">Компания / B2B</option>
-            <option value="tender">Тендер или госзаказ</option>
-            <option value="other">Другое</option>
-          </select>
-        </label>
-        <label>Что нужно сделать
-          <select name="type">
-            <option>Лендинг или сайт-визитка</option>
-            <option>Сайт компании</option>
-            <option>Интернет-магазин</option>
-            <option>Веб-приложение или бот</option>
-            <option>Редизайн или доработка сайта</option>
-            <option>Сопровождение сайта</option>
-            <option>Другое</option>
-          </select>
-        </label>
-        <label>Коротко о задаче
-          <textarea name="message"></textarea>
-        </label>
-        <label class="consent"><input name="consent" type="checkbox" required> <span>Даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> ИП Лосукову Д. В. (имя, контакт, текст заявки) для связи со мной по заявке</span></label>
-        <p class="form-legal">Заявка сохраняется на сервере в России; чтобы уведомить нас, её также получает Telegram (его серверы могут быть за рубежом). Согласие можно отозвать. Подробнее: <a href="privacy.html" target="_blank" rel="noopener">политика обработки персональных данных</a>.</p>
-        <button class="btn btn-primary" type="submit">Отправить заявку</button>
-        <p id="form-status" class="form-status" role="status"></p>
-      </form>
+      <div class="card reveal contact-card" id="contact-card">
+        <h2>Напишите нам в Telegram</h2>
+        <p>Откроется чат с готовым сообщением. Расскажите о задаче своими словами: ответим с вопросами и предварительной оценкой. После обращения бесплатно сделаем первую страницу вашего сайта.</p>
+        <a class="btn btn-primary btn-lg" href="https://t.me/aa343432?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener">Написать в Telegram</a>
+        <p class="form-legal">Сайт не собирает ваши данные: сообщение вы отправляете сами в Telegram. Подробнее — в <a href="privacy.html">политике обработки персональных данных</a>.</p>
+      </div>
     </div>
   </section>
 </main>
@@ -114,7 +84,7 @@
     </ul>
   </div>
 </footer>
-<script src="js/main.js?v=2d8662eb"></script>
+<script src="js/main.js?v=0b9041c5"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

@@ -42,7 +42,3 @@ jobs:
               echo "Папки www/$d на хостинге пока нет, пропускаю"
             fi
           done
-      - name: Хранилище заявок (без содержимого)
-        run: |
-          SSH="sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=30"
-          $SSH "$USER@$HOST" 'mkdir -p -m 700 data/leads && ls -ld data/leads && ls -la data/leads | awk "{print \$1, \$5, \$9}" && php -l www/p1068934.ihc.xyz/api/lead.php'
