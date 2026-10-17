@@ -92,8 +92,9 @@ test('на сайте нет форм сбора данных', async ({ page })
     await expect(page.locator('form, input[type=email], input[name=contact]'), path).toHaveCount(0);
   }
   await page.goto('contacts.html');
-  await expect(page.locator('#contact-card a.btn')).toHaveAttribute('href', /^https:\/\/t\.me\/aa343432/);
-  await expect(page.locator('.contact-list a[href="mailto:voiddigital@mail.ru"]')).toHaveCount(1);
+  await expect(page.locator('#contact-card a.btn-primary')).toHaveAttribute('href', /^https:\/\/t\.me\/aa343432/);
+  await expect(page.locator('.contact-methods a[href="mailto:voiddigital@mail.ru"]')).toHaveCount(1);
+  await expect(page.locator('#contact-card a[href^="https://wa.me/79538550813"]')).toHaveCount(1);
 });
 
 test('телефон: поля не меньше 16 px и нет горизонтальной прокрутки', async ({ page }, testInfo) => {
