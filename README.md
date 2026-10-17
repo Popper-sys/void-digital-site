@@ -9,7 +9,7 @@
 python -m http.server 8080
 ```
 
-Откройте http://localhost:8080. Форм на сайте нет: обращения идут в Telegram по ссылке t.me/aa343432 с готовым текстом.
+Откройте http://localhost:8080. Форм на сайте нет: обращения идут в Telegram по ссылке t.me/Voiddigit с готовым текстом.
 
 ## Хостинг: Cloudflare Pages
 

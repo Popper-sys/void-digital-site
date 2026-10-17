@@ -26,7 +26,7 @@ if ('IntersectionObserver' in window) {
 }
 
 // Сайт не собирает данные: все обращения — в Telegram по ссылке с готовым текстом сообщения.
-const TELEGRAM_URL = 'https://t.me/aa343432';
+const TELEGRAM_URL = 'https://t.me/Voiddigit';
 const tgLink = (text) => `${TELEGRAM_URL}?text=${encodeURIComponent(text)}`;
 
 // Калькулятор стоимости на главной

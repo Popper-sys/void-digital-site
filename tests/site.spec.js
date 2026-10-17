@@ -67,7 +67,7 @@ test('калькулятор: кнопка Telegram содержит расчё�
   const tg = box.locator('[data-calc-tg]');
   await expect(tg).toBeVisible();
   const href = decodeURIComponent(await tg.getAttribute('href'));
-  expect(href).toContain('https://t.me/aa343432?text=');
+  expect(href).toContain('https://t.me/Voiddigit?text=');
   expect(href).toContain('Лендинг');
   expect(href).toContain('₽');
   await expect(page.locator('form')).toHaveCount(0);
@@ -80,7 +80,7 @@ test('окно бесплатного разбора ведёт в Telegram с �
   await expect(dialog).toBeVisible();
   await expect(dialog.locator('#modal-title')).toHaveText('Бесплатный разбор сайта');
   const href = decodeURIComponent(await dialog.locator('#modal-tg').getAttribute('href'));
-  expect(href).toContain('https://t.me/aa343432?text=');
+  expect(href).toContain('https://t.me/Voiddigit?text=');
   expect(href).toContain('разбор');
   await dialog.locator('.modal-close').click();
   await expect(dialog).toBeHidden();
@@ -92,7 +92,7 @@ test('на сайте нет форм сбора данных', async ({ page })
     await expect(page.locator('form, input[type=email], input[name=contact]'), path).toHaveCount(0);
   }
   await page.goto('contacts.html');
-  await expect(page.locator('#contact-card a.btn-primary')).toHaveAttribute('href', /^https:\/\/t\.me\/aa343432/);
+  await expect(page.locator('#contact-card a.btn-primary')).toHaveAttribute('href', /^https:\/\/t\.me\/Voiddigit/);
   await expect(page.locator('.contact-methods a[href="mailto:voiddigital@mail.ru"]')).toHaveCount(1);
   await expect(page.locator('#contact-card a[href^="https://wa.me/79538550813"]')).toHaveCount(1);
 });
