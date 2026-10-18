@@ -121,3 +121,11 @@ test('телефон: нижняя панель скрыта вверху стр
   await page.locator('#prices').scrollIntoViewIfNeeded();
   await expect(bar).toHaveClass(/show/);
 });
+
+test('анонс 3D сразу под первым экраном ведёт к живой сцене', async ({ page }) => {
+  await page.goto('index.html');
+  const teaser = page.locator('#teaser3d');
+  await expect(teaser).toHaveCount(1);
+  await expect(teaser.locator('a[href="#wow"]')).toHaveCount(1);
+  await expect(page.locator('#wow')).toHaveCount(1);
+});
