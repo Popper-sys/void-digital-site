@@ -1019,3 +1019,51 @@ section[id] { scroll-margin-top: 84px; }
 .deep-3d .final-hint { display: block; }
 .deep-grab body { cursor: grab; }
 .deep-grabbing body, .deep-grabbing body * { cursor: grabbing !important; user-select: none; }
+
+/* Анонс 3D: телефон — витрина. Звёзды, сфера крупнее с ореолом и отражением, цена плашкой, кнопки во всю ширину */
+.teaser3d-in::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .55;
+  background-image: radial-gradient(1px 1px at 12% 22%, #fff, transparent), radial-gradient(1px 1px at 78% 14%, #cfc9ff, transparent),
+    radial-gradient(1.5px 1.5px at 64% 68%, #fff, transparent), radial-gradient(1px 1px at 30% 82%, #bde9ff, transparent),
+    radial-gradient(1px 1px at 90% 52%, #fff, transparent), radial-gradient(1.5px 1.5px at 46% 36%, #e6e2ff, transparent),
+    radial-gradient(1px 1px at 8% 64%, #fff, transparent), radial-gradient(1px 1px at 56% 92%, #fff, transparent);
+  animation: starTwinkle 5s ease-in-out infinite alternate; }
+@keyframes starTwinkle { to { opacity: .25; } }
+.teaser3d-orb::before { content: ""; position: absolute; inset: 14% 18% 52% 26%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, .75), transparent); filter: blur(4px); transform: rotate(-24deg); }
+.teaser3d-price { display: none; }
+@media (max-width: 640px) {
+  .teaser3d { padding: 20px 0 8px; }
+  .teaser3d-in { gap: 14px; padding: 34px 20px 24px; border-radius: 28px;
+    background: radial-gradient(90% 60% at 50% 22%, #3a2f78 0%, #17132a 55%, #09080d 100%);
+    box-shadow: 0 24px 60px rgba(60, 40, 160, .35), inset 0 0 0 1px rgba(185, 176, 255, .18); }
+  .teaser3d-in::after { background: radial-gradient(60% 34% at 50% 26%, rgba(139, 123, 255, .5), transparent 70%); }
+  .teaser3d-orb { width: min(58vw, 210px); margin-bottom: 18px;
+    box-shadow: 0 0 70px rgba(139, 123, 255, .55), 0 0 140px rgba(94, 200, 255, .18), inset 0 0 40px rgba(255, 255, 255, .1); }
+  /* Отражение-«пол» под сферой */
+  .teaser3d-orb + .teaser3d-text::before { content: ""; display: block; width: 60%; height: 14px; margin: -26px auto 14px; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(139, 123, 255, .55), transparent); filter: blur(3px); }
+  .teaser3d .eyebrow { display: inline-block; padding: 5px 12px; border-radius: 999px; font-size: .72rem;
+    background: rgba(139, 123, 255, .16); border: 1px solid rgba(185, 176, 255, .3); }
+  .teaser3d h2 { font-size: clamp(1.55rem, 7vw, 1.9rem); margin: 12px 0 10px; }
+  .teaser3d p { font-size: .98rem; line-height: 1.55; }
+  .teaser3d p .teaser3d-cost { display: none; }
+  .teaser3d-price { display: inline-flex; align-items: baseline; gap: 6px; margin-top: 14px; padding: 8px 14px; border-radius: 14px;
+    background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); color: rgba(242, 241, 247, .7); font-size: .85rem; }
+  .teaser3d-price b { color: #fff; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+  .teaser3d-actions { width: 100%; flex-direction: column; gap: 10px; margin-top: 18px; }
+  .teaser3d-actions .btn { width: 100%; justify-content: center; }
+  .teaser3d-actions .btn-primary { box-shadow: 0 10px 30px rgba(108, 92, 255, .45); }
+}
+@media (prefers-reduced-motion: reduce) { .teaser3d-in::before { animation: none; } }
+/* Сфера анонса: чёткий блик, цветные каустики, светлый край — больше похоже на стекло */
+.teaser3d-orb { background:
+    radial-gradient(circle at 31% 27%, rgba(255, 255, 255, .95) 0 3%, rgba(255, 255, 255, .35) 8%, transparent 18%),
+    radial-gradient(circle at 70% 76%, rgba(94, 200, 255, .8), transparent 36%),
+    radial-gradient(circle at 24% 70%, rgba(255, 123, 213, .45), transparent 34%),
+    radial-gradient(circle at 46% 44%, #7b6bff 0%, #4a37c9 40%, #1c1440 70%); }
+.teaser3d-orb::before { inset: 0; border-radius: 50%; filter: none; transform: none; background: none;
+  box-shadow: inset -10px -14px 26px rgba(94, 200, 255, .4), inset 12px 16px 24px rgba(255, 255, 255, .16), inset 0 0 0 1px rgba(255, 255, 255, .14); }
+@media (max-width: 640px) {
+  .teaser3d-in { padding-top: 28px; }
+  .teaser3d-orb { width: min(46vw, 176px); }
+}
