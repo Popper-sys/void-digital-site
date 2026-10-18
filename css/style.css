@@ -973,3 +973,9 @@ section[id] { scroll-margin-top: 84px; }
 .deep-footer .social { margin: 8px 0; }
 .deep-footer .social a { color: rgba(242, 241, 247, .75); border-color: rgba(255, 255, 255, .14); }
 .deep-footer .social a:hover { color: #fff; border-color: rgba(255, 255, 255, .4); background: rgba(255, 255, 255, .06); }
+
+/* Звонок в приоритете: телефон в шапке, две кнопки мессенджеров в ряд */
+.nav-phone { font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.calc-msgs, .modal-msgs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.calc-msgs .btn, .modal-msgs .btn { justify-content: center; min-width: 0; }
+@media (max-width: 380px) { .calc-msgs, .modal-msgs { grid-template-columns: 1fr; } }

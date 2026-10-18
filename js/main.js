@@ -28,6 +28,10 @@ if ('IntersectionObserver' in window) {
 // Сайт не собирает данные: все обращения — в Telegram по ссылке с готовым текстом сообщения.
 const TELEGRAM_URL = 'https://t.me/Voiddigit';
 const tgLink = (text) => `${TELEGRAM_URL}?text=${encodeURIComponent(text)}`;
+const PHONE = '+79538550813';
+const PHONE_VIEW = '+7 953 855-08-13';
+const WHATSAPP_URL = 'https://wa.me/79538550813';
+const waLink = (text) => `${WHATSAPP_URL}?text=${encodeURIComponent(text)}`;
 
 // Калькулятор стоимости на главной
 const calcBox = document.getElementById('calc-box');
@@ -104,7 +108,10 @@ if (calcBox) {
     // Кнопка «Отправить расчёт в Telegram»: сообщение уже содержит расчёт, человек сам решает, отправлять ли его
     const extras = r.extras.map((e) => EXTRAS[e].label).join(', ') || 'ничего';
     const tg = calcBox.querySelector('[data-calc-tg]');
-    if (tg) tg.href = tgLink(`Здравствуйте! Посчитал стоимость на сайте: ${r.k.label}, ${range(r.min, r.max)}, срок ${r.time}. Подключить: ${extras}. Когда нужен сайт: ${r.when}.`);
+    const msg = `Здравствуйте! Посчитал стоимость на сайте: ${r.k.label}, ${range(r.min, r.max)}, срок ${r.time}. Подключить: ${extras}. Когда нужен сайт: ${r.when}.`;
+    if (tg) tg.href = tgLink(msg);
+    const wa = calcBox.querySelector('[data-calc-wa]');
+    if (wa) wa.href = waLink(msg);
   };
 
   const show = (i) => {
@@ -166,7 +173,7 @@ if (!document.getElementById('contact-card')) {
   bar.className = 'sticky-cta';
   bar.innerHTML = `
     <a class="btn btn-primary" href="${calcHref}"><span class="lbl-long">Рассчитать стоимость</span><span class="lbl-short">Рассчитать</span></a>
-    <a class="btn btn-ghost" href="${TELEGRAM_URL}" target="_blank" rel="noopener">Telegram</a>`;
+    <a class="btn btn-ghost" href="tel:${PHONE}" aria-label="Позвонить ${PHONE_VIEW}">Позвонить</a>`;
   document.body.appendChild(bar);
   document.body.classList.add('has-sticky-cta');
   // Прячем панель, пока человек в калькуляторе или вводит текст: она не должна закрывать форму и клавиатуру
@@ -204,13 +211,18 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
     <button class="modal-close" type="button" aria-label="Закрыть">×</button>
     <h2 id="modal-title">Написать нам</h2>
     <p class="muted" id="modal-lead">Расскажите о задаче в Telegram — ответим с вопросами и предварительной оценкой.</p>
-    <a class="btn btn-primary btn-lg" id="modal-tg" href="${TELEGRAM_URL}" target="_blank" rel="noopener">Написать в Telegram</a>
-    <p class="form-legal">Сайт не собирает ваши данные: сообщение вы отправляете сами в Telegram. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">политике обработки персональных данных</a>.</p>`;
+    <a class="btn btn-primary btn-lg" href="tel:${PHONE}">Позвонить ${PHONE_VIEW}</a>
+    <div class="modal-msgs">
+      <a class="btn btn-outline" id="modal-tg" href="${TELEGRAM_URL}" target="_blank" rel="noopener">Telegram</a>
+      <a class="btn btn-outline" id="modal-wa" href="${WHATSAPP_URL}" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <p class="form-legal">Сайт не собирает ваши данные: сообщение вы отправляете сами. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">политике обработки персональных данных</a>.</p>`;
   document.body.appendChild(dialog);
 
   const titleEl = dialog.querySelector('#modal-title');
   const leadEl = dialog.querySelector('#modal-lead');
   const tgBtn = dialog.querySelector('#modal-tg');
+  const waBtn = dialog.querySelector('#modal-wa');
   const AUDIT = 'Бесплатный разбор сайта';
 
   let lastTrigger = null;
@@ -218,13 +230,15 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
     lastTrigger = trigger;
     titleEl.textContent = audit ? AUDIT : 'Написать нам';
     leadEl.textContent = audit
-      ? 'Пришлите ссылку на сайт в Telegram — посмотрим первый экран, формы и мобильную версию и пришлём короткий список правок. Доступы не нужны.'
-      : 'Расскажите о задаче в Telegram — ответим с вопросами и предварительной оценкой.';
-    tgBtn.href = tgLink(audit
+      ? 'Позвоните или пришлите ссылку на сайт в Telegram или WhatsApp — посмотрим первый экран, формы и мобильную версию и пришлём короткий список правок. Доступы не нужны.'
+      : 'Позвоните — обсудим задачу за 10 минут и сориентируем по цене. Удобнее написать? Telegram и WhatsApp откроются с готовым сообщением.';
+    const text = audit
       ? 'Здравствуйте! Хочу бесплатный разбор сайта. Ссылка: '
-      : (order ? `Здравствуйте! Интересует: ${order}.` : 'Здравствуйте! Хочу обсудить проект.'));
+      : (order ? `Здравствуйте! Интересует: ${order}.` : 'Здравствуйте! Хочу обсудить проект.');
+    tgBtn.href = tgLink(text);
+    waBtn.href = waLink(text);
     dialog.showModal();
-    tgBtn.focus();
+    dialog.querySelector('.btn-primary').focus();
   };
 
   orderTriggers.forEach((el) => {

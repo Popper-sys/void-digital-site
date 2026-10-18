@@ -70,6 +70,9 @@ test('калькулятор: кнопка Telegram содержит расчё�
   expect(href).toContain('https://t.me/Voiddigit?text=');
   expect(href).toContain('Лендинг');
   expect(href).toContain('₽');
+  const wa = decodeURIComponent(await box.locator('[data-calc-wa]').getAttribute('href'));
+  expect(wa).toContain('https://wa.me/79538550813?text=');
+  expect(wa).toContain('Лендинг');
   await expect(page.locator('form')).toHaveCount(0);
 });
 
@@ -92,7 +95,8 @@ test('на сайте нет форм сбора данных', async ({ page })
     await expect(page.locator('form, input[type=email], input[name=contact]'), path).toHaveCount(0);
   }
   await page.goto('contacts.html');
-  await expect(page.locator('#contact-card a.btn-primary')).toHaveAttribute('href', /^https:\/\/t\.me\/Voiddigit/);
+  await expect(page.locator('#contact-card a.btn-primary')).toHaveAttribute('href', 'tel:+79538550813');
+  await expect(page.locator('#contact-card a[href^="https://t.me/Voiddigit"]')).toHaveCount(1);
   await expect(page.locator('.contact-methods a[href="mailto:voiddigital@mail.ru"]')).toHaveCount(1);
   await expect(page.locator('#contact-card a[href^="https://wa.me/79538550813"]')).toHaveCount(1);
 });
