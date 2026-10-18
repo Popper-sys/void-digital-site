@@ -1013,3 +1013,9 @@ section[id] { scroll-margin-top: 84px; }
   .teaser3d-orb { width: 130px; }
 }
 @media (prefers-reduced-motion: reduce) { .teaser3d-orb, .teaser3d-orb i { animation: none; } }
+
+/* Финал 3D: подсказка и курсор «схватить» над объектом */
+.final-hint { display: none; margin: 14px 0 0; font-size: .85rem; color: rgba(242, 241, 247, .5); text-align: center; }
+.deep-3d .final-hint { display: block; }
+.deep-grab body { cursor: grab; }
+.deep-grabbing body, .deep-grabbing body * { cursor: grabbing !important; user-select: none; }

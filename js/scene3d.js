@@ -1,7 +1,7 @@
 // 3D-сцена тёмной зоны внизу главной: жидкое стекло, которое постепенно «углубляется» от блока к блоку.
 // Подгружается из js/deep.js, только когда посетитель подошёл к тёмной зоне.
 // Отражения от цветной «студии», свечение бликов (bloom), вступление, волна от касания, закручивание формы,
-// в финале — слово VOID за стеклом. Где стоит объект, задают data-scene у секций и data-scene-target внутри них.
+// в финале — рой частиц собирается в слово VOID за стеклом, объект можно крутить мышью. Где стоит объект, задают data-scene у секций и data-scene-target внутри них.
 import * as THREE from 'three';
 import { EffectComposer } from '../vendor/three/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from '../vendor/three/jsm/postprocessing/RenderPass.js';
@@ -163,7 +163,7 @@ function init(deep, canvas, renderer) {
   wordTex.colorSpace = THREE.SRGBColorSpace;
   wordTex.anisotropy = renderer.capabilities.getMaxAnisotropy();
   const drawWord = () => {
-    const g = wordCanvas.getContext('2d');
+    const g = wordCanvas.getContext('2d', { willReadFrequently: true });
     g.clearRect(0, 0, 1600, 640);
     g.font = '800 560px Manrope, system-ui, sans-serif';
     if ('letterSpacing' in g) g.letterSpacing = '-24px';
@@ -176,7 +176,101 @@ function init(deep, canvas, renderer) {
     g.fillStyle = grd;
     g.fillText('VOID', 800, 350);
     wordTex.needsUpdate = true;
+    sampleWord(g);
   };
+  // ---------- Рой частиц: в финале по мере прокрутки собирается в слово VOID
+  // Точки слова берём из того же холста, что и текстуру (координаты в долях плоскости слова)
+  const SWARM = lite ? 1400 : 4200;
+  const swStart = new Float32Array(SWARM * 3);
+  const swTarget = new Float32Array(SWARM * 3);
+  const swRand = new Float32Array(SWARM);
+  for (let i = 0; i < SWARM; i++) {
+    // Старт: облако вокруг сцены, ближе к краям экрана
+    const r = 3 + Math.random() * 4.5;
+    const th = Math.random() * Math.PI * 2;
+    const ph = Math.acos(2 * Math.random() - 1);
+    swStart[i * 3] = r * Math.sin(ph) * Math.cos(th);
+    swStart[i * 3 + 1] = r * Math.cos(ph) * 0.7;
+    swStart[i * 3 + 2] = -4 + Math.random() * 6;
+    swRand[i] = Math.random();
+  }
+  function sampleWord(g) {
+    const img = g.getImageData(0, 0, 1600, 640).data;
+    const pts = [];
+    for (let y = 0; y < 640; y += 5) {
+      for (let x = 0; x < 1600; x += 5) {
+        if (img[(y * 1600 + x) * 4 + 3] > 140) pts.push(x, y);
+      }
+    }
+    if (!pts.length) return;
+    const n = pts.length / 2;
+    for (let i = 0; i < SWARM; i++) {
+      const j = Math.floor(Math.random() * n) * 2;
+      swTarget[i * 3] = pts[j] / 1600 - 0.5 + (Math.random() - 0.5) * 0.004;
+      swTarget[i * 3 + 1] = -(pts[j + 1] / 640 - 0.5) * (640 / 1600) + (Math.random() - 0.5) * 0.004;
+      swTarget[i * 3 + 2] = (Math.random() - 0.5) * 0.03;
+    }
+    swarmGeo.attributes.aTarget.needsUpdate = true;
+  }
+  const swarmGeo = new THREE.BufferGeometry();
+  swarmGeo.setAttribute('position', new THREE.BufferAttribute(swStart, 3));
+  swarmGeo.setAttribute('aTarget', new THREE.BufferAttribute(swTarget, 3));
+  swarmGeo.setAttribute('aRand', new THREE.BufferAttribute(swRand, 1));
+  const swarmUniforms = {
+    uP: { value: 0 },
+    uTime: { value: 0 },
+    uAlpha: { value: 0 },
+    uWordPos: { value: new THREE.Vector3() },
+    uWordScale: { value: 1 },
+    uSize: { value: lite ? 0.13 : 0.11 },
+    uDpr: { value: 1 },
+    uC1: { value: new THREE.Color('#8b7bff') },
+    uC2: { value: new THREE.Color('#5ec8ff') },
+  };
+  const swarm = new THREE.Points(swarmGeo, new THREE.ShaderMaterial({
+    uniforms: swarmUniforms,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    vertexShader: /* glsl */`
+      attribute vec3 aTarget; attribute float aRand;
+      uniform float uP; uniform float uTime; uniform vec3 uWordPos; uniform float uWordScale; uniform float uSize; uniform float uDpr;
+      varying float vRand; varying float vDone;
+      void main() {
+        // Каждая частица стартует со своей задержкой: слово «натекает» волной
+        float p = clamp(uP * 1.35 - aRand * 0.35, 0.0, 1.0);
+        p = p * p * (3.0 - 2.0 * p);
+        // Облако медленно кружится вокруг центра
+        float a = uTime * (0.05 + aRand * 0.08) + (1.0 - p) * 2.4;
+        vec3 s = position;
+        s.xz = mat2(cos(a), -sin(a), sin(a), cos(a)) * s.xz;
+        vec3 t = uWordPos + aTarget * uWordScale;
+        t += 0.012 * vec3(sin(uTime * 1.3 + aRand * 40.0), cos(uTime * 1.1 + aRand * 30.0), 0.0) * uWordScale;
+        // По пути частицы описывают дугу, а не летят по прямой
+        vec3 mid = mix(s, t, 0.5) + vec3(0.0, 1.2 * (aRand - 0.5), 1.5) * (1.0 - abs(p * 2.0 - 1.0));
+        vec3 pos = mix(mix(s, mid, p), mix(mid, t, p), p);
+        vec4 mv = modelViewMatrix * vec4(pos, 1.0);
+        gl_Position = projectionMatrix * mv;
+        gl_PointSize = uSize * uDpr * (300.0 / -mv.z) * (0.6 + aRand * 0.8);
+        vRand = aRand; vDone = p;
+      }`,
+    fragmentShader: /* glsl */`
+      uniform float uAlpha; uniform vec3 uC1; uniform vec3 uC2; uniform float uTime;
+      varying float vRand; varying float vDone;
+      void main() {
+        float d = length(gl_PointCoord - 0.5);
+        float m = smoothstep(0.5, 0.0, d);
+        float tw = 0.75 + 0.25 * sin(uTime * 3.0 + vRand * 60.0);
+        vec3 col = mix(uC1, uC2, vRand) * (1.4 + vDone * 0.8) * tw;
+        gl_FragColor = vec4(col * m * uAlpha, m * uAlpha);
+        #include <tonemapping_fragment>
+        #include <colorspace_fragment>
+      }`,
+  }));
+  swarm.frustumCulled = false;
+  swarm.visible = false;
+  scene.add(swarm);
+
   drawWord();
   document.fonts?.load('800 100px Manrope').then(drawWord, () => {});
   const wordMat = new THREE.MeshBasicMaterial({ map: wordTex, alphaToCoverage: true, color: new THREE.Color(0, 0, 0) });
@@ -339,7 +433,7 @@ function init(deep, canvas, renderer) {
     who: S(-0.6, 0, 0.5, 0.13, 0.95, 0.8, V, P, 1, 1, 0, 0.5, 1),
     faq: S(0.86, -0.6, 0.38, 0.14, 1.0, 1.0, C, V, 0.3, 0.6, 0, 0.3, 0),
     audit: S(0.84, 0.6, 0.36, 0.15, 1.0, 0.6, P, V, 0.55, 1, 0, 0.45, 1),
-    final: S(0, 0.5, 0.7, 0.15, 0.9, 0.4, V, P, 1, 1, 1, 0.85, 1),
+    final: S(0, 0.5, 0.7, 0.15, 0.9, 0.4, V, P, 1, 1, 1, 1.0, 1),
   };
   const MOBILE = {
     fade: S(0, 0.8, 0.5, 0.1, 0.8, 0, V, C, 0, 0, 0, 0, 0),
@@ -463,14 +557,49 @@ function init(deep, canvas, renderer) {
   const frontDir = () => blob.worldToLocal(camera.position.clone()).normalize();
 
   // Нажатие или касание объекта пускает волну из этой точки
+  // Мышью объект можно схватить и раскрутить: после отпускания он крутится по инерции
+  let spin = 0;
+  let spinVel = 0;
+  let dragging = false;
+  let dragX = 0;
+  let dragT = 0;
+  let overLink = false;
   addEventListener('pointerdown', (e) => {
     const x = (e.clientX / innerWidth) * 2 - 1;
     const y = -(e.clientY / innerHeight) * 2 + 1;
     if (cur.rc > 0.5 && hitBlob(x, y)) {
       ripple(blob.worldToLocal(hit.clone()));
       kick = 0.12;
+      if (e.pointerType === 'mouse' && !e.target.closest('a, button, input, label, summary')) {
+        dragging = true;
+        dragX = e.clientX;
+        dragT = performance.now();
+        spinVel = 0;
+        e.preventDefault();
+        document.documentElement.classList.add('deep-grabbing');
+      }
     }
   });
+  addEventListener('pointermove', (e) => {
+    overLink = !!e.target.closest?.('a, button, input, label, summary');
+    if (!dragging) return;
+    const now = performance.now();
+    const dx = e.clientX - dragX;
+    const d = dx * 0.01;
+    spin += d;
+    spinVel = d / Math.max((now - dragT) / 1000, 0.008);
+    spinVel = Math.max(Math.min(spinVel, 14), -14);
+    dragX = e.clientX;
+    dragT = now;
+  }, { passive: true });
+  const endDrag = () => {
+    if (!dragging) return;
+    dragging = false;
+    if (performance.now() - dragT > 120) spinVel = 0;
+    document.documentElement.classList.remove('deep-grabbing');
+  };
+  addEventListener('pointerup', endDrag);
+  addEventListener('pointercancel', endDrag);
 
   // ---------- Кадр
   let time = 0;
@@ -526,12 +655,30 @@ function init(deep, canvas, renderer) {
     const ww = isMobile ? 2 * halfW * depthK * 0.98 : Math.min(RADIUS * 2 * cur.s * 2.3 * depthK, 2 * halfW * depthK * 0.94);
     word.scale.set(ww, ww, 1);
     word.position.set(rig.position.x * depthK, rig.position.y * depthK - (1 - cur.wd) * 0.4, WORD_Z);
-    wordMat.color.setScalar(WORD_BRIGHT * cur.wd);
+    // Слово-текстура проявляется, когда рой почти собрался; частицы остаются искрами поверх
+    const assembled = smooth(0.72, 0.98, cur.wd);
+    // Пока слово проявляется, рисуем его полупрозрачным (а не тёмным); собранное — непрозрачное, чтобы стекло его преломляло
+    const fading = assembled < 0.995;
+    if (wordMat.transparent !== fading) { wordMat.transparent = fading; wordMat.needsUpdate = true; }
+    wordMat.opacity = assembled;
+    wordMat.color.setScalar(WORD_BRIGHT);
+    word.visible = assembled > 0.005;
+    swarm.visible = cur.wd > 0.01;
+    swarmUniforms.uP.value = smooth(0.04, 0.96, cur.wd);
+    swarmUniforms.uAlpha.value = smooth(0.0, 0.12, cur.wd) * (1 - 0.55 * assembled);
+    swarmUniforms.uWordPos.value.copy(word.position);
+    swarmUniforms.uWordScale.value = ww;
+    swarmUniforms.uTime.value = time;
+    swarmUniforms.uDpr.value = dpr;
+    swarmUniforms.uC1.value.copy(cur.c1);
+    swarmUniforms.uC2.value.copy(cur.c2);
 
     // Наклон к курсору и вращение
     tilt.x += ((pointerActive ? ndc.y : 0) * 0.35 - tilt.x) * (1 - Math.exp(-dt * 4));
     tilt.y += ((pointerActive ? ndc.x : 0) * 0.5 - tilt.y) * (1 - Math.exp(-dt * 4));
-    rig.rotation.set(-tilt.x, tilt.y, 0);
+    if (!dragging) spin += spinVel * dt;
+    spinVel *= Math.exp(-dt * 1.6);
+    rig.rotation.set(-tilt.x, tilt.y + spin, 0);
     blob.rotation.y = time * 0.12;
     blob.rotation.x = Math.sin(time * 0.2) * 0.25;
     ring.rotation.z = time * 0.15;
@@ -550,6 +697,7 @@ function init(deep, canvas, renderer) {
       blobUniforms.uPointerDir.value.lerp(localDir, 1 - Math.exp(-dt * 10)).normalize();
     }
     blobUniforms.uPush.value += ((hovering ? 1 : 0) - blobUniforms.uPush.value) * (1 - Math.exp(-dt * 5));
+    document.documentElement.classList.toggle('deep-grab', hovering && !overLink);
 
     // Прибыли в новую секцию — по объекту пробегает волна (заметно и на телефоне)
     if (activeIndex !== lastIndex) {

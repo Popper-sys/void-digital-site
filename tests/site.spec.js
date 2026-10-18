@@ -33,7 +33,7 @@ test('калькулятор: лендинг + CRM = 18 000 – 24 000 ₽', asy
 
 test('калькулятор: «Добавить 3D в расчёт» отмечает опцию, лендинг + 3D = 23 000 – 30 000 ₽', async ({ page }) => {
   await page.goto('index.html');
-  await page.locator('[data-add-3d]').click();
+  await page.locator('#teaser3d [data-add-3d]').click();
   const box = page.locator('#calc-box');
   await box.locator('[data-calc-next]').click();
   await expect(box.locator('input[name=calc-extra][value="3d"]')).toBeChecked();
