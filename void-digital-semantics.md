@@ -119,7 +119,7 @@
 | `C10` | **Интеграции с CRM и Telegram-ботами** | `{'commercial': 38, 'informational': 0, 'navigational': 0}` | `P1` | **38** | `https://void-digital.ru/services (анкор #integrations)` | `/services#integrations` |
 | `C11` | **Сопровождение, доработка и редизайн** | `{'commercial': 24, 'informational': 0, 'navigational': 0}` | `P2` | **24** | `https://void-digital.ru/services (анкор #support)` | `/services#support` |
 | `C12` | **Отраслевые посадочные и кейсы портфолио** | `{'commercial': 48, 'informational': 0, 'navigational': 0}` | `P2` | **45** | `https://void-digital.ru/portfolio (portfolio.html)` | `/portfolio` |
-| `C13` | **Бренд VOID | digital & Навигация** | `{'commercial': 0, 'informational': 0, 'navigational': 29}` | `P1` | **29** | `https://void-digital.ru/about, https://void-digital.ru/contacts` | `/about` |
+| `C13` | **Бренд VOID \| digital & Навигация** | `{'commercial': 0, 'informational': 0, 'navigational': 29}` | `P1` | **29** | `https://void-digital.ru/about, https://void-digital.ru/contacts` | `/about` |
 | `C14` | **Блог: Подготовка, бриф и выбор формата сайта** | `{'commercial': 0, 'informational': 15, 'navigational': 0}` | `P2` | **15** | `https://void-digital.ru/blog-brief, https://void-digital.ru/blog-landing-vs-site` | `/blog-brief` |
 | `C15` | **Блог: Технические гайды, WebGL и скорость загрузки** | `{'commercial': 0, 'informational': 350, 'navigational': 0}` | `P2` | **350** | `https://void-digital.ru/blog (blog.html — хаб блога под декомпозицию)` | `/blog` |
 
@@ -1011,7 +1011,7 @@
 | Запрос | Частотность | Интент | Тег | Приоритет |
 |---|:---:|:---:|:---:|:---:|
 | void digital | 0 (estimate) | navigational | brand | P1 |
-| void | digital | 0 (estimate) | navigational | brand | P1 |
+| void \| digital | 0 (estimate) | navigational | brand | P1 |
 | void digital отзывы | 0 (estimate) | navigational | brand | P1 |
 | void digital контакты | 0 (estimate) | navigational | brand | P1 |
 | void digital портфолио | 0 (estimate) | navigational | brand | P1 |
@@ -1539,7 +1539,7 @@
 | № | URL страницы | Кластер | Тема | Правило слияния и разведения интентов | Роль |
 |:---:|---|:---:|---|---|:---:|
 | 1 | [`/services`](/services) | `C05` | **Разведение общих коммерческих запросов между главной и услугами** | Свести дублирующие общие коммерческие формулировки к /services как основному хабу; на главной оставить бренд и позиционирование, настроить ссылки и canonical по фактической структуре. | конверсия |
-| 2 | [`/`](/) | `C13` | **VOID | digital: брендовый хаб и официальные страницы** | Свести брендовые точки навигации, официальные контакты, портфолио и описание услуг; отслеживать поисковые формулировки бренда и не создавать конкурирующие брендовые страницы. | brand-defense |
+| 2 | [`/`](/) | `C13` | **VOID \| digital: брендовый хаб и официальные страницы** | Свести брендовые точки навигации, официальные контакты, портфолио и описание услуг; отслеживать поисковые формулировки бренда и не создавать конкурирующие брендовые страницы. | brand-defense |
 
 ## 5. Приоритизация и рекомендации по внедрению
 

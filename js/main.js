@@ -168,7 +168,7 @@ if (calcBox) {
 
 // Закреплённая кнопка внизу экрана на телефоне (на странице контактов кнопка Telegram и так перед глазами).
 if (!document.getElementById('contact-card')) {
-  const calcHref = calcBox ? '#calc' : 'index.html#calc';
+  const calcHref = calcBox ? '#calc' : '/#calc';
   const bar = document.createElement('div');
   bar.className = 'sticky-cta';
   bar.innerHTML = `
@@ -216,7 +216,7 @@ if (orderTriggers.length && typeof HTMLDialogElement === 'function') {
       <a class="btn btn-outline" id="modal-tg" href="${TELEGRAM_URL}" target="_blank" rel="noopener">Telegram</a>
       <a class="btn btn-outline" id="modal-wa" href="${WHATSAPP_URL}" target="_blank" rel="noopener">WhatsApp</a>
     </div>
-    <p class="form-legal">Сайт не собирает ваши данные: сообщение вы отправляете сами. Подробнее — в <a href="privacy.html" target="_blank" rel="noopener">политике обработки персональных данных</a>.</p>`;
+    <p class="form-legal">Сайт не собирает ваши данные: сообщение вы отправляете сами. Подробнее — в <a href="/privacy" target="_blank" rel="noopener">политике обработки персональных данных</a>.</p>`;
   document.body.appendChild(dialog);
 
   const titleEl = dialog.querySelector('#modal-title');

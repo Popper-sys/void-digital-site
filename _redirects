@@ -16,3 +16,6 @@
 /clusters.json / 301
 /content_plan.csv / 301
 /void-digital-semantics.md / 301
+/*.md / 301
+/*.json / 301
+/*.csv / 301
