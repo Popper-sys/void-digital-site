@@ -1,0 +1,713 @@
+{
+  "meta": {
+    "scan_date": "2026-11-17T21:13:18.775592",
+    "source": "local_repository",
+    "local_path": "C:\\Users\\User\\Desktop\\claude\\site",
+    "git_branch": "main",
+    "commit_hash": "e273c3fe9207160f332222ea88e872bcd1395dca"
+  },
+  "pages_count": 10,
+  "pages": [
+    {
+      "file": "404.html",
+      "url": "https://void-digital.ru/404.html",
+      "canonical": "",
+      "title": "Страница не найдена — VOID | digital",
+      "description": "Такой страницы нет. Перейдите на главную, в портфолио или рассчитайте стоимость сайта.",
+      "h1": "Такой страницы нет",
+      "words_count": 104,
+      "has_json_ld": false,
+      "schema_types": [],
+      "images_total": 0,
+      "images_missing_alt": 0,
+      "missing_alt_sources": [],
+      "internal_links": [
+        "about.html",
+        "blog.html",
+        "contacts.html",
+        "index.html",
+        "index.html#calc",
+        "portfolio.html",
+        "privacy.html",
+        "services.html"
+      ],
+      "lang": "ru"
+    },
+    {
+      "file": "about.html",
+      "url": "https://void-digital.ru/about",
+      "canonical": "https://void-digital.ru/about",
+      "title": "О нас — VOID | digital",
+      "description": "VOID | digital — дизайн и разработка сайтов для малого бизнеса. Подход, принципы работы, инструменты и реквизиты.",
+      "h1": "Мы — VOID | digital",
+      "words_count": 237,
+      "has_json_ld": false,
+      "schema_types": [],
+      "images_total": 0,
+      "images_missing_alt": 0,
+      "missing_alt_sources": [],
+      "internal_links": [
+        "about.html",
+        "blog.html",
+        "contacts.html",
+        "index.html",
+        "index.html#calc",
+        "portfolio.html",
+        "privacy.html",
+        "services.html"
+      ],
+      "lang": "ru"
+    },
+    {
+      "file": "blog-brief.html",
+      "url": "https://void-digital.ru/blog-brief",
+      "canonical": "https://void-digital.ru/blog-brief",
+      "title": "Что подготовить перед заказом сайта — VOID | digital",
+      "description": "Пять вещей, которые стоит подготовить до начала работы над сайтом: цель, аудитория, материалы, примеры и бюджет.",
+      "h1": "Что подготовить перед заказом сайта",
+      "words_count": 217,
+      "has_json_ld": false,
+      "schema_types": [],
+      "images_total": 0,
+      "images_missing_alt": 0,
+      "missing_alt_sources": [],
+      "internal_links": [
+        "about.html",
+        "blog.html",
+        "contacts.html",
+        "index.html",
+        "index.html#calc",
+        "portfolio.html",
+        "privacy.html",
+        "services.html"
+      ],
+      "lang": "ru"
+    },
+    {
+      "file": "blog-landing-vs-site.html",
+      "url": "https://void-digital.ru/blog-landing-vs-site",
+      "canonical": "https://void-digital.ru/blog-landing-vs-site",
+      "title": "Лендинг или многостраничный сайт — VOID | digital",
+      "description": "Как понять, хватит ли вашему бизнесу одной страницы и когда нужен многостраничный сайт.",
+      "h1": "Лендинг или многостраничный сайт: что выбрать",
+      "words_count": 193,
+      "has_json_ld": false,
+      "schema_types": [],
+      "images_total": 0,
+      "images_missing_alt": 0,
+      "missing_alt_sources": [],
+      "internal_links": [
+        "about.html",
+        "blog.html",
+        "contacts.html",
+        "index.html",
+        "index.html#calc",
+        "portfolio.html",
+        "privacy.html",
+        "services.html"
+      ],
+      "lang": "ru"
+    },
+    {
+      "file": "blog.html",
+      "url": "https://void-digital.ru/blog",
+      "canonical": "https://void-digital.ru/blog",
+      "title": "Блог — VOID | digital",
+      "description": "Статьи о создании сайтов: как выбрать формат, подготовиться к заказу и не потерять заявки.",
+      "h1": "Про сайты простым языком",
+      "words_count": 104,
+      "has_json_ld": false,
+      "schema_types": [],
+      "images_total": 0,
+      "images_missing_alt": 0,
+      "missing_alt_sources": [],
+      "internal_links": [
+        "about.html",
+        "blog-brief.html",
+        "blog-landing-vs-site.html",
+        "blog.html",
+        "contacts.html",
+        "index.html",
+        "index.html#calc",
+        "portfolio.html",
+        "privacy.html",
+        "services.html"
+      ],
+      "lang": "ru"
+    },
+    {
+      "file": "contacts.html",
+      "url": "https://void-digital.ru/contacts",
+      "canonical": "https://void-digital.ru/contacts",
+      "title": "Контакты — VOID | digital",
+      "description": "Свяжитесь с нами, чтобы обсудить создание или сопровождение сайта.",
+      "h1": "Обсудим ваш проект",
+      "words_count": 167,
+      "has_json_ld": false,
+      "schema_types": [],
+      "images_total": 0,
+      "images_missing_alt": 0,
+      "missing_alt_sources": [],
+      "internal_links": [
+        "about.html",
+        "blog.html",
+        "contacts.html",
+        "index.html",
+        "index.html#calc",
+        "portfolio.html",
+        "privacy.html",
+        "services.html"
+      ],
+      "lang": "ru"
+    },
+    {
+      "file": "index.html",
+      "url": "https://void-digital.ru/",
+      "canonical": "https://void-digital.ru/",
+      "title": "VOID | digital — сайты для малого бизнеса, заявки сразу в мессенджер, почту или CRM",
+      "description": "Лендинги и сайты для малого бизнеса под ключ за 1–3 недели. Заявки с сайта сразу в Telegram, WhatsApp, на почту или в CRM, Яндекс Метрика и 30 дней правок в подарок. Цена фиксируется в договоре. Рассчитайте стоимость за 1 минуту.",
+      "h1": "Сайт, который собирает заявки и сразу присылает туда, где вам удобно",
+      "words_count": 2099,
+      "has_json_ld": true,
+      "schema_types": [
+        "ProfessionalService",
+        "FAQPage"
+      ],
+      "images_total": 7,
+      "images_missing_alt": 1,
+      "missing_alt_sources": [
+        "img/portfolio/sotsvetie.webp"
+      ],
+      "internal_links": [
+        "about.html",
+        "blog.html",
+        "contacts.html",
+        "index.html",
+        "portfolio.html",
+        "portfolio.html#coffee",
+        "portfolio.html#kindergarten",
+        "portfolio.html#omg",
+        "portfolio.html#veniki",
+        "privacy.html",
+        "services.html",
+        "services.html#b2b"
+      ],
+      "lang": "ru"
+    },
+    {
+      "file": "portfolio.html",
+      "url": "https://void-digital.ru/portfolio",
+      "canonical": "https://void-digital.ru/portfolio",
+      "title": "Портфолио — VOID | digital",
+      "description": "Примеры работ: лендинги и сайты для разных ниш.",
+      "h1": "Выполненные проекты",
+      "words_count": 298,
+      "has_json_ld": false,
+      "schema_types": [],
+      "images_total": 13,
+      "images_missing_alt": 0,
+      "missing_alt_sources": [],
+      "internal_links": [
+        "about.html",
+        "blog.html",
+        "contacts.html",
+        "index.html",
+        "index.html#calc",
+        "portfolio.html",
+        "privacy.html",
+        "services.html"
+      ],
+      "lang": "ru"
+    },
+    {
+      "file": "privacy.html",
+      "url": "https://void-digital.ru/privacy",
+      "canonical": "https://void-digital.ru/privacy",
+      "title": "Политика обработки персональных данных — VOID | digital",
+      "description": "Как VOID | digital собирает, хранит и использует персональные данные, которые вы оставляете через формы на сайте.",
+      "h1": "Политика обработки персональных данных",
+      "words_count": 612,
+      "has_json_ld": false,
+      "schema_types": [],
+      "images_total": 0,
+      "images_missing_alt": 0,
+      "missing_alt_sources": [],
+      "internal_links": [
+        "about.html",
+        "blog.html",
+        "contacts.html",
+        "index.html",
+        "index.html#calc",
+        "portfolio.html",
+        "privacy.html",
+        "services.html"
+      ],
+      "lang": "ru"
+    },
+    {
+      "file": "services.html",
+      "url": "https://void-digital.ru/services",
+      "canonical": "https://void-digital.ru/services",
+      "title": "Услуги и цены — VOID | digital",
+      "description": "Сайт-визитка от 5 000 ₽, лендинг от 15 000 ₽, сайт компании от 35 000 ₽. Бонусы к тарифам, оплата 50/50, цена фиксируется в договоре.",
+      "h1": "Выберите формат — бонусы уже включены",
+      "words_count": 613,
+      "has_json_ld": false,
+      "schema_types": [],
+      "images_total": 0,
+      "images_missing_alt": 0,
+      "missing_alt_sources": [],
+      "internal_links": [
+        "about.html",
+        "blog.html",
+        "contacts.html",
+        "contacts.html?client=b2b",
+        "contacts.html?client=tender",
+        "index.html",
+        "index.html#calc",
+        "index.html?calc=company#calc",
+        "index.html?calc=landing#calc",
+        "index.html?calc=visitka#calc",
+        "portfolio.html",
+        "privacy.html",
+        "services.html"
+      ],
+      "lang": "ru"
+    }
+  ],
+  "services_detected": {
+    "catalog_services": [
+      {
+        "source": "services.html",
+        "title": "Сайт-визитка",
+        "detail": "от 5 000 ₽"
+      },
+      {
+        "source": "services.html",
+        "title": "Лендинг под ключ",
+        "detail": "Популярное"
+      },
+      {
+        "source": "services.html",
+        "title": "Сайт компании",
+        "detail": "от 35 000 ₽"
+      },
+      {
+        "source": "services.html",
+        "title": "Интернет-магазины",
+        "detail": "Каталог, корзина, онлайн-оплата и интеграции с 1С и маркетплейсами. Подбираем платформу под ваш ассортимент и бюджет."
+      },
+      {
+        "source": "services.html",
+        "title": "Веб-приложения и боты",
+        "detail": "Калькуляторы, личные кабинеты, Telegram-боты, отправка заявок в MAX, WhatsApp и почту, интеграции с Битрикс24, amoCRM, 1С, HubSpot и Salesforce."
+      },
+      {
+        "source": "services.html",
+        "title": "Доработка и редизайн",
+        "detail": "Исправление ошибок, настройка форм и интеграций с CRM, мобильная адаптация, правки на CSS/JS, обновление дизайна готового сайта."
+      },
+      {
+        "source": "services.html",
+        "title": "Сопровождение и поддержка",
+        "detail": "Регулярные правки, обновление контента, проверка работы форм и заявок."
+      },
+      {
+        "source": "services.html",
+        "title": "Корпоративные сайты и B2B",
+        "detail": "Сайт компании как часть процессов: продуманная структура, интеграции, порядок в разработке."
+      },
+      {
+        "source": "services.html",
+        "title": "Тендеры и госзаказ",
+        "detail": "Чёткие требования, прозрачные сроки и документы."
+      }
+    ],
+    "calculator_base_types": [
+      {
+        "id": "visitka",
+        "label": "Сайт-визитка",
+        "base": 5000,
+        "time": "от 3 до 7 дней",
+        "gifts": "small"
+      },
+      {
+        "id": "landing",
+        "label": "Лендинг",
+        "base": 15000,
+        "time": "1–2 недели"
+      },
+      {
+        "id": "company",
+        "label": "Сайт компании",
+        "base": 35000,
+        "time": "2–3 недели"
+      },
+      {
+        "id": "shop",
+        "label": "Интернет-магазин",
+        "base": 60000,
+        "time": "3–5 недель"
+      },
+      {
+        "id": "unknown",
+        "label": "Пока не знаю — подобрать формат",
+        "base": 5000,
+        "max": 35000,
+        "time": "1–3 недели"
+      }
+    ],
+    "calculator_extras": [
+      {
+        "id": "pay",
+        "label": "Онлайн-оплата",
+        "price": 5000
+      },
+      {
+        "id": "quiz",
+        "label": "Квиз или калькулятор",
+        "price": 4000
+      },
+      {
+        "id": "crm",
+        "label": "Интеграция с CRM",
+        "price": 3000
+      },
+      {
+        "id": "booking",
+        "label": "Онлайн-запись",
+        "price": 4000
+      },
+      {
+        "id": "texts",
+        "label": "Тексты под ключ",
+        "price": 4000
+      },
+      {
+        "id": "en",
+        "label": "Английская версия",
+        "price": 8000
+      },
+      {
+        "id": "3d",
+        "label": "3D-сцена и анимации",
+        "price": 8000
+      }
+    ]
+  },
+  "portfolio_cases": {
+    "cases": [
+      {
+        "title": "Магазин дизайнерской одежды OMG",
+        "description": "Минималистичный сайт магазина: коллекции, каталог, блок бестселлеров и условия доставки.",
+        "image_src": "img/portfolio/omg.webp",
+        "image_file": "omg.webp",
+        "alt": "Главный экран сайта: Магазин дизайнерской одежды OMG",
+        "dimensions": "660x440",
+        "format": "WEBP"
+      },
+      {
+        "title": "Частный детский сад «Солнечные дети»",
+        "description": "Светлый тёплый дизайн с живыми фото детей и акцентом на заботу и развитие.",
+        "image_src": "img/portfolio/kindergarten.webp",
+        "image_file": "kindergarten.webp",
+        "alt": "Главный экран сайта: Частный детский сад",
+        "dimensions": "660x440",
+        "format": "WEBP"
+      },
+      {
+        "title": "Банные веники оптом",
+        "description": "Оптовая продажа веников из берёзы, дуба и ели: ассортимент, цены от объёма заказа, о компании и контакты.",
+        "image_src": "img/portfolio/veniki.webp",
+        "image_file": "veniki.webp",
+        "alt": "Главный экран сайта оптовой продажи банных веников",
+        "dimensions": "660x440",
+        "format": "WEBP"
+      },
+      {
+        "title": "Кофейня NØR",
+        "description": "Атмосферный тёмный дизайн с крупными фотографиями интерьера.",
+        "image_src": "img/portfolio/coffee.webp",
+        "image_file": "coffee.webp",
+        "alt": "Главный экран сайта: Кофейня",
+        "dimensions": "660x440",
+        "format": "WEBP"
+      },
+      {
+        "title": "Природный камень для ландшафта",
+        "description": "Каталожная подача материалов и атрибутики для ландшафтного дизайна.",
+        "image_src": "img/portfolio/stone.webp",
+        "image_file": "stone.webp",
+        "alt": "Главный экран сайта: Природный камень для ландшафта",
+        "dimensions": "660x440",
+        "format": "WEBP"
+      },
+      {
+        "title": "Жилой комплекс «Соцветие»",
+        "description": "Сайт ЖК в Красноярске: преимущества, планировки, способы оплаты и офис продаж. Ведёт посетителя к выбору квартиры.",
+        "image_src": "img/portfolio/sotsvetie.webp",
+        "image_file": "sotsvetie.webp",
+        "alt": "Главный экран сайта жилого комплекса «Соцветие»",
+        "dimensions": "660x440",
+        "format": "WEBP"
+      },
+      {
+        "title": "Ремонт и обслуживание спецтехники",
+        "description": "Услуги, проекты, цифры, подтверждающие опыт, и заявка на консультацию.",
+        "image_src": "img/portfolio/spectech.webp",
+        "image_file": "spectech.webp",
+        "alt": "Главный экран сайта: Ремонт и обслуживание спецтехники",
+        "dimensions": "660x440",
+        "format": "WEBP"
+      },
+      {
+        "title": "Личный сайт предпринимателя и спикера",
+        "description": "Направления, выступления и проекты, понятные кнопки «Узнать больше» и «Смотреть видео».",
+        "image_src": "img/portfolio/expert.webp",
+        "image_file": "expert.webp",
+        "alt": "Главный экран личного сайта предпринимателя и спикера",
+        "dimensions": "660x440",
+        "format": "WEBP"
+      },
+      {
+        "title": "Фитнес-клуб «СТАЛЬ»",
+        "description": "Контрастный дизайн в тёмной теме, расписание с цветовой разметкой, карточки тренеров и калькулятор тренировок.",
+        "image_src": "img/portfolio/gym.webp",
+        "image_file": "gym.webp",
+        "alt": "Главный экран сайта: Фитнес-клуб «СТАЛЬ»",
+        "dimensions": "660x440",
+        "format": "WEBP"
+      },
+      {
+        "title": "Автосервис: ремонт BMW",
+        "description": "Тёмный премиальный стиль и заметная кнопка заявки на первом экране.",
+        "image_src": "img/portfolio/bmw.webp",
+        "image_file": "bmw.webp",
+        "alt": "Главный экран сайта: Автосервис: ремонт BMW",
+        "dimensions": "660x440",
+        "format": "WEBP"
+      },
+      {
+        "title": "Импорт автомобилей из Японии, Китая и Кореи",
+        "description": "Выразительный первый экран с автомобилем, блок преимуществ и заметная кнопка подбора.",
+        "image_src": "img/portfolio/autoconsult.webp",
+        "image_file": "autoconsult.webp",
+        "alt": "Главный экран сайта: Автомобили из Японии, Китая и Кореи",
+        "dimensions": "660x440",
+        "format": "WEBP"
+      },
+      {
+        "title": "Студия маникюра",
+        "description": "Мягкая палитра, акцент на результате и блок популярных услуг.",
+        "image_src": "img/portfolio/manicure.webp",
+        "image_file": "manicure.webp",
+        "alt": "Главный экран сайта: Студия маникюра",
+        "dimensions": "660x440",
+        "format": "WEBP"
+      },
+      {
+        "title": "Ремонт квартир под ключ",
+        "description": "Понятная структура с видами ремонта и призывом к заявке.",
+        "image_src": "img/portfolio/remont.webp",
+        "image_file": "remont.webp",
+        "alt": "Главный экран сайта: Ремонт квартир под ключ",
+        "dimensions": "660x440",
+        "format": "WEBP"
+      }
+    ],
+    "total_cases_html": 13,
+    "total_images_disk": 13,
+    "disk_files": {
+      "autoconsult.webp": {
+        "format": "WEBP",
+        "width": 660,
+        "height": 440,
+        "size_bytes": 50320
+      },
+      "bmw.webp": {
+        "format": "WEBP",
+        "width": 660,
+        "height": 440,
+        "size_bytes": 46134
+      },
+      "coffee.webp": {
+        "format": "WEBP",
+        "width": 660,
+        "height": 440,
+        "size_bytes": 70640
+      },
+      "expert.webp": {
+        "format": "WEBP",
+        "width": 660,
+        "height": 440,
+        "size_bytes": 30782
+      },
+      "gym.webp": {
+        "format": "WEBP",
+        "width": 660,
+        "height": 440,
+        "size_bytes": 76016
+      },
+      "kindergarten.webp": {
+        "format": "WEBP",
+        "width": 660,
+        "height": 440,
+        "size_bytes": 64486
+      },
+      "manicure.webp": {
+        "format": "WEBP",
+        "width": 660,
+        "height": 440,
+        "size_bytes": 39982
+      },
+      "omg.webp": {
+        "format": "WEBP",
+        "width": 660,
+        "height": 440,
+        "size_bytes": 12950
+      },
+      "remont.webp": {
+        "format": "WEBP",
+        "width": 660,
+        "height": 440,
+        "size_bytes": 56504
+      },
+      "sotsvetie.webp": {
+        "format": "WEBP",
+        "width": 660,
+        "height": 440,
+        "size_bytes": 49202
+      },
+      "spectech.webp": {
+        "format": "WEBP",
+        "width": 660,
+        "height": 440,
+        "size_bytes": 85438
+      },
+      "stone.webp": {
+        "format": "WEBP",
+        "width": 660,
+        "height": 440,
+        "size_bytes": 89646
+      },
+      "veniki.webp": {
+        "format": "WEBP",
+        "width": 660,
+        "height": 440,
+        "size_bytes": 53056
+      }
+    }
+  },
+  "infrastructure": {
+    "sitemap": {
+      "exists": true,
+      "urls_count": 10,
+      "urls": [
+        {
+          "loc": "https://void-digital.ru/",
+          "priority": "1.0"
+        },
+        {
+          "loc": "https://void-digital.ru/about",
+          "priority": "0.8"
+        },
+        {
+          "loc": "https://void-digital.ru/blog-brief",
+          "priority": "0.6"
+        },
+        {
+          "loc": "https://void-digital.ru/blog-landing-vs-site",
+          "priority": "0.6"
+        },
+        {
+          "loc": "https://void-digital.ru/blog",
+          "priority": "0.8"
+        },
+        {
+          "loc": "https://void-digital.ru/contacts",
+          "priority": "0.8"
+        },
+        {
+          "loc": "https://void-digital.ru/portfolio",
+          "priority": "0.8"
+        },
+        {
+          "loc": "https://void-digital.ru/services",
+          "priority": "0.8"
+        },
+        {
+          "loc": "https://void-digital.ru/privacy",
+          "priority": "0.3"
+        },
+        {
+          "loc": "https://void-digital.ru/consent",
+          "priority": "0.3"
+        }
+      ]
+    },
+    "robots_txt": {
+      "exists": true,
+      "content": "User-agent: *\nAllow: /\n\nSitemap: https://void-digital.ru/sitemap.xml"
+    },
+    "redirects": {
+      "exists": true,
+      "rules": [
+        "/README.md / 301",
+        "/netlify.toml / 301",
+        "/legacy-netlify/* / 301",
+        "/scripts/* / 301",
+        "/tests/* / 301",
+        "/.github/* / 301",
+        "/.htaccess / 301",
+        "/docs/* / 301"
+      ]
+    },
+    "blog": {
+      "exists_in_filesystem": true,
+      "files": [
+        "blog-brief.html",
+        "blog-landing-vs-site.html",
+        "blog.html"
+      ],
+      "linked_in_menu": true,
+      "in_sitemap": true
+    }
+  },
+  "discrepancies": [
+    {
+      "item": "Блог",
+      "passport_value": "ОТСУТСТВУЕТ (информационного контента нет)",
+      "actual_value": "ПРИСУТСТВУЕТ: найден раздел blog.html и 2 статьи (blog-brief.html, blog-landing-vs-site.html, blog.html), ссылки есть в меню шапки и подвала, страницы включены в sitemap.xml",
+      "severity": "CRITICAL",
+      "impact": "Требуется учитывать существующие 2 статьи блога при проектировании инфо-кластеров семантики"
+    },
+    {
+      "item": "Кейсы портфолио",
+      "passport_value": "12 кейсов (или 8 первоначальных)",
+      "actual_value": "13 активных кейсов в portfolio.html и 13 WebP изображений 660x440",
+      "severity": "INFO",
+      "impact": "Фактическая база кейсов на 1 единицу больше (13 против 12)"
+    },
+    {
+      "item": "Sitemap URL /consent",
+      "passport_value": "Только существующие страницы",
+      "actual_value": "В sitemap.xml присутствует https://void-digital.ru/consent, однако файл consent.html в репозитории ОТСУТСТВУЕТ (дает 404 на проде)",
+      "severity": "WARNING",
+      "impact": "Битый URL в sitemap.xml для поисковых краулеров"
+    },
+    {
+      "item": "Формат внутренних ссылок",
+      "passport_value": "Чистые URL без расширения .html",
+      "actual_value": "В sitemap.xml указаны URL без .html (/services, /portfolio), а во внутренних ссылках меню и футера прописаны относительные ссылки с расширением (services.html, portfolio.html)",
+      "severity": "WARNING",
+      "impact": "Лишние 301 редиректы от Cloudflare Pages при кликах внутри сайта"
+    },
+    {
+      "item": "Контактный email",
+      "passport_value": "Email на сайте не указан (по просьбе владельца)",
+      "actual_value": "В footer на index.html и др. страницах указан mailto:voiddigital@mail.ru",
+      "severity": "INFO",
+      "impact": "Почта фактически светится на сайте, расхождение с исходной директивой handoff"
+    }
+  ]
+}

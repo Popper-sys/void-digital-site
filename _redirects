@@ -7,3 +7,5 @@
 /.github/* / 301
 /.htaccess / 301
 /docs/* / 301
+/site_profile.json / 301
+/site_audit.md / 301
