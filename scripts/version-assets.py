@@ -14,14 +14,19 @@ ASSETS = ['css/style.css', 'js/main.js']
 
 versions = {a: hashlib.md5((ROOT / a).read_bytes()).hexdigest()[:8] for a in ASSETS}
 
-for page in sorted(ROOT.glob('*.html')):
+for page in sorted(ROOT.rglob('*.html')):
+    if any(p in page.parts for p in ['node_modules', 'legacy-netlify', 'tests', '.git']):
+        continue
     # Байты, а не текст: сохраняем исходные переводы строк
     text = page.read_bytes().decode('utf-8')
     new = text
+    is_nested = len(page.relative_to(ROOT).parts) > 1
     for asset, v in versions.items():
-        new = re.sub(rf'(["\']){re.escape(asset)}(\?v=[0-9a-f]*)?\1', rf'\g<1>{asset}?v={v}\g<1>', new)
+        # Match both css/style.css and /css/style.css
+        prefix = '/' if is_nested else ''
+        new = re.sub(rf'(["\'])/?{re.escape(asset)}(\?v=[0-9a-f]*)?\1', rf'\g<1>{prefix}{asset}?v={v}\g<1>', new)
     if new != text:
         page.write_bytes(new.encode('utf-8'))
-        print('обновлено:', page.name)
+        print('обновлено:', page.relative_to(ROOT))
 
 print('версии:', versions)

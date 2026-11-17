@@ -1067,3 +1067,19 @@ section[id] { scroll-margin-top: 84px; }
   .teaser3d-in { padding-top: 28px; }
   .teaser3d-orb { width: min(46vw, 176px); }
 }
+
+/* ============================================================
+   Таблицы данных и чек-листы для статей блога и услуг
+   ============================================================ */
+.table-wrap { width: 100%; overflow-x: auto; margin: 28px 0; -webkit-overflow-scrolling: touch; border: 1px solid var(--border); border-radius: var(--radius); }
+.data-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.95rem; min-width: 600px; }
+.data-table th, .data-table td { padding: 14px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+.data-table th { font-weight: 600; color: var(--text); background: var(--surface); white-space: nowrap; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tbody tr:hover td { background: rgba(255, 255, 255, 0.02); }
+.post-section { margin-top: 36px; }
+.post-section h2 { margin-bottom: 14px; }
+.scenario-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; margin: 18px 0; }
+.scenario-card h3 { font-size: 1.15rem; margin-top: 0; margin-bottom: 10px; color: var(--text); }
+.feature-badge { display: inline-block; padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; background: rgba(139, 123, 255, 0.12); color: var(--primary, #8b7bff); border: 1px solid rgba(139, 123, 255, 0.25); margin-bottom: 8px; }
+

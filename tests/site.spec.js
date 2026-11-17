@@ -1,7 +1,7 @@
 // Проверки сайта void-digital.ru. Форм на сайте нет: обращения — кнопки со ссылкой на Telegram.
 const { test, expect } = require('@playwright/test');
 
-const PAGES = ['index.html', 'services.html', 'portfolio.html', 'about.html', 'contacts.html', 'blog.html',
+const PAGES = ['index.html', 'services.html', 'services/3d-webgl/index.html', 'portfolio.html', 'about.html', 'contacts.html', 'blog.html',
   'blog-brief.html', 'blog-landing-vs-site.html', 'privacy.html', '404.html'];
 const clean = (s) => s.replace(/\s+/g, ' ').trim();
 const isMobile = (testInfo) => testInfo.project.name.includes('iphone');

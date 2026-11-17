@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Разработка сайтов с 3D графикой и WebGL на Three.js — VOID | digital</title>
+  <meta name="description" content="Интерактивная 3D-графика и WebGL на Three.js под ключ. 60 FPS на десктопе, Core Web Vitals 95+ и graceful fallback для смартфонов. От 23 000 ₽.">
+  <link rel="canonical" href="https://void-digital.ru/services/3d-webgl">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="VOID | digital">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Разработка сайтов с 3D графикой и WebGL на Three.js — VOID | digital">
+  <meta property="og:description" content="Интерактивная 3D-графика и WebGL на Three.js под ключ. 60 FPS на десктопе, Core Web Vitals 95+ и graceful fallback для смартфонов. От 23 000 ₽.">
+  <meta property="og:url" content="https://void-digital.ru/services/3d-webgl">
+  <meta property="og:image" content="https://void-digital.ru/img/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css?v=bc63c9c4">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Разработка сайтов с 3D графикой и WebGL на Three.js",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "VOID | digital",
+        "url": "https://void-digital.ru/"
+      },
+      "url": "https://void-digital.ru/services/3d-webgl",
+      "description": "Интерактивный WebGL-продакшн на Three.js премиум-уровня: 60 FPS на десктопе, Core Web Vitals 95+ и graceful fallback для смартфонов.",
+      "areaServed": "RU",
+      "offers": {
+        "@type": "Offer",
+        "price": "23000",
+        "priceCurrency": "RUB",
+        "priceValidUntil": "2027-12-31",
+        "description": "Разработка 3D-сайта или интерактивного промо-блока на Three.js под ключ."
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Не будет ли сайт тормозить на обычных офисных ноутбуках и смартфонах?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Не должен: сложность модели, разрешение рендера и эффекты подбираются с учётом целевых устройств. Используем ленивую загрузку через IntersectionObserver и fallback-сценарии с пониженным DPR 1.0. Конкретный результат подтверждаем тестированием на согласованном наборе устройств; если полноценный WebGL не поддерживается, пользователь получает облегчённую версию, а не пустой экран."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как 3D влияет на индексацию поисковыми системами (Яндекс и Google) и скорость загрузки?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Поисковые роботы получают доступный семантический HTML с полным содержанием страницы независимо от WebGL-сцены: важные тексты, заголовки и навигация не прячутся внутри canvas. На скорость загрузки влияет вес ассетов: мы оптимизируем геометрию и текстуры до < 1.5 МБ и запускаем рендер только при приближении к области видимости."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "В каком формате и виде передавать 3D-модели студии?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Передайте исходные 3D-модели (FBX, OBJ, BLEND, GLTF/GLB) и текстуры, если они уже созданы. До начала работ мы бесплатно проверим сетку, материалы и пригодность для браузера. Если готовых 3D-моделей нет — спроектируем и оптимизируем сцену сами."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит и сколько времени занимает создание 3D-сайта?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ориентир — от 23 000 – 30 000 ₽ за интерактивный 3D-блок или промо-лендинг, сроки — от 2–3 недель. Итоговая стоимость фиксируется в договоре после согласования сценария взаимодействия, количества моделей и требований к калькулятору."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/services" aria-current="page">Услуги и цены</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/about">О нас</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
+      <li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <!-- Hero Section -->
+  <section class="section hero">
+    <div class="container measure-text text-center">
+      <span class="feature-badge">Флагманская экспертиза VOID | digital</span>
+      <h1 class="mt-16">Разработка сайтов с 3D графикой и WebGL на Three.js</h1>
+      <p class="hero-subhead" style="font-size: 1.18rem; color: var(--text-muted); line-height: 1.6; margin-top: 14px;">
+        Интерактивный WebGL-продакшн премиум-уровня без потери скорости. Стабильные <strong>60 FPS</strong> на десктопе, зеленый рейтинг <strong>Core Web Vitals 95+</strong> и продуманный graceful fallback для смартфонов.
+      </p>
+      <div class="hero-actions mt-24" style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+        <a class="btn btn-primary btn-lg" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Обсудить 3D проект в Telegram</a>
+        <a class="btn btn-outline btn-lg" href="/#calc">Рассчитать смету в калькуляторе</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Бизнес-задачи 3D -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Какие бизнес-задачи решает 3D на сайте</h2>
+        <p class="muted">Мы создаем интерактивные 3D-сцены, которые работают на бизнес-цель и окупаемость, а не существуют ради визуального эффекта.</p>
+      </div>
+      <div class="grid grid-2 mt-24">
+        <div class="card reveal">
+          <span class="feature-badge">Презентация</span>
+          <h3>1. Наглядная демонстрация сложных продуктов и недвижимости</h3>
+          <p>Статичное фото фиксирует только один ракурс. Интерактивная 3D-сцена позволяет посетителю свободно вращать камеру, осматривать жилой комплекс, технику или оборудование со всех сторон, оценивать пропорции и приближать ключевые узлы еще до звонка менеджеру.</p>
+        </div>
+        <div class="card reveal">
+          <span class="feature-badge">Вовлечение</span>
+          <h3>2. Рост времени на сайте и глубины контакта</h3>
+          <p>Интерактивная механика превращает пассивного читателя в активного исследователя продукта. Пользователи задерживаются на странице в 2.5–3 раза дольше обычных статичных сайтов, что напрямую улучшает поведенческие факторы в поиске Яндекса и Google.</p>
+        </div>
+        <div class="card reveal">
+          <span class="feature-badge">Позиционирование</span>
+          <h3>3. Бескомпромиссная отстройка в премиальном сегменте</h3>
+          <p>Шаблонные сайты вызывают баннерную слепоту. Продуманный свет, живой шейдерный материал и физика движения мгновенно транслируют статус технологического лидера отрасли без использования дешевых эффектов.</p>
+        </div>
+        <div class="card reveal">
+          <span class="feature-badge">Продажи</span>
+          <h3>4. Интерактивные 3D-конфигураторы товаров</h3>
+          <p>Покупатель кастомизирует цвет, отделку, материалы и комплектацию продукта в реальном времени, сразу видит фотореалистичный результат и передает готовую сборку напрямую в форму заявки или CRM.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Инженерный стек и стандарты -->
+  <section class="section" style="background: var(--surface);">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Инженерный стек и стандарты производительности</h2>
+        <p class="muted">Никаких тяжелых видео-заглушек и раздутых библиотек: только чистый Three.js, легковесные GLSL-шейдеры и Zero-Build архитектура.</p>
+      </div>
+      <div class="grid grid-3 mt-24">
+        <div class="card reveal">
+          <h3>Three.js + Vanilla JS</h3>
+          <p>Разработка без лишних фреймворков (React, Vue, Next.js). Браузер получает минимальный JS-бандл без оверхеда на 10 МБ, что гарантирует мгновенную первую отрисовку (FCP < 0.8s).</p>
+        </div>
+        <div class="card reveal">
+          <h3>Кастомные GLSL-шейдеры</h3>
+          <p>Математический процедурный шум, пост-процессинг свечения bloom и градиенты вычисляются непосредственно на GPU пользователя, исключая скачивание десятков тяжелых растровых текстур.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Процедурный свет и Baked-текстуры</h3>
+          <p>Отказ от тяжелых 30-мегабайтных HDR-карт окружения в пользу оптимизированных процедурных градиентов и запекания теней в легковесные карты освещения.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Ленивая инициализация</h3>
+          <p>WebGL-контекст создается по IntersectionObserver только при приближении сцены к экрану, экономя память, батарею смартфона и ресурсы графического процессора.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Graceful Fallback под смартфоны</h3>
+          <p>Динамический DPR 1.0 на мобильных устройствах. Если чипсет смартфона не справляется со сценой, срабатывает деградация: плавная подмена на легковесный WebP или CSS-анимацию.</p>
+        </div>
+        <div class="card reveal">
+          <h3>Core Web Vitals 95+</h3>
+          <p>Строгий аудит в Chrome DevTools Performance. Тестирование стабильности 60 FPS на средних офисных ноутбуках и смартфонах без просадки кадров при скролле.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Этапы разработки -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <h2>Этапы разработки 3D-сайта под ключ</h2>
+        <p class="muted">Понятный предсказуемый процесс от первого прототипа шейдера до финального релиза на сервере.</p>
+      </div>
+      <div class="steps mt-24">
+        <div class="card step reveal">
+          <h3>1. 3D-концепция и прототип шейдера</h3>
+          <p>Согласовываем ракурсы, визуальный стиль и механику взаимодействия. Собираем черновой прототип сцены и замеряем базовый FPS на целевых устройствах.</p>
+        </div>
+        <div class="card step reveal">
+          <h3>2. Оптимизация 3D-моделей</h3>
+          <p>Децимация полигональной сетки, запекание текстур, сжатие в формат GLB с компрессией Draco до веса менее 1.5 МБ.</p>
+        </div>
+        <div class="card step reveal">
+          <h3>3. Интеграция в интерфейс и анимация скролла</h3>
+          <p>Связываем положение камеры с движением пользователя, встраиваем текстовый контент, настраиваем интерактивные хотспоты и кнопки управления.</p>
+        </div>
+        <div class="card step reveal">
+          <h3>4. Настройка логики и fallback-сценариев для iOS / Android</h3>
+          <p>Калибруем поведение на смартфонах, адаптируем touch-жесты и проверяем доступность информации при выключенном WebGL.</p>
+        </div>
+        <div class="card step reveal">
+          <h3>5. Нагрузочное тестирование и релиз</h3>
+          <p>Проверка производительности в Lighthouse и Chrome DevTools, отладка 60 FPS, настройка кэширования и развертывание на боевом сервере.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="background: var(--surface);">
+    <div class="container faq-wrap">
+      <div class="section-head reveal text-center">
+        <h2>Часто задаваемые вопросы</h2>
+      </div>
+      <div class="mt-24">
+        <details class="reveal">
+          <summary>Не будет ли 3D-сайт тормозить на обычных офисных ноутбуках и смартфонах?</summary>
+          <p>Не должен: сложность полигональной сетки, разрешение рендера и эффекты пост-процессинга подбираются с учетом целевой аудитории. Используем ленивую загрузку через IntersectionObserver и fallback-сценарии с пониженным DPR 1.0. Конкретный результат подтверждаем тестированием на согласованном наборе устройств; если полноценный WebGL не поддерживается, пользователь получает облегченную версию, а не пустой экран.</p>
+        </details>
+        <details class="reveal">
+          <summary>Как 3D влияет на индексацию поисковыми системами (Яндекс и Google) и скорость загрузки?</summary>
+          <p>Поисковые роботы получают доступный семантический HTML с полным содержанием страницы независимо от WebGL-сцены: важные тексты, заголовки и навигация не прячутся внутри canvas. На скорость загрузки влияет вес ассетов: мы оптимизируем геометрию и текстуры до < 1.5 МБ и запускаем рендер только при приближении к области видимости.</p>
+        </details>
+        <details class="reveal">
+          <summary>В каком формате и виде передавать 3D-модели студии?</summary>
+          <p>Передайте исходные 3D-модели (FBX, OBJ, BLEND, GLTF/GLB) и текстуры, если они уже созданы. До начала работ мы бесплатно проверим сетку, материалы и пригодность для браузера. Если готовых 3D-моделей нет — спроектируем и оптимизируем сцену сами.</p>
+        </details>
+        <details class="reveal">
+          <summary>Сколько стоит и сколько времени занимает создание 3D-сайта?</summary>
+          <p>Ориентир — от 23 000 – 30 000 ₽ за интерактивный 3D-блок или промо-лендинг, сроки — от 2–3 недель. Итоговая стоимость фиксируется в договоре после согласования сценария взаимодействия, количества моделей и требований к калькулятору.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container measure-text text-center">
+      <div class="cta">
+        <h2>Хотите внедрить интерактивное 3D в ваш проект?</h2>
+        <p>Расскажите о вашей задаче ведущему разработчику. Подскажем варианты реализации, покажем похожие прототипы и рассчитаем точную смету.</p>
+        <div class="cta-actions mt-24">
+          <a class="btn btn-primary btn-lg" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Обсудить 3D проект в Telegram</a>
+          <a class="btn btn-outline btn-lg" href="/contacts">Все контакты студии</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+    <ul class="social" aria-label="Связаться с нами">
+      <li><a href="tel:+79538550813" aria-label="Позвонить +7 953 855-08-13" title="Позвонить"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a></li>
+      <li><a href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"/></svg></a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg></a></li>
+      <li><a href="mailto:voiddigital@mail.ru" aria-label="Написать на почту voiddigital@mail.ru" title="Почта"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a></li>
+    </ul>
+    <ul class="footer-links">
+      <li><a href="/services">Услуги</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a href="/privacy">Политика конфиденциальности</a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener">Telegram</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="/js/main.js?v=1c546b46"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
