@@ -1,0 +1,390 @@
+[
+  {
+    "cluster_id": "C01",
+    "name": "3D WebGL & Three.js Разработка",
+    "type": "Commercial Service",
+    "target_page": "/services/3d-webgl",
+    "page_status": "NEW_RECOMMENDED",
+    "primary_keyword": "разработка сайта с 3d",
+    "recommended_h1": "Разработка сайтов с 3D графикой и WebGL на Three.js",
+    "recommended_title": "Разработка сайтов с 3D графикой и WebGL на заказ — студия VOID | digital",
+    "keywords_count": 175,
+    "intent_distribution": {
+      "commercial": 175,
+      "informational": 0,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "разработка сайта с 3d под ключ",
+      "разработка сайта с 3d для бизнеса",
+      "разработка сайта с 3d для компании",
+      "разработка сайта с 3d с анимацией",
+      "разработка сайта с 3d премиум-класса",
+      "разработка сайта с 3d с интеграциями",
+      "создание сайта с webgl под ключ",
+      "создание сайта с webgl для бизнеса"
+    ]
+  },
+  {
+    "cluster_id": "C02",
+    "name": "Интерактивный дизайн & Шейдеры (GLSL, Wow-эффекты)",
+    "type": "Commercial Service",
+    "target_page": "/services/interactive-design",
+    "page_status": "NEW_RECOMMENDED",
+    "primary_keyword": "интерактивная 3d графика на сайте",
+    "recommended_h1": "Интерактивный дизайн и визуальные wow-эффекты на GLSL и Three.js",
+    "recommended_title": "Интерактивный дизайн и шейдерная 3D анимация — VOID | digital",
+    "keywords_count": 142,
+    "intent_distribution": {
+      "commercial": 142,
+      "informational": 0,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "сайт с glsl шейдерами под ключ",
+      "сайт с glsl шейдерами для бизнеса",
+      "сайт с glsl шейдерами для компании",
+      "сайт с glsl шейдерами с анимацией",
+      "сайт с glsl шейдерами премиум-класса",
+      "разработка сайта с параллаксом под ключ",
+      "разработка сайта с параллаксом для бизнеса",
+      "разработка сайта с параллаксом для компании"
+    ]
+  },
+  {
+    "cluster_id": "C03",
+    "name": "Оптимизация скорости & Core Web Vitals 95+",
+    "type": "Commercial Service",
+    "target_page": "/services/speed-optimization",
+    "page_status": "NEW_RECOMMENDED",
+    "primary_keyword": "оптимизация скорости сайта core web vitals",
+    "recommended_h1": "Ускорение сайта и оптимизация Core Web Vitals до 95+ баллов",
+    "recommended_title": "Оптимизация скорости сайта и Core Web Vitals под ключ — VOID | digital",
+    "keywords_count": 99,
+    "intent_distribution": {
+      "commercial": 99,
+      "informational": 0,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "быстрый сайт с core web vitals 95+ под ключ",
+      "быстрый сайт с core web vitals 95+ для бизнеса",
+      "быстрый сайт с core web vitals 95+ для компании",
+      "быстрый сайт с core web vitals 95+ премиум-класса",
+      "оптимизация скорости сайта под ключ",
+      "оптимизация скорости сайта для бизнеса",
+      "оптимизация скорости сайта для компании",
+      "оптимизация скорости сайта с индивидуальным дизайном"
+    ]
+  },
+  {
+    "cluster_id": "C04",
+    "name": "Кастомная разработка на Vanilla JS",
+    "type": "Commercial Service",
+    "target_page": "/services/vanilla-js",
+    "page_status": "NEW_RECOMMENDED",
+    "primary_keyword": "разработка сайтов на чистом javascript",
+    "recommended_h1": "Кастомная веб-разработка на чистом JavaScript без оверхеда фреймворков",
+    "recommended_title": "Разработка сайтов на чистом JavaScript (Vanilla JS) — VOID | digital",
+    "keywords_count": 6,
+    "intent_distribution": {
+      "commercial": 6,
+      "informational": 0,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "разработка сайта на чистом javascript под ключ",
+      "разработка сайта на чистом javascript для бизнеса",
+      "разработка сайта на чистом javascript для компании",
+      "разработка сайта на чистом javascript с анимацией",
+      "разработка сайта на чистом javascript премиум-класса",
+      "разработка сайта на чистом javascript с интеграциями"
+    ]
+  },
+  {
+    "cluster_id": "C05",
+    "name": "Создание сайтов под ключ (General Head)",
+    "type": "Commercial General",
+    "target_page": "/",
+    "page_status": "EXISTING",
+    "primary_keyword": "создание сайтов под ключ",
+    "recommended_h1": "Сайт для бизнеса под ключ с заявками в мессенджеры и CRM",
+    "recommended_title": "Веб-студия VOID | digital — создание сайтов под ключ, лендинги и 3D",
+    "keywords_count": 33,
+    "intent_distribution": {
+      "commercial": 33,
+      "informational": 0,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "заказать сайт",
+      "заказать сайт под ключ",
+      "веб-студия",
+      "веб студия",
+      "создание сайтов под ключ",
+      "разработка сайтов под ключ",
+      "создание сайта для бизнеса",
+      "разработка сайта для компании"
+    ]
+  },
+  {
+    "cluster_id": "C06",
+    "name": "Лендинги под ключ",
+    "type": "Commercial Service",
+    "target_page": "/services#landing",
+    "page_status": "EXISTING",
+    "primary_keyword": "заказать лендинг под ключ",
+    "recommended_h1": "Разработка конверсионных лендингов под ключ",
+    "recommended_title": "Заказать лендинг под ключ — разработка за 1–2 недели | VOID | digital",
+    "keywords_count": 26,
+    "intent_distribution": {
+      "commercial": 26,
+      "informational": 0,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "премиальный лендинг под ключ для бизнеса",
+      "премиальный лендинг под ключ с анимацией",
+      "премиальный лендинг под ключ премиум-класса",
+      "премиальный лендинг под ключ с интеграциями",
+      "лендинг для дизайнерской одежды",
+      "лендинг для частного детского сада",
+      "лендинг для оптовой торговли",
+      "лендинг для кофейни"
+    ]
+  },
+  {
+    "cluster_id": "C07",
+    "name": "Корпоративные сайты и B2B",
+    "type": "Commercial Service",
+    "target_page": "/services#b2b",
+    "page_status": "EXISTING",
+    "primary_keyword": "разработка корпоративного сайта для b2b",
+    "recommended_h1": "Разработка корпоративных сайтов для B2B и компаний",
+    "recommended_title": "Разработка корпоративных сайтов и порталов для B2B — VOID | digital",
+    "keywords_count": 41,
+    "intent_distribution": {
+      "commercial": 41,
+      "informational": 0,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "премиальный лендинг под ключ для компании",
+      "корпоративный b2b сайт под ключ",
+      "корпоративный b2b сайт для бизнеса",
+      "корпоративный b2b сайт для компании",
+      "корпоративный b2b сайт с индивидуальным дизайном",
+      "корпоративный b2b сайт с адаптацией под мобильные",
+      "корпоративный b2b сайт с анимацией",
+      "корпоративный b2b сайт для малого бизнеса"
+    ]
+  },
+  {
+    "cluster_id": "C08",
+    "name": "Интернет-магазины & E-commerce",
+    "type": "Commercial Service",
+    "target_page": "/services#shop",
+    "page_status": "EXISTING",
+    "primary_keyword": "разработка интернет магазина под ключ",
+    "recommended_h1": "Разработка интернет-магазинов с онлайн-оплатой и интеграцией 1С",
+    "recommended_title": "Разработка интернет-магазинов под ключ — каталог, оплата, 1C | VOID | digital",
+    "keywords_count": 44,
+    "intent_distribution": {
+      "commercial": 44,
+      "informational": 0,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "интернет-магазин бренда одежды под ключ",
+      "интернет-магазин бренда одежды для бизнеса",
+      "интернет-магазин бренда одежды для компании",
+      "интернет-магазин бренда одежды с индивидуальным дизайном",
+      "интернет-магазин бренда одежды с адаптацией под мобильные",
+      "интернет-магазин бренда одежды с анимацией",
+      "интернет-магазин бренда одежды для малого бизнеса",
+      "интернет-магазин бренда одежды премиум-класса"
+    ]
+  },
+  {
+    "cluster_id": "C09",
+    "name": "Интерактивные калькуляторы и квизы",
+    "type": "Commercial Service",
+    "target_page": "/services#calc",
+    "page_status": "EXISTING",
+    "primary_keyword": "разработка калькулятора стоимости на сайт",
+    "recommended_h1": "Разработка интерактивных калькуляторов сметы и квизов для сайта",
+    "recommended_title": "Калькуляторы стоимости и квизы для сайтов на заказ — VOID | digital",
+    "keywords_count": 65,
+    "intent_distribution": {
+      "commercial": 65,
+      "informational": 0,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "сложный калькулятор для сайта под ключ",
+      "сложный калькулятор для сайта для бизнеса",
+      "сложный калькулятор для сайта для компании",
+      "сложный калькулятор для сайта с индивидуальным дизайном",
+      "сложный калькулятор для сайта с анимацией",
+      "сложный калькулятор для сайта премиум-класса",
+      "сложный калькулятор для сайта с интеграциями",
+      "сайт с калькулятором для дизайнерской одежды"
+    ]
+  },
+  {
+    "cluster_id": "C10",
+    "name": "Интеграции с CRM и Telegram-ботами",
+    "type": "Commercial Service",
+    "target_page": "/services#integrations",
+    "page_status": "EXISTING",
+    "primary_keyword": "интеграция сайта с crm битрикс24 amocrm",
+    "recommended_h1": "Интеграция сайтов с CRM (Битрикс24, amoCRM) и Telegram-ботами",
+    "recommended_title": "Интеграция сайтов с CRM и мессенджерами под ключ — VOID | digital",
+    "keywords_count": 38,
+    "intent_distribution": {
+      "commercial": 38,
+      "informational": 0,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "сложный калькулятор для сайта с передачей заявок в crm",
+      "интеграция сайта с telegram под ключ",
+      "интеграция сайта с telegram для бизнеса",
+      "интеграция сайта с telegram для компании",
+      "интеграция сайта с telegram премиум-класса",
+      "интеграция сайта с crm под ключ",
+      "интеграция сайта с crm для бизнеса",
+      "интеграция сайта с crm для компании"
+    ]
+  },
+  {
+    "cluster_id": "C11",
+    "name": "Сопровождение, доработка и редизайн",
+    "type": "Commercial Service",
+    "target_page": "/services#support",
+    "page_status": "EXISTING",
+    "primary_keyword": "поддержка и доработка готового сайта",
+    "recommended_h1": "Сопровождение, техническая поддержка и редизайн сайтов",
+    "recommended_title": "Техническая поддержка и редизайн сайтов — VOID | digital",
+    "keywords_count": 24,
+    "intent_distribution": {
+      "commercial": 24,
+      "informational": 0,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "корпоративный b2b сайт с технической поддержкой",
+      "сайт для автобизнеса с технической поддержкой",
+      "интернет-магазин бренда одежды с технической поддержкой",
+      "редизайн сайта под ключ",
+      "редизайн сайта для бизнеса",
+      "редизайн сайта для компании",
+      "редизайн сайта с индивидуальным дизайном",
+      "редизайн сайта с адаптацией под мобильные"
+    ]
+  },
+  {
+    "cluster_id": "C12",
+    "name": "Отраслевые посадочные и кейсы портфолио",
+    "type": "Niche Industry",
+    "target_page": "/portfolio",
+    "page_status": "EXISTING",
+    "primary_keyword": "разработка сайта жилого комплекса",
+    "recommended_h1": "Кейсы и отраслевые решения: недвижимость, автобизнес, B2B, ритейл",
+    "recommended_title": "Портфолио и отраслевые кейсы веб-студии VOID | digital",
+    "keywords_count": 48,
+    "intent_distribution": {
+      "commercial": 48,
+      "informational": 0,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "сайт для жилого комплекса под ключ",
+      "сайт для жилого комплекса для бизнеса",
+      "сайт для жилого комплекса с индивидуальным дизайном",
+      "сайт для жилого комплекса с адаптацией под мобильные",
+      "сайт для жилого комплекса с анимацией",
+      "сайт для жилого комплекса премиум-класса",
+      "сайт для жилого комплекса с интеграциями",
+      "сайт для автобизнеса под ключ"
+    ]
+  },
+  {
+    "cluster_id": "C13",
+    "name": "Бренд VOID | digital & Навигация",
+    "type": "Brand / Navigational",
+    "target_page": "/about",
+    "page_status": "EXISTING",
+    "primary_keyword": "void digital",
+    "recommended_h1": "О веб-студии VOID | digital",
+    "recommended_title": "О нас — веб-студия VOID | digital: контакты, реквизиты, команда",
+    "keywords_count": 29,
+    "intent_distribution": {
+      "commercial": 0,
+      "informational": 0,
+      "navigational": 29
+    },
+    "sample_queries": [
+      "void digital",
+      "void | digital",
+      "void digital отзывы",
+      "void digital контакты",
+      "void digital портфолио",
+      "void digital услуги",
+      "void digital цены",
+      "void digital разработка сайтов"
+    ]
+  },
+  {
+    "cluster_id": "C14",
+    "name": "Блог: Подготовка, бриф и выбор формата сайта",
+    "type": "Informational Blog",
+    "target_page": "/blog-brief",
+    "page_status": "EXISTING",
+    "primary_keyword": "что подготовить перед заказом сайта",
+    "recommended_h1": "Подготовка к разработке сайта: бриф, бюджет и выбор формата",
+    "recommended_title": "Как подготовиться к разработке сайта: бриф, формат, бюджет — Блог VOID",
+    "keywords_count": 15,
+    "intent_distribution": {
+      "commercial": 0,
+      "informational": 15,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "лендинг или многостраничный сайт что выбрать",
+      "что подготовить перед заказом сайта",
+      "как составить бриф на разработку сайта",
+      "сколько стоит разработка сайта в 2026 году",
+      "сколько стоит лендинг для бизнеса",
+      "сколько стоит сайт компании под ключ",
+      "сколько стоит интернет-магазин с интеграцией 1с",
+      "как составить бюджет на разработку сайта"
+    ]
+  },
+  {
+    "cluster_id": "C15",
+    "name": "Блог: Технические гайды, WebGL и скорость загрузки",
+    "type": "Informational Blog",
+    "target_page": "/blog",
+    "page_status": "EXISTING",
+    "primary_keyword": "как добавить three js на сайт",
+    "recommended_h1": "Технические статьи и руководства по WebGL, Three.js и веб-скорости",
+    "recommended_title": "Статьи о 3D WebGL, чистом коде и скорости загрузки — Блог VOID | digital",
+    "keywords_count": 350,
+    "intent_distribution": {
+      "commercial": 0,
+      "informational": 350,
+      "navigational": 0
+    },
+    "sample_queries": [
+      "как разработать сайт с three.js",
+      "как добавить three.js на сайт",
+      "как сделать webgl анимацию на сайте",
+      "как создать 3d сайт",
+      "как использовать glsl шейдеры на сайте",
+      "как сделать эффект жидкого стекла на сайте",
+      "как сделать интерактивную физику на сайте",
+      "как добавить частицы на сайт"
+    ]
+  }
+]
