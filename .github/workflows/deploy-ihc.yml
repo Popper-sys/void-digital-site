@@ -39,6 +39,10 @@ jobs:
                 --exclude 'netlify.toml' --exclude '_redirects' --exclude 'lead-config.php' \
                 ./ "$USER@$HOST:www/$d/"
               $SSH "$USER@$HOST" "chmod -R a+rX www/$d"
+              echo "=== Права www/$d ==="
+              $SSH "$USER@$HOST" "ls -la www/$d/services/ www/$d/portfolio/"
+              echo "=== Логи хостинга ==="
+              $SSH "$USER@$HOST" "find logs/ -name '*error*' -exec tail -n 25 {} + 2>/dev/null || true"
             else
               echo "Папки www/$d на хостинге пока нет, пропускаю"
             fi
