@@ -33,11 +33,12 @@ jobs:
           for d in void-digital.ru p1068934.ihc.xyz; do
             if $SSH "$USER@$HOST" "test -d www/$d"; then
               echo "→ www/$d"
-              rsync -rlz --delete --checksum -e "$SSH" \
+              rsync -rlz --chmod=D755,F644 --delete --checksum -e "$SSH" \
                 --exclude '.git*' --exclude '.github/' --exclude 'tests/' --exclude 'scripts/' \
                 --exclude 'functions/' --exclude 'legacy-netlify/' --exclude 'README.md' \
                 --exclude 'netlify.toml' --exclude '_redirects' --exclude 'lead-config.php' \
                 ./ "$USER@$HOST:www/$d/"
+              $SSH "$USER@$HOST" "chmod -R a+rX www/$d"
             else
               echo "Папки www/$d на хостинге пока нет, пропускаю"
             fi
