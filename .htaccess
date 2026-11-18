@@ -5,6 +5,9 @@ ErrorDocument 404 /404.html
 AddDefaultCharset utf-8
 
 RewriteEngine On
+# Редирект с .html на чистый URL для вложенных страниц (services, portfolio)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /(services|portfolio)/([a-z0-9-]+)\.html\ HTTP/ [NC]
+RewriteRule ^(services|portfolio)/([a-z0-9-]+)\.html$ /$1/$2 [R=301,L]
 # https и без www — ВРЕМЕННО ВЫКЛЮЧЕНО, пока на ihc не выпущен SSL-сертификат
 #RewriteCond %{REQUEST_URI} !^/\.well-known/
 #RewriteCond %{HTTPS} off

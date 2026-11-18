@@ -1,3 +1,6 @@
+/services/*.html /services/:splat 301
+/portfolio/*.html /portfolio/:splat 301
+
 # Служебные файлы репозитория не должны открываться на сайте (Cloudflare Pages применяет редиректы даже к существующим файлам)
 /README.md / 301
 /netlify.toml / 301

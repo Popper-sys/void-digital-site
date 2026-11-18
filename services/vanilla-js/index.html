@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Кастомная веб-разработка на чистом Vanilla JavaScript — VOID | digital</title>
+  <meta name="description" content="Разработка быстрых сайтов на чистом HTML, CSS и Vanilla JavaScript без оверхеда фреймворков и лишних зависимостей. Мгновенная загрузка и надежность. От 20 000 ₽.">
+  <link rel="canonical" href="https://void-digital.ru/services/vanilla-js">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="VOID | digital">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Кастомная веб-разработка на чистом Vanilla JavaScript — VOID | digital">
+  <meta property="og:description" content="Разработка быстрых сайтов на чистом HTML, CSS и Vanilla JavaScript без оверхеда фреймворков и лишних зависимостей. Мгновенная загрузка и надежность. От 20 000 ₽.">
+  <meta property="og:url" content="https://void-digital.ru/services/vanilla-js">
+  <meta property="og:image" content="https://void-digital.ru/img/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css?v=64cd74b2">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Кастомная веб-разработка на чистом Vanilla JavaScript",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "VOID | digital",
+        "url": "https://void-digital.ru/"
+      },
+      "url": "https://void-digital.ru/services/vanilla-js",
+      "description": "Разработка быстрых сайтов на чистом HTML, CSS и Vanilla JavaScript без оверхеда фреймворков и лишних зависимостей. Мгновенная загрузка и надежность. От 20 000 ₽.",
+      "areaServed": "RU",
+      "offers": {
+        "@type": "Offer",
+        "price": "20000",
+        "priceCurrency": "RUB",
+        "priceValidUntil": "2027-12-31",
+        "description": "Разработка чистого сайта или интерфейса на Vanilla JavaScript под ключ."
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Zero-Build означает, что на сайте вообще нет JavaScript-инструментов?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Нет. Zero-Build означает, что кодовая база проекта не требует обязательной компиляции через Webpack или Vite для работы в браузере: используются нативные модули ES6+ и современный CSS. Это гарантирует запуск файлов прямо с сервера без сбоев сборки."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли реализовать Vanilla JS на существующем проекте?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Вы можете заменить тяжелые медленные скрипты (слайдеры, калькуляторы, модальные окна, фильтры) легковесными нативными микромодулями, снизив вес клиентского JS на сотни килобайт."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как менять контент, если на сайте нет панели CMS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Для большинства промо-сайтов и лендингов контент обновляется через чистую семантическую разметку либо подключается к легковесному headless API, Google Таблицам или Telegram-боту для оперативного редактирования цен и текстов."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Будет ли такой сайт удобен для дальнейшей поддержки сторонними разработчиками?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Максимально удобен. Чистый JavaScript по стандартам ECMAScript не устаревает годами: любому веб-разработчику не нужно разбираться в специфических абстракциях чужого фреймворка или устаревших версиях библиотек."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/services" aria-current="page">Услуги и цены</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/about">О нас</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
+      <li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+    </ul>
+  </div>
+</header>
+<main id="main">
+
+<div class="page-top">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Навигация">
+      <a href="/">Главная</a> <span class="sep">/</span>
+      <a href="/services">Услуги</a> <span class="sep">/</span>
+      <span>Vanilla JS разработка</span>
+    </nav>
+    <span class="feature-badge">Zero-Build · Pure JavaScript · No Framework Overhead</span>
+    <h1 class="page-title">Кастомная веб-разработка на чистом JavaScript без оверхеда фреймворков</h1>
+    <p class="lead">Разрабатываем коммерческие сайты и промо-интерфейсы на чистом Vanilla JS, семантическом HTML5 и современном CSS. Нулевой балласт неиспользуемых библиотек, мгновенный отклик интерфейса, прямой контроль над DOM-деревом и долговечность кода на 5+ лет без обновлений рантайма.</p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:24px;">
+      <a class="btn btn-primary" href="https://t.me/Voiddigit?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D1%83%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%BD%D0%B0%20Vanilla%20JS." target="_blank" rel="noopener">Обсудить проект в Telegram</a>
+      <a class="btn btn-outline" href="/#calc">Рассчитать стоимость</a>
+    </div>
+  </div>
+</div>
+
+<div class="container content-grid" style="margin-top: 40px; margin-bottom: 60px;">
+  <article class="article-body">
+    <section class="post-section">
+      <h2>Сайт, в котором каждая строчка кода имеет причину</h2>
+      <p>Современный веб перегружен абстракциями: стандартный одностраничный лендинг на React или Next.js нередко тянет за собой 400–800 КБ вспомогательного JavaScript-кода ради простого слайдера и формы заявки. Это замедляет инициализацию на бюджетных смартфонах и создает фатальные задержки гидратации.</p>
+      <p>В студии VOID | digital мы исповедуем принцип <strong>Zero-Build Vanilla Architecture</strong>: мы пишем код на чистом стандарте JavaScript (ES6+ Modules) без накладных расходов. Браузер выполняет код нативно на максимальной скорости, без прослоек виртуального DOM.</p>
+    </section>
+
+    <section class="post-section">
+      <h2>Когда архитектура без фреймворков и CMS выигрывает</h2>
+      <div class="grid-2" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin:20px 0;">
+        <div class="scenario-card">
+          <span class="feature-badge">Мгновенный старт</span>
+          <h3>FCP &lt; 0.5 с и мгновенный отклик</h3>
+          <p>Браузер отображает готовый контент сразу после получения первого пакета HTML. Пользователь не ждёт скачивания, парсинга и гидратации мегабайтных JS-бандлов.</p>
+        </div>
+        <div class="scenario-card">
+          <span class="feature-badge">Прямой контроль</span>
+          <h3>Идеальная интеграция с WebGL</h3>
+          <p>Прямой доступ к DOM-элементам и Canvas-контексту без конфликтов жизненных циклов компонентов React или Vue. Максимальная частота кадров для 3D-графики.</p>
+        </div>
+        <div class="scenario-card">
+          <span class="feature-badge">Долговечность</span>
+          <h3>Код работает годами без обновлений</h3>
+          <p>Стандарты W3C и ECMAScript сохраняют обратную совместимость десятилетиями. Ваш сайт не сломается через год из-за того, что npm-пакет стал deprecated.</p>
+        </div>
+        <div class="scenario-card">
+          <span class="feature-badge">Безопасность</span>
+          <h3>Нулевая поверхность атак</h3>
+          <p>Отсутствие уязвимых плагинов CMS (WordPress, Bitrix) и раздутых цепочек зависимостей (supply chain attacks). Сайт невозможно взломать через типовые эксплойты плагинов.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="post-section">
+      <h2>Сравнительная матрица архитектурных подходов</h2>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Критерий</th>
+              <th>Конструктор (Tilda) / CMS</th>
+              <th>React / Next.js SPA</th>
+              <th>Zero-Build Vanilla JS (VOID)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Объём клиентского JS</strong></td>
+              <td>1.5 – 4.0 МБ (балласт платформы)</td>
+              <td>350 – 900 КБ (рантайм фреймворка)</td>
+              <td><strong>15 – 60 КБ (только нужный код)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Скорость инициализации</strong></td>
+              <td>Медленно на слабых смартфонах</td>
+              <td>Задержка гидратации (INP 150+ мс)</td>
+              <td><strong>Мгновенно (INP &lt; 50 мс)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Сложность сборки и деплоя</strong></td>
+              <td>Закрытая экосистема платформы</td>
+              <td>Сложный CI/CD, сборка Webpack/Vite</td>
+              <td><strong>Статический хостинг (Zero-Build)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Свобода кастомизации</strong></td>
+              <td>Ограничена шаблонами и блоками</td>
+              <td>Высокая, но внутри компонентной модели</td>
+              <td><strong>Абсолютная свобода верстки и шейдеров</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Стоимость хостинга</strong></td>
+              <td>Ежемесячная подписка за тариф</td>
+              <td>Оплата Node.js серверов (SSR)</td>
+              <td><strong>Минимальная или бесплатная (CDN/Static)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Срок жизни без переписывания</strong></td>
+              <td>Зависит от обновлений платформы</td>
+              <td>2–3 года (устаревание библиотек)</td>
+              <td><strong>5–10 лет стабильной работы</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="post-section">
+      <h2>Для каких проектов идеально подходит стек</h2>
+      <ul>
+        <li><strong>Промо-сайты и флагманские лендинги:</strong> где критически важна безупречная эстетика, wow-эффекты и максимальная конверсия с рекламы.</li>
+        <li><strong>Интерактивные калькуляторы и конфигураторы:</strong> сложные расчетные модули со мгновенным пересчетом без лагов интерфейса.</li>
+        <li><strong>B2B-витрины и каталоги:</strong> проекты с фокусом на скорость загрузки, надежность и прямое получение лидов в CRM и Telegram.</li>
+        <li><strong>Высоконагруженные посадочные страницы:</strong> выдерживающие миллионный трафик без падения серверов за счет статической отдачи.</li>
+      </ul>
+    </section>
+
+    <section class="post-section">
+      <h2>Часто задаваемые вопросы (FAQ)</h2>
+      <div class="faq-list">
+        <details class="scenario-card" open>
+          <summary style="font-weight:600; cursor:pointer;">Zero-Build означает, что на сайте вообще нет JavaScript-инструментов?</summary>
+          <p style="margin-top:10px;">Нет. Zero-Build означает, что кодовая база проекта не требует обязательной компиляции через Webpack или Vite для работы в браузере: используются нативные модули ES6+ и современный CSS. Это гарантирует запуск файлов прямо с сервера без сбоев сборки.</p>
+        </details>
+        <details class="scenario-card">
+          <summary style="font-weight:600; cursor:pointer;">Можно ли реализовать Vanilla JS на существующем проекте?</summary>
+          <p style="margin-top:10px;">Да. Вы можете заменить тяжелые медленные скрипты (слайдеры, калькуляторы, модальные окна, фильтры) легковесными нативными микромодулями, снизив вес клиентского JS на сотни килобайт.</p>
+        </details>
+        <details class="scenario-card">
+          <summary style="font-weight:600; cursor:pointer;">Как менять контент, если на сайте нет панели CMS?</summary>
+          <p style="margin-top:10px;">Для большинства промо-сайтов и лендингов контент обновляется через чистую семантическую разметку либо подключается к легковесному headless API, Google Таблицам или Telegram-боту для оперативного редактирования цен и текстов.</p>
+        </details>
+        <details class="scenario-card">
+          <summary style="font-weight:600; cursor:pointer;">Будет ли такой сайт удобен для дальнейшей поддержки сторонними разработчиками?</summary>
+          <p style="margin-top:10px;">Максимально удобен. Чистый JavaScript по стандартам ECMAScript не устаревает годами: любому веб-разработчику не нужно разбираться в специфических абстракциях чужого фреймворка или устаревших версиях библиотек.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="scenario-card" style="margin-top:40px; background:rgba(139,123,255,0.06); border-color:rgba(139,123,255,0.3); text-align:center; padding:36px 20px;">
+      <h3 style="font-size:1.4rem; margin-bottom:12px;">Нужен быстрый и надежный сайт без технического долга?</h3>
+      <p style="max-width:600px; margin:0 auto 20px; color:var(--text-muted);">Обсудите ваш проект с инженерами VOID | digital. Мы разработаем чистое архитектурное решение под ваши бизнес-задачи.</p>
+      <a class="btn btn-primary" href="https://t.me/Voiddigit?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D1%83%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20%D0%BD%D0%B0%20Vanilla%20JS." target="_blank" rel="noopener">Обсудить проект в Telegram</a>
+    </div>
+  </article>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+    <ul class="social" aria-label="Связаться с нами">
+      <li><a href="tel:+79538550813" aria-label="Позвонить +7 953 855-08-13" title="Позвонить"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a></li>
+      <li><a href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"/></svg></a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg></a></li>
+      <li><a href="mailto:voiddigital@mail.ru" aria-label="Написать на почту voiddigital@mail.ru" title="Почта"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a></li>
+    </ul>
+    <ul class="footer-links">
+      <li><a href="/services">Услуги</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a href="/privacy">Политика конфиденциальности</a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener">Telegram</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="/js/main.js?v=1c546b46"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -12,13 +12,43 @@
   </url>
   <url>
     <loc>https://void-digital.ru/services/3d-webgl</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://void-digital.ru/services/interactive-design</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://void-digital.ru/services/speed-optimization</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://void-digital.ru/services/vanilla-js</loc>
+    <lastmod>2026-11-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://void-digital.ru/portfolio</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://void-digital.ru/portfolio/omg</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://void-digital.ru/portfolio/sotsvetie</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://void-digital.ru/portfolio/bmw-service</loc>
+    <lastmod>2026-11-18</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://void-digital.ru/about</loc>

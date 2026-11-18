@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Интерактивный дизайн и wow-эффекты на GLSL и Three.js — VOID | digital</title>
+  <meta name="description" content="Интерактивный дизайн сайта на Three.js и GLSL-шейдерах под ключ. Эффект жидкого стекла, 60 FPS, кинетическая типографика и адаптация под мобильные GPU. От 25 000 ₽.">
+  <link rel="canonical" href="https://void-digital.ru/services/interactive-design">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="VOID | digital">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Интерактивный дизайн и wow-эффекты на GLSL и Three.js — VOID | digital">
+  <meta property="og:description" content="Интерактивный дизайн сайта на Three.js и GLSL-шейдерах под ключ. Эффект жидкого стекла, 60 FPS, кинетическая типографика и адаптация под мобильные GPU. От 25 000 ₽.">
+  <meta property="og:url" content="https://void-digital.ru/services/interactive-design">
+  <meta property="og:image" content="https://void-digital.ru/img/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css?v=64cd74b2">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "name": "Интерактивный дизайн и wow-эффекты на GLSL и Three.js",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "VOID | digital",
+        "url": "https://void-digital.ru/"
+      },
+      "url": "https://void-digital.ru/services/interactive-design",
+      "description": "Интерактивный дизайн сайта на Three.js и GLSL-шейдерах под ключ. Эффект жидкого стекла, 60 FPS, кинетическая типографика и адаптация под мобильные GPU. От 25 000 ₽.",
+      "areaServed": "RU",
+      "offers": {
+        "@type": "Offer",
+        "price": "25000",
+        "priceCurrency": "RUB",
+        "priceValidUntil": "2027-12-31",
+        "description": "Разработка интерактивного дизайна, шейдерных эффектов и Three.js сцен под ключ."
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Можно ли сделать эффект жидкого стекла без потери читаемости?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Для этого мы разделяем визуальные слои: шейдер преломления и хроматической аберрации работает в фоновом canvas-контексте, а типографика, кнопки и формы остаются в стандартном DOM-дереве с высокой контрастностью (WCAG AAA) и чёткими границами."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Будет ли Three.js работать на смартфонах без лагов?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да, благодаря строгой оптимизации: на мобильных устройствах мы ограничиваем pixel ratio значением 1.0–1.5, отключаем тяжёлые пост-эффекты размытия и используем упрощённую геометрию, либо переключаем сцену на легковесный CSS-fallback при низком заряде батареи."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Что произойдёт, если у пользователя включён режим reduced-motion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Интерфейс мгновенно считывает системную директиву prefers-reduced-motion: reduce через CSS и JavaScript: агрессивные динамические трансформации и параллакс отключаются, анимация заменяется на плавный статический кадр без потери эстетики."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Можно ли встроить 3D-эффект в уже работающий сайт?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Zero-Build архитектура позволяет инкапсулировать WebGL-сцену в изолированный canvas-модуль, который подключается как независимый скрипт без необходимости переписывать существующий сайт или менять CMS."
+          }
+        }
+      ]
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/services" aria-current="page">Услуги и цены</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/about">О нас</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
+      <li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+    </ul>
+  </div>
+</header>
+<main id="main">
+
+<div class="page-top">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Навигация">
+      <a href="/">Главная</a> <span class="sep">/</span>
+      <a href="/services">Услуги</a> <span class="sep">/</span>
+      <span>Интерактивный дизайн</span>
+    </nav>
+    <span class="feature-badge">WebGL · Three.js · GLSL Shaders</span>
+    <h1 class="page-title">Интерактивный дизайн и визуальные wow-эффекты на GLSL и Three.js</h1>
+    <p class="lead">Интерактивный дизайн помогает раскрыть характер продукта через контролируемое движение, преломление света и мгновенный отклик на действия пользователя. Проектируем визуальный опыт как часть воронки продаж: графика привлекает внимание, подчеркивает статус бренда и не мешает конверсии.</p>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:24px;">
+      <a class="btn btn-primary" href="https://t.me/Voiddigit?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%BD%D0%B0%20Three.js." target="_blank" rel="noopener">Обсудить концепт в Telegram</a>
+      <a class="btn btn-outline" href="/#calc">Рассчитать стоимость</a>
+    </div>
+  </div>
+</div>
+
+<div class="container content-grid" style="margin-top: 40px; margin-bottom: 60px;">
+  <article class="article-body">
+    <section class="post-section">
+      <h2>Первый экран, который не просто выглядит эффектно</h2>
+      <p>Интерактивный дизайн сайта решает фундаментальную задачу в условиях баннерной слепоты: он удерживает внимание посетителя в первые 3–5 секунд визита и формирует эмоциональное доверие к технологическому уровню компании. Мы разрабатываем кастомные сайты с GLSL-шейдерами и сценами на Three.js в архитектуре <strong>Zero-Build Vanilla HTML/CSS/JS</strong> — без массивных сторонних зависимостей и тяжёлых фреймворков.</p>
+      <p>На старте мы детально разбираем целевой сценарий: от выразительного первого экрана до эффекта жидкого стекла (refraction / chromatic aberration), кинетической типографики и параллакса, управляемого курсором и скроллом. Затем создаём прототип и проверяем его поведение на реальных экранах смартфонов и ноутбуков.</p>
+    </section>
+
+    <section class="post-section">
+      <h2>Четыре сценария интерактивного дизайна</h2>
+      <div class="grid-2" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin:20px 0;">
+        <div class="scenario-card">
+          <span class="feature-badge">Сценарий 1</span>
+          <h3>Эмоциональный первый экран</h3>
+          <p>Создание ощущения глубины и пространства: динамическое световое поле, сферические искажения или объёмный объект, мягко реагирующий на движение курсора. Внимание посетителя фокусируется на ключевом УТП без перегрузки визуального поля.</p>
+        </div>
+        <div class="scenario-card">
+          <span class="feature-badge">Сценарий 2</span>
+          <h3>Шейдерные переходы и жидкое стекло</h3>
+          <p>Кастомные GLSL-шейдеры преломления света (glass refraction), хроматической аберрации и искажения фона. Элементы интерфейса оживают под курсором, создавая тактильный премиальный эффект дорогого физического материала.</p>
+        </div>
+        <div class="scenario-card">
+          <span class="feature-badge">Сценарий 3</span>
+          <h3>Кинетическая типографика</h3>
+          <p>Заголовки и ключевые фразы, реагирующие на скорость скролла и вектор перемещения мыши: расщепление глифов, плавное появление по траекториям Безье и акцентная динамика ключевых продуктовых смыслов.</p>
+        </div>
+        <div class="scenario-card">
+          <span class="feature-badge">Сценарий 4</span>
+          <h3>Физика частиц и интерактивный курсор</h3>
+          <p>Системы частиц с расчётом гравитации и отталкивания на GPU (GPGPU-шейдеры), мягкий пост-процессинг (UnrealBloomPass) и реакция на касания сенсорного экрана, вовлекающие пользователя в игровой сценарий изучения продукта.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="post-section">
+      <h2>Инженерный подход: визуальный эффект под контролем</h2>
+      <p>Красота не должна приносить в жертву производительность и конверсию. Наш производственный регламент базируется на трёх строгих правилах:</p>
+      <ul>
+        <li><strong>Стабильные 60 FPS на десктопе:</strong> оптимизация количества вызовов отрисовки (draw calls), объединение геометрий (InstancedMesh) и контроль нагрузки на графический процессор.</li>
+        <li><strong>Доступность и Reduced-Motion:</strong> автоматическая адаптация под пользователей с чувствительным вестибулярным аппаратом. При директиве <code>prefers-reduced-motion: reduce</code> сайт мгновенно выключает резкие анимации.</li>
+        <li><strong>Энергоэффективность мобильных GPU:</strong> ленивая инициализация WebGL через <code>IntersectionObserver</code> (анимация рендерится только когда видна на экране) и отключение цикла рендера в фоновых вкладках.</li>
+      </ul>
+    </section>
+
+    <section class="post-section">
+      <h2>Пять этапов разработки</h2>
+      <ol style="padding-left: 20px; line-height: 1.8;">
+        <li><strong>Концепт-борд и выбор механики:</strong> подбор референсов, согласование уровня интерактивности и сценария взаимодействия с посетителем.</li>
+        <li><strong>Прототипирование шейдеров:</strong> разработка GLSL-кода или Three.js сцены в изолированной тестовой песочнице.</li>
+        <li><strong>Нагрузочное профилирование FPS:</strong> замеры таймингов кадров в Chrome Performance Profiler на слабом дискретном и интегрированном видеочипе.</li>
+        <li><strong>Интеграция в верстку сайта:</strong> бесшовная связка Canvas-контекста с HTML-DOM разметкой, типографикой и кнопками заявок.</li>
+        <li><strong>Кросс-платформенное тестирование:</strong> проверка стабильности на экранах iOS Safari, Android Chrome и десктопных мониторах 4K.</li>
+      </ol>
+    </section>
+
+    <section class="post-section">
+      <h2>Часто задаваемые вопросы (FAQ)</h2>
+      <div class="faq-list">
+        <details class="scenario-card" open>
+          <summary style="font-weight:600; cursor:pointer;">Можно ли сделать эффект жидкого стекла без потери читаемости?</summary>
+          <p style="margin-top:10px;">Да. Для этого мы разделяем визуальные слои: шейдер преломления и хроматической аберрации работает в фоновом canvas-контексте, а типографика, кнопки и формы остаются в стандартном DOM-дереве с высокой контрастностью (WCAG AAA) и чёткими границами.</p>
+        </details>
+        <details class="scenario-card">
+          <summary style="font-weight:600; cursor:pointer;">Будет ли Three.js работать на смартфонах без лагов?</summary>
+          <p style="margin-top:10px;">Да, благодаря строгой оптимизации: на мобильных устройствах мы ограничиваем pixel ratio значением 1.0–1.5, отключаем тяжёлые пост-эффекты размытия и используем упрощённую геометрию, либо переключаем сцену на легковесный CSS-fallback при низком заряде батареи.</p>
+        </details>
+        <details class="scenario-card">
+          <summary style="font-weight:600; cursor:pointer;">Что произойдёт, если у пользователя включён режим reduced-motion?</summary>
+          <p style="margin-top:10px;">Интерфейс мгновенно считывает системную директиву <code>prefers-reduced-motion: reduce</code> через CSS и JavaScript: агрессивные динамические трансформации и параллакс отключаются, анимация заменяется на плавный статический кадр без потери эстетики.</p>
+        </details>
+        <details class="scenario-card">
+          <summary style="font-weight:600; cursor:pointer;">Можно ли встроить 3D-эффект в уже работающий сайт?</summary>
+          <p style="margin-top:10px;">Да. Zero-Build архитектура позволяет инкапсулировать WebGL-сцену в изолированный canvas-модуль, который подключается как независимый скрипт без необходимости переписывать существующий сайт или менять CMS.</p>
+        </details>
+      </div>
+    </section>
+
+    <div class="scenario-card" style="margin-top:40px; background:rgba(139,123,255,0.06); border-color:rgba(139,123,255,0.3); text-align:center; padding:36px 20px;">
+      <h3 style="font-size:1.4rem; margin-bottom:12px;">Готовы внедрить wow-эффект в свой проект?</h3>
+      <p style="max-width:600px; margin:0 auto 20px; color:var(--text-muted);">Присылайте задачу, текущий сайт или референсы визуального стиля. Мы подготовим техническое решение и назовём точные сроки реализации.</p>
+      <a class="btn btn-primary" href="https://t.me/Voiddigit?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9%20%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD." target="_blank" rel="noopener">Обсудить концепт в Telegram</a>
+    </div>
+  </article>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+    <ul class="social" aria-label="Связаться с нами">
+      <li><a href="tel:+79538550813" aria-label="Позвонить +7 953 855-08-13" title="Позвонить"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a></li>
+      <li><a href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5!%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"/></svg></a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg></a></li>
+      <li><a href="mailto:voiddigital@mail.ru" aria-label="Написать на почту voiddigital@mail.ru" title="Почта"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a></li>
+    </ul>
+    <ul class="footer-links">
+      <li><a href="/services">Услуги</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a href="/privacy">Политика конфиденциальности</a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener">Telegram</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="/js/main.js?v=1c546b46"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
