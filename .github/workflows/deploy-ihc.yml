@@ -1,9 +1,9 @@
 name: Выкладка на ihc.ru
 
-# После каждого push в main файлы сайта заливаются по SSH (rsync) на хостинг ihc.ru:
+# После каждого push в main файлы сайта заливаются по SSH (rsync) или FTPS (lftp) на хостинг ihc.ru:
 # в папку боевого домена и в папку технического адреса (на нём проверяем без домена).
-# Логин и пароль хостинга хранятся только в секретах репозитория: FTP_USER, FTP_PASSWORD (они же для SSH).
-# Сайты лежат в /home/p1068934/www/<домен>/. Папки, которых ещё нет на хостинге, пропускаются.
+# Логин и пароль хостинга хранятся только в секретах репозитория: FTP_USER, FTP_PASSWORD.
+# Сайты лежат в /home/p1068934/www/<домен>/.
 on:
   push:
     branches: [main]
@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
       HOST: p1068934.ftp.ihc.ru
@@ -25,25 +25,58 @@ jobs:
       - uses: actions/checkout@v4
       - name: Подготовка
         run: |
-          sudo apt-get install -y -qq sshpass rsync >/dev/null
+          sudo apt-get update -qq && sudo apt-get install -y -qq sshpass rsync lftp >/dev/null
           mkdir -p ~/.ssh && ssh-keyscan -T 20 "$HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
-      - name: Заливка по SSH
+      - name: Диагностика подключений
         run: |
+          echo "=== Проверка SSH ==="
+          sshpass -e ssh -v -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15 "$USER@$HOST" "id; pwd" 2>&1 | head -n 35 || true
+          echo "=== Проверка FTP/FTPS ==="
+          lftp -u "$USER,$SSHPASS" "$HOST" -e "set ssl:verify-certificate no; ls www/; bye" 2>&1 || true
+      - name: Заливка на хостинг
+        run: |
+          set -u
+          DEPLOYED=0
           SSH="sshpass -e ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=30"
+          
+          # Пробуем SSH
+          SSH_OK=0
+          if $SSH "$USER@$HOST" "true" 2>/dev/null; then
+            SSH_OK=1
+            echo "SSH подключение успешно"
+          else
+            echo "SSH недоступен или отклонил авторизацию, переключаюсь на FTP/FTPS"
+          fi
+
           for d in void-digital.ru p1068934.ihc.xyz; do
-            if $SSH "$USER@$HOST" "test -d www/$d"; then
-              echo "→ www/$d"
-              rsync -rlz --chmod=D755,F644 --delete --checksum -e "$SSH" \
-                --exclude '.git*' --exclude '.github/' --exclude 'tests/' --exclude 'scripts/' \
-                --exclude 'functions/' --exclude 'legacy-netlify/' --exclude 'README.md' \
-                --exclude 'netlify.toml' --exclude '_redirects' --exclude 'lead-config.php' \
-                ./ "$USER@$HOST:www/$d/"
-              $SSH "$USER@$HOST" "chmod -R a+rX www/$d"
-              echo "=== Права www/$d ==="
-              $SSH "$USER@$HOST" "ls -la www/$d/services/ www/$d/portfolio/"
-              echo "=== Логи хостинга ==="
-              $SSH "$USER@$HOST" "find logs/ -name '*error*' -exec tail -n 25 {} + 2>/dev/null || true"
+            if [ "$SSH_OK" -eq 1 ]; then
+              if $SSH "$USER@$HOST" "test -d www/$d"; then
+                echo "→ rsync через SSH в www/$d"
+                rsync -rlz --chmod=D755,F644 --delete --checksum -e "$SSH" \
+                  --exclude '.git*' --exclude '.github/' --exclude 'tests/' --exclude 'scripts/' \
+                  --exclude 'functions/' --exclude 'legacy-netlify/' --exclude 'README.md' \
+                  --exclude 'netlify.toml' --exclude '_redirects' --exclude 'lead-config.php' \
+                  ./ "$USER@$HOST:www/$d/"
+                $SSH "$USER@$HOST" "chmod -R a+rX www/$d"
+                echo "=== Права www/$d ==="
+                $SSH "$USER@$HOST" "ls -la www/$d/services/ www/$d/portfolio/"
+                DEPLOYED=1
+              else
+                echo "Папки www/$d на хостинге пока нет, пропускаю"
+              fi
             else
-              echo "Папки www/$d на хостинге пока нет, пропускаю"
+              echo "→ Проверяю наличие www/$d на FTP"
+              if lftp -u "$USER,$SSHPASS" "$HOST" -e "set ssl:verify-certificate no; cd www/$d; bye" 2>/dev/null; then
+                echo "→ lftp mirror в www/$d"
+                lftp -u "$USER,$SSHPASS" "$HOST" -e "set ssl:verify-certificate no; cd www/$d; mirror -R --delete --verbose=1 --exclude-glob '.git*' --exclude-glob '.github/' --exclude-glob 'tests/' --exclude-glob 'scripts/' --exclude-glob 'functions/' --exclude-glob 'legacy-netlify/' --exclude-glob 'README.md' --exclude-glob 'netlify.toml' --exclude-glob '_redirects' --exclude-glob 'lead-config.php' ./ .; bye"
+                DEPLOYED=1
+              else
+                echo "Папки www/$d на FTP нет, пропускаю"
+              fi
             fi
           done
+
+          if [ "$DEPLOYED" -eq 0 ]; then
+            echo "ОШИБКА: Ни одна директория не была обновлена!"
+            exit 1
+          fi
