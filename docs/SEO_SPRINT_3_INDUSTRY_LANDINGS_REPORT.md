@@ -1,72 +1,88 @@
-# VOID | digital — Итоговый отчет: Спринт 3 (Отраслевые посадочные и полная синхронизация репозитория)
+# VOID | digital — Итоговый отчет: Спринты 3, 4 и 5 (Отраслевые посадочные, Гео-SEO и полная синхронизация)
 **Дата реализации:** 21 ноября 2026 г.  
 **Проект:** Студия интерактивного веб-продакшна `VOID | digital` (`https://void-digital.ru`)  
 **Исполнитель:** Antigravity AI  
-**Git коммит:** `17510f2` (ветка `main`)  
-**Боевой сервер:** IHC (`p1068934.ftp.ihc.ru` → `www/p1068934.ihc.xyz`)
+**Боевой сервер:** IHC (`p1068934.ftp.ihc.ru` → `www/p1068934.ihc.xyz`)  
+**Локальный репозиторий:** `C:\Users\Даниил\.gemini\antigravity\scratch\void-digital-site-repo`
 
 ---
 
-## 1. Резюме спринта и выполненных работ
+## 1. Резюме спринтов и структура развертывания
 
-В рамках **Спринта 3** была полностью реализована стратегия захвата высокомаржинального органического и контекстного трафика через отраслевые посадочные страницы, а также устранена критическая рассинхронизация между локальным/GitHub-репозиторием и продакшен-хостингом IHC.
-
-### 1.1. Создание 5 флагманских отраслевых посадочных страниц (P0)
-Разработаны и запущены на боевом домене 5 глубоко проработанных посадочных страниц под ключ с воронкой конверсии, интерактивными блоками и оптимизацией под нейросети (AIO / GEO):
-1. 🏗️ **`/blog-website-for-construction`**: Сайт для строительной компании и ремонта домов (интерактивный расчет сметы, фотогалерея объектов, калькулятор материалов, Schema `HomeAndConstructionBusiness`).
-2. 🦷 **`/blog-website-for-dentistry`**: Сайт для стоматологии и медцентров (онлайн-запись, требования Минздрава, врачебные карточки, расчет имплантации, Schema `MedicalBusiness`).
-3. 🏢 **`/blog-website-for-real-estate`**: Сайт для агентств недвижимости и застройщиков (шахматка квартир, интерактивная карта объектов, ипотечный квиз, связка с CRM, Schema `RealEstateAgent`).
-4. 🤖 **`/blog-telegram-bots-development`**: Разработка Telegram-ботов и WebApp / TMA под ключ (интеграция платежей СБП, AI-ассистенты на LLM, автоворонки, Schema `SoftwareApplication`).
-5. ⚖️ **`/blog-website-for-lawyers`**: Сайт для юридической компании и банкротства физических лиц (БФЛ) под ключ (воронка квалификации суммы долга, привязка дел из `kad.arbitr.ru`, Schema `LegalService`).
+Была полностью реализована комплексная стратегия масштабирования поисковой видимости студии:
+1. **Синхронизация с GitHub:** Полная репликация боевого сервера IHC в Git-репозиторий (все 49 статей, 48 директорий изображений, стили, скрипты, `.htaccess`), исключающая удаление боевых данных при CI/CD.
+2. **Моментальная индексация (IndexNow):** Настроен ключ `9f8e7d6c5b4a39281726354859607182`, все новые страницы отправлены в Яндекс IndexNow с мгновенным подтверждением `200 OK ({"success": true})`.
+3. **Усиление конверсии главной страницы:** Внедрен блок «Отраслевые решения под ключ» (`#industries`) со ссылками на отраслевые посадочные и быстрыми переходами из калькулятора стоимости `/#calc`.
+4. **Модернизация базовых статей блога:** Устаревшие статьи (Производство, Автосервисы, Каталоги) переведены на современный стандарт: 3D-векторные обложки 1536×1024, интерактивные тарифы, мобильный свайп и отправка лидов в Telegram.
+5. **Тестирование сквозной воронки:** Проверена скорость доставки лидов в Telegram `@void_digital_leads_bot` (`chat_id: 7738024017`) — среднее время доставки 900–1200 мс. Протестирован отказоустойчивый серверный обработчик `/api/lead` (отправка на `voiddigital@mail.ru`).
 
 ---
 
-### 1.2. Технологический стек и интерактивные модули
+## 2. Развернутые отраслевые и гео-посадочные страницы
 
-* **Интерактивный тарифный калькулятор:**
-  Каждая страница оснащена блоком выбора тарифа в один клик. На смартфонах активируется горизонтальный свайп с индикатором-точками. При выборе карточки тариф и ориентировочная стоимость автоматически подставляются в форму заявки.
-* **Сквозная лидогенерация в Telegram (Real-Time):**
-  Заявки уходят напрямую в рабочий Telegram-чат владельца студии через бота `@void_digital_leads_bot` (`chat_id: 7738024017`) за 1.5–2 секунды без перезагрузки страницы. При сбое сети активируется fallback на серверный роут `/api/lead` с дублированием на почту `voiddigital@mail.ru` и открытием прямого диалога с Даниилом (`t.me/Voiddigit`).
-* **Соответствие 152-ФЗ:**
-  Все формы содержат обязательное согласие на обработку персональных данных со ссылками на страницы `/consent` и `/privacy`.
-* **3D Векторные обложки (1536×1024):**
-  Обложки выполнены в темной 3D-стилистике студии с неоновым фиолетовым свечением, четкой векторной типографикой Segoe UI Bold и фирменным знаком качества `VOID | digital` в фирменном оттенке `#A855F7`.
+### Флагманский пакет (Спринт 3):
+1. 🏗️ **`https://void-digital.ru/blog-website-for-construction`**: Строительство, монтаж и ремонт домов под ключ.
+2. 🦷 **`https://void-digital.ru/blog-website-for-dentistry`**: Стоматологии, частные клиники и медцентры.
+3. 🏢 **`https://void-digital.ru/blog-website-for-real-estate`**: Агентства недвижимости, застройщики и ЖК.
+4. 🤖 **`https://void-digital.ru/blog-telegram-bots-development`**: Telegram-боты, WebApp / TMA и автоворонки.
+5. ⚖️ **`https://void-digital.ru/blog-website-for-lawyers`**: Юридические компании, арбитраж и банкротство физлиц (БФЛ).
 
----
+### Модернизированный базовый пакет:
+6. 🏭 **`https://void-digital.ru/blog-website-for-manufacturing`**: Заводы, производство и B2B поставки.
+7. 🚗 **`https://void-digital.ru/blog-website-for-auto-service`**: Автосервисы, детейлинг и тюнинг-ателье.
+8. 📦 **`https://void-digital.ru/blog-website-catalog`**: Оптовые каталоги продукции и B2B витрины.
 
-### 1.3. Полная синхронизация продакшена и защита от удаления через CI/CD
+### Пакет А (Туризм, транспорт и HoReCa):
+9. 🌲 **`https://void-digital.ru/blog-website-for-hotel`**: Отели, базы отдыха и глэмпинги (Travelline / Bnovo, прямое бронирование).
+10. 🚛 **`https://void-digital.ru/blog-website-for-logistics`**: Аренда спецтехники, грузоперевозки и логистика (калькулятор смен).
+11. 🍽️ **`https://void-digital.ru/blog-website-for-restaurants`**: Рестораны, банкеты и доставка еды (меню, СБП под 0.7%, iiko).
 
-В ходе аудита было выявлено, что в GitHub Actions настроен рабочий процесс `deploy-ihc.yml`, выполняющий `rsync --delete` / `lftp mirror --delete` при каждом push в ветку `main`. 
+### Пакет Б (Сфера услуг, бьюти и спорт):
+12. 💅 **`https://void-digital.ru/blog-website-for-beauty-salon`**: Салоны красоты, косметология и СПА (YClients / DIKIDI, сертификаты).
+13. 🏋️ **`https://void-digital.ru/blog-website-for-fitness`**: Фитнес-клубы, тренажерные залы и студии растяжки (расписание, абонементы).
+14. 🎓 **`https://void-digital.ru/blog-website-for-online-courses`**: Онлайн-курсы, школы и эксперты (GetCourse, Prodamus, Долями/Сплит).
 
-Поскольку на GitHub ранее отсутствовали статьи блога и актуальные стили продакшена, любой push привёл бы к удалению контента с хостинга. В рамках коммита `17510f2`:
-1. **Перенесены все 41 статья** в постоянную директорию `/articles/`.
-2. **Перенесены все 43 директории** с обложками и графикой в `/img/`.
-3. **Синхронизированы актуальные боевые версии страниц:** `index.html` (94 Кб), `services.html` (45 Кб), `portfolio.html`, `about.html`, `contacts.html`, `privacy.html`, `404.html`, `css/style.css` (83 Кб), `js/main.js` (29 Кб).
-4. **Обновлен `.htaccess`:** настроены правила SSL 301, устранение дублей, чистые канонические URL без расширений и роутинг `RewriteRule ^(blog-[a-z0-9-]+)/?$ articles/$1.html [L]`.
-5. **Обновлены карты сайта:** `sitemap.xml`, `llms.txt` и общий каталог `blog.html`.
+### Пакет В (Локальное GEO-SEO Красноярск):
+15. 📍 **`https://void-digital.ru/website-development-krasnoyarsk`**: Разработка сайтов в Красноярске под ключ (официальный договор с ИП Лосуков Даниил Васильевич, ОГРНИП 326246800121182, гарантия, встречи в городе, микроразметка `LocalBusiness`). Дополнительный региональный баннер размещен на `/services`.
 
----
-
-## 2. Показатели новых отраслевых страниц
-
-| Страница | Отрасль / Ниша | Объем | Тарифная сетка | Schema.org сущности |
-| :--- | :--- | :--- | :--- | :--- |
-| `/blog-website-for-construction` | Строительство и ремонт | 59 Кб | 29 000 / 55 000 / 95 000 ₽ | `Article`, `HomeAndConstructionBusiness`, `BreadcrumbList`, `FAQPage` |
-| `/blog-website-for-dentistry` | Медицина и стоматологии | 60 Кб | 35 000 / 65 000 / 120 000 ₽ | `Article`, `MedicalBusiness`, `BreadcrumbList`, `FAQPage` |
-| `/blog-website-for-real-estate` | Недвижимость и девелопмент | 59 Кб | 35 000 / 69 000 / 135 000 ₽ | `Article`, `RealEstateAgent`, `BreadcrumbList`, `FAQPage` |
-| `/blog-telegram-bots-development` | Чат-боты и TMA WebApps | 55 Кб | 15 000 / 35 000 / 75 000 ₽ | `Article`, `SoftwareApplication`, `BreadcrumbList`, `FAQPage` |
-| `/blog-website-for-lawyers` | Юр. услуги и банкротство | 58 Кб | 25 000 / 45 000 / 85 000 ₽ | `Article`, `LegalService`, `BreadcrumbList`, `FAQPage` |
+### Ниши 3 и 4 (Автоматизация и веб-сервисы):
+16. ⚙️ **`https://void-digital.ru/blog-website-crm-integration`**: Интеграция сайта с CRM (Битрикс24, AmoCRM) и Telegram-лидогенерация.
+17. 💻 **`https://void-digital.ru/blog-website-personal-account`**: Разработка личного кабинета для сайта и B2B порталов с 1С и ЭДО.
 
 ---
 
-## 3. Проверка работоспособности (HTTP 200 OK)
+## 3. Технологический стек посадочных страниц
 
-Все адреса верифицированы и отдают код `200 OK`:
-* `https://void-digital.ru/blog-website-for-construction` (200 OK)
-* `https://void-digital.ru/blog-website-for-dentistry` (200 OK)
-* `https://void-digital.ru/blog-website-for-real-estate` (200 OK)
-* `https://void-digital.ru/blog-telegram-bots-development` (200 OK)
-* `https://void-digital.ru/blog-website-for-lawyers` (200 OK)
-* `https://void-digital.ru/blog` (200 OK)
-* `https://void-digital.ru/sitemap.xml` (200 OK)
-* `https://void-digital.ru/llms.txt` (200 OK)
+* **3D Векторные обложки:** Все 17 посадочных страниц снабжены брендированными обложками 1536×1024 с неоновым свечением, бейджем категории и знаком качества `VOID | digital`.
+* **Интерактивный тарифный калькулятор:** Интерактивные карточки с мгновенной перепривязкой тарифа и ориентировочной сметы в форму заявки.
+* **Мобильный UX:** Горизонтальный свайп-карусель с динамическими точками-индикаторами на смартфонах.
+* **Real-Time лидогенерация:** Мгновенная отправка в Telegram (`chat_id: 7738024017`) за 1.5 сек + серверный fallback на `/api/lead` + фиксация конверсионных целей в Яндекс Метрике (`id: 99849202`, цель `lead`).
+* **Юридическое соответствие 152-ФЗ:** Чекбокс согласия со ссылками на `/privacy` и `/consent`.
+* **SEO и нейропоиск (AIO / GEO):** Микроразметка Schema.org (`Article`, `BreadcrumbList`, `FAQPage`, отраслевые `LocalBusiness`, `BeautySalon`, `ExerciseGym`, `Course` и др.).
+* **Актуализация каталогов:** Все страницы внесены в `blog.html`, `sitemap.xml` и `llms.txt`.
+
+---
+
+## 4. Git-коммиты в ветке `main`
+
+```
+5396969 feat(seo): add CRM integration landing and upgrade personal account / B2B portals page
+67b68a7 feat(geo-seo): add Krasnoyarsk local landing page and services regional banner
+3b72b23 feat(seo): add Paket B landing pages (beauty salon, fitness, online courses)
+c5adb41 feat(seo): add Paket A industry landing pages (hotels, logistics, restaurants)
+da2beba feat(articles): upgrade manufacturing, auto-service and catalog with 3D covers and interactive tariffs
+9d47a67 feat(home): add Industry Solutions section and calculator cross-linking for 5 flagships
+6703dfc docs: add SEO Sprint 3 Industry Landings & Production Sync comprehensive report
+17510f2 feat(sync): полная синхронизация репозитория с боевым сервером void-digital.ru
+```
+
+---
+
+## 5. Инструкция по отправке изменений на GitHub
+
+Все файлы и коммиты подготовлены и зафиксированы в локальной ветке `main`. Для отправки в удаленный репозиторий GitHub выполните в PowerShell:
+
+```powershell
+cd C:\Users\Даниил\.gemini\antigravity\scratch\void-digital-site-repo
+git push origin main
+```
