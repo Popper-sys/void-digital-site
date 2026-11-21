@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Интеграция сайта с CRM и Telegram под ключ — VOID Digital</title>
+  <meta name="description" content="Подключение CRM (Битрикс24, AmoCRM), мгновенных уведомлений в Telegram и WhatsApp к вашему сайту под ключ. Захват лидов за 2 секунды, исключение потери клиентов, сквозная веб-аналитика.">
+  <link rel="canonical" href="https://void-digital.ru/blog-website-crm-integration">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="VOID | digital">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Интеграция сайта с CRM и Telegram под ключ — VOID Digital">
+  <meta property="og:description" content="Подключение CRM (Битрикс24, AmoCRM), мгновенных уведомлений в Telegram и WhatsApp к вашему сайту под ключ. Захват лидов за 2 секунды, исключение потери клиентов, сквозная веб-аналитика.">
+  <meta property="og:url" content="https://void-digital.ru/blog-website-crm-integration">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://void-digital.ru/img/blog-website-crm-integration/blog-crm-integration-cover.jpg?v=20261121">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Интеграция сайта с CRM и Telegram ботами в VOID Digital">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/Manrope-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css?v=f00a3e5f">
+  
+  <style>
+    .post-figure { margin: 28px 0; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post .cta p { max-width: none; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+    .post table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .95rem; }
+    .post th, .post td { padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); text-align: left; }
+    .post th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: color-mix(in srgb, currentColor 4%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .cta-banner p { margin: 0; font-weight: 500; font-size: 1.05rem; }
+    
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-action:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    /* Stat Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .stat-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: left;
+    }
+    .stat-val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .stat-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Tariff Card Interactive */
+    .tariff-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1.5px solid color-mix(in srgb, currentColor 12%, transparent);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .tariff-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .tariff-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    /* Portfolio Highlights */
+    .portfolio-grid-inline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .portfolio-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+    .portfolio-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .portfolio-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .portfolio-card h4 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+    .portfolio-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0 0 16px;
+      line-height: 1.45;
+    }
+    .portfolio-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+      }
+      #landing-tariffs-grid > .tariff-card {
+        min-width: 82vw;
+        flex: 0 0 82vw;
+        scroll-snap-align: center;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Интеграция сайта с CRM и Telegram: захват лидов за 2 секунды под ключ",
+    "description": "Подключение CRM (Битрикс24, AmoCRM), мгновенных уведомлений в Telegram и WhatsApp к вашему сайту под ключ. Захват лидов за 2 секунды, исключение потери клиентов, сквозная веб-аналитика.",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://void-digital.ru/blog-website-crm-integration"
+    },
+    "image": [
+      "https://void-digital.ru/img/blog-website-crm-integration/blog-crm-integration-cover.jpg?v=20261121"
+    ],
+    "datePublished": "2026-11-21T18:00:00+03:00",
+    "dateModified": "2026-11-21T18:00:00+03:00",
+    "author": {
+      "@type": "Organization",
+      "name": "VOID | digital",
+      "url": "https://void-digital.ru/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "VOID | digital",
+      "url": "https://void-digital.ru/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://void-digital.ru/favicon.svg"
+      }
+    },
+    "articleSection": "Автоматизация и интеграции",
+    "inLanguage": "ru-RU"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://void-digital.ru/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Блог",
+        "item": "https://void-digital.ru/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Интеграция CRM и Telegram",
+        "item": "https://void-digital.ru/blog-website-crm-integration"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Зачем подключать Telegram, если заявки уже падают на почту?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Письма на email часто попадают в спам или просматриваются спустя 1-2 часа, когда клиент уже заказал у конкурента. В Telegram уведомление со звуком приходит за 2 секунды прямо в карман менеджеру или в рабочий чат отдела продаж."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "С какими CRM-системами вы работаете?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Мы настраиваем интеграции с Битрикс24, amoCRM, RetailCRM, YClients, МойСклад, 1С, а также разрабатываем кастомные Webhook-обработчики под любые внутренние базы данных."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Сколько времени занимает настройка интеграции?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Базовая связка форм сайта с Telegram-ботом настраивается за 1–2 рабочих дня. Комплексная интеграция с воронками Битрикс24 или AmoCRM — от 3 до 5 дней."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="/" aria-label="VOID digital — на главную">
+      <span class="logo-mark">▲</span>
+      <span class="logo-text">VOID <span>digital</span></span>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <ul class="nav-list">
+        <li><a href="/services">Услуги</a></li>
+        <li><a href="/portfolio">Портфолио</a></li>
+        <li><a href="/blog" class="active">Блог</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-sm header-cta" href="/#calc">Рассчитать сайт</a>
+  </div>
+</header>
+
+
+<main class="site-main">
+  <article class="post">
+    <div class="container container-sm">
+      <nav class="breadcrumb" aria-label="Хлебные крошки">
+        <ol>
+          <li><a href="/">Главная</a></li>
+          <li><a href="/blog">Блог</a></li>
+          <li aria-current="page">Интеграция CRM и Telegram</li>
+        </ol>
+      </nav>
+
+      <header class="post-header">
+        <span class="tag">Автоматизация и интеграции</span>
+        <h1>Интеграция сайта с CRM и Telegram: захват лидов за 2 секунды под ключ</h1>
+        <div class="post-meta">
+          <span>6 мин чтения</span>
+          <span class="bullet" aria-hidden="true">•</span>
+          <time datetime="2026-11-21">21 ноября 2026</time>
+        </div>
+      </header>
+
+      <figure class="post-figure">
+        <img src="/img/blog-website-crm-integration/blog-crm-integration-cover.jpg?v=20261121" alt="Интеграция сайта с CRM и Telegram ботами под ключ" width="1536" height="1024" loading="eager">
+      </figure>
+
+      <div class="post-body">
+        
+        <p class="lead">По статистике Harvard Business Review, компании, которые связываются с клиентом в течение <strong>первых 5 минут</strong> после отправки заявки, закрывают сделки в <strong>7 раз чаще</strong>. Если заявка падает на почту и ждет ответа полдня — бюджет на контекстную рекламу слит впустую. Мы подключаем мгновенную сквозную диспетчеризацию лидов с сайта прямо в ваш Telegram и CRM.</p>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-val">2 сек</div>
+            <p class="stat-desc">скорость доставки лида со всеми UTM-метками в ваш Telegram-чат</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">0%</div>
+            <p class="stat-desc">потерь заявок: двойное резервирование (Telegram API + серверный лог / CRM)</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">+38%</div>
+            <p class="stat-desc">рост конверсии в продажу за счет мгновенного первого контакта с клиентом</p>
+          </div>
+        </div>
+
+        <div class="cta-banner">
+          <div>
+            <p><strong>Теряете клиентов из-за долгой обработки заявок с почты?</strong></p>
+            <span style="font-size:0.88rem;color:var(--muted);">Свяжем любые формы сайта с Telegram-ботом и вашей CRM за 1–3 дня.</span>
+          </div>
+          <a class="btn-action" href="#tariffs">Смотреть тарифы ↓</a>
+        </div>
+
+        <h2>Как работает современный захват лидов без потери контактов</h2>
+        <p>Классическая схема «форма на сайте $ightarrow$ письмо на email» устарела. Современный стандарт коммерческой конверсии включает 3 обязательных уровня:</p>
+        <ul>
+          <li><strong>Мгновенный пуш в Telegram:</strong> бот присылает структурированное сообщение: имя, телефон кликабелен для звонка в 1 тап, ниша, выбранный тариф, комментарий, URL страницы и UTM-метки рекламной кампании.</li>
+          <li><strong>Автоматическое создание сделки в CRM (AmoCRM / Битрикс24):</strong> контакт сохраняется, ставится задача менеджеру с дедлайном 15 минут, исключаются дубли.</li>
+          <li><strong>WhatsApp / Telegram лид-магнит для клиента:</strong> пользователь сразу после отправки формы получает подтверждение и персональный расчет или бонус в мессенджер.</li>
+        </ul>
+
+        <h2>Что мы подключаем и автоматизируем</h2>
+
+        <h3>1. Прямая отправка заявок в Telegram (Bot API)</h3>
+        <p>Настройка персонального бота студии или компании. Оповещения могут приходить как руководителю, так и в общий групповой топик менеджеров с кнопками «Взять в работу».</p>
+
+        <h3>2. Интеграция с amoCRM и Битрикс24</h3>
+        <p>Распределение сделок по воронкам продаж, передача источников трафика (UTM source, medium, campaign), автотегирование и назначение ответственных сотрудников.</p>
+
+        <h3>3. Кнопки и виджеты WhatsApp / Telegram на сайт</h3>
+        <p>Плавающие смарт-кнопки связи с автоподстановкой текста («Здравствуйте! Хочу рассчитать стоимость...»), увеличивающие конверсию мобильных посетителей на 25–40%.</p>
+
+        <!-- Interactive Tariffs Widget -->
+        <h2 id="tariffs">Тарифы на интеграцию сайта с CRM и мессенджерами</h2>
+        <p>Выберите подходящий формат автоматизации. Нажмите карточку для выбора:</p>
+
+        <div id="landing-tariffs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 28px 0 16px;">
+          
+          <!-- Card 1 -->
+          <div class="tariff-card" data-tariff="Экспресс-связка с Telegram" data-price="от 15 000 ₽" onclick="selectArticleTariff(this)">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Быстрый старт</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">1–2 дня</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Экспресс Telegram-бот</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Моментальное получение лидов со всех форм существующего сайта прямо в Telegram.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 15 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Связка всех форм сайта с Telegram Bot API</li>
+                <li>Форматированные карточки лида с кликабельным номером</li>
+                <li>Передача UTM-меток и названия страницы захвата</li>
+                <li>Серверное логирование на случай сбоев сети</li>
+                <li>Настройка целей в Яндекс Метрике</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
+
+          <!-- Card 2 (Recommended) -->
+          <div class="tariff-card active" data-tariff="Интеграция CRM (AmoCRM / Битрикс24)" data-price="от 29 000 ₽" onclick="selectArticleTariff(this)" style="border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);">
+            <div style="position: absolute; top: -12px; right: 18px; background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.05em;">Хит продаж</div>
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оптимальный выбор</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">3–5 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Интеграция CRM под ключ</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Полноценная связка сайта с amoCRM или Битрикс24 + оповещения в Telegram.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 29 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все возможности тарифа «Экспресс Telegram-бот»</li>
+                <li>Автоматическое создание сделок и контактов в CRM</li>
+                <li>Распределение по воронкам и ответственным менеджерам</li>
+                <li>Передача полной сквозной аналитики (ClientID Метрики)</li>
+                <li>Интерактивный виджет WhatsApp и звонка на сайт</li>
+                <li>Тестирование сквозной цепочки и инструкция персоналу</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбранный тариф</button>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="tariff-card" data-tariff="Комплексная сквозная автоматизация" data-price="от 55 000 ₽" onclick="selectArticleTariff(this)">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Максимальная отдача</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">7–10 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Сквозная автоматизация</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Экосистема продаж: сайт + CRM + чат-бот квалификации лидов + автоворонка WhatsApp.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 55 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все опции тарифа «Интеграция CRM под ключ»</li>
+                <li>Разработка интерактивного Telegram-бота квалификации</li>
+                <li>Автоматическая отправка коммерческих предложений клиенту</li>
+                <li>Интеграция с сервисами рассылок и 1С / МойСклад</li>
+                <li>Сквозной коллтрекинг и динамическая подмена номеров</li>
+                <li>Приоритетная техническая поддержка и мониторинг 24/7</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
+
+        </div>
+
+        <!-- Mobile swipe dots -->
+        <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin-bottom: 24px;">
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+          <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+        </div>
+
+        <!-- Dynamic Form for Selected Tariff -->
+        <div id="tariff-order-block" style="background: color-mix(in srgb, currentColor 3%, transparent); border: 1.5px solid var(--accent); border-radius: 16px; padding: 26px; margin: 30px 0;">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px;">
+            <div>
+              <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оставить заявку на интеграцию</span>
+              <h3 id="selected-tariff-title" style="margin: 4px 0 0; font-size: 1.35rem;">Интеграция CRM (AmoCRM / Битрикс24)</h3>
+            </div>
+            <div id="selected-tariff-price" style="font-size: 1.45rem; font-weight: 800; color: var(--accent);">от 29 000 ₽</div>
+          </div>
+          
+          <form onsubmit="submitLandingLead(event)" style="display: grid; grid-template-columns: 1fr; gap: 14px;">
+            <input type="hidden" id="lead-tariff-input" name="tariff" value="Интеграция CRM (AmoCRM / Битрикс24) (от 29 000 ₽)">
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Ваше имя</label>
+                <input type="text" name="name" placeholder="Сергей" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Телефон или Telegram *</label>
+                <input type="text" name="contact" required placeholder="+7 (999) 000-00-00 или @username" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;">
+              </div>
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Адрес вашего сайта / используемая CRM</label>
+              <textarea name="comment" rows="2" placeholder="Например: сайт mysite.ru, нужно связать формы с Битрикс24 и сделать пуши в Telegram" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem; font-family: inherit; resize: vertical;"></textarea>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--muted);">
+              <input type="checkbox" checked required id="consent-crm" style="accent-color: var(--accent); width: 16px; height: 16px;">
+              <label for="consent-crm">Согласен на обработку персональных данных в соответствии с <a href="/privacy" style="color:var(--accent);text-decoration:underline;">152-ФЗ</a></label>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-top: 6px;">
+              <button type="submit" class="btn-action" style="padding: 14px 28px; font-size: 1rem;">Получить расчет автоматизации</button>
+              <span style="font-size: 0.82rem; color: var(--muted);">⚡ Мгновенный ответ разработчика в Telegram</span>
+            </div>
+
+            <div id="landing-form-status" style="font-size: 0.9rem; margin-top: 4px;"></div>
+          </form>
+        </div>
+
+        <h2>Наши кейсы внедрения CRM и автоматизации</h2>
+        
+        <div class="portfolio-grid-inline">
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Логистика и спецтехника</span>
+              <h4>Диспетчерский Telegram-центр</h4>
+              <p>Разработка сквозной связки сайта с Telegram-ботом: распределение заявок на аренду кранов по дежурным водителям за 5 секунд.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Строительство и девелопмент</span>
+              <h4>Сквозная связка с Битрикс24</h4>
+              <p>Интеграция 12 квиз-форм сайта строительной компании с CRM, передача сквозных меток Яндекс Директа и распределение по менеджерам.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Бьюти и сфера услуг</span>
+              <h4>Онлайн-запись YClients</h4>
+              <p>Внедрение бесшовного виджета записи и Telegram-напоминаний клиентам за 3 часа до назначенного времени визита.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+        </div>
+
+        <h2>Частые вопросы по интеграции CRM (FAQ)</h2>
+
+        <h3>Зачем подключать Telegram, если заявки уже падают на почту?</h3>
+        <p>Письма на email часто попадают в спам или просматриваются спустя 1-2 часа, когда клиент уже заказал у конкурента. В Telegram уведомление со звуком приходит за 2 секунды прямо в карман менеджеру или в рабочий чат отдела продаж.</p>
+
+        <h3>С какими CRM-системами вы работаете?</h3>
+        <p>Мы настраиваем интеграции с Битрикс24, amoCRM, RetailCRM, YClients, МойСклад, 1С, а также разрабатываем кастомные Webhook-обработчики под любые внутренние базы данных.</p>
+
+        <h3>Сколько времени занимает настройка интеграции?</h3>
+        <p>Базовая связка форм сайта с Telegram-ботом настраивается за 1–2 рабочих дня. Комплексная интеграция с воронками Битрикс24 или AmoCRM — от 3 до 5 дней.</p>
+
+        <div class="cta mt-40">
+          <h2>Заказать интеграцию сайта с CRM и Telegram</h2>
+          <p>Хотите исключить потерю ни одного лида и ускорить закрытие сделок? Обсудите задачу со специалистом VOID Digital.</p>
+          <a class="btn" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Написать в Telegram @Voiddigit</a>
+        </div>
+
+      </div> <!-- .post-body -->
+    </div> <!-- .container.container-sm -->
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+    <ul class="social" aria-label="Связаться с нами">
+      <li><a href="tel:+79538550813" aria-label="Позвонить +7 953 855-08-13" title="Позвонить"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a></li>
+      <li><a href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"/></svg></a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg></a></li>
+      <li><a href="mailto:voiddigital@mail.ru" aria-label="Написать на почту voiddigital@mail.ru" title="Почта"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a></li>
+    </ul>
+    <ul class="footer-links">
+      <li><a href="/services">Услуги</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a href="/privacy">Политика конфиденциальности</a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener">Telegram</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="/js/main.js?v=75bccd28"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+
+<script>
+  let selectedTariffName = "";
+  let selectedTariffPrice = "";
+
+  function selectArticleTariff(el) {
+    document.querySelectorAll('.tariff-card').forEach(c => {
+      c.classList.remove('active');
+      const b = c.querySelector('.btn-action');
+      if (b) b.textContent = 'Выбрать этот тариф';
+    });
+    el.classList.add('active');
+    const btn = el.querySelector('.btn-action');
+    if (btn) btn.textContent = 'Выбранный тариф';
+
+    selectedTariffName = el.getAttribute('data-tariff') || "";
+    selectedTariffPrice = el.getAttribute('data-price') || "";
+
+    const titleEl = document.getElementById('selected-tariff-title');
+    const priceEl = document.getElementById('selected-tariff-price');
+    const inputEl = document.getElementById('lead-tariff-input');
+
+    if (titleEl) titleEl.textContent = selectedTariffName;
+    if (priceEl) priceEl.textContent = selectedTariffPrice;
+    if (inputEl) inputEl.value = selectedTariffName + ' (' + selectedTariffPrice + ')';
+
+    const orderBlock = document.getElementById('tariff-order-block');
+    if (orderBlock) {
+      orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  // Mobile swipe dots indicator
+  const tariffsGrid = document.getElementById('landing-tariffs-grid');
+  const dots = document.querySelectorAll('.tariff-dot');
+  if (tariffsGrid && dots.length > 0) {
+    tariffsGrid.addEventListener('scroll', () => {
+      const scrollLeft = tariffsGrid.scrollLeft;
+      const cardWidth = tariffsGrid.offsetWidth * 0.82;
+      const activeIndex = Math.round(scrollLeft / cardWidth);
+      dots.forEach((dot, idx) => {
+        if (idx === activeIndex) {
+          dot.style.background = 'var(--accent)';
+          dot.style.width = '20px';
+          dot.style.borderRadius = '4px';
+        } else {
+          dot.style.background = 'var(--border)';
+          dot.style.width = '8px';
+          dot.style.borderRadius = '50%';
+        }
+      });
+    }, { passive: true });
+  }
+
+  // Telegram direct lead submit with fallback
+  async function submitLandingLead(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const statusMsg = document.getElementById('landing-form-status');
+    const name = form.querySelector('[name="name"]').value.trim();
+    const contact = form.querySelector('[name="contact"]').value.trim();
+    const comment = form.querySelector('[name="comment"]') ? form.querySelector('[name="comment"]').value.trim() : "";
+    const tariff = document.getElementById('lead-tariff-input') ? document.getElementById('lead-tariff-input').value : "Не выбран";
+    const pageTitle = document.title;
+    const pageUrl = window.location.href;
+
+    if (!contact) {
+      if (statusMsg) {
+        statusMsg.textContent = "Пожалуйста, укажите телефон или ник в Telegram.";
+        statusMsg.style.color = "#ef4444";
+      }
+      return;
+    }
+
+    btn.disabled = true;
+    const origBtnText = btn.textContent;
+    btn.textContent = "Отправка...";
+
+    const text = `🔥 Новая заявка на интеграцию/сервис!
+
+` +
+                 `📋 Услуга: ${pageTitle}
+` +
+                 `💼 Тариф: ${tariff}
+` +
+                 `👤 Имя: ${name || 'Не указано'}
+` +
+                 `📞 Контакт: ${contact}
+` +
+                 (comment ? `💬 Комментарий: ${comment}
+` : '') +
+                 `🔗 Страница: ${pageUrl}
+` +
+                 `⏱ Время: ${new Date().toLocaleString('ru-RU')}`;
+
+    try {
+      const botToken = "8418047970:AAFiVzKx33j0OEv1l-U2tE98K1vOvdv_bhs";
+      const chatId = "7738024017";
+      const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text,
+          parse_mode: "Markdown"
+        })
+      });
+
+      if (tgRes.ok) {
+        if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
+        form.reset();
+        if (statusMsg) {
+          statusMsg.innerHTML = "✅ <strong>Спасибо за заявку!</strong> Мы уже получили сообщение в Telegram и ответим вам в течение 15 минут.";
+          statusMsg.style.color = "#22c55e";
+        }
+      } else {
+        throw new Error("Telegram dispatch failed");
+      }
+    } catch (err) {
+      try {
+        const fallbackRes = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            contact: contact,
+            tariff: tariff,
+            comment: comment,
+            source: pageUrl
+          })
+        });
+        if (fallbackRes.ok) {
+          if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
+          form.reset();
+          if (statusMsg) {
+            statusMsg.innerHTML = "✅ <strong>Заявка успешно отправлена!</strong> Мы свяжемся с вами в течение 15 минут.";
+            statusMsg.style.color = "#22c55e";
+          }
+        } else {
+          throw new Error("API fallback failed");
+        }
+      } catch (fbErr) {
+        if (statusMsg) {
+          statusMsg.innerHTML = '⚠️ Не удалось отправить форму напрямую. Пожалуйста, напишите нам в Telegram: <a href="https://t.me/Voiddigit" target="_blank" style="color:var(--accent);text-decoration:underline;">@Voiddigit</a>';
+          statusMsg.style.color = "#ef4444";
+        }
+      }
+    } finally {
+      btn.disabled = false;
+      btn.textContent = origBtnText;
+    }
+  }
+</script>
+
+</body>
+</html>

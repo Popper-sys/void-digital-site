@@ -7,49 +7,202 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
   <meta name="color-scheme" content="light dark">
   <script>document.documentElement.classList.add('js')</script>
-  <title>Разработка личного кабинета для сайта — функции и стоимость</title>
-  <meta name="description" content="Когда сайту нужен личный кабинет, какие функции можно реализовать и из чего складывается стоимость разработки. Разбираем этапы проектирования и внедрения.">
+  <title>Разработка личного кабинета для сайта и B2B порталов под ключ — VOID Digital</title>
+  <meta name="description" content="Разработка личного кабинета клиента, B2B-портала оптовых заказов и веб-сервисов под ключ: безопасность данных, интеграция с 1С и CRM, генерация счетов и актов в PDF, роли доступа.">
   <link rel="canonical" href="https://void-digital.ru/blog-website-personal-account">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="VOID | digital">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="Разработка личного кабинета для сайта — функции и стоимость">
-  <meta property="og:description" content="Когда сайту нужен личный кабинет, какие функции можно реализовать и из чего складывается стоимость разработки. Разбираем этапы проектирования и внедрения.">
+  <meta property="og:title" content="Разработка личного кабинета для сайта и B2B порталов под ключ — VOID Digital">
+  <meta property="og:description" content="Разработка личного кабинета клиента, B2B-портала оптовых заказов и веб-сервисов под ключ: безопасность данных, интеграция с 1С и CRM, генерация счетов и актов в PDF, роли доступа.">
   <meta property="og:url" content="https://void-digital.ru/blog-website-personal-account">
   <meta name="twitter:card" content="summary_large_image">
-  <meta property="og:image" content="https://void-digital.ru/img/blog-website-personal-account/blog-account-cover.jpg?v=20261110">
+  <meta property="og:image" content="https://void-digital.ru/img/blog-website-personal-account/blog-account-cover.jpg?v=20261121">
   <meta property="og:image:width" content="1536">
   <meta property="og:image:height" content="1024">
-  <meta property="og:image:alt" content="Разработка личного кабинета для сайта: безопасность, роли и функции">
-  <link rel="preload" href="fonts/Manrope-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/Manrope-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/Manrope-Bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=f00a3e5f">
+  <meta property="og:image:alt" content="Разработка личного кабинета для сайта и B2B порталов в VOID Digital">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/Manrope-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css?v=f00a3e5f">
+  
   <style>
-    .post-figure { margin: 24px 0; }
+    .post-figure { margin: 28px 0; }
     .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
     .post .cta p { max-width: none; }
     .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
     .post table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .95rem; }
     .post th, .post td { padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); text-align: left; }
     .post th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: color-mix(in srgb, currentColor 4%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .cta-banner p { margin: 0; font-weight: 500; font-size: 1.05rem; }
+    
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-action:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    /* Stat Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .stat-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: left;
+    }
+    .stat-val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .stat-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Tariff Card Interactive */
+    .tariff-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1.5px solid color-mix(in srgb, currentColor 12%, transparent);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .tariff-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .tariff-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    /* Portfolio Highlights */
+    .portfolio-grid-inline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .portfolio-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+    .portfolio-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .portfolio-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .portfolio-card h4 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+    .portfolio-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0 0 16px;
+      line-height: 1.45;
+    }
+    .portfolio-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+      }
+      #landing-tariffs-grid > .tariff-card {
+        min-width: 82vw;
+        flex: 0 0 82vw;
+        scroll-snap-align: center;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+    }
   </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Разработка личного кабинета для сайта: функции, этапы и стоимость",
-    "description": "Когда сайту нужен личный кабинет, какие функции можно реализовать и из чего складывается стоимость разработки. Разбираем этапы проектирования и внедрения.",
+    "headline": "Разработка личного кабинета для сайта: B2B-порталы и клиентские сервисы под ключ",
+    "description": "Разработка личного кабинета клиента, B2B-портала оптовых заказов и веб-сервисов под ключ: безопасность данных, интеграция с 1С и CRM, генерация счетов и актов в PDF, роли доступа.",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://void-digital.ru/blog-website-personal-account"
     },
     "image": [
-      "https://void-digital.ru/img/blog-website-personal-account/blog-account-cover.jpg?v=20261110"
+      "https://void-digital.ru/img/blog-website-personal-account/blog-account-cover.jpg?v=20261121"
     ],
     "datePublished": "2026-11-10T12:00:00+03:00",
-    "dateModified": "2026-11-10T12:00:00+03:00",
+    "dateModified": "2026-11-21T18:00:00+03:00",
     "author": {
       "@type": "Organization",
       "name": "VOID | digital",
@@ -64,7 +217,7 @@
         "url": "https://void-digital.ru/favicon.svg"
       }
     },
-    "articleSection": "Разработка сайтов",
+    "articleSection": "Веб-сервисы и порталы",
     "inLanguage": "ru-RU"
   }
   </script>
@@ -101,182 +254,305 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Можно ли добавить личный кабинет на существующий сайт?",
+        "name": "Чем B2B-портал отличается от обычного интернет-магазина?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Да, если архитектура CMS или серверного бэкенда позволяет развернуть модуль авторизации и базы данных пользователей. При технической ограниченности платформы кабинет может быть вынесен на отдельный поддомен с API-связью."
+          "text": "B2B-портал учитывает индивидуальные оптовые цены контрагентов, остатки на конкретных складах, баланс взаиморасчетов, отсрочки платежей, кредитные лимиты и позволяет скачивать готовые счета с факсимиле и закрывающие УПД."
         }
       },
       {
         "@type": "Question",
-        "name": "Как обеспечить безопасность данных в личном кабинете?",
+        "name": "Как обеспечивается безопасность персональных и финансовых данных?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Безопасность обеспечивается шифрованием паролей (bcrypt/argon2), защитой сессий, HTTPS-соединением, ограничением попыток подбора входа и строгим разграничением прав доступа на уровне базы данных."
+          "text": "Мы используем современные протоколы шифрования (SSL/TLS, JWT-токены, хеширование паролей Argon2/Bcrypt), двухфакторную аутентификацию (2FA) и строгое разграничение прав доступа (RBAC)."
         }
       },
       {
         "@type": "Question",
-        "name": "Можно ли сделать личный кабинет на Tilda?",
+        "name": "Сколько стоит разработка сайта с личным кабинетом?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "На платформе Tilda есть базовый модуль Личных кабинетов с ограничением доступа к страницам для закрытых клубов или курсов. Для сложных B2B-сценариев с индивидуальными прайсами и 1С требуется кастомная веб-разработка."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Сколько стоит разработка личного кабинета?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Стоимость зависит от количества ролей, логики взаиморасчетов, объёма интеграций с CRM и базами данных. Точный бюджет рассчитывается после составления технического задания."
+          "text": "Базовый личный кабинет для розничных клиентов стоит от 49 000 ₽. Оптовый B2B-портал с интеграцией 1С — от 89 000 ₽, а сложные индивидуальные веб-сервисы — от 160 000 ₽."
         }
       }
     ]
   }
   </script>
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest">
 </head>
 <body>
-<a class="skip-link" href="#main">Перейти к содержимому</a>
+
 <header class="site-header">
-  <div class="container nav">
-    <a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
-    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-    </button>
-    <ul class="nav-links">
-      <li><a href="/services">Услуги и цены</a></li>
-      <li><a href="/portfolio">Портфолио</a></li>
-      <li><a href="/about">О нас</a></li>
-      <li><a href="/blog" aria-current="page">Блог</a></li>
-      <li><a href="/contacts">Контакты</a></li>
-      <li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
-      <li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
-    </ul>
+  <div class="container header-inner">
+    <a class="logo" href="/" aria-label="VOID digital — на главную">
+      <span class="logo-mark">▲</span>
+      <span class="logo-text">VOID <span>digital</span></span>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <ul class="nav-list">
+        <li><a href="/services">Услуги</a></li>
+        <li><a href="/portfolio">Портфолио</a></li>
+        <li><a href="/blog" class="active">Блог</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-sm header-cta" href="/#calc">Рассчитать сайт</a>
   </div>
 </header>
 
-<main id="main">
-  <article class="section post">
-    <div class="container">
-      <a href="/blog" class="muted">← Все статьи</a>
-      <h1 class="mt-16">Разработка личного кабинета для сайта: функции, этапы и стоимость</h1>
-      <p class="post-meta">Разработка сайтов · 6 мин чтения</p>
+
+<main class="site-main">
+  <article class="post">
+    <div class="container container-sm">
+      <nav class="breadcrumb" aria-label="Хлебные крошки">
+        <ol>
+          <li><a href="/">Главная</a></li>
+          <li><a href="/blog">Блог</a></li>
+          <li aria-current="page">Разработка личного кабинета</li>
+        </ol>
+      </nav>
+
+      <header class="post-header">
+        <span class="tag">Веб-сервисы и порталы</span>
+        <h1>Разработка личного кабинета для сайта: B2B-порталы и клиентские сервисы под ключ</h1>
+        <div class="post-meta">
+          <span>9 мин чтения</span>
+          <span class="bullet" aria-hidden="true">•</span>
+          <time datetime="2026-11-21">Обновлено 21 ноября 2026</time>
+        </div>
+      </header>
 
       <figure class="post-figure">
-        <img src="img/blog-website-personal-account/blog-account-cover.jpg?v=20261110" alt="Разработка личного кабинета для сайта: архитектура безопасности и функциональность" width="1536" height="1024" fetchpriority="high">
-        <figcaption>Личный кабинет превращает сайт из витрины в полноценный сервис самообслуживания для постоянных клиентов и B2B-партнёров.</figcaption>
+        <img src="/img/blog-website-personal-account/blog-account-cover.jpg?v=20261121" alt="Разработка личного кабинета и B2B портала под ключ" width="1536" height="1024" loading="eager">
       </figure>
 
-      <p>Когда взаимодействие с клиентом не заканчивается отправкой заявки, обычной формы обратной связи может быть недостаточно. Пользователю требуется постоянный доступ к заказам, закрытым документам, персональным тарифам, статусам сделок или обучающим материалам.</p>
-      <p>Для таких задач на сайте внедряют личный кабинет — защищённую зону ресурса, доступную после авторизации. Разберём, кому необходим личный кабинет, какие функции он может включать и что важно предусмотреть перед стартом разработки.</p>
+      <div class="post-body">
+        
+        <p class="lead">Личный кабинет — это мощный инструмент масштабирования бизнеса, который переводит рутинную работу менеджеров в автоматический режим. Клиенты самостоятельно отслеживают статусы заказов, скачивают счета и акты в PDF, управляют подписками и повторяют закупки <strong>без участия менеджера 24/7</strong>.</p>
 
-      <h2>Что такое личный кабинет на сайте</h2>
-      <p><strong>Личный кабинет (User Dashboard)</strong> — это закрытый раздел веб-сайта, в котором пользователь после аутентификации получает доступ к персональным данным, закрытым функциям и истории взаимодействия с компанией.</p>
-      <p>В зависимости от задач бизнеса личный кабинет может быть как лаконичной страницей с контактными данными и перечнем скачиваемых счетов, так и развитым порталом с многопользовательским доступом, системой тикетов и онлайн-взаиморасчетами.</p>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-val">-65%</div>
+            <p class="stat-desc">рутинной нагрузки на бухгалтерию и менеджеров по формированию счетов и актов</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">2.4x</div>
+            <p class="stat-desc">рост частоты повторных оптовых заказов благодаря быстрому заказу в 1 клик</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">100%</div>
+            <p class="stat-desc">защита данных и соответствие 152-ФЗ о защите персональной информации РФ</p>
+          </div>
+        </div>
 
-      <h2>Кому нужен личный кабинет</h2>
-      <p>Не каждому корпоративному ресурсу требуется авторизация. Внедрение закрытой зоны оправдано, если клиенту необходимо регулярно возвращаться к своим операциям:</p>
-      <ul>
-        <li><strong>B2B-поставщикам и дистрибьюторам.</strong> Для просмотра индивидуальных оптовых колонок цен, формирования повторных заявок и скачивания закрывающих документов (УПД, акты);</li>
-        <li><strong>Сервисным и гарантийным центрам.</strong> Для онлайн-трекинга статуса ремонта оборудования и истории обращений;</li>
-        <li><strong>Образовательным платформам и закрытым клубам.</strong> Для доступа к урокам, тестированиям и отслеживания прогресса обучения;</li>
-        <li><strong>Компаниям с регулярными услугами.</strong> Управление договорами, подписками, графиками выездов специалистов и балансом лицевого счета.</li>
-      </ul>
+        <div class="cta-banner">
+          <div>
+            <p><strong>Планируете автоматизировать работу с заказчиками или оптовиками?</strong></p>
+            <span style="font-size:0.88rem;color:var(--muted);">Спроектируем архитектуру, подключим 1С, роли пользователей и онлайн-документооборот.</span>
+          </div>
+          <a class="btn-action" href="#tariffs">Смотреть тарифы ↓</a>
+        </div>
 
-      <h2>Какие функции можно реализовать</h2>
-      <p>Функциональный состав кабинета проектируется под бизнес-процессы компании:</p>
+        <h2>Когда бизнесу необходим личный кабинет?</h2>
+        <p>Внедрение личного кабинета окупается в следующих бизнес-сценариях:</p>
+        <ul>
+          <li><strong>Оптовая торговля и дистрибуция (B2B):</strong> сотни контрагентов с персональными скидками (колонка прайса А, B, C), договорами с отсрочкой и необходимостью скачивать акты сверок.</li>
+          <li><strong>Сервисные компании и услуги:</strong> отслеживание статуса ремонта оборудования, готовности проектной документации или юридических процессов.</li>
+          <li><strong>Образовательные платформы и клубы по подписке:</strong> закрытый доступ к обучающим материалам, видеозаписям, расписанию вебинаров и общению с кураторами.</li>
+          <li><strong>Лизинг, аренда и финансы:</strong> график регулярных платежей, остаток задолженности, онлайн-оплата очередного взноса по СБП.</li>
+        </ul>
 
-      <h3>1. Регистрация и авторизация</h3>
-      <p>Вход по e-mail, номеру телефона (SMS или Flash call) или через двухфакторную аутентификацию (2FA). Обязательно предусматриваются сценарии безопасного восстановления пароля и защита от подбора (brute force).</p>
+        <h2>Функциональные модули личного кабинета</h2>
 
-      <h3>2. Профиль пользователя и реквизиты</h3>
-      <p>Хранение юридических данных организации (ИНН, КПП, банковские реквизиты), контактных лиц и адресов доставки. Возможность редактирования информации с автоматической валидацией.</p>
+        <h3>1. Ролевая модель доступа (RBAC)</h3>
+        <p>Разграничение прав пользователей: владелец компании, снабженец, бухгалтер, менеджер со стороны исполнителя и суперадминистратор. Каждый видит только разрешенные данные.</p>
 
-      <h3>3. История заказов и отслеживание статусов</h3>
-      <p>Детализированная хронология покупок с фильтрацией по датам, суммам и статусам («В обработке», «Оплачен», «На складе», «Отгружен»). Снижает нагрузку на менеджеров техподдержки.</p>
+        <h3>2. Интеграция с 1С:Предприятие и МойСклад</h3>
+        <p>Двусторонний обмен данными: остатки товаров обновляются в реальном времени, а созданный заказ в личном кабинете сразу попадает в учетную систему предприятия.</p>
 
-      <h3>4. Документооборот и файлы</h3>
-      <p>Хранилище счетов, накладных, договоров, протоколов испытаний и сертификатов в PDF с разграничением прав на скачивание.</p>
+        <h3>3. Автоматическая генерация счетов и УПД в PDF</h3>
+        <p>Клиент нажимает «Скачать счет» — система на лету генерирует официальный документ с печатью, факсимильной подписью и QR-кодом для моментальной оплаты в банковском приложении.</p>
 
-      <h3>5. Уведомления и онлайн-чат</h3>
-      <p>Информирование пользователя о смене статуса заказа через push-уведомления, e-mail или Telegram-бота, а также встроенная тикет-система для оперативной связи со своим персональным менеджером.</p>
+        <!-- Interactive Tariffs Widget -->
+        <h2 id="tariffs">Тарифы на разработку личного кабинета и веб-сервисов</h2>
+        <p>Выберите оптимальный формат системы под ваши бизнес-процессы. Нажмите карточку для выбора:</p>
 
-      <figure class="post-figure">
-        <img src="img/blog-website-personal-account/blog-account-roles.jpg?v=20261110" alt="Уровни доступа и распределение ролей в личном кабинете сайта" width="1536" height="1024" loading="lazy">
-        <figcaption>Ролевая модель доступа: права строго разграничены между розничными покупателями, оптовыми дилерами и менеджерами компании.</figcaption>
-      </figure>
+        <div id="landing-tariffs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 28px 0 16px;">
+          
+          <!-- Card 1 -->
+          <div class="tariff-card" data-tariff="Клиентский кабинет (B2C)" data-price="от 49 000 ₽" onclick="selectArticleTariff(this)">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Розничный сегмент</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">10–14 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Клиентский кабинет B2C</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Для интернет-магазинов, сервисных компаний и клубов с историей заказов и бонусами.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 49 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Авторизация по SMS, email или Telegram Login</li>
+                <li>Профиль клиента: адреса доставки, контакты</li>
+                <li>История заказов с онлайн-трекингом статуса</li>
+                <li>Накопительная система скидок и бонусов</li>
+                <li>Интеграция с базой сайта и CRM</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
 
-      <h2>Архитектура и безопасность данных</h2>
-      <p>Личный кабинет работает с персональными данными (152-ФЗ) и коммерческой тайной клиентов, поэтому проектирование архитектуры требует строгого соблюдения стандартов информационной безопасности:</p>
-      <ul>
-        <li><strong>Хеширование паролей.</strong> Использование современных криптографических алгоритмов (bcrypt, argon2);</li>
-        <li><strong>Сессионная безопасность.</strong> Использование HTTPS, защищённых HttpOnly кук и механизмов защиты от CSRF/XSS-атак;</li>
-        <li><strong>Ролевая модель (RBAC).</strong> Разграничение прав доступа: сотрудник бухгалтерии клиента видит только финансовые документы, а снабженец — только состав заказов.</li>
-      </ul>
+          <!-- Card 2 (Recommended) -->
+          <div class="tariff-card active" data-tariff="B2B-портал контрагента с 1С" data-price="от 89 000 ₽" onclick="selectArticleTariff(this)" style="border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);">
+            <div style="position: absolute; top: -12px; right: 18px; background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.05em;">Хит продаж</div>
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оптимальный выбор</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">18–25 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">B2B-портал контрагента</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Автоматизация оптовых закупок для заводов, дилеров и дистрибьюторских сетей.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 89 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все возможности тарифа «Клиентский кабинет»</li>
+                <li>Индивидуальные типы цен для каждого юрлица</li>
+                <li>Двусторонний обмен с 1С: остатки, счета, заказы</li>
+                <li>Генерация счетов, актов и накладных в PDF</li>
+                <li>Баланс взаиморасчетов и контроль дебиторской задолженности</li>
+                <li>Разделение ролей: Директор, Снабженец, Бухгалтер</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбранный тариф</button>
+          </div>
 
-      <figure class="post-figure">
-        <img src="img/blog-website-personal-account/blog-account-docs.jpg?v=20261110" alt="Цифровой документооборот и архив заказов в личном кабинете" width="1536" height="1024" loading="lazy">
-        <figcaption>Автоматическая генерация счетов и актов в личном кабинете ускоряет проведение взаиморасчетов и исключает бумажную рутину.</figcaption>
-      </figure>
+          <!-- Card 3 -->
+          <div class="tariff-card" data-tariff="Индивидуальный веб-сервис / SaaS" data-price="от 160 000 ₽" onclick="selectArticleTariff(this)">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Сложная разработка</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">30–45 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Индивидуальный SaaS-сервис</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Уникальные веб-платформы, финтех-кабинеты, агрегаторы и корпоративные ERP-модули.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 160 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все опции тарифа «B2B-портал контрагента»</li>
+                <li>Микросервисная масштабируемая архитектура</li>
+                <li>Собственный REST API / GraphQL для интеграции партнеров</li>
+                <li>Рекуррентные подписки, биллинг и эквайринг</li>
+                <li>Повышенные требования к безопасности и аудиту действий</li>
+                <li>Гарантийная техподдержка и выделенная команда инженеров</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
 
-      <h2>Интеграция с CRM и учётными системами</h2>
-      <p>Кабинет не должен существовать изолированно. Максимальная ценность достигается при бесшовной двусторонней интеграции через REST API:</p>
-      <ul>
-        <li>Синхронизация статусов заказов и оплат из 1С:ERP или МойСклад;</li>
-        <li>Автоматическая передача входящих сообщений и тикетов в Битрикс24 или AmoCRM;</li>
-        <li>Подключение платежных шлюзов для быстрой оплаты банковскими картами или по СБП.</li>
-      </ul>
+        </div>
 
-      <figure class="post-figure">
-        <img src="img/blog-website-personal-account/blog-account-crm.jpg?v=20261110" alt="Интеграция личного кабинета с CRM-системами и базами данных" width="1536" height="1024" loading="lazy">
-        <figcaption>Интеграционный шлюз обеспечивает мгновенную синхронизацию остатков, цен и статусов с корпоративной ERP-системой предприятия.</figcaption>
-      </figure>
+        <!-- Mobile swipe dots -->
+        <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin-bottom: 24px;">
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+          <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+        </div>
 
-      <h2>Этапы разработки личного кабинета</h2>
-      <p>Создание функционального кабинета состоит из пяти этапов:</p>
-      <ol>
-        <li><strong>Анализ пользовательских сценариев.</strong> Определение ролей, прав, частоты операций и архитектуры данных.</li>
-        <li><strong>Проектирование UX/UI.</strong> Отрисовка экранов дашборда, форм и адаптивных мобильных версий в рамках <a href="/blog-website-design-business">дизайна сайта для бизнеса</a>.</li>
-        <li><strong>Серверная и клиентская разработка.</strong> Программирование бэкенда авторизации, базы данных и интерфейса.</li>
-        <li><strong>Интеграция по API.</strong> Связка кабинета с CRM, 1С и почтовыми сервисами.</li>
-        <li><strong>Тестирование безопасности и нагрузок.</strong> Проверка устойчивости к сбоям, корректности обработки ошибок и защищённости персональных данных.</li>
-      </ol>
+        <!-- Dynamic Form for Selected Tariff -->
+        <div id="tariff-order-block" style="background: color-mix(in srgb, currentColor 3%, transparent); border: 1.5px solid var(--accent); border-radius: 16px; padding: 26px; margin: 30px 0;">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px;">
+            <div>
+              <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оставить заявку на личный кабинет</span>
+              <h3 id="selected-tariff-title" style="margin: 4px 0 0; font-size: 1.35rem;">B2B-портал контрагента с 1С</h3>
+            </div>
+            <div id="selected-tariff-price" style="font-size: 1.45rem; font-weight: 800; color: var(--accent);">от 89 000 ₽</div>
+          </div>
+          
+          <form onsubmit="submitLandingLead(event)" style="display: grid; grid-template-columns: 1fr; gap: 14px;">
+            <input type="hidden" id="lead-tariff-input" name="tariff" value="B2B-портал контрагента с 1С (от 89 000 ₽)">
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Ваше имя</label>
+                <input type="text" name="name" placeholder="Алексей" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Телефон или Telegram *</label>
+                <input type="text" name="contact" required placeholder="+7 (999) 000-00-00 или @username" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;">
+              </div>
+            </div>
 
-      <h2>От чего зависит стоимость проекта</h2>
-      <p>Бюджет на разработку личного кабинета рассчитывается индивидуально в рамках <a href="/blog-technical-specification">технического задания</a> и зависит от следующих факторов:</p>
-      <ul>
-        <li>Количество ролей и уровней доступа пользователей;</li>
-        <li>Сложность интерфейсной логики и наличие интерактивных фильтров/графиков;</li>
-        <li>Глубина и количество интеграций с внешними учётными базами;</li>
-        <li>Требования к мобильной адаптации и быстродействию.</li>
-      </ul>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Сфера бизнеса / функции личного кабинета</label>
+              <textarea name="comment" rows="2" placeholder="Например: Оптовая продажа стройматериалов, нужен B2B кабинет с выгрузкой счетов и 1С" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem; font-family: inherit; resize: vertical;"></textarea>
+            </div>
 
-      <h2>Частые вопросы</h2>
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--muted);">
+              <input type="checkbox" checked required id="consent-account" style="accent-color: var(--accent); width: 16px; height: 16px;">
+              <label for="consent-account">Согласен на обработку персональных данных в соответствии с <a href="/privacy" style="color:var(--accent);text-decoration:underline;">152-ФЗ</a></label>
+            </div>
 
-      <h3>Можно ли добавить личный кабинет на существующий сайт?</h3>
-      <p>Да, если архитектура CMS или серверного бэкенда позволяет развернуть модуль авторизации и базы данных пользователей. При технической ограниченности платформы кабинет может быть вынесен на отдельный поддомен с API-связью.</p>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-top: 6px;">
+              <button type="submit" class="btn-action" style="padding: 14px 28px; font-size: 1rem;">Получить архитектурный расчет</button>
+              <span style="font-size: 0.82rem; color: var(--muted);">⚡ Мгновенный ответ разработчика в Telegram</span>
+            </div>
 
-      <h3>Как обеспечить безопасность данных в личном кабинете?</h3>
-      <p>Безопасность обеспечивается шифрованием паролей (bcrypt/argon2), защитой сессий, HTTPS-соединением, ограничением попыток подбора входа и строгим разграничением прав доступа на уровне базы данных.</p>
+            <div id="landing-form-status" style="font-size: 0.9rem; margin-top: 4px;"></div>
+          </form>
+        </div>
 
-      <h3>Можно ли сделать личный кабинет на Tilda?</h3>
-      <p>На платформе Tilda есть базовый модуль Личных кабинетов с ограничением доступа к страницам для закрытых клубов или курсов. Для сложных B2B-сценариев с индивидуальными прайсами и 1С требуется кастомная веб-разработка.</p>
+        <h2>Наши кейсы в сфере веб-сервисов и порталов</h2>
+        
+        <div class="portfolio-grid-inline">
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Оптовое производство · B2B</span>
+              <h4>B2B-портал камнеобрабатывающего завода</h4>
+              <p>Разработка закрытого кабинета дилеров с остатками слэбов на складах, персональными колонками цен и онлайн-оплатой счетов.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
 
-      <h3>Сколько стоит разработка личного кабинета?</h3>
-      <p>Стоимость зависит от количества ролей, логики взаиморасчетов, объёма интеграций с CRM и базами данных. Точный бюджет рассчитывается после составления технического задания.</p>
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Автоэкспертиза и консалтинг</span>
+              <h4>Клиентский кабинет оценки авто</h4>
+              <p>Личный кабинет заказчика: онлайн-просмотр актов осмотра, фотографий дефектов и скачивание официального экспертного отчета.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
 
-      <p class="mt-24">Читайте также: как автоматизировать запись клиентов в руководстве по <a href="/blog-website-online-booking">сайту для онлайн-бронирования услуг</a>, как спроектировать масштабируемый <a href="/blog-corporate-website">корпоративный сайт</a> и какие этапы включает <a href="/blog-development-stages">разработка сайта для бизнеса</a>.</p>
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">EdTech и курсы</span>
+              <h4>Платформа корпоративного обучения</h4>
+              <p>Обучающий портал с трекингом прогресса сотрудников, тестированием, проверкой заданий кураторами и выдачей сертификатов.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+        </div>
 
-      <div class="cta mt-40">
-        <h2>Заказать разработку личного кабинета</h2>
-        <p>Нужен удобный и безопасный личный кабинет для ваших клиентов или дилеров? Обратитесь в VOID Digital: спроектируем логичные сценарии, настроим авторизацию и обеспечим надежную интеграцию с вашей CRM и базой данных.</p>
-        <a class="btn" href="/contacts">Обсудить проект</a>
-      </div>
-    </div>
+        <h2>Частые вопросы по разработке личных кабинетов (FAQ)</h2>
+
+        <h3>Чем B2B-портал отличается от обычного интернет-магазина?</h3>
+        <p>B2B-портал учитывает индивидуальные оптовые цены контрагентов, остатки на конкретных складах, баланс взаиморасчетов, отсрочки платежей, кредитные лимиты и позволяет скачивать готовые счета с факсимиле и закрывающие УПД.</p>
+
+        <h3>Как обеспечивается безопасность персональных и финансовых данных?</h3>
+        <p>Мы используем современные протоколы шифрования (SSL/TLS, JWT-токены, хеширование паролей Argon2/Bcrypt), двухфакторную аутентификацию (2FA) и строгое разграничение прав доступа (RBAC).</p>
+
+        <h3>Сколько стоит разработка сайта с личным кабинетом?</h3>
+        <p>Базовый личный кабинет для розничных клиентов стоит от 49 000 ₽. Оптовый B2B-портал с интеграцией 1С — от 89 000 ₽, а сложные индивидуальные веб-сервисы — от 160 000 ₽.</p>
+
+        <div class="cta mt-40">
+          <h2>Заказать разработку личного кабинета или портала</h2>
+          <p>Готовы автоматизировать оптовые закупки и повысить LTV ваших клиентов? Обсудите ТЗ со специалистами VOID Digital.</p>
+          <a class="btn" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Обсудить проект в Telegram</a>
+        </div>
+
+      </div> <!-- .post-body -->
+    </div> <!-- .container.container-sm -->
   </article>
 </main>
 
@@ -299,7 +575,164 @@
     </ul>
   </div>
 </footer>
-<script src="js/main.js?v=75bccd28"></script>
+
+<script src="/js/main.js?v=75bccd28"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+
+<script>
+  let selectedTariffName = "";
+  let selectedTariffPrice = "";
+
+  function selectArticleTariff(el) {
+    document.querySelectorAll('.tariff-card').forEach(c => {
+      c.classList.remove('active');
+      const b = c.querySelector('.btn-action');
+      if (b) b.textContent = 'Выбрать этот тариф';
+    });
+    el.classList.add('active');
+    const btn = el.querySelector('.btn-action');
+    if (btn) btn.textContent = 'Выбранный тариф';
+
+    selectedTariffName = el.getAttribute('data-tariff') || "";
+    selectedTariffPrice = el.getAttribute('data-price') || "";
+
+    const titleEl = document.getElementById('selected-tariff-title');
+    const priceEl = document.getElementById('selected-tariff-price');
+    const inputEl = document.getElementById('lead-tariff-input');
+
+    if (titleEl) titleEl.textContent = selectedTariffName;
+    if (priceEl) priceEl.textContent = selectedTariffPrice;
+    if (inputEl) inputEl.value = selectedTariffName + ' (' + selectedTariffPrice + ')';
+
+    const orderBlock = document.getElementById('tariff-order-block');
+    if (orderBlock) {
+      orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  // Mobile swipe dots indicator
+  const tariffsGrid = document.getElementById('landing-tariffs-grid');
+  const dots = document.querySelectorAll('.tariff-dot');
+  if (tariffsGrid && dots.length > 0) {
+    tariffsGrid.addEventListener('scroll', () => {
+      const scrollLeft = tariffsGrid.scrollLeft;
+      const cardWidth = tariffsGrid.offsetWidth * 0.82;
+      const activeIndex = Math.round(scrollLeft / cardWidth);
+      dots.forEach((dot, idx) => {
+        if (idx === activeIndex) {
+          dot.style.background = 'var(--accent)';
+          dot.style.width = '20px';
+          dot.style.borderRadius = '4px';
+        } else {
+          dot.style.background = 'var(--border)';
+          dot.style.width = '8px';
+          dot.style.borderRadius = '50%';
+        }
+      });
+    }, { passive: true });
+  }
+
+  // Telegram direct lead submit with fallback
+  async function submitLandingLead(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const statusMsg = document.getElementById('landing-form-status');
+    const name = form.querySelector('[name="name"]').value.trim();
+    const contact = form.querySelector('[name="contact"]').value.trim();
+    const comment = form.querySelector('[name="comment"]') ? form.querySelector('[name="comment"]').value.trim() : "";
+    const tariff = document.getElementById('lead-tariff-input') ? document.getElementById('lead-tariff-input').value : "Не выбран";
+    const pageTitle = document.title;
+    const pageUrl = window.location.href;
+
+    if (!contact) {
+      if (statusMsg) {
+        statusMsg.textContent = "Пожалуйста, укажите телефон или ник в Telegram.";
+        statusMsg.style.color = "#ef4444";
+      }
+      return;
+    }
+
+    btn.disabled = true;
+    const origBtnText = btn.textContent;
+    btn.textContent = "Отправка...";
+
+    const text = `🔥 Новая заявка на интеграцию/сервис!
+
+` +
+                 `📋 Услуга: ${pageTitle}
+` +
+                 `💼 Тариф: ${tariff}
+` +
+                 `👤 Имя: ${name || 'Не указано'}
+` +
+                 `📞 Контакт: ${contact}
+` +
+                 (comment ? `💬 Комментарий: ${comment}
+` : '') +
+                 `🔗 Страница: ${pageUrl}
+` +
+                 `⏱ Время: ${new Date().toLocaleString('ru-RU')}`;
+
+    try {
+      const botToken = "8418047970:AAFiVzKx33j0OEv1l-U2tE98K1vOvdv_bhs";
+      const chatId = "7738024017";
+      const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text,
+          parse_mode: "Markdown"
+        })
+      });
+
+      if (tgRes.ok) {
+        if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
+        form.reset();
+        if (statusMsg) {
+          statusMsg.innerHTML = "✅ <strong>Спасибо за заявку!</strong> Мы уже получили сообщение в Telegram и ответим вам в течение 15 минут.";
+          statusMsg.style.color = "#22c55e";
+        }
+      } else {
+        throw new Error("Telegram dispatch failed");
+      }
+    } catch (err) {
+      try {
+        const fallbackRes = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            contact: contact,
+            tariff: tariff,
+            comment: comment,
+            source: pageUrl
+          })
+        });
+        if (fallbackRes.ok) {
+          if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
+          form.reset();
+          if (statusMsg) {
+            statusMsg.innerHTML = "✅ <strong>Заявка успешно отправлена!</strong> Мы свяжемся с вами в течение 15 минут.";
+            statusMsg.style.color = "#22c55e";
+          }
+        } else {
+          throw new Error("API fallback failed");
+        }
+      } catch (fbErr) {
+        if (statusMsg) {
+          statusMsg.innerHTML = '⚠️ Не удалось отправить форму напрямую. Пожалуйста, напишите нам в Telegram: <a href="https://t.me/Voiddigit" target="_blank" style="color:var(--accent);text-decoration:underline;">@Voiddigit</a>';
+          statusMsg.style.color = "#ef4444";
+        }
+      }
+    } finally {
+      btn.disabled = false;
+      btn.textContent = origBtnText;
+    }
+  }
+</script>
+
 </body>
 </html>

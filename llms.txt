@@ -119,6 +119,8 @@
 
 - [Разработка сайтов в Красноярске под ключ: веб-студия VOID Digital](https://void-digital.ru/website-development-krasnoyarsk)
 
+- [Интеграция сайта с CRM и Telegram: захват лидов за 2 секунды](https://void-digital.ru/blog-website-crm-integration)
+
 ## Контакты
 
 - Telegram: https://t.me/Voiddigit
