@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Сайт для отеля, базы отдыха и глэмпинга: разработка под ключ — VOID Digital</title>
+  <meta name="description" content="Разработка сайта для отеля, глэмпинга и базы отдыха под ключ: модуль прямого бронирования (Travelline / Bnovo), фотогалерея домиков, онлайн-оплата без комиссий агрегаторов и лиды в Telegram.">
+  <link rel="canonical" href="https://void-digital.ru/blog-website-for-hotel">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="VOID | digital">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Сайт для отеля, базы отдыха и глэмпинга: разработка под ключ — VOID Digital">
+  <meta property="og:description" content="Разработка сайта для отеля, глэмпинга и базы отдыха под ключ: модуль прямого бронирования (Travelline / Bnovo), фотогалерея домиков, онлайн-оплата без комиссий агрегаторов и лиды в Telegram.">
+  <meta property="og:url" content="https://void-digital.ru/blog-website-for-hotel">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://void-digital.ru/img/blog-website-for-hotel/blog-hotel-cover.jpg?v=20261121">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Разработка сайта для отеля и глэмпинга под ключ в VOID Digital">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/Manrope-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css?v=f00a3e5f">
+  <style>
+    .post-figure { margin: 28px 0; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post .cta p { max-width: none; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+    .post table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .95rem; }
+    .post th, .post td { padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); text-align: left; }
+    .post th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: color-mix(in srgb, currentColor 4%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .cta-banner p { margin: 0; font-weight: 500; font-size: 1.05rem; }
+    
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff !important;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 12px 24px;
+      border-radius: var(--radius, 10px);
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s, background 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-action:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: color-mix(in srgb, currentColor 8%, transparent);
+      color: inherit;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 12px 22px;
+      border-radius: var(--radius, 10px);
+      text-decoration: none;
+      border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover {
+      background: color-mix(in srgb, currentColor 14%, transparent);
+    }
+
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: var(--bg);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-card:active {
+      transform: scale(0.99);
+    }
+    
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 12px !important;
+        padding-bottom: 8px !important;
+        margin-inline: -12px !important;
+        padding-inline: 12px !important;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .tariff-card {
+        flex: 0 0 min(82vw, 300px) !important;
+        max-width: 300px !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+        padding: 20px 16px !important;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+      .tariff-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .tariff-btn-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .tariff-btn-row .btn {
+        width: 100% !important;
+      }
+    }
+
+    /* Portfolio Cards */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 28px 0;
+    }
+    .portfolio-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius, 14px);
+      padding: 22px;
+      background: color-mix(in srgb, currentColor 2%, transparent);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .portfolio-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .portfolio-card h4 { margin: 0 0 10px; font-size: 1.15rem; }
+    .portfolio-card p { font-size: 0.9rem; margin: 0 0 16px; color: var(--muted); line-height: 1.5; }
+    .portfolio-link { font-weight: 600; font-size: 0.88rem; color: var(--accent); display: inline-flex; align-items: center; gap: 4px; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://void-digital.ru/blog-website-for-hotel#article",
+        "headline": "Сайт для отеля, базы отдыха и глэмпинга: разработка под ключ с прямым бронированием",
+        "description": "Как создать продающий сайт для отеля, загородного клуба или глэмпинга: интеграция Travelline/Bnovo, онлайн-оплата, синхронизация занятости и экономия до 25% на комиссиях агрегаторов.",
+        "image": "https://void-digital.ru/img/blog-website-for-hotel/blog-hotel-cover.jpg?v=20261121",
+        "datePublished": "2026-11-21T19:00:00+03:00",
+        "dateModified": "2026-11-21T19:00:00+03:00",
+        "author": {
+          "@type": "Person",
+          "name": "Даниил Лосуков",
+          "jobTitle": "Основатель и ведущий веб-разработчик VOID Digital"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "VOID | digital",
+          "url": "https://void-digital.ru",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://void-digital.ru/icon.svg"
+          }
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://void-digital.ru/blog-website-for-hotel"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Главная",
+            "item": "https://void-digital.ru"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Блог",
+            "item": "https://void-digital.ru/blog"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Сайт для отеля и глэмпинга",
+            "item": "https://void-digital.ru/blog-website-for-hotel"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Можно ли подключить Travelline или Bnovo к сайту?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Да. Мы нативно интегрируем виджеты Travelline, Bnovo, Shelter или разрабатываем автономный модуль бронирования с шахматкой, чтобы брони с сайта попадали напрямую в вашу систему управления номерным фондом."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Как сайт помогает экономить на комиссиях Ostrovok и Яндекс Путешествий?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Агрегаторы берут 15–25% комиссии с каждого проживания. Прямой сайт с быстрой оплатой по СБП и привлекательными бонусами за прямое бронирование оставляет эту маржу в вашем бизнесе."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Сколько времени занимает запуск сайта отеля под ключ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Лендинг базы отдыха или глэмпинга запускается за 7–10 дней. Полноценный сайт загородного отеля с бронированием номеров, спа и ресторанов — за 14–20 дней."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Открыть меню">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" id="nav-menu">
+      <a href="/services">Услуги</a>
+      <a href="/portfolio">Портфолио</a>
+      <a href="/blog">Блог</a>
+      <a href="/contacts">Контакты</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="phone" href="tel:+79538550813">+7 953 855-08-13</a>
+      <a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <article class="post">
+    <div class="container container-sm">
+      <header class="post-header">
+        <a class="post-back" href="/blog">← Все статьи</a>
+        <div class="post-meta">
+          <time datetime="2026-11-21">21 ноября 2026</time>
+          <span class="dot">·</span>
+          <span>Отраслевые решения</span>
+          <span class="dot">·</span>
+          <span>10 мин чтения</span>
+        </div>
+        <h1>Сайт для отеля, базы отдыха и глэмпинга: разработка под ключ с прямым бронированием без комиссий</h1>
+        <p class="lead">Комиссии Ostrovok, Яндекс Путешествий и Суточно.ру достигают 18–25% с каждого забронированного номера. Разбираем, как разработать современный сайт отеля или глэмпинга, который стабильно продаёт напрямую, автоматически синхронизирует занятость домиков и окупается с первого сезона.</p>
+      </header>
+
+      <figure class="post-figure">
+        <img src="/img/blog-website-for-hotel/blog-hotel-cover.jpg?v=20261121" alt="Разработка сайта для отеля, базы отдыха и глэмпинга" width="1536" height="1024" loading="eager">
+      </figure>
+
+      <div class="post-body">
+
+        <p>Внутренний туризм в России переживает исторический бум: загородные эко-отели, глэмпинги, SPA-резорты и базы отдыха на Алтае, Байкале, в Подмосковье, Карелии и в Сибири бронируются на месяцы вперед. Однако многие владельцы продолжают терять от четверти до трети выручки на комиссиях сторонних платформ бронирования.</p>
+
+        <p>Команда <strong>VOID Digital</strong> разрабатывает сайты для отельного бизнеса, превращая их в <strong>главный канал прямых продаж</strong>: эмоциональная визуальная подача атмосферы отдыха, мгновенный выбор дат, прямая оплата по СБП и передача броней в вашу PMS и Telegram.</p>
+
+        <div class="cta-banner">
+          <div>
+            <p><strong>Хотите продавать номера без комиссий агрегаторов?</strong></p>
+            <span style="font-size: 0.9rem; color: var(--muted);">Интегрируем календарь занятости, подключим онлайн-оплату и запустим сайт отеля от 7 дней.</span>
+          </div>
+          <a class="btn-action" href="#tariffs">Выбрать тариф →</a>
+        </div>
+
+        <h2>Ошибки сайтов отелей и баз отдыха, убивающие бронирования</h2>
+
+        <p>По нашему опыту аудита туристических сайтов, клиенты уходят к агрегаторам по 4 ключевым причинам:</p>
+
+        <ul>
+          <li><strong>Невозможность понять актуальную занятость онлайн:</strong> Если на сайте написано «Чтобы узнать, свободен ли домик, позвоните администратору» — 80% мобильных пользователей сразу закрывают страницу и бронируют там, где есть мгновенный календарь.</li>
+          <li><strong>Мелкие и неинформативные фотографии:</strong> Гости выбирают глазами. Отсутствие панорамных фото домиков внутри, вида из окон, санузлов и территории вызывает сомнения и откладывание решения.</li>
+          <li><strong>Сложная процедура оплаты:</strong> Если для бронирования нужно переводить предоплату по номеру телефона на карту физлица, доверие падает до минимума. Нужен официальный эквайринг или безопасный платеж по СБП с фискальным чеком.</li>
+          <li><strong>Медленная загрузка тяжелых фото на смартфонах:</strong> 85% гостей выбирают отели с телефонов. Несжатые фотографии весом по 8 Мб заставляют сайт открываться 10 секунд, сливая рекламный трафик.</li>
+        </ul>
+
+        <h2>Модули сайта отеля, которые гарантируют прямые бронирования</h2>
+
+        <h3>1. Интерактивная шахматка и календарь занятости</h3>
+        <p>Гость выбирает дату заезда и выезда, количество взрослых и детей, и мгновенно видит доступные категории номеров, сафари-тентов или коттеджей с точной стоимостью.</p>
+
+        <h3>2. Интерактивная карта территории курорта</h3>
+        <p>Наглядная 3D-схема или интерактивная карта комплекса: где находится каждый домик, удаленность от озера или леса, расположение бани, ресторана, парковки и мангальных зон.</p>
+
+        <h3>3. Дополнительные услуги (Cross-sell)</h3>
+        <p>Включение в единый чек бронирования дополнительных опций: аренда бани на дровах, чана, аренда сапбордов, трансфер из аэропорта или заказ романтического ужина.</p>
+
+        <h3>4. Интеграция с Travelline, Bnovo, Shelter</h3>
+        <p>Бесшовная синхронизация: данные о свободных номерах обновляются в реальном времени, исключая овербукинг (двойное бронирование одной категории).</p>
+
+        <!-- Interactive Tariffs Widget -->
+        <h2 id="tariffs">Тарифы на разработку сайта для отеля и глэмпинга</h2>
+        <p>Выберите подходящий формат под масштаб вашего загородного комплекса. Нажмите на карточку, чтобы зафиксировать стоимость:</p>
+
+        <div id="landing-tariffs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 28px 0 16px;">
+          
+          <!-- Card 1 -->
+          <div class="tariff-card" data-tariff="Лендинг глэмпинга / базы отдыха" data-price="от 35 000 ₽" onclick="selectArticleTariff(this)">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Быстрый старт</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">7–10 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Лендинг глэмпинга / базы отдыха</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Идеально для запуска нового глэмпинга, базы отдыха или гостевого дома до 10 номеров.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 35 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Презентация локации, природы и номеров</li>
+                <li>Календарь свободных дат и форма брони</li>
+                <li>Мгновенные уведомления о бронированиях в Telegram</li>
+                <li>Интерактивная карта проезда и маршрут навигаторов</li>
+                <li>Мобильная оптимизация 100/100 PageSpeed</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
+
+          <!-- Card 2 (Recommended) -->
+          <div class="tariff-card active" data-tariff="Сайт отеля с модулем бронирования" data-price="от 69 000 ₽" onclick="selectArticleTariff(this)" style="border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);">
+            <div style="position: absolute; top: -12px; right: 18px; background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.05em;">Хит продаж</div>
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оптимальный выбор</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">14–20 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Сайт отеля с бронированием</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Полноценный инструмент прямых продаж для загородных клубов, резортов и бутик-отелей.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 69 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все опции тарифа «Лендинг глэмпинга»</li>
+                <li>Интеграция с Travelline, Bnovo или кастомная шахматка</li>
+                <li>Онлайн-оплата картами и СБП с фискализацией 54-ФЗ</li>
+                <li>Интерактивная карта территории с объектами инфраструктуры</li>
+                <li>Микроразметка Schema.org Hotel + FAQPage</li>
+                <li>Связка с CRM отеля (Битрикс24 / AmoCRM)</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбранный тариф</button>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="tariff-card" data-tariff="Премиум-портал курортного комплекса" data-price="от 125 000 ₽" onclick="selectArticleTariff(this)">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Флагманский уровень</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">20–30 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Премиум-портал курорта</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Экосистема для крупных загородных резортов с сетью коттеджей, спа и ресторанами.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 125 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все опции тарифа «Сайт отеля с бронированием»</li>
+                <li>Бронирование доп. услуг (SPA, банные чаны, экскурсии, квадроциклы)</li>
+                <li>Личный кабинет постоянного гостя с историей поездок</li>
+                <li>Мультиязычность и интеграция с PMS гостиницы</li>
+                <li>Авторский 3D-дизайн и аэропанорамы территории</li>
+                <li>Приоритетная круглосуточная поддержка 24/7</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
+
+        </div>
+
+        <!-- Mobile swipe dots -->
+        <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin-bottom: 24px;">
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+          <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+        </div>
+
+        <!-- Dynamic Form for Selected Tariff -->
+        <div id="tariff-order-block" style="background: color-mix(in srgb, currentColor 3%, transparent); border: 1.5px solid var(--accent); border-radius: 16px; padding: 26px; margin: 30px 0;">
+          <h3 style="margin: 0 0 6px; font-size: 1.25rem;">Оставить заявку на тариф: <span id="selected-tariff-name" style="color: var(--accent);">Сайт отеля с бронированием</span></h3>
+          <p style="margin: 0 0 18px; font-size: 0.92rem; color: var(--muted);">Ориентировочная стоимость: <strong id="selected-tariff-price" style="color: var(--text);">от 69 000 ₽</strong>. Заполните контактные данные, и основатель VOID Digital Даниил свяжется с вами для обсуждения нюансов вашего отельного проекта.</p>
+
+          <form id="article-lead-form" onsubmit="return false;">
+            <input type="hidden" id="form-tariff-input" name="tariff" value="Сайт отеля с бронированием (от 69 000 ₽)">
+            <div class="tariff-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Телефон или Telegram *</label>
+                <input type="text" id="lead-contact" placeholder="+7 (999) 000-00-00 или @username" required style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-size: 0.95rem;">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Название отеля / локация</label>
+                <input type="text" id="lead-task" placeholder="Например: Глэмпинг на Алтае, 12 домиков" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-size: 0.95rem;">
+              </div>
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.82rem; color: var(--muted); cursor: pointer;">
+                <input type="checkbox" id="lead-consent" checked required style="margin-top: 3px;">
+                <span>Согласен на обработку персональных данных в соответствии с <a href="/consent" target="_blank" style="color: var(--accent); text-decoration: underline;">Согласием</a> и <a href="/privacy" target="_blank" style="color: var(--accent); text-decoration: underline;">Политикой</a></span>
+              </label>
+            </div>
+
+            <div class="tariff-btn-row" style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+              <button type="submit" id="lead-submit-btn" class="btn btn-primary" style="padding: 13px 28px; font-size: 1rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 8px; border: none; cursor: pointer;">Отправить заявку в Telegram</button>
+              <a href="https://t.me/Voiddigit" target="_blank" rel="noopener" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 6px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg>
+                Написать Даниилу напрямую
+              </a>
+            </div>
+
+            <div id="lead-status-msg" style="display: none; margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 0.92rem;"></div>
+          </form>
+        </div>
+
+        <script>
+          (function() {
+            var currentTariff = 'Сайт отеля с модулем бронирования';
+            var currentPrice = 'от 69 000 ₽';
+
+            window.selectArticleTariff = function(cardElem) {
+              var cards = document.querySelectorAll('.tariff-card');
+              cards.forEach(function(c) {
+                c.classList.remove('active');
+                c.style.borderColor = 'var(--border)';
+                c.style.boxShadow = 'none';
+                var btn = c.querySelector('button');
+                if (btn) btn.textContent = 'Выбрать этот тариф';
+              });
+
+              cardElem.classList.add('active');
+              cardElem.style.borderColor = 'var(--accent)';
+              cardElem.style.boxShadow = '0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06)';
+              var activeBtn = cardElem.querySelector('button');
+              if (activeBtn) activeBtn.textContent = 'Выбранный тариф';
+
+              currentTariff = cardElem.getAttribute('data-tariff') || 'Сайт отеля с модулем бронирования';
+              currentPrice = cardElem.getAttribute('data-price') || 'от 69 000 ₽';
+
+              var titleSpan = document.getElementById('selected-tariff-name');
+              var priceSpan = document.getElementById('selected-tariff-price');
+              var hiddenInput = document.getElementById('form-tariff-input');
+
+              if (titleSpan) titleSpan.textContent = currentTariff;
+              if (priceSpan) priceSpan.textContent = currentPrice;
+              if (hiddenInput) hiddenInput.value = currentTariff + ' (' + currentPrice + ')';
+
+              var orderBlock = document.getElementById('tariff-order-block');
+              if (orderBlock && window.innerWidth <= 768) {
+                orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              }
+            };
+
+            function initHotelTariffs() {
+              var grid = document.getElementById('landing-tariffs-grid');
+              var dots = document.querySelectorAll('.tariff-dot');
+              if (grid && dots.length > 0) {
+                grid.addEventListener('scroll', function() {
+                  var scrollLeft = grid.scrollLeft;
+                  var cardWidth = grid.querySelector('.tariff-card').offsetWidth + 12;
+                  var index = Math.round(scrollLeft / cardWidth);
+                  dots.forEach(function(dot, i) {
+                    if (i === index) {
+                      dot.classList.add('active');
+                      dot.style.background = 'var(--accent)';
+                      dot.style.width = '20px';
+                      dot.style.borderRadius = '4px';
+                    } else {
+                      dot.classList.remove('active');
+                      dot.style.background = 'var(--border)';
+                      dot.style.width = '8px';
+                      dot.style.borderRadius = '50%';
+                    }
+                  });
+                }, { passive: true });
+              }
+
+              var form = document.getElementById('article-lead-form');
+              var submitBtn = document.getElementById('lead-submit-btn');
+              var statusMsg = document.getElementById('lead-status-msg');
+
+              if (!form || !submitBtn) return;
+
+              form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var contactVal = (document.getElementById('lead-contact').value || '').trim();
+                var taskVal = (document.getElementById('lead-task').value || '').trim();
+                var consentCheck = document.getElementById('lead-consent');
+
+                if (!contactVal) {
+                  alert('Пожалуйста, укажите ваш контакт (телефон или Telegram)');
+                  return;
+                }
+                if (consentCheck && !consentCheck.checked) {
+                  alert('Необходимо согласие на обработку персональных данных');
+                  return;
+                }
+
+                var originalBtnHtml = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Отправка заявки...';
+                statusMsg.style.display = 'none';
+
+                var messageText = '🏕️ <b>НОВАЯ ЗАЯВКА С БЛОГА (ОТЕЛИ / ГЛЭМПИНГИ)</b>\n\n' +
+                                  '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+                                  '📞 <b>Контакт:</b> ' + contactVal + '\n' +
+                                  '🌲 <b>Отель/локация:</b> ' + (taskVal || 'Не указано') + '\n' +
+                                  '🌐 <b>Страница:</b> ' + window.location.href;
+
+                var tgBotToken = '8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs';
+                var tgChatId = '7738024017';
+                var tgUrl = 'https://api.telegram.org/bot' + tgBotToken + '/sendMessage';
+
+                fetch(tgUrl, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    chat_id: tgChatId,
+                    text: messageText,
+                    parse_mode: 'HTML'
+                  })
+                }).then(function(resp) {
+                  return resp.json();
+                }).then(function(data) {
+                  if (data && data.ok) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '✓ Заявка доставлена!';
+                    statusMsg.style.display = 'block';
+                    statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                    statusMsg.style.border = '1.5px solid var(--accent)';
+                    statusMsg.style.color = 'var(--text)';
+                    statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+                    form.reset();
+                    if (consentCheck) consentCheck.checked = true;
+                  } else {
+                    throw new Error(data && data.description ? data.description : 'Ошибка Telegram API');
+                  }
+                }).catch(function(err) {
+                  fetch('/api/lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      tariff: currentTariff + ' (' + currentPrice + ')',
+                      contact: contactVal,
+                      message: taskVal,
+                      page: window.location.href
+                    })
+                  }).finally(function() {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+
+                    statusMsg.style.display = 'block';
+                    statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                    statusMsg.style.border = '1.5px solid var(--accent)';
+                    statusMsg.style.color = 'var(--text)';
+                    statusMsg.innerHTML = '🎉 <b>Заявка принята!</b> Если хотите написать сразу в диалог — нажмите: <a href="https://t.me/Voiddigit?text=' + encodeURIComponent('Здравствуйте! Заявка на тариф ' + currentTariff + '. Мой контакт: ' + contactVal) + '" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: underline;">Открыть чат с Даниилом</a>';
+                  });
+                });
+              });
+            }
+
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', initHotelTariffs);
+            } else {
+              initHotelTariffs();
+            }
+          })();
+        </script>
+
+        <h2>Примеры реализованных решений</h2>
+        <p>Оцените примеры веб-решений, созданных командой VOID Digital для туристической сферы:</p>
+
+        <div class="portfolio-grid">
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Глэмпинг · Эко-туризм</span>
+              <h4>Эко-отель с панорамными сферами в горах</h4>
+              <p>Разработка лендинга с интерактивным календарем бронирования, фотогалереей рассветов и модулем онлайн-оплаты.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Загородный клуб · SPA</span>
+              <h4>Курортный комплекс на озере</h4>
+              <p>Многостраничный сайт с 3D-картой территории, бронированием банных чанов, рестораном и связкой с Travelline.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">База отдыха · Рыбалка</span>
+              <h4>Коттеджный парк в Карелии</h4>
+              <p>Каталог деревянных домов из сруба, аренда катеров и снаряжения, автоматические заявки администраторам в Telegram.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+        </div>
+
+        <h2>Этапы создания сайта для отеля под ключ</h2>
+
+        <ol>
+          <li><strong>Аудит номерного фонда и УТП локации.</strong> Выделяем ключевые преимущества курорта: видовые характеристики, уединение, банные чаны, кухня из местных продуктов, близость к достопримечательностям.</li>
+          <li><strong>Проектирование пути гостя (User Flow).</strong> Создаем понятную структуру: выбор категории номера $ightarrow$ фото $ightarrow$ свободные даты $ightarrow$ доп. услуги $ightarrow$ безопасная предоплата.</li>
+          <li><strong>Эмоциональный UX/UI дизайн.</strong> Оформляем сайт в эстетике премиального загородного отдыха (глубокие природные оттенки, атмосферные фотографии, плавная анимация).</li>
+          <li><strong>Подключение модулей и систем управления (PMS).</strong> Интегрируем виджет Travelline/Bnovo или настраиваем автономный модуль с календарем, подключаем онлайн-эквайринг (СБП, карты).</li>
+          <li><strong>SEO и адаптация под нейропоиск (AIO/GEO).</strong> Настраиваем семантическую разметку Schema.org Hotel, гео-привязку для поисковиков и подключаем <code>llms.txt</code>.</li>
+        </ol>
+
+        <h2>Частые вопросы владельцев отелей и глэмпингов (FAQ)</h2>
+
+        <h3>Как избежать овербукинга, если мы также размещаемся на Ostrovok и Яндекс Путешествиях?</h3>
+        <p>Благодаря интеграции с Channel Manager (Travelline / Bnovo / Shelter) все бронирования с сайта мгновенно блокируют занятые даты на всех внешних агрегаторах в ту же секунду.</p>
+
+        <h3>Можно ли сделать расчет стоимости в зависимости от дня недели и сезона?</h3>
+        <p>Да. Модуль бронирования поддерживает динамические тарифы: цены в будни, выходные, праздничные дни и высокий/низкий сезоны рассчитываются автоматически.</p>
+
+        <h3>Как начать проект?</h3>
+        <p>Выберите подходящий тариф в таблице выше, отправьте заявку или напишите напрямую в Telegram. Мы изучим ваш объект и предложим решение в течение 2 часов.</p>
+
+        <div class="cta mt-40">
+          <h2>Заказать разработку сайта для отеля</h2>
+          <p>Готовы обеспечить полную загрузку вашего отеля прямыми гостями? Обсудите проект с разработчиком VOID Digital.</p>
+          <a class="btn" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Обсудить проект в Telegram</a>
+        </div>
+
+      </div> <!-- .post-body -->
+    </div> <!-- .container.container-sm -->
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+    <ul class="social" aria-label="Связаться с нами">
+      <li><a href="tel:+79538550813" aria-label="Позвонить +7 953 855-08-13" title="Позвонить"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a></li>
+      <li><a href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"/></svg></a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg></a></li>
+      <li><a href="mailto:voiddigital@mail.ru" aria-label="Написать на почту voiddigital@mail.ru" title="Почта"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a></li>
+    </ul>
+    <ul class="footer-links">
+      <li><a href="/services">Услуги</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a href="/privacy">Политика конфиденциальности</a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener">Telegram</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="/js/main.js?v=75bccd28"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

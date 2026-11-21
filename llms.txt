@@ -110,6 +110,10 @@
 - [Разработка Telegram-ботов для бизнеса под ключ: автоворонки и WebApp](https://void-digital.ru/blog-telegram-bots-development)
 - [Сайт для юридической компании и банкротства физлиц (БФЛ) под ключ](https://void-digital.ru/blog-website-for-lawyers)
 
+- [Сайт для отеля, базы отдыха и глэмпинга: прямое бронирование без комиссий](https://void-digital.ru/blog-website-for-hotel)
+- [Сайт для спецтехники, грузоперевозок и логистики под ключ](https://void-digital.ru/blog-website-for-logistics)
+- [Сайт для ресторана, доставки еды и банкетов без комиссий агрегаторов](https://void-digital.ru/blog-website-for-restaurants)
+
 ## Контакты
 
 - Telegram: https://t.me/Voiddigit
