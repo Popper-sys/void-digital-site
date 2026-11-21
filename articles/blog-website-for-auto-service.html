@@ -16,7 +16,7 @@
   <meta property="og:title" content="Сайт для автосервиса: разработка и структура — VOID Digital">
   <meta property="og:description" content="Каким должен быть сайт автосервиса, чтобы привлекать клиентов из поиска и рекламы? Разбираем структуру, функциональность, дизайн и особенности разработки сайта для СТО.">
   <meta property="og:url" content="https://void-digital.ru/blog-website-for-auto-service">
-  <meta property="og:image" content="https://void-digital.ru/img/blog-website-for-auto-service/blog-auto-service-cover.jpg?v=20261030">
+  <meta property="og:image" content="https://void-digital.ru/img/blog-website-for-auto-service/blog-auto-service-cover.jpg?v=20261121">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/icon.svg" type="image/svg+xml">
@@ -29,6 +29,111 @@
     .post .cta p { max-width: none; }
     .post .cta p a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
     .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+  
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: var(--bg);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-card:active {
+      transform: scale(0.99);
+    }
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff !important;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 12px 24px;
+      border-radius: var(--radius, 10px);
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s, background 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-action:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: color-mix(in srgb, currentColor 8%, transparent);
+      color: inherit;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 12px 22px;
+      border-radius: var(--radius, 10px);
+      text-decoration: none;
+      border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover {
+      background: color-mix(in srgb, currentColor 14%, transparent);
+    }
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 12px !important;
+        padding-bottom: 8px !important;
+        margin-inline: -12px !important;
+        padding-inline: 12px !important;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .tariff-card {
+        flex: 0 0 min(82vw, 300px) !important;
+        max-width: 300px !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+        padding: 20px 16px !important;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+      .tariff-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .tariff-btn-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .tariff-btn-row .btn {
+        width: 100% !important;
+      }
+    }
+
   </style>
   <script type="application/ld+json">
   {
@@ -145,8 +250,7 @@
       <h1 class="mt-16">Сайт для автосервиса: каким должен быть сайт, который приводит клиентов</h1>
       <p class="post-meta">Сайты для бизнеса · 7 мин чтения</p>
 
-      <figure class="post-figure">
-        <img src="/img/blog-website-for-auto-service/blog-auto-service-cover.jpg?v=20261030" alt="Сайт для автосервиса: каким должен быть сайт, который приводит клиентов" width="1536" height="1024" fetchpriority="high">
+      <figure class="post-figure"><img src="/img/blog-website-for-auto-service/blog-auto-service-cover.jpg?v=20261121" alt="Автосервис и детейлинг под ключ — VOID Digital" width="1536" height="1024" loading="eager">
       </figure>
 
       <p>Автовладелец ищет автосервис, когда ему нужно решить конкретную задачу: пройти техническое обслуживание, заменить детали, провести диагностику или устранить неисправность. В этот момент он сравнивает несколько компаний и оценивает не только стоимость услуг, но и доверие к сервису, специализацию, удобство записи и понятность условий.</p>
@@ -169,8 +273,7 @@
       <p>Особенно важен сайт для сервисов с несколькими направлениями работы: например, если компания занимается диагностикой, ремонтом двигателя, обслуживанием ходовой части, автоэлектрикой и кузовными работами.</p>
       <p>Вместо того чтобы объяснять всё в одном объявлении, можно создать отдельные страницы под каждую услугу и подробно раскрыть её особенности.</p>
 
-      <figure class="post-figure">
-        <img src="/img/blog-website-for-auto-service/blog-auto-service-structure.jpg?v=20261030" alt="Структура и функции сайта автосервиса" width="1536" height="1024" loading="lazy">
+      <figure class="post-figure"><img src="/img/blog-website-for-auto-service/blog-auto-service-cover.jpg?v=20261121" alt="Автосервис и детейлинг под ключ — VOID Digital" width="1536" height="1024" loading="eager">
       </figure>
       <h2>Какая структура должна быть у сайта автосервиса</h2>
       <p>Структура зависит от масштаба СТО, количества услуг и особенностей бизнеса. Но есть несколько разделов, которые обычно необходимы для полноценного представления автосервиса.</p>
@@ -261,8 +364,7 @@
       </ol>
       <p>Основная задача дизайна — не просто произвести впечатление, а помочь посетителю разобраться в предложении и обратиться в сервис.</p>
 
-      <figure class="post-figure">
-        <img src="/img/blog-website-for-auto-service/blog-auto-service-seo.jpg?v=20261030" alt="SEO-продвижение сайта автосервиса" width="1536" height="1024" loading="lazy">
+      <figure class="post-figure"><img src="/img/blog-website-for-auto-service/blog-auto-service-cover.jpg?v=20261121" alt="Автосервис и детейлинг под ключ — VOID Digital" width="1536" height="1024" loading="eager">
       </figure>
       <h2>SEO-продвижение сайта автосервиса</h2>
       <p>Собственный сайт может стать дополнительным каналом привлечения клиентов из поисковых систем. Но для этого недостаточно разместить адрес, телефон и список услуг.</p>
@@ -325,11 +427,278 @@
       <h3>Сколько времени занимает разработка сайта автосервиса?</h3>
       <p>Срок зависит от количества страниц, сложности дизайна, функциональности и готовности материалов. Конкретные сроки определяются после согласования состава проекта.</p>
       <p class="mt-24">Рекомендуем также изучить: особенности проектирования <a href="/blog-website-for-beauty-salon">сайта для салона красоты</a>, специфику разработки <a href="/blog-website-for-dentistry">сайта для стоматологии</a> и какие пункты должен содержать <a href="/blog-website-development-contract">договор на разработку сайта</a>.</p>
-      <div class="cta mt-40">
-        <h2>Разработка сайта для автосервиса</h2>
-        <p>Планируете заказать сайт для автосервиса? Обсудим специализацию компании, необходимые разделы и функциональность, определим объём разработки. Посмотрите наши <a href="/services">услуги</a> и <a href="/portfolio">портфолио</a>.</p>
-        <a class="btn" href="/contacts">Обсудить проект</a>
-      </div>
+      
+        <!-- Interactive Tariffs Widget -->
+        <h2 id="tariffs">Тарифы на разработку (Автосервис и детейлинг)</h2>
+        <p>Выберите подходящий формат под ваши коммерческие задачи. Выберите карточку для фиксации цены и отправки заявки:</p>
+
+        <div id="landing-tariffs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 28px 0 16px;">
+          
+          <!-- Card 1 -->
+          <div class="tariff-card" data-tariff="Лендинг детейлинга / автоуслуги" data-price="от 25 000 ₽" onclick="selectArticleTariff(this)">
+            
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Быстрый старт</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">5–7 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Лендинг детейлинга / автоуслуги</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Идеально под контекстную рекламу на бронепленку, полировку или сход-развал.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 25 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Квиз подбора услуги под марку и модель авто</li><li>Форма онлайн-записи с выбором удобного времени</li><li>Мгновенные лиды в Telegram мастеру-приемщику</li><li>Интерактивная карта проезда и парковки</li><li>Мобильная адаптация 100/100 Google Speed</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="tariff-card active" data-tariff="Сайт техцентра и автосервиса" data-price="от 45 000 ₽" onclick="selectArticleTariff(this)" style="border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);">
+            <div style="position: absolute; top: -12px; right: 18px; background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.05em;">Хит продаж</div>
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оптимальный выбор</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">10–14 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Сайт техцентра и автосервиса</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Многостраничный сайт с полным перечнем работ по маркам авто и агрегатам.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 45 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все опции тарифа «Лендинг автоуслуги»</li><li>Страницы услуг по маркам: ТО, двигатель, электрика</li><li>Калькулятор регламентного ТО по пробегу</li><li>Интеграция с YClients или Telegram-ботом</li><li>Микроразметка Schema.org AutoRepair + FAQPage</li><li>Связка с CRM техцентра</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбранный тариф</button>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="tariff-card" data-tariff="Портал сети автосервисов" data-price="от 85 000 ₽" onclick="selectArticleTariff(this)">
+            
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Флагманский уровень</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">18–25 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Портал сети автосервисов</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Веб-ресурс для сетевых СТО и франшиз с несколькими филиалами в городе.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 85 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все опции тарифа «Сайт техцентра»</li><li>Мультифилиальность с выбором точки на карте</li><li>Личный кабинет автовладельца и сервисная книжка</li><li>SMS и WhatsApp оповещения о готовности авто</li><li>Сквозной коллтрекинг по рекламным каналам</li><li>Приоритетная техподдержка 24/7</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
+
+        </div>
+
+        <!-- Mobile swipe dots -->
+        <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin-bottom: 24px;">
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+          <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+        </div>
+
+        <!-- Dynamic Form for Selected Tariff -->
+        <div id="tariff-order-block" style="background: color-mix(in srgb, currentColor 3%, transparent); border: 1.5px solid var(--accent); border-radius: 16px; padding: 26px; margin: 30px 0;">
+          <h3 style="margin: 0 0 6px; font-size: 1.25rem;">Оставить заявку на тариф: <span id="selected-tariff-name" style="color: var(--accent);">Сайт техцентра и автосервиса</span></h3>
+          <p style="margin: 0 0 18px; font-size: 0.92rem; color: var(--muted);">Ориентировочная стоимость: <strong id="selected-tariff-price" style="color: var(--text);">от 45 000 ₽</strong>. Заполните контактные данные, и основатель VOID Digital Даниил свяжется с вами для обсуждения проекта.</p>
+
+          <form id="article-lead-form" onsubmit="return false;">
+            <input type="hidden" id="form-tariff-input" name="tariff" value="Сайт техцентра и автосервиса (от 45 000 ₽)">
+            <div class="tariff-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Телефон или Telegram *</label>
+                <input type="text" id="lead-contact" placeholder="+7 (999) 000-00-00 или @username" required style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-size: 0.95rem;">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Направление компании / город</label>
+                <input type="text" id="lead-task" placeholder="Например: Автосервис и детейлинг, Москва" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-size: 0.95rem;">
+              </div>
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.82rem; color: var(--muted); cursor: pointer;">
+                <input type="checkbox" id="lead-consent" checked required style="margin-top: 3px;">
+                <span>Согласен на обработку персональных данных в соответствии с <a href="/consent" target="_blank" style="color: var(--accent); text-decoration: underline;">Согласием</a> и <a href="/privacy" target="_blank" style="color: var(--accent); text-decoration: underline;">Политикой</a></span>
+              </label>
+            </div>
+
+            <div class="tariff-btn-row" style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+              <button type="submit" id="lead-submit-btn" class="btn btn-primary" style="padding: 13px 28px; font-size: 1rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 8px; border: none; cursor: pointer;">Отправить заявку в Telegram</button>
+              <a href="https://t.me/Voiddigit" target="_blank" rel="noopener" class="btn-secondary" style="display: inline-flex; align-items: center; gap: 6px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg>
+                Написать Даниилу напрямую
+              </a>
+            </div>
+
+            <div id="lead-status-msg" style="display: none; margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 0.92rem;"></div>
+          </form>
+        </div>
+
+        <script>
+          (function() {
+            var currentTariff = 'Сайт техцентра и автосервиса';
+            var currentPrice = 'от 45 000 ₽';
+
+            window.selectArticleTariff = function(cardElem) {
+              var cards = document.querySelectorAll('.tariff-card');
+              cards.forEach(function(c) {
+                c.classList.remove('active');
+                c.style.borderColor = 'var(--border)';
+                c.style.boxShadow = 'none';
+                var btn = c.querySelector('button');
+                if (btn) btn.textContent = 'Выбрать этот тариф';
+              });
+
+              cardElem.classList.add('active');
+              cardElem.style.borderColor = 'var(--accent)';
+              cardElem.style.boxShadow = '0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06)';
+              var activeBtn = cardElem.querySelector('button');
+              if (activeBtn) activeBtn.textContent = 'Выбранный тариф';
+
+              currentTariff = cardElem.getAttribute('data-tariff') || 'Сайт техцентра и автосервиса';
+              currentPrice = cardElem.getAttribute('data-price') || 'от 45 000 ₽';
+
+              var titleSpan = document.getElementById('selected-tariff-name');
+              var priceSpan = document.getElementById('selected-tariff-price');
+              var hiddenInput = document.getElementById('form-tariff-input');
+
+              if (titleSpan) titleSpan.textContent = currentTariff;
+              if (priceSpan) priceSpan.textContent = currentPrice;
+              if (hiddenInput) hiddenInput.value = currentTariff + ' (' + currentPrice + ')';
+
+              var orderBlock = document.getElementById('tariff-order-block');
+              if (orderBlock && window.innerWidth <= 768) {
+                orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              }
+            };
+
+            function initCustomTariffs() {
+              var grid = document.getElementById('landing-tariffs-grid');
+              var dots = document.querySelectorAll('.tariff-dot');
+              if (grid && dots.length > 0) {
+                grid.addEventListener('scroll', function() {
+                  var scrollLeft = grid.scrollLeft;
+                  var cardWidth = grid.querySelector('.tariff-card').offsetWidth + 12;
+                  var index = Math.round(scrollLeft / cardWidth);
+                  dots.forEach(function(dot, i) {
+                    if (i === index) {
+                      dot.classList.add('active');
+                      dot.style.background = 'var(--accent)';
+                      dot.style.width = '20px';
+                      dot.style.borderRadius = '4px';
+                    } else {
+                      dot.classList.remove('active');
+                      dot.style.background = 'var(--border)';
+                      dot.style.width = '8px';
+                      dot.style.borderRadius = '50%';
+                    }
+                  });
+                }, { passive: true });
+              }
+
+              var form = document.getElementById('article-lead-form');
+              var submitBtn = document.getElementById('lead-submit-btn');
+              var statusMsg = document.getElementById('lead-status-msg');
+
+              if (!form || !submitBtn) return;
+
+              form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var contactVal = (document.getElementById('lead-contact').value || '').trim();
+                var taskVal = (document.getElementById('lead-task').value || '').trim();
+                var consentCheck = document.getElementById('lead-consent');
+
+                if (!contactVal) {
+                  alert('Пожалуйста, укажите ваш контакт (телефон или Telegram)');
+                  return;
+                }
+                if (consentCheck && !consentCheck.checked) {
+                  alert('Необходимо согласие на обработку персональных данных');
+                  return;
+                }
+
+                var originalBtnHtml = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Отправка заявки...';
+                statusMsg.style.display = 'none';
+
+                var messageText = '⚡ <b>НОВАЯ ЗАЯВКА С БЛОГА (АВТОСЕРВИС И ДЕТЕЙЛИНГ)</b>
+
+' +
+                                  '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')
+' +
+                                  '📞 <b>Контакт:</b> ' + contactVal + '
+' +
+                                  '🏢 <b>Компания/город:</b> ' + (taskVal || 'Не указано') + '
+' +
+                                  '🌐 <b>Страница:</b> ' + window.location.href;
+
+                var tgBotToken = '8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs';
+                var tgChatId = '7738024017';
+                var tgUrl = 'https://api.telegram.org/bot' + tgBotToken + '/sendMessage';
+
+                fetch(tgUrl, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    chat_id: tgChatId,
+                    text: messageText,
+                    parse_mode: 'HTML'
+                  })
+                }).then(function(resp) {
+                  return resp.json();
+                }).then(function(data) {
+                  if (data && data.ok) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '✓ Заявка доставлена!';
+                    statusMsg.style.display = 'block';
+                    statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                    statusMsg.style.border = '1.5px solid var(--accent)';
+                    statusMsg.style.color = 'var(--text)';
+                    statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+                    form.reset();
+                    if (consentCheck) consentCheck.checked = true;
+                  } else {
+                    throw new Error(data && data.description ? data.description : 'Ошибка Telegram API');
+                  }
+                }).catch(function(err) {
+                  fetch('/api/lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      tariff: currentTariff + ' (' + currentPrice + ')',
+                      contact: contactVal,
+                      message: taskVal,
+                      page: window.location.href
+                    })
+                  }).finally(function() {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+
+                    statusMsg.style.display = 'block';
+                    statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                    statusMsg.style.border = '1.5px solid var(--accent)';
+                    statusMsg.style.color = 'var(--text)';
+                    statusMsg.innerHTML = '🎉 <b>Заявка принята!</b> Если хотите написать сразу в диалог — нажмите: <a href="https://t.me/Voiddigit?text=' + encodeURIComponent('Здравствуйте! Заявка на тариф ' + currentTariff + '. Мой контакт: ' + contactVal) + '" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: underline;">Открыть чат с Даниилом</a>';
+                  });
+                });
+              });
+            }
+
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', initCustomTariffs);
+            } else {
+              initCustomTariffs();
+            }
+          })();
+        </script>
+
     </div>
   </article>
 </main>
