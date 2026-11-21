@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Сайт-каталог — разработка, структура и функции для бизнеса</title>
+  <meta name="description" content="Что такое сайт-каталог, кому он подходит и какие функции нужны бизнесу. Разбираем структуру каталога, карточки товаров и этапы разработки.">
+  <link rel="canonical" href="https://void-digital.ru/blog-website-catalog">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="VOID | digital">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Сайт-каталог — разработка, структура и функции для бизнеса">
+  <meta property="og:description" content="Что такое сайт-каталог, кому он подходит и какие функции нужны бизнесу. Разбираем структуру каталога, карточки товаров и этапы разработки.">
+  <meta property="og:url" content="https://void-digital.ru/blog-website-catalog">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://void-digital.ru/img/blog-website-catalog/blog-catalog-cover.jpg?v=20261110">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Сайт-каталог для компании: структура категорий и карточек">
+  <link rel="preload" href="fonts/Manrope-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Manrope-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Manrope-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css?v=f00a3e5f">
+  <style>
+    .post-figure { margin: 24px 0; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post .cta p { max-width: none; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+    .post table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .95rem; }
+    .post th, .post td { padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); text-align: left; }
+    .post th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Сайт-каталог для компании: структура, функции и особенности разработки",
+    "description": "Что такое сайт-каталог, кому он подходит и какие функции нужны бизнесу. Разбираем структуру каталога, карточки товаров и этапы разработки.",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://void-digital.ru/blog-website-catalog"
+    },
+    "image": [
+      "https://void-digital.ru/img/blog-website-catalog/blog-catalog-cover.jpg?v=20261110"
+    ],
+    "datePublished": "2026-11-10T12:00:00+03:00",
+    "dateModified": "2026-11-10T12:00:00+03:00",
+    "author": {
+      "@type": "Organization",
+      "name": "VOID | digital",
+      "url": "https://void-digital.ru/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "VOID | digital",
+      "url": "https://void-digital.ru/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://void-digital.ru/favicon.svg"
+      }
+    },
+    "articleSection": "Разработка сайтов",
+    "inLanguage": "ru-RU"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://void-digital.ru/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Блог",
+        "item": "https://void-digital.ru/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Сайт-каталог для компании",
+        "item": "https://void-digital.ru/blog-website-catalog"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Чем сайт-каталог отличается от интернет-магазина?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Каталог ориентирован на презентацию ассортимента, выбор позиций и сбор заявок на расчёт, тогда как интернет-магазин включает онлайн-оплату, управление складскими остатками и доставку."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Можно ли разместить цены в каталоге?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. Цены можно указывать фиксированными, в формате диапазона 'от' или заменять кнопкой 'Запросить расчет', если стоимость формируется индивидуально."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Нужны ли фильтры в каталоге?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Если в каталоге больше нескольких десятков позиций с разными техническими параметрами, фильтры и сортировка существенно экономят время клиентов."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Можно ли обновлять каталог самостоятельно?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. Современные системы управления позволяют администраторам без знания кода добавлять новые товары, менять описания, цены и фотографии через удобную панель."
+        }
+      }
+    ]
+  }
+  </script>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/services">Услуги и цены</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/about">О нас</a></li>
+      <li><a href="/blog" aria-current="page">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
+      <li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <article class="section post">
+    <div class="container">
+      <a href="/blog" class="muted">← Все статьи</a>
+      <h1 class="mt-16">Сайт-каталог для компании: структура, функции и особенности разработки</h1>
+      <p class="post-meta">Разработка сайтов · 6 мин чтения</p>
+
+      <figure class="post-figure">
+        <img src="img/blog-website-catalog/blog-catalog-cover.jpg?v=20261110" alt="Сайт-каталог для компании: структура категорий и карточек" width="1536" height="1024" fetchpriority="high">
+        <figcaption>Сайт-каталог формирует удобную цифровую витрину: структурированная номенклатура и быстрый запрос коммерческого предложения.</figcaption>
+      </figure>
+
+      <p>Если компания предлагает большой ассортимент товаров или услуг, размещать всю информацию на одной странице неудобно. Посетителю сложно ориентироваться в предложении, сравнивать варианты и находить нужную позицию.</p>
+      <p>В такой ситуации оптимальным решением становится сайт-каталог. Он позволяет структурировать ассортимент, подробно представить номенклатуру продукции или услуг и упростить взаимодействие с потенциальными клиентами. Разберём, кому нужен сайт-каталог, какие разделы и функции стоит предусмотреть и чем он отличается от классического интернет-магазина.</p>
+
+      <h2>Что такое сайт-каталог</h2>
+      <p><strong>Сайт-каталог</strong> — это веб-ресурс, на котором товары, услуги или производственные предложения систематизированы в виде иерархического перечня с рубрикаторами, категориями и детальными карточками позиций.</p>
+      <p>В карточке размещаются фотографии, точное наименование, подробное техническое описание, спецификации, чертежи, стоимость или кнопка запроса расчета.</p>
+      <p>Главное отличие от интернет-магазина заключается в сценарии взаимодействия. Каталог не требует обязательной онлайн-оплаты через интернет-эквайринг и мгновенного оформления чека. Вместо этого посетитель отправляет спецификацию менеджеру, скачивает прайс-лист или запрашивает индивидуальное коммерческое предложение.</p>
+
+      <h2>Кому подходит сайт-каталог</h2>
+      <p>Такой формат идеален для компаний, которым необходимо полно и убедительно представить номенклатуру, но специфика продаж требует предварительной консультации менеджера:</p>
+      <ul>
+        <li><strong>Производителям оборудования и промышленной продукции;</strong></li>
+        <li><strong>Поставщикам строительных и отделочных материалов;</strong></li>
+        <li><strong>Оптовым дистрибьюторам и торговым домам;</strong></li>
+        <li><strong>Поставщикам сырья, запчастей и комплектующих;</strong></li>
+        <li><strong>Компаниям с комплексным перечнем специализированных B2B-услуг;</strong></li>
+        <li><strong>Предприятиям, создающим продукцию по индивидуальным чертежам и проектам.</strong></li>
+      </ul>
+      <p>Когда покупателю важно уточнить объём партии, согласовать технические условия или рассчитать индивидуальную логистику, каталог оказывается практичнее и дешевле в поддержке, чем тяжеловесный интернет-магазин.</p>
+
+      <h2>Какие разделы нужны сайту-каталогу</h2>
+      <p>Архитектура сайта-каталога строится вокруг комфортного пути пользователя от общего обзора к точной детализации:</p>
+
+      <h3>1. Главная страница</h3>
+      <p>Знакомит с компанией, её ключевой специализацией и масштабом. На главной размещаются витрина флагманских направлений, быстрые переходы в популярные категории каталога, блок производственных преимуществ и контакты.</p>
+
+      <h3>2. Категории каталога</h3>
+      <p>Делят номенклатуру на логические группы. Дерево разделов должно соответствовать логике поиска целевых клиентов. Грамотная вложенность позволяет быстро находить нужное оборудование за 2–3 клика.</p>
+
+      <h3>3. Карточки товаров или услуг</h3>
+      <p>Карточка — ключевой конверсионный узел. В зависимости от специфики бизнеса она включает:</p>
+      <ul>
+        <li>Четкое наименование и артикул;</li>
+        <li>Качественные фото в разных ракурсах и схемы;</li>
+        <li>Подробные технические характеристики и таблицы параметров;</li>
+        <li>Варианты комплектации и модификаций;</li>
+        <li>Стоимость за единицу или отметку «Цена по запросу»;</li>
+        <li>Сертификаты и паспорта качества в формате PDF;</li>
+        <li>Заметную кнопку «Запросить КП» или «Получить консультацию».</li>
+      </ul>
+
+      <h3>4. О компании</h3>
+      <p>Раздел формирует доверие к поставщику. Здесь размещаются факты о производственных мощностях, складах, автопарке, географии поставок и ключевых корпоративных клиентах.</p>
+
+      <h3>5. Контакты и форма запроса</h3>
+      <p>Посетителю должно быть предельно ясно, как получить консультацию. Форма запроса может автоматически прикреплять выбранный товар, чтобы менеджер сразу видел, какая позиция интересует заказчика.</p>
+
+      <figure class="post-figure">
+        <img src="img/blog-website-catalog/blog-catalog-categories.jpg?v=20261110" alt="Иерархия категорий и система фильтров сайта-каталога" width="1536" height="1024" loading="lazy">
+        <figcaption>Продуманная структура категорий и гибкая фильтрация по параметрам помогают клиентам быстро подбирать нужные позиции.</figcaption>
+      </figure>
+
+      <h2>Какие функции предусмотреть</h2>
+      <p>Функциональное оснащение зависит от глубины ассортимента и клиентских привычек в конкретной отрасли:</p>
+      <ul>
+        <li><strong>Поиск по сайту.</strong> Мгновенный поиск по названию, артикулу и параметрам;</li>
+        <li><strong>Параметрические фильтры.</strong> Выбор по габаритам, мощности, материалам, назначению и цене;</li>
+        <li><strong>Сортировка.</strong> По популярности, новизне и стоимости;</li>
+        <li><strong>Сравнение характеристик.</strong> Удобно для выбора сложного оборудования с множеством технических нюансов;</li>
+        <li><strong>Корзина запроса (лист подбора).</strong> Позволяет клиенту собрать 5–10 позиций и отправить единый запрос на оптовую смету без ввода данных банковской карты;</li>
+        <li><strong>Скачивание прайс-листов и каталогов PDF.</strong> Незаменимый инструмент для снабженцев и проектных инженеров.</li>
+      </ul>
+
+      <h2>Сайт-каталог или интернет-магазин: что выбрать</h2>
+      <p>Оба формата организуют ассортимент, но рассчитаны на принципиально разные сценарии сделки:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Параметр</th>
+            <th>Сайт-каталог</th>
+            <th><a href="/blog-website-online-store">Интернет-магазин</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Основная цель</strong></td>
+            <td>Презентация ассортимента и сбор заявок на КП</td>
+            <td>Мгновенные онлайн-продажи конечному потребителю</td>
+          </tr>
+          <tr>
+            <td><strong>Корзина и заказ</strong></td>
+            <td>Лист подбора или прямой запрос с карточки</td>
+            <td>Полноценная корзина с шагами доставки</td>
+          </tr>
+          <tr>
+            <td><strong>Оплата</strong></td>
+            <td>Выставление счёта менеджером (безналичный расчёт)</td>
+            <td>Интернет-эквайринг, СБП, моментальные чеки</td>
+          </tr>
+          <tr>
+            <td><strong>Формирование цены</strong></td>
+            <td>Индивидуальные скидки, объёмные шкалы, курс валют</td>
+            <td>Фиксированная розничная цена за единицу</td>
+          </tr>
+          <tr>
+            <td><strong>Сложность внедрения</strong></td>
+            <td>Быстрый запуск, умеренные затраты на поддержку</td>
+            <td>Требует сложной синхронизации складов и 1С</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <figure class="post-figure">
+        <img src="img/blog-website-catalog/blog-catalog-vs-shop.jpg?v=20261110" alt="Сравнение бизнес-сценариев сайта-каталога и интернет-магазина" width="1536" height="1024" loading="lazy">
+        <figcaption>Каталог ориентирован на индивидуальные B2B-переговоры и сложные спецификации, а интернет-магазин — на стандартизированную розницу.</figcaption>
+      </figure>
+
+      <h2>Этапы разработки сайта-каталога</h2>
+      <p>Качественный каталог создаётся по регламентированному циклу, предотвращающему структурные ошибки:</p>
+      <ol>
+        <li><strong>Анализ номенклатуры и аудит ниши.</strong> Классификация продукции, определение атрибутов и характеристик.</li>
+        <li><strong>Проектирование структуры и UX.</strong> Создание архитектуры категорий, перелинковки и прототипов карточки. Подробнее об этом этапе читайте в статье о <a href="/blog-website-design-business">дизайне сайта для бизнеса</a>.</li>
+        <li><strong>Создание дизайн-макетов.</strong> Отрисовка шаблонов главной, листингов каталога и карточек товаров.</li>
+        <li><strong>Техническая сборка и интеграции.</strong> Программирование базы данных, фильтров, форм запроса и синхронизации с CRM.</li>
+        <li><strong>Наполнение контентом и SEO-подготовка.</strong> Оптимизация тегов Title, Description, ЧПУ и внедрение микроразметки Schema.org Product, что критично для <a href="/blog-seo-optimization">SEO-продвижения сайта</a>.</li>
+      </ol>
+
+      <figure class="post-figure">
+        <img src="img/blog-website-catalog/blog-catalog-b2b.jpg?v=20261110" alt="Процесс B2B коммуникации и запроса коммерческого предложения" width="1536" height="1024" loading="lazy">
+        <figcaption>Эффективная форма RFQ автоматически передаёт выбранную конфигурацию менеджеру, ускоряя подготовку коммерческого предложения.</figcaption>
+      </figure>
+
+      <h2>От чего зависит стоимость разработки</h2>
+      <p>Стоимость создания каталога формируется исходя из технического задания и объёма данных:</p>
+      <ul>
+        <li>Количество рубрик, категорий и уникальных карточек;</li>
+        <li>Глубина параметрической фильтрации и логики поиска;</li>
+        <li>Необходимость автоматического импорта номенклатуры из 1С, Excel или внешних фидов;</li>
+        <li>Требования к индивидуальному дизайну и анимации;</li>
+        <li>Объём работ по ручному или автоматизированному наполнению сайта.</li>
+      </ul>
+      <p>Для проектов с умеренным каталогом отличным решением может стать разработка на платформе <a href="/blog-tilda-business">Tilda</a>, а для масштабных баз со сложными связями проектируется индивидуальная CMS. Детали согласовываются при составлении <a href="/blog-technical-specification">технического задания</a>.</p>
+
+      <h2>Частые вопросы</h2>
+
+      <h3>Чем сайт-каталог отличается от интернет-магазина?</h3>
+      <p>Каталог ориентирован на презентацию ассортимента, выбор позиций и сбор заявок на расчёт, тогда как интернет-магазин включает онлайн-оплату, управление складскими остатками и доставку.</p>
+
+      <h3>Можно ли разместить цены в каталоге?</h3>
+      <p>Да. Цены можно указывать фиксированными, в формате диапазона «от» или заменять кнопкой «Запросить расчет», если стоимость формируется индивидуально в зависимости от объёма партии.</p>
+
+      <h3>Нужны ли фильтры в каталоге?</h3>
+      <p>Если в каталоге больше нескольких десятков позиций с разными техническими параметрами, фильтры и сортировка существенно экономят время клиентов и повышают конверсию в заявки.</p>
+
+      <h3>Можно ли обновлять каталог самостоятельно?</h3>
+      <p>Да. Современные системы управления позволяют администраторам без знания кода добавлять новые товары, менять описания, цены и фотографии через удобную панель управления.</p>
+
+      <p class="mt-24">Рекомендуем также прочитать: как устроен <a href="/blog-website-for-manufacturing">сайт для производственной компании</a>, в чём преимущества <a href="/blog-corporate-website">корпоративного сайта</a> и как подойти к выбору формата в руководстве по <a href="/blog-website-for-small-business">сайту для малого бизнеса</a>.</p>
+
+      <div class="cta mt-40">
+        <h2>Заказать разработку сайта-каталога</h2>
+        <p>Нужен удобный и масштабируемый сайт-каталог для презентации продукции? Обратитесь в VOID Digital: поможем классифицировать ассортимент, создадим адаптивный дизайн и внедрим быструю систему сбора коммерческих заявок.</p>
+        <a class="btn" href="/contacts">Обсудить проект</a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+    <ul class="social" aria-label="Связаться с нами">
+      <li><a href="tel:+79538550813" aria-label="Позвонить +7 953 855-08-13" title="Позвонить"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a></li>
+      <li><a href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"/></svg></a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg></a></li>
+      <li><a href="mailto:voiddigital@mail.ru" aria-label="Написать на почту voiddigital@mail.ru" title="Почта"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a></li>
+    </ul>
+    <ul class="footer-links">
+      <li><a href="/services">Услуги</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a href="/privacy">Политика конфиденциальности</a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener">Telegram</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="js/main.js?v=75bccd28"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

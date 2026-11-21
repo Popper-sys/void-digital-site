@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Сайт для строительной компании: разработка и структура под ключ — VOID Digital</title>
+  <meta name="description" content="Заказать сайт для строительной компании и ремонта под ключ: конверсионная структура, интерактивный квиз, выбор тарифов, моментальная отправка заявок в Telegram и встроенная AI-оптимизация (AIO/GEO).">
+  <link rel="canonical" href="https://void-digital.ru/blog-website-for-construction">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="VOID | digital">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Сайт для строительной компании: разработка и структура под ключ — VOID Digital">
+  <meta property="og:description" content="Заказать сайт для строительной компании и ремонта под ключ: конверсионная структура, интерактивный квиз, выбор тарифов, моментальная отправка заявок в Telegram и встроенная AI-оптимизация (AIO/GEO).">
+  <meta property="og:url" content="https://void-digital.ru/blog-website-for-construction">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://void-digital.ru/img/blog-website-for-construction/blog-construction-cover.jpg?v=20261121b">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Разработка сайта для строительной компании под ключ в VOID Digital">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/Manrope-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css?v=f00a3e5f">
+  <style>
+    .post-figure { margin: 28px 0; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post .cta p { max-width: none; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+    .post table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .95rem; }
+    .post th, .post td { padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); text-align: left; }
+    .post th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: color-mix(in srgb, currentColor 4%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .cta-banner p { margin: 0; font-weight: 500; font-size: 1.05rem; }
+    
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff !important;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 12px 24px;
+      border-radius: var(--radius, 10px);
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s, background 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-action:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: color-mix(in srgb, currentColor 8%, transparent);
+      color: inherit;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 12px 22px;
+      border-radius: var(--radius, 10px);
+      text-decoration: none;
+      border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover {
+      background: color-mix(in srgb, currentColor 14%, transparent);
+    }
+
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: var(--bg);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-card:active {
+      transform: scale(0.99);
+    }
+    
+    /* Свайп-карусель тарифов на экранах до 768px */
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 12px !important;
+        padding-bottom: 8px !important;
+        margin-inline: -12px !important;
+        padding-inline: 12px !important;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .tariff-card {
+        flex: 0 0 min(82vw, 300px) !important;
+        max-width: 300px !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+        padding: 20px 16px !important;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+      .tariff-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .tariff-btn-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .tariff-btn-row .btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .landing-calculator-widget {
+        padding: 18px 14px !important;
+        margin: 24px 0 !important;
+      }
+    }
+
+    .landing-calculator-widget input[type="text"] {
+      font-size: 16px !important;
+    }
+
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin-top: 2px;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+
+    /* Portfolio Cards */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 28px 0;
+    }
+    .portfolio-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .portfolio-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .portfolio-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .portfolio-card h4 { margin: 0 0 8px 0; font-size: 1.15rem; }
+    .portfolio-card p { font-size: 0.9rem; opacity: 0.8; margin-bottom: 16px; line-height: 1.4; }
+    .portfolio-link { font-weight: 600; font-size: 0.9rem; color: var(--accent); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Сайт для строительной компании: разработка и структура под ключ с окупаемостью с первой сделки",
+    "description": "Разработка сайтов и лендингов для строительных компаний и ремонта под ключ: конверсионная структура, интерактивный квиз-калькулятор сметы, мгновенные заявки в Telegram/CRM и встроенная AI-оптимизация (AIO/GEO).",
+    "image": "https://void-digital.ru/img/blog-website-for-construction/blog-construction-cover.jpg?v=20261121b",
+    "datePublished": "2026-11-21",
+    "dateModified": "2026-11-21",
+    "author": {
+      "@type": "Person",
+      "name": "Даниил Лосуков",
+      "url": "https://void-digital.ru/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "VOID | digital",
+      "url": "https://void-digital.ru/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://void-digital.ru/favicon.svg"
+      }
+    },
+    "articleSection": "Отраслевые решения",
+    "inLanguage": "ru-RU"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://void-digital.ru/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Блог",
+        "item": "https://void-digital.ru/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Сайт для строительной компании",
+        "item": "https://void-digital.ru/blog-website-for-construction"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Сколько стоит разработка сайта для строительной компании?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Стоимость зависит от задач: узкоспециализированный лендинг (например, натяжные потолки или ремонт санузлов) стоит от 25 000 ₽. Полноценный корпоративный сайт строительной компании с интерактивным каталогом проектов и калькулятором — от 45 000 ₽. Точная смета фиксируется в договоре."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Чем квиз-калькулятор на строительном сайте лучше обычной формы заявки?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Обычную форму 'Оставьте номер телефона' заполняют неохотно, так как боятся навязчивых звонков. Интерактивный квиз предлагает ответить на 3-4 понятных вопроса о площади, материале и сроках объекта, вовлекая клиента. В результате конверсия вырастает в 2-3 раза, а менеджер получает готовый бриф на сделку."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Что такое встроенная AI-оптимизация (AIO / GEO) в сайтах от VOID Digital?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Это адаптация структуры данных и контента сайта под рекомендации современных нейросетей и ИИ-помощников (ChatGPT, Яндекс Алиса, Perplexity). Мы внедряем специальную семантическую разметку Schema.org/ConstructionBusiness, благодаря чему ИИ рекомендует вашу компанию заказчикам бесплатно."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Как работает отправка заявок в Telegram и CRM?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Как только посетитель заполняет расчет сметы на сайте, в закрытый Telegram-чат вашей компании за 1.5 секунды приходит уведомление со всеми параметрами объекта и телефоном. Одновременно карточка сделки создается в amoCRM или Битрикс24."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Сколько времени занимает создание сайта строительной компании под ключ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Конверсионный лендинг разрабатывается за 7-10 дней. Полноценный корпоративный сайт с каталогом планировок и интеграцией CRM — за 14-20 дней."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/services">Услуги и цены</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/about">О нас</a></li>
+      <li><a href="/blog" aria-current="page">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
+      <li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <article class="post">
+    <div class="container container-sm">
+      <header class="post-header">
+        <div class="post-meta">
+          <time datetime="2026-11-21">21 ноября 2026</time>
+          <span class="dot" aria-hidden="true">•</span>
+          <span class="category">Отраслевые решения</span>
+          <span class="dot" aria-hidden="true">•</span>
+          <span class="read-time">8 минут чтения</span>
+        </div>
+        <h1 class="post-title">Сайт для строительной компании: разработка и структура под ключ с окупаемостью с первой сделки</h1>
+        <p class="lead">Каким должен быть современный сайт строительной компании или ремонта под ключ, чтобы не сливать рекламный бюджет, а стабильно приносить теплые заявки? Разбираем воронку продаж, интерактивный квиз, связку с Telegram/CRM и встроенную технологию AI-Ready.</p>
+      </header>
+
+      <figure class="post-figure">
+        <img src="img/blog-website-for-construction/blog-construction-cover.jpg?v=20261121b" alt="Разработка сайта для строительной компании под ключ в VOID Digital" width="1536" height="1024" fetchpriority="high">
+        <figcaption>Современный сайт строительной компании сочетает интерактивный каталог планировок, расчет сметы и мгновенную отправку лидов в Telegram.</figcaption>
+      </figure>
+
+      <div class="post-body">
+        <p>В строительном бизнесе и сфере комплексного ремонта средний чек начинается от нескольких сотен тысяч и достигает десятков миллионов рублей. При такой стоимости сделки заказчики не принимают решение импульсивно: они изучают портфолио, сравнивают сметы, ищут подтверждения надежности и читают отзывы.</p>
+
+        <p>Однако подавляющее большинство строительных сайтов в рунете до сих пор напоминают архивы 2010-х годов: неудобные PDF-каталоги, неадаптивная верстка на смартфонах и банальная форма «Оставьте телефон, и мы перезвоним». В результате компания сливает рекламные бюджеты в Яндекс Директ, а реальные заказчики уходят к конкурентам.</p>
+
+        <div class="cta-banner">
+          <div>
+            <p>Хотите узнать, где ваш текущий сайт теряет заказчиков стройки?</p>
+            <span style="font-size: 0.9rem; opacity: 0.8;">Проведем бесплатный аудит конверсии и покажем точки роста за 48 часов.</span>
+          </div>
+          <a class="btn-action" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Написать в Telegram →</a>
+        </div>
+
+        <h2>Почему 9 из 10 сайтов строителей сливают бюджет</h2>
+
+        <p>Анализируя конверсии строительных сайтов перед разработкой, мы в <strong>VOID | digital</strong> чаще всего сталкиваемся с тремя критическими ошибками:</p>
+
+        <ol>
+          <li><strong>Сложный доступ к сметам и планировкам с телефона.</strong> Более 75% заказчиков ищут строителей и бригады со смартфонов по вечерам или прямо на объектах. Если вместо интерактивного каталога им предлагают скачать многостраничный PDF-файл, они мгновенно закрывают страницу.</li>
+          <li><strong>Потерянные и запоздалые заявки.</strong> Заявка с сайта падает на старую электронную почту, которую секретарь проверяет раз в сутки. В стройке скорость решает всё: если менеджер перезванивает через 3–4 часа, клиент уже согласовал выезд замерщика от другой компании.</li>
+          <li><strong>Слепота к современному поиску (SEO и AI).</strong> Старые тексты с переспамом «строительство домов москва дешево» давно не работают. Более того, сайты не оптимизированы под умных помощников вроде <em>ChatGPT, Яндекс Алисы и Perplexity</em>, которые всё чаще подбирают подрядчиков для пользователей.</li>
+        </ol>
+
+        <h2>Каким должен быть продающий сайт строительной компании</h2>
+
+        <p>Эффективная посадочная страница или многостраничный сайт строительной организации строятся как непрерывная воронка доверия:</p>
+
+        <h3>1. Интерактивный каталог проектов с фильтрами</h3>
+        <p>Заказчик должен в 2 клика найти подходящий вариант: по площади (до 100 м², 150–250 м²), материалу стен (газобетон, керамика, каркас, брус), этажности и примерной смете. Карточка проекта должна содержать поэтажные планы, 3D-рендеры и реальные фотографии готовых объектов.</p>
+
+        <h3>2. Интерактивный квиз-калькулятор расчета сметы</h3>
+        <p>Это самый мощный генератор заявок в строительной тематике. Вместо прямого требования телефона квиз задает 3–4 понятных вопроса:</p>
+        <ul>
+          <li><em>Какой тип объекта планируете?</em> (Коттедж для ПМЖ, дачный дом, ремонт квартиры, коммерческое помещение)</li>
+          <li><em>Какая площадь и сколько этажей?</em></li>
+          <li><em>Есть ли уже готовый проект или земельный участок?</em></li>
+          <li><em>Куда удобнее получить предварительный расчет сметы?</em> (Telegram, WhatsApp)</li>
+        </ul>
+        <p>Конверсия страницы с интерактивным квизом вырастает в <strong>2.5–3 раза</strong> по сравнению со статичной формой обратной связи.</p>
+
+        <h3>3. Блоки железобетонного доверия</h3>
+        <p>В стройке люди боятся долгостроев и скрытых платежей. Доверие формируют: видеоэкскурсии с текущих объектов, онлайн-камеры на стройплощадках, открытые договоры с фиксированной сметой и отзывы заказчиков с подтвержденными контактами.</p>
+
+        <h2>Встроенная технологическая фишка: AI-Ready и AIO/GEO оптимизация</h2>
+
+        <p>В веб-студии <strong>VOID | digital</strong> мы смотрим вперед. Рынок поиска стремительно трансформируется: заказчики все чаще формулируют сложные запросы к нейросетям: <em>«Посоветуй строительную компанию в моем регионе для постройки энергоэффективного дома из газобетона под ключ с прозрачной сметой»</em>.</p>
+
+        <div style="background: color-mix(in srgb, var(--accent) 8%, transparent); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 0 12px 12px 0; margin: 24px 0;">
+          <h4 style="margin: 0 0 8px; font-size: 1.1rem; color: var(--accent);">Технология AI-Ready — бесплатно в каждом проекте VOID Digital</h4>
+          <p style="margin: 0; font-size: 0.95rem;">Мы не берем дополнительную плату за технологии будущего. Каждый разработанный нами сайт автоматически снабжается микроразметкой <code>Schema.org/ConstructionBusiness</code>, семантическими сущностями и файлом <code>llms.txt</code>. Это делает сайт понятным для ИИ-ассистентов (ChatGPT, Яндекс Алисы, Perplexity), позволяя получать бесплатных клиентов из умного поиска.</p>
+        </div>
+
+        <h2>Инфраструктура захвата: лиды в Telegram и CRM за 2 секунды</h2>
+
+        <p>Мы настраиваем прямую интеграцию сайта с рабочими инструментами вашего отдела продаж:</p>
+        <ul>
+          <li><strong>Мгновенный Telegram-бот:</strong> клиент отправил квиз — через 2 секунды в чат компании падает карточка с ответами, контактами и гео-меткой. Прораб или менеджер сразу знает все вводные до звонка.</li>
+          <li><strong>CRM-системы (amoCRM / Битрикс24):</strong> автоматическое создание сделки, постановка задачи менеджеру и запись источника трафика (UTM-метки).</li>
+          <li><strong>WhatsApp-виджет:</strong> возможность задать вопрос прорабу в один клик без перехода на сторонние приложения.</li>
+        </ul>
+
+        <h2>Сколько стоит разработка строительного сайта под ключ</h2>
+
+        <p>Мы работаем официально по договору ИП, с фиксированными сроками и поэтапной оплатой 50/50. Ниже вы можете интерактивно выбрать подходящий тарифный пакет и мгновенно отправить заявку на расчет вашего проекта:</p>
+
+        <!-- Интерактивный калькулятор тарифов с отправкой заявки прямо в Telegram-бот и CRM -->
+        <div class="landing-calculator-widget" id="lead-form" style="margin: 36px 0; padding: clamp(18px, 4vw, 32px); background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius, 20px); box-shadow: var(--shadow, 0 4px 20px rgba(0,0,0,0.04));">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 18px;">
+            <h3 style="margin: 0; font-size: clamp(1.15rem, 3.5vw, 1.35rem);">Выберите тариф под вашу задачу:</h3>
+            <span style="font-size: 0.84rem; color: var(--muted);">Листайте влево-вправо на телефоне</span>
+          </div>
+
+          <!-- Карточки тарифов для выбора (со свайпом на мобильных) -->
+          <div class="grid grid-3" id="landing-tariffs-grid" style="gap: 16px;">
+            <!-- Тариф 1: Быстрый старт -->
+            <div class="card tariff-card" data-index="0" data-tariff="Быстрый старт (Лендинг)" data-price="от 25 000 ₽">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Старт / Лендинг</span>
+                <span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); display: grid; place-items: center; transition: all 180ms ease;"></span>
+              </div>
+              <h4 style="margin: 0 0 6px; font-size: 1.15rem;">Быстрый старт</h4>
+              <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Для узкой строительной услуги, натяжных потолков, ремонта санузлов или фундаментов.</p>
+              <div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 25 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+              <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+                <li>✓ 1 конверсионная страница под ключ</li>
+                <li>✓ Интерактивный квиз-калькулятор расчета сметы</li>
+                <li>✓ Моментальные заявки в Telegram-бот компании</li>
+                <li>✓ Базовая AI-оптимизация и микроразметка</li>
+                <li>✓ Адаптация под все мобильные устройства</li>
+              </ul>
+            </div>
+
+            <!-- Тариф 2: Строительная компания (По умолчанию выбран) -->
+            <div class="card tariff-card active" data-index="1" data-tariff="Строительная компания" data-price="от 45 000 ₽">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 6px;">Хит продаж</span>
+                <span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent); display: grid; place-items: center; transition: all 180ms ease;">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </div>
+              <h4 style="margin: 0 0 6px; font-size: 1.15rem;">Строительная компания</h4>
+              <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Многостраничный сайт для строительства загородных домов, коттеджей и комплексного ремонта.</p>
+              <div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 45 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+              <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+                <li>✓ Всё из базового тарифа</li>
+                <li>✓ Интерактивный каталог проектов с фильтрацией</li>
+                <li>✓ Карточки планировок с поэтажными планами</li>
+                <li>✓ Полная интеграция amoCRM / Битрикс24</li>
+                <li>✓ Полная AIO/GEO оптимизация под нейросети</li>
+                <li>✓ 30 дней бесплатной поддержки и правок</li>
+              </ul>
+            </div>
+
+            <!-- Тариф 3: Лидер рынка / Девелопер -->
+            <div class="card tariff-card" data-index="2" data-tariff="Лидер рынка / Девелопер" data-price="от 95 000 ₽">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Портал / Девелопер</span>
+                <span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); display: grid; place-items: center; transition: all 180ms ease;"></span>
+              </div>
+              <h4 style="margin: 0 0 6px; font-size: 1.15rem;">Лидер рынка</h4>
+              <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Индивидуальное веб-решение для застройщиков, девелоперов и крупных генподрядчиков.</p>
+              <div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 95 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+              <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+                <li>✓ Индивидуальный дизайн с интерактивными 3D-моделями</li>
+                <li>✓ Личный кабинет заказчика строительства</li>
+                <li>✓ Интеграция 1С / Склад / Телефония</li>
+                <li>✓ Встроенный умный AI-консультант прямо на сайте</li>
+                <li>✓ Глубокое региональное SEO-продвижение</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Точки-индикаторы для мобильных устройств -->
+          <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin: 12px 0 20px;">
+            <span class="tariff-dot" data-dot="0" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 180ms ease;"></span>
+            <span class="tariff-dot" data-dot="1" style="width: 22px; height: 8px; border-radius: 4px; background: var(--accent); cursor: pointer; transition: all 180ms ease;"></span>
+            <span class="tariff-dot" data-dot="2" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 180ms ease;"></span>
+          </div>
+
+          <!-- Панель формы заявки -->
+          <div style="margin-top: 24px; padding: clamp(16px, 3vw, 24px); background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--radius, 16px);">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px dashed var(--border);">
+              <div style="font-size: 0.9rem; color: var(--muted);">Выбранный тариф:</div>
+              <div id="selected-tariff-display" style="font-size: 1.15rem; font-weight: 800; color: var(--accent);">Строительная компания (от 45 000 ₽)</div>
+            </div>
+
+            <form id="landing-lead-form" style="display: grid; gap: 14px; margin: 0;" onsubmit="return false;">
+              <div class="tariff-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div>
+                  <label for="lead-contact-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Ваш телефон или @Telegram <span style="color: var(--accent);">*</span></label>
+                  <input type="text" id="lead-contact-input" required placeholder="+7 (999) 000-00-00 или @username" style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;">
+                </div>
+                <div>
+                  <label for="lead-task-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Объект или комментарий к задаче</label>
+                  <input type="text" id="lead-task-input" placeholder="Строительство коттеджа, ремонт под ключ..." style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;">
+                </div>
+              </div>
+
+              <!-- Галочка согласия на обработку ПД и ссылки на регламенты -->
+              <label class="consent-check-label">
+                <input type="checkbox" id="lead-consent-check" checked required>
+                <span>Даю согласие на <a href="/consent" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+              </label>
+
+              <div class="tariff-btn-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 4px;">
+                <button type="submit" id="lead-submit-btn" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; border: none; font-weight: 700; min-height: 48px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  <span>Отправить заявку</span>
+                </button>
+
+                <a id="tariff-tg-direct" href="https://t.me/Voiddigit" target="_blank" rel="noopener" class="btn btn-ghost" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.92rem; text-decoration: none; min-height: 48px;">
+                  <span>Или написать в Telegram (@Voiddigit)</span>
+                </a>
+              </div>
+
+              <div id="lead-status-msg" style="display: none; padding: 14px 18px; border-radius: var(--radius, 12px); font-size: 0.95rem; line-height: 1.45;"></div>
+            </form>
+          </div>
+
+        </div>
+
+        <script>
+          (function() {
+            function initConstructionTariffs() {
+              var grid = document.getElementById('landing-tariffs-grid');
+              var cards = document.querySelectorAll('.tariff-card');
+              var dots = document.querySelectorAll('.tariff-dot');
+              var display = document.getElementById('selected-tariff-display');
+              var form = document.getElementById('landing-lead-form');
+              var contactInput = document.getElementById('lead-contact-input');
+              var taskInput = document.getElementById('lead-task-input');
+              var consentCheck = document.getElementById('lead-consent-check');
+              var submitBtn = document.getElementById('lead-submit-btn');
+
+              if (consentCheck && submitBtn) {
+                consentCheck.addEventListener('change', function() {
+                  if (!this.checked) {
+                    submitBtn.style.opacity = '0.5';
+                    submitBtn.style.cursor = 'not-allowed';
+                  } else {
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                    consentCheck.parentElement.style.outline = 'none';
+                  }
+                });
+              }
+
+              var tgDirectLink = document.getElementById('tariff-tg-direct');
+              var statusMsg = document.getElementById('lead-status-msg');
+
+              if (!cards.length || !form) return;
+
+              var currentTariff = 'Строительная компания';
+              var currentPrice = 'от 45 000 ₽';
+
+              function updateDirectTgLink() {
+                var taskVal = (taskInput && taskInput.value) ? taskInput.value.trim() : '';
+                var msg = 'Здравствуйте! Хочу заказать сайт для строительной компании.\n\n📌 Выбранный тариф: ' + currentTariff + ' (' + currentPrice + ')';
+                if (taskVal) msg += '\n💬 Объект / комментарий: ' + taskVal;
+                msg += '\n🔗 Источник: https://void-digital.ru/blog-website-for-construction';
+                if (tgDirectLink) {
+                  tgDirectLink.href = 'https://t.me/Voiddigit?text=' + encodeURIComponent(msg);
+                }
+              }
+
+              function updateDots(activeIdx) {
+                dots.forEach(function(dot, idx) {
+                  if (idx === activeIdx) {
+                    dot.style.width = '22px';
+                    dot.style.borderRadius = '4px';
+                    dot.style.background = 'var(--accent)';
+                  } else {
+                    dot.style.width = '8px';
+                    dot.style.borderRadius = '50%';
+                    dot.style.background = 'var(--border)';
+                  }
+                });
+              }
+
+              function selectCard(card, scrollIntoView) {
+                cards.forEach(function(c) {
+                  c.classList.remove('active');
+                  var radio = c.querySelector('.tariff-radio');
+                  if (radio) {
+                    radio.style.borderColor = 'var(--border)';
+                    radio.style.background = 'transparent';
+                    radio.innerHTML = '';
+                  }
+                });
+
+                card.classList.add('active');
+                var radio = card.querySelector('.tariff-radio');
+                if (radio) {
+                  radio.style.borderColor = 'var(--accent)';
+                  radio.style.background = 'var(--accent)';
+                  radio.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                }
+
+                currentTariff = card.getAttribute('data-tariff') || '';
+                currentPrice = card.getAttribute('data-price') || '';
+
+                if (display) {
+                  display.textContent = currentTariff + ' (' + currentPrice + ')';
+                }
+
+                var idx = parseInt(card.getAttribute('data-index') || '0', 10);
+                updateDots(idx);
+                updateDirectTgLink();
+
+                if (scrollIntoView && window.innerWidth <= 768 && grid) {
+                  card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+              }
+
+              cards.forEach(function(card) {
+                card.addEventListener('click', function() {
+                  selectCard(this, true);
+                });
+              });
+
+              dots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                  var idx = parseInt(this.getAttribute('data-dot') || '0', 10);
+                  if (cards[idx]) {
+                    selectCard(cards[idx], true);
+                  }
+                });
+              });
+
+              if (taskInput) {
+                taskInput.addEventListener('input', updateDirectTgLink);
+              }
+
+              if (grid) {
+                var scrollTimeout;
+                grid.addEventListener('scroll', function() {
+                  clearTimeout(scrollTimeout);
+                  scrollTimeout = setTimeout(function() {
+                    var gridLeft = grid.getBoundingClientRect().left;
+                    var gridCenter = gridLeft + grid.offsetWidth / 2;
+                    var closestIdx = 0;
+                    var minDistance = Infinity;
+
+                    cards.forEach(function(card, idx) {
+                      var cardBox = card.getBoundingClientRect();
+                      var cardCenter = cardBox.left + cardBox.width / 2;
+                      var distance = Math.abs(gridCenter - cardCenter);
+                      if (distance < minDistance) {
+                        minDistance = distance;
+                        closestIdx = idx;
+                      }
+                    });
+
+                    if (cards[closestIdx]) {
+                      selectCard(cards[closestIdx], false);
+                    }
+                  }, 80);
+                }, { passive: true });
+              }
+
+              updateDirectTgLink();
+              if (window.innerWidth <= 768 && grid && cards[1]) {
+                setTimeout(function() {
+                  cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+                }, 120);
+              }
+
+              form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (consentCheck && !consentCheck.checked) {
+                  alert('Пожалуйста, подтвердите согласие на обработку персональных данных');
+                  consentCheck.focus();
+                  return;
+                }
+
+                var contactVal = contactInput ? contactInput.value.trim() : '';
+                var taskVal = taskInput ? taskInput.value.trim() : '';
+
+                if (!contactVal) {
+                  if (contactInput) contactInput.focus();
+                  return;
+                }
+
+                var originalBtnHtml = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span>Отправка...</span>';
+                statusMsg.style.display = 'none';
+
+                var tgText = '🚀 <b>Новая заявка на сайт для строительной компании!</b>\n\n' +
+                  '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+                  '📱 <b>Контакт:</b> ' + contactVal + '\n' +
+                  (taskVal ? ('💬 <b>Объект / задача:</b> ' + taskVal + '\n') : '') +
+                  '🔗 <b>Страница:</b> https://void-digital.ru/blog-website-for-construction';
+
+                var tgPayload = JSON.stringify({
+                  chat_id: '7738024017',
+                  text: tgText,
+                  parse_mode: 'HTML'
+                });
+
+                fetch('https://api.telegram.org/bot8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs/sendMessage', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: tgPayload
+                }).then(function(res) {
+                  return res.json();
+                }).then(function(data) {
+                  submitBtn.disabled = false;
+                  submitBtn.innerHTML = originalBtnHtml;
+
+                  if (data && data.ok) {
+                    statusMsg.style.display = 'block';
+                    statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                    statusMsg.style.border = '1.5px solid var(--accent)';
+                    statusMsg.style.color = 'var(--text)';
+                    statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+                    form.reset();
+                    if (consentCheck) consentCheck.checked = true;
+                  } else {
+                    throw new Error(data && data.description ? data.description : 'Ошибка Telegram API');
+                  }
+                }).catch(function(err) {
+                  fetch('/api/lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      tariff: currentTariff + ' (' + currentPrice + ')',
+                      contact: contactVal,
+                      message: taskVal,
+                      page: window.location.href
+                    })
+                  }).finally(function() {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+
+                    statusMsg.style.display = 'block';
+                    statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                    statusMsg.style.border = '1.5px solid var(--accent)';
+                    statusMsg.style.color = 'var(--text)';
+                    statusMsg.innerHTML = '🎉 <b>Заявка принята!</b> Если хотите написать сразу в диалог — нажмите: <a href="https://t.me/Voiddigit?text=' + encodeURIComponent('Здравствуйте! Заявка на тариф ' + currentTariff + '. Мой контакт: ' + contactVal) + '" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: underline;">Открыть чат с Даниилом</a>';
+                  });
+                });
+              });
+            }
+
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', initConstructionTariffs);
+            } else {
+              initConstructionTariffs();
+            }
+          })();
+        </script>
+
+        <h2>Примеры реализованных решений</h2>
+        <p>Оцените примеры решений, реализованных командой VOID Digital для коммерческих клиентов:</p>
+
+        <div class="portfolio-grid">
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Строительство · B2B</span>
+              <h4>Промо-лендинг завода металлоконструкций</h4>
+              <p>Презентация быстровозводимых ангаров и цехов с интерактивным выбором комплектаций и расчетом доставки.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Недвижимость · Девелопмент</span>
+              <h4>Сайт девелоперского проекта коттеджного поселка</h4>
+              <p>Индивидуальный дизайн жилого комплекса, интерактивная карта участков и форма бронирования консультаций.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Услуги · Ремонт</span>
+              <h4>Конверсионный сайт студии ремонта квартир</h4>
+              <p>Сайт с квизом-калькулятором стоимости отделки по дизайн-проекту и интеграцией amoCRM.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+        </div>
+
+        <h2>Этапы создания строительного сайта под ключ</h2>
+
+        <ol>
+          <li><strong>Маркетинговый анализ и бриф.</strong> Анализируем конкурентов в вашем городе, определяем ключевые преимущества (собственное производство, гарантии, условия оплаты) и проектируем структуру страниц.</li>
+          <li><strong>Прототипирование и сценарии квиза.</strong> Продумываем путь клиента от первого клика до отправки сметы.</li>
+          <li><strong>Дизайн с акцентом на объекты.</strong> Создаем стильный интерфейс в светлой или темной теме с качественной типографикой и акцентными элементами.</li>
+          <li><strong>Разработка и интеграция ботов.</strong> Верстаем адаптивный код с быстрой загрузкой (Google PageSpeed 90+) и подключаем Telegram-уведомления и CRM.</li>
+          <li><strong>Тестирование и запуск.</strong> Проверяем отправку форм на всех устройствах, подключаем метрику с целями и передаем доступы заказчику.</li>
+        </ol>
+
+        <h2>Частые вопросы строителей (FAQ)</h2>
+
+        <h3>Сможем ли мы сами добавлять новые построенные дома и объекты?</h3>
+        <p>Да. Мы создаем удобную структуру управления, чтобы вы или ваш сотрудник могли за 3 минуты добавить новый проект, загрузить фотографии и обновить смету без привлечения программистов.</p>
+
+        <h3>Подходит ли такой сайт для рекламы в Яндекс Директ?</h3>
+        <p>Идеально. Структура с интерактивным квизом и быстрой мобильной версией разрабатывается специально с прицелом на высокий показатель конверсии из контекстной рекламы.</p>
+
+        <h3>Как начать работу?</h3>
+        <p>Заполните форму заявки выше или напишите нам напрямую в Telegram. Мы бесплатно изучим вашу компанию, покажем удачные решения в строительной нише и предложим оптимальный формат сайта.</p>
+
+        <div class="cta mt-40">
+          <h2>Заказать разработку сайта для строительной компании</h2>
+          <p>Готовы создать сайт, который окупится с первой же закрытой сделки на стройку или ремонт? Обсудите задачу напрямую с разработчиком в VOID Digital.</p>
+          <a class="btn" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Обсудить проект в Telegram</a>
+        </div>
+
+      </div> <!-- .post-body -->
+    </div> <!-- .container.container-sm -->
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+    <ul class="social" aria-label="Связаться с нами">
+      <li><a href="tel:+79538550813" aria-label="Позвонить +7 953 855-08-13" title="Позвонить"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a></li>
+      <li><a href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"/></svg></a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg></a></li>
+      <li><a href="mailto:voiddigital@mail.ru" aria-label="Написать на почту voiddigital@mail.ru" title="Почта"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a></li>
+    </ul>
+    <ul class="footer-links">
+      <li><a href="/services">Услуги</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a href="/privacy">Политика конфиденциальности</a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener">Telegram</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="/js/main.js?v=75bccd28"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

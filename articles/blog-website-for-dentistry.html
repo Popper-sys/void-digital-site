@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Сайт для стоматологии и медцентра: разработка и структура под ключ — VOID Digital</title>
+  <meta name="description" content="Заказать сайт для стоматологии и медицинского центра под ключ: структура доверия, онлайн-запись, квиз-калькулятор лечения, отправка заявок в Telegram и встроенная AI-оптимизация (AIO/GEO).">
+  <link rel="canonical" href="https://void-digital.ru/blog-website-for-dentistry">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="VOID | digital">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Сайт для стоматологии и медцентра: разработка и структура под ключ — VOID Digital">
+  <meta property="og:description" content="Заказать сайт для стоматологии и медицинского центра под ключ: структура доверия, онлайн-запись, квиз-калькулятор лечения, отправка заявок в Telegram и встроенная AI-оптимизация (AIO/GEO).">
+  <meta property="og:url" content="https://void-digital.ru/blog-website-for-dentistry">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://void-digital.ru/img/blog-website-for-dentistry/blog-dentistry-cover.jpg?v=20261121">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Разработка сайта для стоматологии и медицинского центра в VOID Digital">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/Manrope-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css?v=f00a3e5f">
+  <style>
+    .post-figure { margin: 28px 0; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post .cta p { max-width: none; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+    .post table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .95rem; }
+    .post th, .post td { padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); text-align: left; }
+    .post th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: color-mix(in srgb, currentColor 4%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .cta-banner p { margin: 0; font-weight: 500; font-size: 1.05rem; }
+    
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff !important;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 12px 24px;
+      border-radius: var(--radius, 10px);
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s, background 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-action:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: color-mix(in srgb, currentColor 8%, transparent);
+      color: inherit;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 12px 22px;
+      border-radius: var(--radius, 10px);
+      text-decoration: none;
+      border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover {
+      background: color-mix(in srgb, currentColor 14%, transparent);
+    }
+
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: var(--bg);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-card:active {
+      transform: scale(0.99);
+    }
+    
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 12px !important;
+        padding-bottom: 8px !important;
+        margin-inline: -12px !important;
+        padding-inline: 12px !important;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .tariff-card {
+        flex: 0 0 min(82vw, 300px) !important;
+        max-width: 300px !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+        padding: 20px 16px !important;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+      .tariff-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .tariff-btn-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .tariff-btn-row .btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .landing-calculator-widget {
+        padding: 18px 14px !important;
+        margin: 24px 0 !important;
+      }
+    }
+
+    .landing-calculator-widget input[type="text"] {
+      font-size: 16px !important;
+    }
+
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin-top: 2px;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+
+    /* Portfolio Cards */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 28px 0;
+    }
+    .portfolio-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .portfolio-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .portfolio-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .portfolio-card h4 { margin: 0 0 8px 0; font-size: 1.15rem; }
+    .portfolio-card p { font-size: 0.9rem; opacity: 0.8; margin-bottom: 16px; line-height: 1.4; }
+    .portfolio-link { font-weight: 600; font-size: 0.9rem; color: var(--accent); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Сайт для стоматологии и медцентра: разработка и структура под ключ с окупаемостью с первых пациентов",
+    "description": "Заказать сайт для стоматологии и медицинского центра под ключ: структура доверия, онлайн-запись, квиз-калькулятор лечения, отправка заявок в Telegram и встроенная AI-оптимизация (AIO/GEO).",
+    "image": "https://void-digital.ru/img/blog-website-for-dentistry/blog-dentistry-cover.jpg?v=20261121",
+    "datePublished": "2026-10-31",
+    "dateModified": "2026-11-21",
+    "author": {
+      "@type": "Person",
+      "name": "Даниил Лосуков",
+      "url": "https://void-digital.ru/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "VOID | digital",
+      "url": "https://void-digital.ru/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://void-digital.ru/favicon.svg"
+      }
+    },
+    "articleSection": "Отраслевые решения",
+    "inLanguage": "ru-RU"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://void-digital.ru/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Блог",
+        "item": "https://void-digital.ru/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Сайт для стоматологии и медцентра",
+        "item": "https://void-digital.ru/blog-website-for-dentistry"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Сколько стоит разработка сайта для стоматологии или медцентра?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Разработка промо-лендинга под высокочековую услугу (имплантация зубов, виниры, брекеты) стоит от 25 000 ₽. Полноценный многостраничный сайт клиники с каталогом услуг, врачами, онлайн-записью и прайсом — от 45 000 ₽. Смета фиксируется в договоре."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Обязательно ли соблюдать требования законодательства РФ к медицинским сайтам?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. Согласно ФЗ № 323 и требованиям Росздравнадзора, на сайте клиники обязаны быть: реквизиты лицензии, график работы врачей с их квалификацией, актуальный прайс-лист, контролирующие органы и версия для слабовидящих. Мы внедряем все эти блоки по умолчанию."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Как работает онлайн-запись и интеграция с МИС?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Мы можем подключить прямую интеграцию с медицинской информационной системой клиники (IDENT, Инфоклиника, Yclients, Dental4Windows), а также настроить мгновенные уведомления администраторам в Telegram, чтобы ни один звонок или заявка не терялись."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Что дает встроенная AI-оптимизация (AIO) для стоматологии?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Пациенты все чаще ищут врачей через голосовые ассистенты и нейросети (Алиса, ChatGPT, Perplexity). Мы размечаем услуги, квалификацию врачей и цены микроразметкой Schema.org/Dentist, благодаря чему клиника бесплатно рекомендуется в нейросетевом поиске."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Сколько времени занимает создание сайта клиники под ключ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Лендинг создается за 7–10 рабочих дней. Многостраничный сайт клиники с разделами услуг, докторами и прайсом — за 14–20 дней."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/services">Услуги и цены</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/about">О нас</a></li>
+      <li><a href="/blog" aria-current="page">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
+      <li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <article class="post">
+    <div class="container container-sm">
+      <header class="post-header">
+        <div class="post-meta">
+          <time datetime="2026-11-21">21 ноября 2026</time>
+          <span class="dot" aria-hidden="true">•</span>
+          <span class="category">Отраслевые решения</span>
+          <span class="dot" aria-hidden="true">•</span>
+          <span class="read-time">8 минут чтения</span>
+        </div>
+        <h1 class="post-title">Сайт для стоматологии и медцентра: разработка под ключ с окупаемостью с первых пациентов</h1>
+        <p class="lead">Медицинская сфера и стоматология — ниша с рекордным чеком и высоким LTV пациента. Разбираем, как разработать продающий сайт клиники, который снимает страх пациентов, соответствует требованиям Минздрава, моментально отправляет заявки в Telegram/CRM и рекомендуется в ChatGPT и Яндекс Алисе.</p>
+      </header>
+
+      <figure class="post-figure">
+        <img src="img/blog-website-for-dentistry/blog-dentistry-cover.jpg?v=20261121" alt="Разработка сайта для стоматологии и медицинского центра под ключ — VOID Digital" width="1536" height="1024" fetchpriority="high">
+        <figcaption>Современный сайт стоматологии сочетает интерактивный расчет плана лечения, карточки врачей, онлайн-запись и моментальные заявки в Telegram.</figcaption>
+      </figure>
+
+      <div class="post-body">
+        <p>Перед тем как доверить здоровье стоматологу или врачу медцентра, пациент испытывает сразу два мощных барьера: <strong>страх боли</strong> и <strong>страх переплаты за лишние процедуры</strong>. По статистике, более 85% людей детально изучают сайт клиники перед первым звонком: смотрят фотографии кабинетов, сертификаты врачей, отзывы и понятный прайс-лист.</p>
+
+        <p>При этом средний чек на стоматологические услуги (комплексная имплантация All-on-4, установка элайнеров, керамические виниры) составляет <strong>от 150 000 до 800 000 ₽</strong>. Один привлеченный лояльный пациент, который остается лечиться в клинике семьями годами, мгновенно окупает все затраты на создание качественного веб-ресурса.</p>
+
+        <div class="cta-banner">
+          <div>
+            <p>Хотите узнать, почему ваш сайт стоматологии или медцентра теряет первичных пациентов?</p>
+            <span style="font-size: 0.9rem; opacity: 0.8;">Проведем бесплатный аудит воронки доверия и покажем точки роста за 48 часов.</span>
+          </div>
+          <a class="btn-action" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Написать в Telegram →</a>
+        </div>
+
+        <h2>Ошибки типовых сайтов клиник, из-за которых пациенты уходят к конкурентам</h2>
+
+        <p>Анализируя сайты клиник перед редизайном и разработкой, мы в <strong>VOID | digital</strong> выделили 3 главные причины низкой конверсии:</p>
+
+        <ol>
+          <li><strong>Обезличенность и отсутствие врачей.</strong> Пациенты идут не в абстрактную клинику, а к конкретному доктору. Если на сайте нет профессиональных портретов врачей, их стажа, специализаций и сертификатов, доверие стремится к нулю.</li>
+          <li><strong>Непрозрачные и пугающие цены.</strong> Огромные прайс-листы с названиями вроде «Остеопластика биоматериалом II категории сложности» отпугивают пациентов. Нужны прозрачные пакеты «под ключ» (например, «Имплантация зуба под ключ: диагностика + имплант + коронка»).</li>
+          <li><strong>Сложная запись на прием.</strong> Заставлять человека на смартфоне искать номер телефона и дозваниваться через занятых администраторов — потеря до 60% заявок в нерабочее время (вечером и в выходные).</li>
+        </ol>
+
+        <h2>Анатомия продающего сайта современной клиники</h2>
+
+        <p>Чтобы сайт стоматологии или медцентра превращал посетителей в записавшихся пациентов, он проектируется как пошаговый маршрут доверия:</p>
+
+        <h3>1. Карточки врачей с видеовизитками и сертификатами</h3>
+        <p>Качественные фотографии в единой стилистике клиники, подтвержденный опыт работы, направления лечения, пройденные курсы повышения квалификации и реальные отзывы пациентов. Это снимает страх перед визитом.</p>
+
+        <h3>2. Интерактивный квиз-расчет плана лечения</h3>
+        <p>Пациенту трудно оценить объем работ самостоятельно, но он охотно проходит короткий тест из 3–4 шагов:</p>
+        <ul>
+          <li><em>Какая проблема вас беспокоит?</em> (Отсутствие одного или нескольких зубов, исправление прикуса, боли, эстетика)</li>
+          <li><em>Какое решение рассматриваете?</em> (Имплантация, брекеты, элайнеры, виниры)</li>
+          <li><em>Когда планируете консультацию?</em> (На этой неделе, в течение месяца)</li>
+          <li><em>Куда направить предварительный расчет и персональный купон на диагностику?</em> (WhatsApp, Telegram)</li>
+        </ul>
+        <p>Такой инструмент вовлекает пациента и передает администратору подробные вводные еще до первого звонка.</p>
+
+        <h3>3. Галерея клинических случаев «До / После»</h3>
+        <p>Наглядная демонстрация эстетических реставраций, исправления прикуса и имплантации с описанием: какая была исходная ситуация, что сделал доктор и сколько времени заняло лечение.</p>
+
+        <h3>4. Обязательный юридический блок по стандартам РФ</h3>
+        <p>Мы строго внедряем требования ст. 79 Федерального закона № 323-ФЗ: сканы лицензии на медицинскую деятельность, реквизиты, график приема, сведения о врачах и версию для слабовидящих.</p>
+
+        <h2>Встроенная технологическая фишка: AI-Ready для медицины (AIO/GEO)</h2>
+
+        <p>Поведение пациентов меняется: сегодня человек всё чаще спрашивает у нейросетей: <em>«Посоветуй хорошую стоматологию рядом со мной для установки имплантов с рассрочкой и опытными хирургами»</em>.</p>
+
+        <div style="background: color-mix(in srgb, var(--accent) 8%, transparent); border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 0 12px 12px 0; margin: 24px 0;">
+          <h4 style="margin: 0 0 8px; font-size: 1.1rem; color: var(--accent);">AI-Ready входит бесплатно в каждый сайт от VOID Digital</h4>
+          <p style="margin: 0; font-size: 0.95rem;">Мы размечаем услуги, стоимость, квалификацию врачей и лицензии специальными семантическими сущностями <code>Schema.org/Dentist</code> и <code>MedicalBusiness</code>. В сайт встраивается файл <code>llms.txt</code>. Благодаря этому современные ИИ-ассистенты (ChatGPT, Яндекс Алиса, Perplexity) видят структуру вашей клиники и бесплатно рекомендуют её пациентам в поисковой выдаче будущего.</p>
+        </div>
+
+        <h2>Интеграция лидогенерации: заявки в Telegram и МИС/CRM за 2 секунды</h2>
+
+        <p>Заявки с сайта не должны теряться в спаме почты. Мы настраиваем надежную связку:</p>
+        <ul>
+          <li><strong>Telegram-бот для администраторов:</strong> запись на прием падает в закрытый чат клиники через 2 секунды со всеми ответами квиза, контактом и временем заявки.</li>
+          <li><strong>Интеграция с МИС и CRM:</strong> связка с amoCRM, Битрикс24, IDENT, Инфоклиника или Yclients для мгновенного бронирования времени врача.</li>
+          <li><strong>Кнопка связи в WhatsApp:</strong> быстрый диалог для пациентов, которые стесняются звонить по телефону.</li>
+        </ul>
+
+        <h2>Сколько стоит разработка медицинского сайта под ключ</h2>
+
+        <p>Мы работаем официально по договору ИП Лосуков Д. В., фиксируем стоимость и сроки. Выберите тариф под задачи вашей клиники и отправьте заявку на расчет проекта:</p>
+
+        <!-- Интерактивный калькулятор тарифов с отправкой заявки прямо в Telegram-бот и CRM -->
+        <div class="landing-calculator-widget" id="lead-form" style="margin: 36px 0; padding: clamp(18px, 4vw, 32px); background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius, 20px); box-shadow: var(--shadow, 0 4px 20px rgba(0,0,0,0.04));">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 18px;">
+            <h3 style="margin: 0; font-size: clamp(1.15rem, 3.5vw, 1.35rem);">Выберите тариф под задачи клиники:</h3>
+            <span style="font-size: 0.84rem; color: var(--muted);">Листайте влево-вправо на телефоне</span>
+          </div>
+
+          <!-- Карточки тарифов для выбора (со свайпом на мобильных) -->
+          <div class="grid grid-3" id="landing-tariffs-grid" style="gap: 16px;">
+            <!-- Тариф 1: Лендинг услуги -->
+            <div class="card tariff-card" data-index="0" data-tariff="Лендинг медицинской услуги" data-price="от 25 000 ₽">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Экспресс / Лендинг</span>
+                <span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); display: grid; place-items: center; transition: all 180ms ease;"></span>
+              </div>
+              <h4 style="margin: 0 0 6px; font-size: 1.15rem;">Лендинг услуги</h4>
+              <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Под конкретную маржинальную услугу: имплантация зубов, виниры, лазерная коррекция, чек-ап.</p>
+              <div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 25 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+              <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+                <li>✓ 1 конверсионная страница под контекстную рекламу</li>
+                <li>✓ Интерактивный квиз-подбор плана лечения</li>
+                <li>✓ Моментальная отправка заявок в Telegram-бот клиники</li>
+                <li>✓ Базовая медицинская микроразметка Schema.org</li>
+                <li>✓ Адаптивная верстка под все типы смартфонов</li>
+              </ul>
+            </div>
+
+            <!-- Тариф 2: Стоматология / Клиника (По умолчанию выбран) -->
+            <div class="card tariff-card active" data-index="1" data-tariff="Стоматология / Клиника" data-price="от 45 000 ₽">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 6px;">Хит продаж</span>
+                <span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent); display: grid; place-items: center; transition: all 180ms ease;">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </div>
+              <h4 style="margin: 0 0 6px; font-size: 1.15rem;">Стоматология / Клиника</h4>
+              <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Полноценный многостраничный сайт клиники с разделами услуг, врачами, прайсом и онлайн-записью.</p>
+              <div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 45 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+              <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+                <li>✓ Всё из базового тарифа</li>
+                <li>✓ Структура услуг по направлениям (терапия, хирургия, ортодонтия)</li>
+                <li>✓ Карточки врачей с дипломами и сертификатами</li>
+                <li>✓ Интерактивный прайс-лист и блок «До / После»</li>
+                <li>✓ Полная AIO/GEO оптимизация под ChatGPT и Алису</li>
+                <li>✓ Соответствие требованиям Минздрава РФ (ФЗ № 323)</li>
+              </ul>
+            </div>
+
+            <!-- Тариф 3: Медцентр / Сеть клиник -->
+            <div class="card tariff-card" data-index="2" data-tariff="Медцентр / Сеть клиник" data-price="от 95 000 ₽">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Многопрофильный центр</span>
+                <span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); display: grid; place-items: center; transition: all 180ms ease;"></span>
+              </div>
+              <h4 style="margin: 0 0 6px; font-size: 1.15rem;">Медцентр / Сеть</h4>
+              <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Индивидуальное цифровое решение для многопрофильных центров, филиальных сетей и стационаров.</p>
+              <div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 95 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+              <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+                <li>✓ Индивидуальный дизайн с 3D-графикой и интерактивными турами</li>
+                <li>✓ Интеграция с МИС клиники (IDENT, Инфоклиника, Yclients)</li>
+                <li>✓ Личный кабинет пациента (история приемов, анализы)</li>
+                <li>✓ Встроенный умный AI-консультант прямо на сайте</li>
+                <li>✓ Глубокое региональное SEO-продвижение в Яндекс и Google</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Точки-индикаторы для мобильных устройств -->
+          <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin: 12px 0 20px;">
+            <span class="tariff-dot" data-dot="0" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 180ms ease;"></span>
+            <span class="tariff-dot" data-dot="1" style="width: 22px; height: 8px; border-radius: 4px; background: var(--accent); cursor: pointer; transition: all 180ms ease;"></span>
+            <span class="tariff-dot" data-dot="2" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 180ms ease;"></span>
+          </div>
+
+          <!-- Панель формы заявки -->
+          <div style="margin-top: 24px; padding: clamp(16px, 3vw, 24px); background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--radius, 16px);">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px dashed var(--border);">
+              <div style="font-size: 0.9rem; color: var(--muted);">Выбранный тариф:</div>
+              <div id="selected-tariff-display" style="font-size: 1.15rem; font-weight: 800; color: var(--accent);">Стоматология / Клиника (от 45 000 ₽)</div>
+            </div>
+
+            <form id="landing-lead-form" style="display: grid; gap: 14px; margin: 0;" onsubmit="return false;">
+              <div class="tariff-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div>
+                  <label for="lead-contact-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Ваш телефон или @Telegram <span style="color: var(--accent);">*</span></label>
+                  <input type="text" id="lead-contact-input" required placeholder="+7 (999) 000-00-00 или @username" style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;">
+                </div>
+                <div>
+                  <label for="lead-task-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Название клиники или ссылка на сайт</label>
+                  <input type="text" id="lead-task-input" placeholder="Стоматология 'Дент', clinic.ru..." style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;">
+                </div>
+              </div>
+
+              <!-- Галочка согласия на обработку ПД и ссылки на регламенты -->
+              <label class="consent-check-label">
+                <input type="checkbox" id="lead-consent-check" checked required>
+                <span>Даю согласие на <a href="/consent" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+              </label>
+
+              <div class="tariff-btn-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 4px;">
+                <button type="submit" id="lead-submit-btn" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; border: none; font-weight: 700; min-height: 48px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  <span>Отправить заявку</span>
+                </button>
+
+                <a id="tariff-tg-direct" href="https://t.me/Voiddigit" target="_blank" rel="noopener" class="btn btn-ghost" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.92rem; text-decoration: none; min-height: 48px;">
+                  <span>Или написать в Telegram (@Voiddigit)</span>
+                </a>
+              </div>
+
+              <div id="lead-status-msg" style="display: none; padding: 14px 18px; border-radius: var(--radius, 12px); font-size: 0.95rem; line-height: 1.45;"></div>
+            </form>
+          </div>
+
+        </div>
+
+        <script>
+          (function() {
+            function initDentistryTariffs() {
+              var grid = document.getElementById('landing-tariffs-grid');
+              var cards = document.querySelectorAll('.tariff-card');
+              var dots = document.querySelectorAll('.tariff-dot');
+              var display = document.getElementById('selected-tariff-display');
+              var form = document.getElementById('landing-lead-form');
+              var contactInput = document.getElementById('lead-contact-input');
+              var taskInput = document.getElementById('lead-task-input');
+              var consentCheck = document.getElementById('lead-consent-check');
+              var submitBtn = document.getElementById('lead-submit-btn');
+
+              if (consentCheck && submitBtn) {
+                consentCheck.addEventListener('change', function() {
+                  if (!this.checked) {
+                    submitBtn.style.opacity = '0.5';
+                    submitBtn.style.cursor = 'not-allowed';
+                  } else {
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                    consentCheck.parentElement.style.outline = 'none';
+                  }
+                });
+              }
+
+              var tgDirectLink = document.getElementById('tariff-tg-direct');
+              var statusMsg = document.getElementById('lead-status-msg');
+
+              if (!cards.length || !form) return;
+
+              var currentTariff = 'Стоматология / Клиника';
+              var currentPrice = 'от 45 000 ₽';
+
+              function updateDirectTgLink() {
+                var taskVal = (taskInput && taskInput.value) ? taskInput.value.trim() : '';
+                var msg = 'Здравствуйте! Хочу заказать сайт для стоматологии / медцентра.\n\n📌 Выбранный тариф: ' + currentTariff + ' (' + currentPrice + ')';
+                if (taskVal) msg += '\n💬 Клиника / задача: ' + taskVal;
+                msg += '\n🔗 Источник: https://void-digital.ru/blog-website-for-dentistry';
+                if (tgDirectLink) {
+                  tgDirectLink.href = 'https://t.me/Voiddigit?text=' + encodeURIComponent(msg);
+                }
+              }
+
+              function updateDots(activeIdx) {
+                dots.forEach(function(dot, idx) {
+                  if (idx === activeIdx) {
+                    dot.style.width = '22px';
+                    dot.style.borderRadius = '4px';
+                    dot.style.background = 'var(--accent)';
+                  } else {
+                    dot.style.width = '8px';
+                    dot.style.borderRadius = '50%';
+                    dot.style.background = 'var(--border)';
+                  }
+                });
+              }
+
+              function selectCard(card, scrollIntoView) {
+                cards.forEach(function(c) {
+                  c.classList.remove('active');
+                  var radio = c.querySelector('.tariff-radio');
+                  if (radio) {
+                    radio.style.borderColor = 'var(--border)';
+                    radio.style.background = 'transparent';
+                    radio.innerHTML = '';
+                  }
+                });
+
+                card.classList.add('active');
+                var radio = card.querySelector('.tariff-radio');
+                if (radio) {
+                  radio.style.borderColor = 'var(--accent)';
+                  radio.style.background = 'var(--accent)';
+                  radio.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                }
+
+                currentTariff = card.getAttribute('data-tariff') || '';
+                currentPrice = card.getAttribute('data-price') || '';
+
+                if (display) {
+                  display.textContent = currentTariff + ' (' + currentPrice + ')';
+                }
+
+                var idx = parseInt(card.getAttribute('data-index') || '0', 10);
+                updateDots(idx);
+                updateDirectTgLink();
+
+                if (scrollIntoView && window.innerWidth <= 768 && grid) {
+                  card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+              }
+
+              cards.forEach(function(card) {
+                card.addEventListener('click', function() {
+                  selectCard(this, true);
+                });
+              });
+
+              dots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                  var idx = parseInt(this.getAttribute('data-dot') || '0', 10);
+                  if (cards[idx]) {
+                    selectCard(cards[idx], true);
+                  }
+                });
+              });
+
+              if (taskInput) {
+                taskInput.addEventListener('input', updateDirectTgLink);
+              }
+
+              if (grid) {
+                var scrollTimeout;
+                grid.addEventListener('scroll', function() {
+                  clearTimeout(scrollTimeout);
+                  scrollTimeout = setTimeout(function() {
+                    var gridLeft = grid.getBoundingClientRect().left;
+                    var gridCenter = gridLeft + grid.offsetWidth / 2;
+                    var closestIdx = 0;
+                    var minDistance = Infinity;
+
+                    cards.forEach(function(card, idx) {
+                      var cardBox = card.getBoundingClientRect();
+                      var cardCenter = cardBox.left + cardBox.width / 2;
+                      var distance = Math.abs(gridCenter - cardCenter);
+                      if (distance < minDistance) {
+                        minDistance = distance;
+                        closestIdx = idx;
+                      }
+                    });
+
+                    if (cards[closestIdx]) {
+                      selectCard(cards[closestIdx], false);
+                    }
+                  }, 80);
+                }, { passive: true });
+              }
+
+              updateDirectTgLink();
+              if (window.innerWidth <= 768 && grid && cards[1]) {
+                setTimeout(function() {
+                  cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+                }, 120);
+              }
+
+              form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (consentCheck && !consentCheck.checked) {
+                  alert('Пожалуйста, подтвердите согласие на обработку персональных данных');
+                  consentCheck.focus();
+                  return;
+                }
+
+                var contactVal = contactInput ? contactInput.value.trim() : '';
+                var taskVal = taskInput ? taskInput.value.trim() : '';
+
+                if (!contactVal) {
+                  if (contactInput) contactInput.focus();
+                  return;
+                }
+
+                var originalBtnHtml = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span>Отправка...</span>';
+                statusMsg.style.display = 'none';
+
+                var tgText = '🚀 <b>Новая заявка на сайт стоматологии / медцентра!</b>\n\n' +
+                  '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+                  '📱 <b>Контакт:</b> ' + contactVal + '\n' +
+                  (taskVal ? ('💬 <b>Клиника / задача:</b> ' + taskVal + '\n') : '') +
+                  '🔗 <b>Страница:</b> https://void-digital.ru/blog-website-for-dentistry';
+
+                var tgPayload = JSON.stringify({
+                  chat_id: '7738024017',
+                  text: tgText,
+                  parse_mode: 'HTML'
+                });
+
+                fetch('https://api.telegram.org/bot8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs/sendMessage', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: tgPayload
+                }).then(function(res) {
+                  return res.json();
+                }).then(function(data) {
+                  submitBtn.disabled = false;
+                  submitBtn.innerHTML = originalBtnHtml;
+
+                  if (data && data.ok) {
+                    statusMsg.style.display = 'block';
+                    statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                    statusMsg.style.border = '1.5px solid var(--accent)';
+                    statusMsg.style.color = 'var(--text)';
+                    statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+                    form.reset();
+                    if (consentCheck) consentCheck.checked = true;
+                  } else {
+                    throw new Error(data && data.description ? data.description : 'Ошибка Telegram API');
+                  }
+                }).catch(function(err) {
+                  fetch('/api/lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      tariff: currentTariff + ' (' + currentPrice + ')',
+                      contact: contactVal,
+                      message: taskVal,
+                      page: window.location.href
+                    })
+                  }).finally(function() {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+
+                    statusMsg.style.display = 'block';
+                    statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                    statusMsg.style.border = '1.5px solid var(--accent)';
+                    statusMsg.style.color = 'var(--text)';
+                    statusMsg.innerHTML = '🎉 <b>Заявка принята!</b> Если хотите написать сразу в диалог — нажмите: <a href="https://t.me/Voiddigit?text=' + encodeURIComponent('Здравствуйте! Заявка на тариф ' + currentTariff + '. Мой контакт: ' + contactVal) + '" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: underline;">Открыть чат с Даниилом</a>';
+                  });
+                });
+              });
+            }
+
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', initDentistryTariffs);
+            } else {
+              initDentistryTariffs();
+            }
+          })();
+        </script>
+
+        <h2>Примеры реализованных медицинских и сервисных сайтов</h2>
+        <p>Оцените примеры решений, реализованных командой VOID Digital для коммерческих клиентов:</p>
+
+        <div class="portfolio-grid">
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Медицина · Стоматология</span>
+              <h4>Сайт современной стоматологической клиники</h4>
+              <p>Многостраничный сайт с каталогом врачей, онлайн-записью на первичную консультацию и интерактивным прайсом.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Услуги · Онлайн-запись</span>
+              <h4>Сервис бронирования для медицинского центра</h4>
+              <p>Интеграция с расписанием специалистов клиники, автоматические напоминания пациентам в SMS и WhatsApp.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Здоровье · Диагностика</span>
+              <h4>Лендинг чек-апов и лабораторных анализов</h4>
+              <p>Конверсионная страница с подбором комплексных программ обследования здоровья и отправкой заявок в CRM.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+        </div>
+
+        <h2>Этапы создания сайта для клиники под ключ</h2>
+
+        <ol>
+          <li><strong>Анализ медицинских услуг и позиционирования.</strong> Выявляем флагманские направления клиники (имплантация, ортодонтия, диагностика) и анализируем конкурентов в городе.</li>
+          <li><strong>Проектирование медицинской структуры доверия.</strong> Разрабатываем сценарии записи, структуру карточек докторов, блоки гарантий и лицензий.</li>
+          <li><strong>Индивидуальный UX/UI дизайн.</strong> Создаем чистый, премиальный дизайн в светлой или темной теме, вызывающий ощущение стерильности, надежности и высоких технологий.</li>
+          <li><strong>Верстка и интеграции.</strong> Подключаем моментальные уведомления администраторам в Telegram, связку с МИС/CRM и виджет WhatsApp.</li>
+          <li><strong>SEO и запуск.</strong> Настраиваем микроразметку <code>Schema.org/Dentist</code>, цели в Яндекс Метрике и передаем сайт главному врачу или маркетологу.</li>
+        </ol>
+
+        <h2>Частые вопросы врачей и управляющих клиник (FAQ)</h2>
+
+        <h3>Сможет ли администратор клиники менять цены и добавлять новых врачей?</h3>
+        <p>Да. Мы создаем удобную панель управления, где любой сотрудник клиники за 2 минуты может обновить прайс-лист, добавить фото нового доктора или разместить свежие отзывы.</p>
+
+        <h3>Как сайт помогает привлекать пациентов из Яндекс Директ?</h3>
+        <p>Квиз-калькулятор и узкие посадочные страницы под конкретные услуги (имплантация, брекеты) дают конверсию в заявку от 5 до 8%, снижая стоимость привлечения первичного пациента в 2–3 раза.</p>
+
+        <h3>Как начать сотрудничество?</h3>
+        <p>Оставьте заявку в форме выше или напишите нам напрямую в Telegram. Мы изучим текущую ситуацию вашей клиники и подготовим персональный план разработки.</p>
+
+        <div class="cta mt-40">
+          <h2>Заказать разработку сайта для стоматологии или медцентра</h2>
+          <p>Готовы создать сайт, который стабильно наполняет расписание ваших докторов первичными пациентами? Обсудите проект с разработчиком VOID Digital.</p>
+          <a class="btn" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Обсудить проект в Telegram</a>
+        </div>
+
+      </div> <!-- .post-body -->
+    </div> <!-- .container.container-sm -->
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+    <ul class="social" aria-label="Связаться с нами">
+      <li><a href="tel:+79538550813" aria-label="Позвонить +7 953 855-08-13" title="Позвонить"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a></li>
+      <li><a href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"/></svg></a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg></a></li>
+      <li><a href="mailto:voiddigital@mail.ru" aria-label="Написать на почту voiddigital@mail.ru" title="Почта"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a></li>
+    </ul>
+    <ul class="footer-links">
+      <li><a href="/services">Услуги</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a href="/privacy">Политика конфиденциальности</a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener">Telegram</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="/js/main.js?v=75bccd28"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

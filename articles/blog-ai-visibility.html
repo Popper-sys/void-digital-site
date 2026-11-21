@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Как попасть в ИИ-поиск и нейросети — VOID | digital</title>
+  <meta name="description" content="Что такое ИИ-поиск и как подготовить сайт, чтобы нейросети рекомендовали ваш бизнес: структура, FAQ, разметка Schema.org, файл llms.txt и внешние площадки.">
+  <link rel="canonical" href="https://void-digital.ru/blog-ai-visibility">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="VOID | digital">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Как попасть в ИИ-поиск и нейросети — VOID | digital">
+  <meta property="og:description" content="Что такое ИИ-поиск и как подготовить сайт, чтобы нейросети рекомендовали ваш бизнес: структура, FAQ, разметка Schema.org, файл llms.txt и внешние площадки.">
+  <meta property="og:url" content="https://void-digital.ru/blog-ai-visibility">
+  <meta property="og:image" content="https://void-digital.ru/img/blog-ai-visibility/blog-ai-cover.jpg?v=20261021">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preload" href="fonts/manrope-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/style.css?v=f00a3e5f">
+  <style>
+    .post-figure { margin: 24px 0; }
+    .post .cta p { max-width: none; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Как сделать, чтобы нейросети рекомендовали ваш бизнес: видимость сайта в ИИ-поиске",
+    "description": "Что такое ИИ-поиск и как подготовить сайт, чтобы нейросети рекомендовали ваш бизнес: структура, FAQ, разметка Schema.org, файл llms.txt и внешние площадки.",
+    "image": "https://void-digital.ru/img/blog-ai-visibility/blog-ai-cover.jpg?v=20261021",
+    "inLanguage": "ru",
+    "datePublished": "2026-10-21",
+    "dateModified": "2026-10-21",
+    "author": { "@type": "Person", "name": "Даниил Лосуков", "url": "https://void-digital.ru/about" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "VOID | digital",
+      "url": "https://void-digital.ru/",
+      "logo": { "@type": "ImageObject", "url": "https://void-digital.ru/apple-touch-icon.png" }
+    },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://void-digital.ru/blog-ai-visibility" }
+  }
+  </script>
+<script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Главная","item":"https://void-digital.ru/"},
+      {"@type":"ListItem","position":2,"name":"Блог","item":"https://void-digital.ru/blog"},
+      {"@type":"ListItem","position":3,"name":"Видимость в ИИ-поиске","item":"https://void-digital.ru/blog-ai-visibility"}]}
+  </script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113737288', 'ym');
+
+    ym(113737288, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113737288" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/services">Услуги и цены</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/about">О нас</a></li>
+      <li><a href="/blog" aria-current="page">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
+      <li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <article class="section post">
+    <div class="container">
+      <a href="/blog" class="muted">← Все статьи</a>
+      <h1 class="mt-16">Как сделать, чтобы нейросети рекомендовали ваш бизнес: видимость сайта в ИИ-поиске</h1>
+      <p class="post-meta">Продвижение · 6 мин чтения</p>
+
+      <figure class="post-figure">
+        <img src="img/blog-ai-visibility/blog-ai-cover.jpg?v=20261021" alt="Как сделать, чтобы нейросети рекомендовали ваш бизнес: видимость сайта в ИИ-поиске" width="1664" height="928" fetchpriority="high">
+      </figure>
+
+      <p>Раньше, чтобы найти компанию, клиент вводил запрос в поисковую строку и выбирал сайт из списка результатов. Теперь он может просто спросить ChatGPT, найти подходящего подрядчика через нейросеть или получить готовый ответ в поиске Яндекса. Если ваш бизнес не представлен в таких ответах, вы рискуете упустить потенциальных клиентов. Разберёмся, как подготовить сайт, чтобы нейросетям было проще находить информацию о вашей компании и рекомендовать её пользователям.</p>
+      <h2>Что такое ИИ-поиск и чем он отличается от обычного</h2>
+      <p>ИИ-поиск — это способ искать информацию с помощью искусственного интеллекта. Вместо привычного списка ссылок пользователь получает сформированный ответ, подборку решений или рекомендации. Примеры таких инструментов — ChatGPT с поиском в интернете и нейроответы в Яндексе.</p>
+      <p>Классический поиск показывает страницы, которые соответствуют запросу и критериям поисковой системы. Пользователь сам открывает сайты, сравнивает предложения и выбирает исполнителя. ИИ-поиск может самостоятельно обобщить информацию из разных источников и предложить конкретные компании, услуги или товары.</p>
+      <p>Например, потенциальный клиент спрашивает: «Где заказать сайт для небольшой строительной компании?». Нейросеть может перечислить подходящие студии, объяснить различия между их услугами и привести ссылки на источники. Чтобы попасть в такую подборку, бизнесу важно не только присутствовать в интернете, но и иметь понятную, доступную для обработки информацию.</p>
+      <p>При этом <strong>попадание в ответы нейросетей нельзя гарантировать</strong>. Результат зависит от конкретного инструмента, запроса, доступных источников и алгоритмов формирования ответа.</p>
+      <h2>1. Сделайте структуру сайта понятной</h2>
+      <p>Нейросетям проще работать с информацией, когда на сайте чётко обозначены услуги, специализация и преимущества компании. Если всё предложение помещено в один большой текст или описано общими фразами, системе сложнее определить, чем именно занимается бизнес.</p>
+      <p>Начните с базовой структуры:</p>
+      <ul>
+        <li><strong>Главная страница</strong> — кто вы, чем занимаетесь и для кого работаете.</li>
+        <li><strong>Страницы услуг</strong> — отдельное описание каждого направления.</li>
+        <li><strong>Страница о компании</strong> — опыт, специализация, география работы и принципы взаимодействия с клиентами.</li>
+        <li><strong>Контакты</strong> — телефон, электронная почта, адрес или регион обслуживания.</li>
+        <li><strong>FAQ</strong> — ответы на вопросы, которые чаще всего задают потенциальные клиенты.</li>
+      </ul>
+      <p>Пишите простым языком. Вместо «реализуем комплексные цифровые решения для повышения эффективности бизнеса» лучше написать: «Разрабатываем сайты для малого бизнеса под ключ: от структуры и дизайна до запуска».</p>
+      <p>Используйте заголовки, короткие абзацы и списки. Одна страница должна раскрывать конкретную тему, а посетитель — быстро находить нужную информацию без необходимости изучать весь сайт.</p>
+      <h2>2. Добавьте ответы на частые вопросы</h2>
+      <p>FAQ — это раздел с ответами на вопросы клиентов. Он помогает посетителям быстрее разобраться в услугах, а поисковым системам и ИИ-инструментам — находить конкретные сведения о компании.</p>
+      <p>Подумайте, что клиент хочет узнать до обращения к вам. Например, владельцу бизнеса, который выбирает разработчика сайта, могут быть важны сроки, стоимость, состав работ и дальнейшая поддержка.</p>
+      <p>Для каждой услуги подготовьте ответы на вопросы:</p>
+      <ul>
+        <li>Сколько стоит услуга и от чего зависит цена?</li>
+        <li>Что входит в работу?</li>
+        <li>Сколько времени занимает выполнение?</li>
+        <li>Что нужно предоставить для начала?</li>
+        <li>Работаете ли вы с клиентами из других городов?</li>
+        <li>Как связаться со специалистом и заказать услугу?</li>
+      </ul>
+      <p>Отвечайте конкретно. Если стоимость рассчитывается индивидуально, объясните, какие факторы влияют на цену. Если сроки зависят от сложности проекта, укажите, что именно определяет продолжительность работы.</p>
+      <p>Не создавайте вопросы только ради ключевых слов. FAQ должен помогать клиенту принимать решение и содержать достоверную информацию.</p>
+      <h2>3. Используйте Schema.org и файл llms.txt</h2>
+      <p>Помимо обычных текстов, сайт можно дополнить техническими элементами, которые помогают системам интерпретировать его содержание.</p>
+      <p><strong>Schema.org</strong> — это словарь структурированных данных. С его помощью можно явно обозначить, что на странице находится информация об организации, услуге, товаре или статье. Для бизнеса полезна разметка <code>Organization</code> или <code>LocalBusiness</code>, а для отдельных страниц — подходящие типы разметки, соответствующие их содержанию.</p>
+      <p>Такая разметка помогает поисковым системам точнее понимать данные сайта. Однако её наличие само по себе не гарантирует высоких позиций или рекомендаций нейросетей.</p>
+      <p>Ещё один инструмент — файл <strong>llms.txt</strong>. Это текстовый файл, размещаемый в корневом каталоге сайта, обычно по адресу <code>вашдомен.ru/llms.txt</code>. В нём можно кратко описать компанию, основные услуги и полезные страницы, чтобы упростить знакомство с сайтом для ИИ-инструментов.</p>
+      <p>В файле можно указать:
+- название компании и сферу деятельности;
+- основные услуги и специализацию;
+- географию работы;
+- ссылки на страницы услуг, контактов и полезные материалы.</p>
+      <p>Важно понимать: llms.txt — это дополнительный, пока не универсально поддерживаемый способ передачи информации. Наличие файла не означает, что конкретная нейросеть обязательно будет его читать или учитывать. Поэтому он дополняет качественный сайт, но не заменяет его.</p>
+
+      <figure class="post-figure">
+        <img src="img/blog-ai-visibility/blog-ai-schema.jpg?v=20261021" alt="Файл со структурированными данными о компании и связями с нейросетями" width="1408" height="1008" loading="lazy">
+      </figure>
+      <h2>4. Размещайте информацию о компании на внешних площадках</h2>
+      <p>Нейросети могут использовать не только ваш сайт, но и другие доступные источники. Поэтому важно, чтобы сведения о бизнесе встречались на площадках, которым потенциальные клиенты могут доверять.</p>
+      <p>Для малого бизнеса это могут быть:</p>
+      <ul>
+        <li>карточки компании в Яндекс Картах и других подходящих сервисах;</li>
+        <li>отраслевые каталоги и справочники;</li>
+        <li>профессиональные площадки и тематические публикации;</li>
+        <li>отзывы клиентов на независимых ресурсах;</li>
+        <li>партнёрские сайты и страницы с примерами совместных проектов.</li>
+      </ul>
+      <p>Следите, чтобы название компании, описание услуг, контакты и регион работы не противоречили друг другу. Заполняйте карточки полностью, публикуйте реальные фотографии и отвечайте на отзывы.</p>
+      <p>Не стоит массово размещать одинаковые тексты на сомнительных сайтах ради количества упоминаний. Гораздо полезнее присутствовать там, где действительно ищут вашу услугу и где информация о компании имеет практическую ценность.</p>
+
+      <figure class="post-figure">
+        <img src="img/blog-ai-visibility/blog-ai-platforms.jpg?v=20261021" alt="Карточка компании, связанная с картами, отзывами и каталогами" width="1408" height="1008" loading="lazy">
+      </figure>
+      <h2>5. Регулярно обновляйте контент и проверяйте видимость</h2>
+      <p>Сайт не должен оставаться неизменным годами. Если вы добавили новую услугу, изменили цены, начали работать в другом регионе или подготовили новый проект, обновите соответствующие страницы.</p>
+      <p>Публикуйте полезные материалы, которые отвечают на реальные вопросы клиентов. Например, строительная компания может рассказать, как выбрать подрядчика для ремонта, а веб-студия — объяснить, из чего складывается стоимость разработки сайта.</p>
+      <p>Также проверьте техническую доступность ресурса: важные страницы должны открываться без ошибок, иметь корректные заголовки и не быть случайно закрытыми от индексации. Карта сайта и понятная внутренняя перелинковка помогают поисковым системам обнаруживать страницы.</p>
+      <p>Периодически задавайте ChatGPT и другим доступным ИИ-поисковикам вопросы, которые могли бы задать ваши клиенты. Проверяйте, упоминается ли ваша компания, какие сведения о ней приводятся и какие источники используются. Такие проверки дают ориентир, но отдельный ответ нейросети не позволяет объективно оценить всю видимость бизнеса.</p>
+      <h2>Вывод</h2>
+      <p>Чтобы нейросети могли находить и рекомендовать ваш бизнес, начните с понятного сайта: подробно опишите услуги, ответьте на частые вопросы, добавьте подходящую разметку Schema.org и файл llms.txt. Поддерживайте актуальность информации и развивайте присутствие компании на внешних площадках.</p>
+      <p>ИИ-поиск не заменяет классическое SEO, а дополняет его. Чем понятнее, доступнее и достовернее информация о вашей компании, тем проще поисковым системам и ИИ-инструментам определить, чем вы можете быть полезны клиенту.</p>
+      <div class="cta mt-40">
+        <h2>Заказать сайт с SEO и ИИ-стартом</h2>
+        <p>Расскажите, чем занимается ваш бизнес и есть ли у вас сайт. Подготовим его и для поиска, и для ответов нейросетей: мета-теги, карта сайта, разметка Schema.org и описание для нейросетей (llms.txt) уже бесплатно входят в лендинг и сайт компании. Лендинг — от 15 000 ₽, сайт компании — от 35 000 ₽.</p>
+        <a class="btn" href="/contacts">Обсудить проект и получить расчёт</a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+    <ul class="social" aria-label="Связаться с нами">
+      <li><a href="tel:+79538550813" aria-label="Позвонить +7 953 855-08-13" title="Позвонить"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a></li>
+      <li><a href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"/></svg></a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg></a></li>
+      <li><a href="mailto:voiddigital@mail.ru" aria-label="Написать на почту voiddigital@mail.ru" title="Почта"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a></li>
+    </ul>
+    <ul class="footer-links">
+      <li><a href="/services">Услуги</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a href="/privacy">Политика конфиденциальности</a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener">Telegram</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="js/main.js?v=75bccd28"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

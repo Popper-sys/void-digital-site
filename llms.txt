@@ -48,6 +48,67 @@
 - [О студии и реквизиты](https://void-digital.ru/about)
 - [Контакты](https://void-digital.ru/contacts)
 - [Блог](https://void-digital.ru/blog)
+- [Сколько стоит сайт для бизнеса в 2026 году: цены и примеры](https://void-digital.ru/blog-cost-of-website)
+- [Что должно быть на сайте компании: структура для получения заявок](https://void-digital.ru/blog-structure-business-site)
+- [Почему сайт не приносит заявки: 7 причин и как это исправить](https://void-digital.ru/blog-site-no-leads)
+- [Как сделать, чтобы нейросети рекомендовали ваш бизнес: видимость сайта в ИИ-поиске](https://void-digital.ru/blog-ai-visibility)
+- [Базовая SEO-подготовка сайта: что проверить перед запуском](https://void-digital.ru/blog-seo-checklist)
+- [Адаптивный дизайн сайта: почему мобильная версия влияет на заявки](https://void-digital.ru/blog-adaptive-design)
+- [Как ускорить сайт: что действительно влияет на скорость загрузки](https://void-digital.ru/blog-speed-optimization)
+- [Как подготовить тексты для сайта компании: структура, примеры и ошибки](https://void-digital.ru/blog-company-texts)
+- [Этапы разработки сайта: как проходит создание проекта](https://void-digital.ru/blog-development-stages)
+- [Техническое задание на создание сайта: что указать перед началом работ](https://void-digital.ru/blog-technical-specification)
+- [Сайт на Tilda для бизнеса: возможности, дизайн и ограничения платформы](https://void-digital.ru/blog-tilda-business)
+- [Техническая поддержка сайта: что входит в услугу и когда она нужна бизнесу](https://void-digital.ru/blog-technical-support)
+- [Аудит сайта: что проверить перед редизайном и продвижением](https://void-digital.ru/blog-site-audit)
+- [Сайт для автосервиса: каким должен быть сайт, который приводит клиентов](https://void-digital.ru/blog-website-for-auto-service)
+- [Сайт для стоматологии: каким он должен быть, чтобы привлекать пациентов](https://void-digital.ru/blog-website-for-dentistry)
+- [Разработка корпоративного сайта для компании: что важно предусмотреть](https://void-digital.ru/blog-corporate-website)
+
+- [Редизайн сайта: когда он нужен бизнесу и что входит в работу](https://void-digital.ru/blog-website-redesign)
+
+- [SEO-оптимизация сайта: что входит в работу и зачем она нужна бизнесу](https://void-digital.ru/blog-seo-optimization)
+
+- [Доработка сайта: когда нужна и какие задачи можно решить без полной переделки](https://void-digital.ru/blog-website-improvements)
+
+- [Сколько стоит SEO-продвижение сайта: от чего зависит цена и что входит в стоимость](https://void-digital.ru/blog-seo-promotion-cost)
+
+- [SEO-продвижение сайта под ключ: что входит в услугу и как выбрать подрядчика](https://void-digital.ru/blog-seo-promotion-under-key)
+
+- [Лендинг под ключ: что входит в разработку и кому подходит такой сайт](https://void-digital.ru/blog-landing-page-under-key)
+
+- [Сайт для малого бизнеса: какой сайт нужен компании и что учесть при разработке](https://void-digital.ru/blog-website-for-small-business)
+
+- [Сайт-визитка под ключ: для кого подходит и что входит в разработку](https://void-digital.ru/blog-website-business-card)
+
+- [Дизайн сайта для бизнеса: каким он должен быть и что входит в разработку](https://void-digital.ru/blog-website-design-business)
+
+- [Сайт-каталог для компании: структура, функции и особенности разработки](https://void-digital.ru/blog-website-catalog)
+
+- [Сайт для производственной компании: что важно предусмотреть при разработке](https://void-digital.ru/blog-website-for-manufacturing)
+
+- [Разработка личного кабинета для сайта: функции, этапы и стоимость](https://void-digital.ru/blog-website-personal-account)
+
+- [Сайт для онлайн-бронирования услуг: какие функции нужны и как его разработать](https://void-digital.ru/blog-website-online-booking)
+
+- [Как выбрать веб-студию для разработки сайта и не ошибиться с подрядчиком](https://void-digital.ru/blog-how-to-choose-web-studio)
+
+- [Создание сайта интернет-магазина: что входит в разработку и какие функции нужны бизнесу](https://void-digital.ru/blog-website-online-store)
+
+- [Договор на разработку сайта: основные условия и что проверить](https://void-digital.ru/blog-website-development-contract)
+
+- [Сайт для салона красоты: какие функции нужны для привлечения клиентов](https://void-digital.ru/blog-website-for-beauty-salon)
+
+- [Сайт для кофейни: каким он должен быть и что предусмотреть при разработке](https://void-digital.ru/blog-website-for-coffee-shop)
+
+- [Разработка лендинга под ключ: создание сайта для бизнеса от идеи до запуска](https://void-digital.ru/blog-landing-page-development)
+
+
+- [Сайт для строительной компании: разработка и структура под ключ](https://void-digital.ru/blog-website-for-construction)
+
+- [Сайт для агентства недвижимости и застройщиков: разработка под ключ](https://void-digital.ru/blog-website-for-real-estate)
+- [Разработка Telegram-ботов для бизнеса под ключ: автоворонки и WebApp](https://void-digital.ru/blog-telegram-bots-development)
+- [Сайт для юридической компании и банкротства физлиц (БФЛ) под ключ](https://void-digital.ru/blog-website-for-lawyers)
 
 ## Контакты
 

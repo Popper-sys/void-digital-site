@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Разработка Telegram-ботов для бизнеса: автоматизация продаж и ИИ-боты — VOID Digital</title>
+  <meta name="description" content="Разработка Telegram-ботов для бизнеса под ключ: автоворонки продаж, чат-боты с ИИ (ChatGPT), прием платежей, интеграция с CRM (amoCRM/Битрикс24) и мессенджером Макс.">
+  <link rel="canonical" href="https://void-digital.ru/blog-telegram-bots-development">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="VOID | digital">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Разработка Telegram-ботов для бизнеса: автоматизация продаж и ИИ-боты — VOID Digital">
+  <meta property="og:description" content="Разработка Telegram-ботов для бизнеса под ключ: автоворонки продаж, чат-боты с ИИ (ChatGPT), прием платежей, интеграция с CRM (amoCRM/Битрикс24) и мессенджером Макс.">
+  <meta property="og:url" content="https://void-digital.ru/blog-telegram-bots-development">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://void-digital.ru/img/blog-telegram-bots-development/blog-telegram-bots-cover.jpg?v=20261121">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Разработка Telegram-ботов для бизнеса под ключ в VOID Digital">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/Manrope-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css?v=f00a3e5f">
+  <style>
+    .post-figure { margin: 28px 0; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post .cta p { max-width: none; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+    .post table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .95rem; }
+    .post th, .post td { padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); text-align: left; }
+    .post th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: color-mix(in srgb, currentColor 4%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .cta-banner p { margin: 0; font-weight: 500; font-size: 1.05rem; }
+    
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff !important;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 12px 24px;
+      border-radius: var(--radius, 10px);
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s, background 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-action:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: color-mix(in srgb, currentColor 8%, transparent);
+      color: inherit;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 12px 22px;
+      border-radius: var(--radius, 10px);
+      text-decoration: none;
+      border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover {
+      background: color-mix(in srgb, currentColor 14%, transparent);
+    }
+
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: var(--bg);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-card:active {
+      transform: scale(0.99);
+    }
+    
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 12px !important;
+        padding-bottom: 8px !important;
+        margin-inline: -12px !important;
+        padding-inline: 12px !important;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .tariff-card {
+        flex: 0 0 min(82vw, 300px) !important;
+        max-width: 300px !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+        padding: 20px 16px !important;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+      .tariff-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .tariff-btn-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .tariff-btn-row .btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .landing-calculator-widget {
+        padding: 18px 14px !important;
+        margin: 24px 0 !important;
+      }
+    }
+
+    .landing-calculator-widget input[type="text"] {
+      font-size: 16px !important;
+    }
+
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin-top: 2px;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+
+    /* Portfolio Cards */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 28px 0;
+    }
+    .portfolio-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .portfolio-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .portfolio-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .portfolio-card h4 { margin: 0 0 8px 0; font-size: 1.15rem; }
+    .portfolio-card p { font-size: 0.9rem; opacity: 0.8; margin-bottom: 16px; line-height: 1.4; }
+    .portfolio-link { font-weight: 600; font-size: 0.9rem; color: var(--accent); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Разработка Telegram-ботов для бизнеса: автоматизация продаж, техподдержка и чат-боты с ИИ под ключ",
+    "description": "Разработка Telegram-ботов для бизнеса под ключ: автоворонки продаж, чат-боты с ИИ (ChatGPT), прием платежей, интеграция с CRM (amoCRM/Битрикс24) и мессенджером Макс.",
+    "image": "https://void-digital.ru/img/blog-telegram-bots-development/blog-telegram-bots-cover.jpg?v=20261121",
+    "datePublished": "2026-11-21",
+    "dateModified": "2026-11-21",
+    "author": {
+      "@type": "Person",
+      "name": "Даниил Лосуков",
+      "url": "https://void-digital.ru/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "VOID | digital",
+      "url": "https://void-digital.ru/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://void-digital.ru/favicon.svg"
+      }
+    },
+    "articleSection": "Автоматизация и боты",
+    "inLanguage": "ru-RU"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://void-digital.ru/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Блог",
+        "item": "https://void-digital.ru/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Разработка Telegram-ботов",
+        "item": "https://void-digital.ru/blog-telegram-bots-development"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Сколько стоит разработка Telegram-бота для бизнеса?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Базовый чат-бот визитка с лид-магнитом и автоворонкой стоит от 15 000 ₽. Полноценный бизнес-бот с каталогом, приемом платежей и интеграцией CRM — от 35 000 ₽. Умный ИИ-ассистент на базе нейросети — от 75 000 ₽."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Можно ли принимать оплату прямо внутри Telegram?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. Telegram поддерживает официальные платёжные шлюзы (ЮKassa, Robokassa, Сбербанк, Tinkoff, CloudPayments, СБП). Клиент оплачивает товар или услугу в 1 клик через Apple Pay / Google Pay / банковскую карту прямо в интерфейсе мессенджера."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Что такое боты в мессенджере Макс (MAX)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Мы разрабатываем чат-ботов не только для Telegram, но и для корпоративных и российских платформ, включая мессенджер Макс (MAX), ВКонтакте и WhatsApp. Архитектура создается единой для всех каналов связи."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Как работает чат-бот с искусственным интеллектом (ChatGPT)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Бот обучается на базе знаний вашей компании (каталог услуг, регламенты, прайс-лист, частые вопросы). Он отвечает клиентам живым языком 24/7, квалифицирует лид и переводит диалог на живого менеджера при готовности к покупке."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Сколько времени занимает создание Telegram-бота?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Простой бот-воронка создается за 3–5 рабочих дней. Сложный бот с CRM-интеграцией и оплатой — за 10–14 рабочих дней."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/services">Услуги и цены</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/about">О нас</a></li>
+      <li><a href="/blog" aria-current="page">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
+      <li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+  <article class="post">
+    <div class="container container-sm">
+      <header class="post-header">
+        <div class="post-meta">
+          <time datetime="2026-11-21">21 ноября 2026</time>
+          <span class="dot" aria-hidden="true">•</span>
+          <span class="category">Автоматизация и боты</span>
+          <span class="dot" aria-hidden="true">•</span>
+          <span class="read-time">7 минут чтения</span>
+        </div>
+        <h1 class="post-title">Разработка Telegram-ботов для бизнеса: автоматизация продаж, техподдержка и чат-боты с ИИ под ключ</h1>
+        <p class="lead">Telegram стал полноценной операционной системой для бизнеса: в нем закрывают сделки, принимают платежи и автоматизируют рутину. Разбираем, как умный Telegram-бот заменяет 3 сотрудников отдела продаж, интегрируется с сайтом и CRM и окупается в первый же месяц работы.</p>
+      </header>
+
+      <figure class="post-figure">
+        <img src="img/blog-telegram-bots-development/blog-telegram-bots-cover.jpg?v=20261121" alt="Разработка Telegram-ботов для бизнеса под ключ — VOID Digital" width="1536" height="1024" fetchpriority="high">
+        <figcaption>Современный Telegram-бот сочетает автоворонку, каталог товаров, прием оплаты картой и умного ИИ-консультанта.</figcaption>
+      </figure>
+
+      <div class="post-body">
+        <p>Сегодня стоимость привлечения лида из контекстной и таргетированной рекламы бьет исторические рекорды. Отправлять дорогой рекламный трафик на сайт без возможности удержать пользователя — непозволительная роскошь: до 95% посетителей уходят без действия и забывают о вашей компании навсегда.</p>
+
+        <p><strong>Telegram-бот — это идеальный инструмент удержания и дожима.</strong> Попадая в бота, клиент подписывается на вашу экосистему: вы можете отправлять персональные цепочки сообщений с открываемостью 85–90% (против 15% в email-рассылках), принимать оплату и выдавать персонализированные предложения без расходов на SMS.</p>
+
+        <div class="cta-banner">
+          <div>
+            <p>Хотите узнать, как автоматизировать продажи вашей компании через Telegram?</p>
+            <span style="font-size: 0.9rem; opacity: 0.8;">Разработаем логику воронки и покажем сценарий бота для вашей ниши за 24 часа.</span>
+          </div>
+          <a class="btn-action" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Написать в Telegram →</a>
+        </div>
+
+        <h2>Зачем бизнесу собственный Telegram-бот</h2>
+
+        <p>В отличие от шаблонных конструкторов с ограниченным функционалом, индивидуальная разработка бота на Python решает ключевые операционные задачи:</p>
+
+        <ol>
+          <li><strong>Квалификация и прогрев лидов 24/7.</strong> Бот моментально задает клиенту нужные вопросы о бюджете, сроках и задаче, фильтрует нецелевые обращения и передает в отдел продаж уже «горячего» клиента.</li>
+          <li><strong>Прием платежей без выхода из мессенджера.</strong> Интеграция с официальными платежными провайдерами (ЮKassa, СБП, Tinkoff) позволяет клиенту оплачивать услуги, консультации или бронировать товары за 5 секунд.</li>
+          <li><strong>Снижение нагрузки на менеджеров до 70%.</strong> Ответы на частые вопросы (график работы, прайс, доставка, условия договора) автоматизируются, освобождая время сотрудников для закрытия крупных сделок.</li>
+        </ol>
+
+        <h2>Виды ботов, которые мы создаем в VOID | digital</h2>
+
+        <h3>1. Боты-автоворонки и лидогенерация</h3>
+        <p>Клиент переходит по рекламе или с сайта, получает полезный лид-магнит (калькулятор сметы, чек-лист, скидочный промокод) и вовлекается в цепочку полезных сообщений, закрывающих возражения.</p>
+
+        <h3>2. Чат-боты с искусственным интеллектом (ChatGPT / LLM)</h3>
+        <p>Мы подключаем нейросети последнего поколения к базе знаний вашего бизнеса. ИИ-бот понимает свободную речь человека, подбирает товары по нечетким описаниям и консультирует лучше среднего стажера.</p>
+
+        <h3>3. Боты в корпоративных мессенджерах (включая Макс / MAX)</h3>
+        <p>Помимо Telegram, мы разрабатываем ботов для мессенджера Макс (MAX), ВКонтакте и WhatsApp, объединяя все каналы коммуникации с клиентами в одну базу.</p>
+
+        <h2>Интеграция с сайтом и CRM (amoCRM / Битрикс24)</h2>
+
+        <p>Бот не живет изолированно: мы настраиваем сквозную интеграцию с вашим сайтом и бизнес-системами:</p>
+        <ul>
+          <li><strong>Мгновенное уведомление:</strong> как только пользователь оставил заявку на сайте или в боте, менеджеры получают пуш в рабочий Telegram-чат компании.</li>
+          <li><strong>Синхронизация с CRM:</strong> сделка создается с историей переписки в боте, контактом, тегами и суммой заказа.</li>
+          <li><strong>База данных и аналитика:</strong> полный учет каждого пользователя, когортный анализ и сегментация для точечных рассылок.</li>
+        </ul>
+
+        <h2>Сколько стоит разработка Telegram-бота под ключ</h2>
+
+        <p>Работаем официально по договору ИП Лосуков Д. В., фиксируем стоимость и отдаем все исходные коды. Выберите подходящий тарифный пакет:</p>
+
+        <!-- Интерактивный калькулятор тарифов с отправкой заявки прямо в Telegram-бот и CRM -->
+        <div class="landing-calculator-widget" id="lead-form" style="margin: 36px 0; padding: clamp(18px, 4vw, 32px); background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius, 20px); box-shadow: var(--shadow, 0 4px 20px rgba(0,0,0,0.04));">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 18px;">
+            <h3 style="margin: 0; font-size: clamp(1.15rem, 3.5vw, 1.35rem);">Выберите тариф под задачи бота:</h3>
+            <span style="font-size: 0.84rem; color: var(--muted);">Листайте влево-вправо на телефоне</span>
+          </div>
+
+          <!-- Карточки тарифов для выбора (со свайпом на мобильных) -->
+          <div class="grid grid-3" id="landing-tariffs-grid" style="gap: 16px;">
+            <!-- Тариф 1: Бот-визитка -->
+            <div class="card tariff-card" data-index="0" data-tariff="Бот-визитка / Воронка" data-price="от 15 000 ₽">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Старт / Воронка</span>
+                <span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); display: grid; place-items: center; transition: all 180ms ease;"></span>
+              </div>
+              <h4 style="margin: 0 0 6px; font-size: 1.15rem;">Бот-визитка / Воронка</h4>
+              <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Для сбора контактов, выдачи лид-магнитов, автоматических рассылок и консультации.</p>
+              <div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 15 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+              <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+                <li>✓ Логика меню и навигация по кнопкам</li>
+                <li>✓ Автоматический сбор контактов и опросник</li>
+                <li>✓ Отправка заявок администраторам в личку/чат</li>
+                <li>✓ Модуль рассылки по подписчикам бота</li>
+                <li>✓ Запуск за 3–5 рабочих дней</li>
+              </ul>
+            </div>
+
+            <!-- Тариф 2: Бизнес-бот (По умолчанию выбран) -->
+            <div class="card tariff-card active" data-index="1" data-tariff="Бизнес-бот / Продажи и CRM" data-price="от 35 000 ₽">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; background: var(--accent); color: #fff; padding: 2px 8px; border-radius: 6px;">Хит продаж</span>
+                <span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent); display: grid; place-items: center; transition: all 180ms ease;">
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </div>
+              <h4 style="margin: 0 0 6px; font-size: 1.15rem;">Бизнес-бот / CRM</h4>
+              <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Полноценный инструмент продаж: каталог товаров/услуг, прием онлайн-оплат и связка с CRM.</p>
+              <div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 35 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+              <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+                <li>✓ Всё из базового тарифа</li>
+                <li>✓ Каталог товаров с корзиной и оформлением</li>
+                <li>✓ Подключение приема платежей (ЮKassa, СБП)</li>
+                <li>✓ Полная интеграция с amoCRM или Битрикс24</li>
+                <li>✓ Поддержка мессенджера Макс / ВКонтакте</li>
+                <li>✓ 30 дней бесплатной техподдержки</li>
+              </ul>
+            </div>
+
+            <!-- Тариф 3: ИИ-ассистент / Сложная разработка -->
+            <div class="card tariff-card" data-index="2" data-tariff="ИИ-ассистент / ChatGPT" data-price="от 75 000 ₽">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">ИИ / Инновации</span>
+                <span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); display: grid; place-items: center; transition: all 180ms ease;"></span>
+              </div>
+              <h4 style="margin: 0 0 6px; font-size: 1.15rem;">ИИ-ассистент / ChatGPT</h4>
+              <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Умный консультант на базе нейросетей, обученный на документах и регламентах вашей компании.</p>
+              <div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 75 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+              <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+                <li>✓ Интеграция с моделями GPT-4 / Claude / YandexGPT</li>
+                <li>✓ Векторная база знаний по вашим услугам и прайсу</li>
+                <li>✓ Голосовое распознавание сообщений клиентов</li>
+                <li>✓ Сложные API-интеграции с базами данных и складом</li>
+                <li>✓ Персональная панель управления диалогами</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Точки-индикаторы для мобильных устройств -->
+          <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin: 12px 0 20px;">
+            <span class="tariff-dot" data-dot="0" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 180ms ease;"></span>
+            <span class="tariff-dot" data-dot="1" style="width: 22px; height: 8px; border-radius: 4px; background: var(--accent); cursor: pointer; transition: all 180ms ease;"></span>
+            <span class="tariff-dot" data-dot="2" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 180ms ease;"></span>
+          </div>
+
+          <!-- Панель формы заявки -->
+          <div style="margin-top: 24px; padding: clamp(16px, 3vw, 24px); background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--radius, 16px);">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px dashed var(--border);">
+              <div style="font-size: 0.9rem; color: var(--muted);">Выбранный тариф:</div>
+              <div id="selected-tariff-display" style="font-size: 1.15rem; font-weight: 800; color: var(--accent);">Бизнес-бот / Продажи и CRM (от 35 000 ₽)</div>
+            </div>
+
+            <form id="landing-lead-form" style="display: grid; gap: 14px; margin: 0;" onsubmit="return false;">
+              <div class="tariff-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div>
+                  <label for="lead-contact-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Ваш телефон или @Telegram <span style="color: var(--accent);">*</span></label>
+                  <input type="text" id="lead-contact-input" required placeholder="+7 (999) 000-00-00 или @username" style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;">
+                </div>
+                <div>
+                  <label for="lead-task-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Сфера бизнеса или задача для бота</label>
+                  <input type="text" id="lead-task-input" placeholder="Автоворонка, бот для доставки, ИИ-консультант..." style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;">
+                </div>
+              </div>
+
+              <!-- Галочка согласия на обработку ПД и ссылки на регламенты -->
+              <label class="consent-check-label">
+                <input type="checkbox" id="lead-consent-check" checked required>
+                <span>Даю согласие на <a href="/consent" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+              </label>
+
+              <div class="tariff-btn-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 4px;">
+                <button type="submit" id="lead-submit-btn" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; border: none; font-weight: 700; min-height: 48px;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  <span>Отправить заявку</span>
+                </button>
+
+                <a id="tariff-tg-direct" href="https://t.me/Voiddigit" target="_blank" rel="noopener" class="btn btn-ghost" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 0.92rem; text-decoration: none; min-height: 48px;">
+                  <span>Или написать в Telegram (@Voiddigit)</span>
+                </a>
+              </div>
+
+              <div id="lead-status-msg" style="display: none; padding: 14px 18px; border-radius: var(--radius, 12px); font-size: 0.95rem; line-height: 1.45;"></div>
+            </form>
+          </div>
+
+        </div>
+
+        <script>
+          (function() {
+            function initBotTariffs() {
+              var grid = document.getElementById('landing-tariffs-grid');
+              var cards = document.querySelectorAll('.tariff-card');
+              var dots = document.querySelectorAll('.tariff-dot');
+              var display = document.getElementById('selected-tariff-display');
+              var form = document.getElementById('landing-lead-form');
+              var contactInput = document.getElementById('lead-contact-input');
+              var taskInput = document.getElementById('lead-task-input');
+              var consentCheck = document.getElementById('lead-consent-check');
+              var submitBtn = document.getElementById('lead-submit-btn');
+
+              if (consentCheck && submitBtn) {
+                consentCheck.addEventListener('change', function() {
+                  if (!this.checked) {
+                    submitBtn.style.opacity = '0.5';
+                    submitBtn.style.cursor = 'not-allowed';
+                  } else {
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                    consentCheck.parentElement.style.outline = 'none';
+                  }
+                });
+              }
+
+              var tgDirectLink = document.getElementById('tariff-tg-direct');
+              var statusMsg = document.getElementById('lead-status-msg');
+
+              if (!cards.length || !form) return;
+
+              var currentTariff = 'Бизнес-бот / Продажи и CRM';
+              var currentPrice = 'от 35 000 ₽';
+
+              function updateDirectTgLink() {
+                var taskVal = (taskInput && taskInput.value) ? taskInput.value.trim() : '';
+                var msg = 'Здравствуйте! Хочу заказать Telegram-бота.\n\n📌 Выбранный тариф: ' + currentTariff + ' (' + currentPrice + ')';
+                if (taskVal) msg += '\n💬 Задача / ниша: ' + taskVal;
+                msg += '\n🔗 Источник: https://void-digital.ru/blog-telegram-bots-development';
+                if (tgDirectLink) {
+                  tgDirectLink.href = 'https://t.me/Voiddigit?text=' + encodeURIComponent(msg);
+                }
+              }
+
+              function updateDots(activeIdx) {
+                dots.forEach(function(dot, idx) {
+                  if (idx === activeIdx) {
+                    dot.style.width = '22px';
+                    dot.style.borderRadius = '4px';
+                    dot.style.background = 'var(--accent)';
+                  } else {
+                    dot.style.width = '8px';
+                    dot.style.borderRadius = '50%';
+                    dot.style.background = 'var(--border)';
+                  }
+                });
+              }
+
+              function selectCard(card, scrollIntoView) {
+                cards.forEach(function(c) {
+                  c.classList.remove('active');
+                  var radio = c.querySelector('.tariff-radio');
+                  if (radio) {
+                    radio.style.borderColor = 'var(--border)';
+                    radio.style.background = 'transparent';
+                    radio.innerHTML = '';
+                  }
+                });
+
+                card.classList.add('active');
+                var radio = card.querySelector('.tariff-radio');
+                if (radio) {
+                  radio.style.borderColor = 'var(--accent)';
+                  radio.style.background = 'var(--accent)';
+                  radio.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                }
+
+                currentTariff = card.getAttribute('data-tariff') || '';
+                currentPrice = card.getAttribute('data-price') || '';
+
+                if (display) {
+                  display.textContent = currentTariff + ' (' + currentPrice + ')';
+                }
+
+                var idx = parseInt(card.getAttribute('data-index') || '0', 10);
+                updateDots(idx);
+                updateDirectTgLink();
+
+                if (scrollIntoView && window.innerWidth <= 768 && grid) {
+                  card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+              }
+
+              cards.forEach(function(card) {
+                card.addEventListener('click', function() {
+                  selectCard(this, true);
+                });
+              });
+
+              dots.forEach(function(dot) {
+                dot.addEventListener('click', function() {
+                  var idx = parseInt(this.getAttribute('data-dot') || '0', 10);
+                  if (cards[idx]) {
+                    selectCard(cards[idx], true);
+                  }
+                });
+              });
+
+              if (taskInput) {
+                taskInput.addEventListener('input', updateDirectTgLink);
+              }
+
+              if (grid) {
+                var scrollTimeout;
+                grid.addEventListener('scroll', function() {
+                  clearTimeout(scrollTimeout);
+                  scrollTimeout = setTimeout(function() {
+                    var gridLeft = grid.getBoundingClientRect().left;
+                    var gridCenter = gridLeft + grid.offsetWidth / 2;
+                    var closestIdx = 0;
+                    var minDistance = Infinity;
+
+                    cards.forEach(function(card, idx) {
+                      var cardBox = card.getBoundingClientRect();
+                      var cardCenter = cardBox.left + cardBox.width / 2;
+                      var distance = Math.abs(gridCenter - cardCenter);
+                      if (distance < minDistance) {
+                        minDistance = distance;
+                        closestIdx = idx;
+                      }
+                    });
+
+                    if (cards[closestIdx]) {
+                      selectCard(cards[closestIdx], false);
+                    }
+                  }, 80);
+                }, { passive: true });
+              }
+
+              updateDirectTgLink();
+              if (window.innerWidth <= 768 && grid && cards[1]) {
+                setTimeout(function() {
+                  cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+                }, 120);
+              }
+
+              form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (consentCheck && !consentCheck.checked) {
+                  alert('Пожалуйста, подтвердите согласие на обработку персональных данных');
+                  consentCheck.focus();
+                  return;
+                }
+
+                var contactVal = contactInput ? contactInput.value.trim() : '';
+                var taskVal = taskInput ? taskInput.value.trim() : '';
+
+                if (!contactVal) {
+                  if (contactInput) contactInput.focus();
+                  return;
+                }
+
+                var originalBtnHtml = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span>Отправка...</span>';
+                statusMsg.style.display = 'none';
+
+                var tgText = '🚀 <b>Новая заявка на разработку Telegram-бота!</b>\n\n' +
+                  '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+                  '📱 <b>Контакт:</b> ' + contactVal + '\n' +
+                  (taskVal ? ('💬 <b>Задача:</b> ' + taskVal + '\n') : '') +
+                  '🔗 <b>Страница:</b> https://void-digital.ru/blog-telegram-bots-development';
+
+                var tgPayload = JSON.stringify({
+                  chat_id: '7738024017',
+                  text: tgText,
+                  parse_mode: 'HTML'
+                });
+
+                fetch('https://api.telegram.org/bot8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs/sendMessage', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: tgPayload
+                }).then(function(res) {
+                  return res.json();
+                }).then(function(data) {
+                  submitBtn.disabled = false;
+                  submitBtn.innerHTML = originalBtnHtml;
+
+                  if (data && data.ok) {
+                    statusMsg.style.display = 'block';
+                    statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                    statusMsg.style.border = '1.5px solid var(--accent)';
+                    statusMsg.style.color = 'var(--text)';
+                    statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+                    form.reset();
+                    if (consentCheck) consentCheck.checked = true;
+                  } else {
+                    throw new Error(data && data.description ? data.description : 'Ошибка Telegram API');
+                  }
+                }).catch(function(err) {
+                  fetch('/api/lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      tariff: currentTariff + ' (' + currentPrice + ')',
+                      contact: contactVal,
+                      message: taskVal,
+                      page: window.location.href
+                    })
+                  }).finally(function() {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnHtml;
+
+                    statusMsg.style.display = 'block';
+                    statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                    statusMsg.style.border = '1.5px solid var(--accent)';
+                    statusMsg.style.color = 'var(--text)';
+                    statusMsg.innerHTML = '🎉 <b>Заявка принята!</b> Если хотите написать сразу в диалог — нажмите: <a href="https://t.me/Voiddigit?text=' + encodeURIComponent('Здравствуйте! Заявка на тариф ' + currentTariff + '. Мой контакт: ' + contactVal) + '" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: underline;">Открыть чат с Даниилом</a>';
+                  });
+                });
+              });
+            }
+
+            if (document.readyState === 'loading') {
+              document.addEventListener('DOMContentLoaded', initBotTariffs);
+            } else {
+              initBotTariffs();
+            }
+          })();
+        </script>
+
+        <h2>Примеры реализованных ботов</h2>
+        <p>Оцените кейсы автоматизации, разработанные командой VOID Digital для бизнеса:</p>
+
+        <div class="portfolio-grid">
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Услуги · Автоворонка</span>
+              <h4>Telegram-бот лидогенерации для автосервиса</h4>
+              <p>Опросник поломки авто с расчетом стоимости ТО, записью на подъемник и интеграцией amoCRM.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">E-Commerce · Продажи</span>
+              <h4>Магазин в Telegram с оплатой через СБП</h4>
+              <p>Каталог товаров с корзиной, выбором способа доставки и мгновенным приемом платежей по QR-коду.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">ИИ · Консультации</span>
+              <h4>Умный ассистент техподдержки на базе ChatGPT</h4>
+              <p>Нейросетевой бот, закрывающий 75% повторяющихся вопросов клиентов без участия оператора.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+        </div>
+
+        <h2>Этапы разработки Telegram-бота под ключ</h2>
+
+        <ol>
+          <li><strong>Проектирование логики и структуры сообщений.</strong> Составляем блок-схему (CJM) пути пользователя: от первого /start до оформления заказа.</li>
+          <li><strong>Разработка бэкенда на Python.</strong> Программируем надежный асинхронный код на Aiogram / Telebot с подключением базы данных (PostgreSQL / SQLite).</li>
+          <li><strong>Интеграция CRM и эквайринга.</strong> Настраиваем вебхуки для передачи лидов в amoCRM/Битрикс24 и подключаем онлайн-кассу.</li>
+          <li><strong>Тестирование сценариев.</strong> Проверяем устойчивость бота к пиковым нагрузкам и нестандартным действиям пользователей.</li>
+          <li><strong>Развертывание на сервере.</strong> Запускаем бота на защищенном VPS-сервере с непрерывным мониторингом доступности 24/7.</li>
+        </ol>
+
+        <h2>Частые вопросы о Telegram-ботах (FAQ)</h2>
+
+        <h3>Сможем ли мы сами делать рассылки и менять тексты в боте?</h3>
+        <p>Да. Мы создаем удобную панель администратора прямо внутри Telegram, где вы можете одной командой отправить рассылку по всей базе пользователей или изменить цены.</p>
+
+        <h3>Где размещается бот и нужны ли ежемесячные платежи?</h3>
+        <p>Бот работает на отдельном недорогом виртуальном сервере (VPS) стоимостью от 300–400 ₽ в месяц. Вы не платите абонентскую плату конструкторам ботов, так как код принадлежит вам навсегда.</p>
+
+        <h3>Как начать проект?</h3>
+        <p>Заполните форму выше или напишите нам в Telegram. Мы изучим задачи вашей компании и предложим оптимальный сценарий автоматизации.</p>
+
+        <div class="cta mt-40">
+          <h2>Заказать разработку Telegram-бота для бизнеса</h2>
+          <p>Готовы автоматизировать продажи и снизить расходы на персонал? Обсудите разработку бота напрямую со специалистом VOID Digital.</p>
+          <a class="btn" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Обсудить проект в Telegram</a>
+        </div>
+
+      </div> <!-- .post-body -->
+    </div> <!-- .container.container-sm -->
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+    <ul class="social" aria-label="Связаться с нами">
+      <li><a href="tel:+79538550813" aria-label="Позвонить +7 953 855-08-13" title="Позвонить"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a></li>
+      <li><a href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"/></svg></a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg></a></li>
+      <li><a href="mailto:voiddigital@mail.ru" aria-label="Написать на почту voiddigital@mail.ru" title="Почта"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a></li>
+    </ul>
+    <ul class="footer-links">
+      <li><a href="/services">Услуги</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a href="/privacy">Политика конфиденциальности</a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener">Telegram</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="/js/main.js?v=75bccd28"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
