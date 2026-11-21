@@ -114,6 +114,9 @@
 - [Сайт для спецтехники, грузоперевозок и логистики под ключ](https://void-digital.ru/blog-website-for-logistics)
 - [Сайт для ресторана, доставки еды и банкетов без комиссий агрегаторов](https://void-digital.ru/blog-website-for-restaurants)
 
+- [Сайт для фитнес-клуба, тренажерного зала и студии: расписание и абонементы](https://void-digital.ru/blog-website-for-fitness)
+- [Сайт для онлайн-курсов, школы и экспертов: продающий лендинг с GetCourse](https://void-digital.ru/blog-website-for-online-courses)
+
 ## Контакты
 
 - Telegram: https://t.me/Voiddigit

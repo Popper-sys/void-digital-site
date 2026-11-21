@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Сайт для онлайн-курсов, школы и экспертов: разработка под ключ — VOID Digital</title>
+  <meta name="description" content="Разработка продающего сайта и лендинга для онлайн-курсов, EdTech и инфобизнеса под ключ: интеграция GetCourse, Prodamus, оплата частями (Долями/Сплит), программа обучения и лиды в Telegram.">
+  <link rel="canonical" href="https://void-digital.ru/blog-website-for-online-courses">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="VOID | digital">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Сайт для онлайн-курсов, школы и экспертов: разработка под ключ — VOID Digital">
+  <meta property="og:description" content="Разработка продающего сайта и лендинга для онлайн-курсов, EdTech и инфобизнеса под ключ: интеграция GetCourse, Prodamus, оплата частями (Долями/Сплит), программа обучения и лиды в Telegram.">
+  <meta property="og:url" content="https://void-digital.ru/blog-website-for-online-courses">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://void-digital.ru/img/blog-website-for-online-courses/blog-online-courses-cover.jpg?v=20261121">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Разработка сайта для онлайн-курсов и онлайн-школы под ключ в VOID Digital">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/Manrope-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css?v=f00a3e5f">
+  
+  <style>
+    .post-figure { margin: 28px 0; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post .cta p { max-width: none; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+    .post table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .95rem; }
+    .post th, .post td { padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); text-align: left; }
+    .post th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: color-mix(in srgb, currentColor 4%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .cta-banner p { margin: 0; font-weight: 500; font-size: 1.05rem; }
+    
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-action:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    /* Stat Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .stat-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: left;
+    }
+    .stat-val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .stat-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Tariff Card Interactive */
+    .tariff-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1.5px solid color-mix(in srgb, currentColor 12%, transparent);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .tariff-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .tariff-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    /* Portfolio Highlights */
+    .portfolio-grid-inline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .portfolio-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+    .portfolio-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .portfolio-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .portfolio-card h4 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+    .portfolio-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0 0 16px;
+      line-height: 1.45;
+    }
+    .portfolio-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+      }
+      #landing-tariffs-grid > .tariff-card {
+        min-width: 82vw;
+        flex: 0 0 82vw;
+        scroll-snap-align: center;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Сайт для онлайн-курсов, школы и экспертов: разработка под ключ",
+    "description": "Разработка продающего сайта и лендинга для онлайн-курсов, EdTech и инфобизнеса под ключ: интеграция GetCourse, Prodamus, оплата частями (Долями/Сплит), программа обучения и лиды в Telegram.",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://void-digital.ru/blog-website-for-online-courses"
+    },
+    "image": [
+      "https://void-digital.ru/img/blog-website-for-online-courses/blog-online-courses-cover.jpg?v=20261121"
+    ],
+    "datePublished": "2026-11-21T18:00:00+03:00",
+    "dateModified": "2026-11-21T18:00:00+03:00",
+    "author": {
+      "@type": "Organization",
+      "name": "VOID | digital",
+      "url": "https://void-digital.ru/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "VOID | digital",
+      "url": "https://void-digital.ru/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://void-digital.ru/favicon.svg"
+      }
+    },
+    "articleSection": "Отраслевые решения",
+    "inLanguage": "ru-RU"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://void-digital.ru/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Блог",
+        "item": "https://void-digital.ru/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Сайт для онлайн-курсов",
+        "item": "https://void-digital.ru/blog-website-for-online-courses"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Как лендинг связывается с GetCourse или другой LMS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Мы настраиваем прямую передачу заказов через API GetCourse, Prodamus или Webhook. После оплаты на сайте ученик автоматически регистрируется на обучающей платформе и получает доступы в личный кабинет на email."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Поддерживается ли оплата частями (Долями, Яндекс Сплит, рассрочки)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. Интеграция сервисов беспроцентной рассрочки и сплитования повышает конверсию в оплату дорогих тарифов в 2–3 раза, так как сумма покупки делится на комфортные ежемесячные взносы."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Что входит в структуру продающего лендинга курса?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Оффер по формуле 4U, видео-презентация спикера, блок болей целевой аудитории, интерактивная программа по модулям с домашними заданиями, тарифная сетка, отзывы с подтвержденными пруфами и форма быстрой брони места."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="/" aria-label="VOID digital — на главную">
+      <span class="logo-mark">▲</span>
+      <span class="logo-text">VOID <span>digital</span></span>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <ul class="nav-list">
+        <li><a href="/services">Услуги</a></li>
+        <li><a href="/portfolio">Портфолио</a></li>
+        <li><a href="/blog" class="active">Блог</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-sm header-cta" href="/#calc">Рассчитать сайт</a>
+  </div>
+</header>
+
+
+<main class="site-main">
+  <article class="post">
+    <div class="container container-sm">
+      <nav class="breadcrumb" aria-label="Хлебные крошки">
+        <ol>
+          <li><a href="/">Главная</a></li>
+          <li><a href="/blog">Блог</a></li>
+          <li aria-current="page">Сайт для онлайн-курсов</li>
+        </ol>
+      </nav>
+
+      <header class="post-header">
+        <span class="tag">Отраслевые решения</span>
+        <h1>Сайт для онлайн-курсов, школы и экспертов: разработка под ключ</h1>
+        <div class="post-meta">
+          <span>9 мин чтения</span>
+          <span class="bullet" aria-hidden="true">•</span>
+          <time datetime="2026-11-21">21 ноября 2026</time>
+        </div>
+      </header>
+
+      <figure class="post-figure">
+        <img src="/img/blog-website-for-online-courses/blog-online-courses-cover.jpg?v=20261121" alt="Разработка сайта для онлайн-курсов и школы под ключ" width="1536" height="1024" loading="eager">
+      </figure>
+
+      <div class="post-body">
+        
+        <p class="lead">В онлайн-образовании стоимость трафика растет с каждым сезоном: клики в Директе и посевы в Telegram-каналах обходятся дорого. Единственный способ окупать рекламу с высокой прибылью — <strong>продающий сайт с конверсией от 5% до 12%</strong>, который убедительно доказывает экспертность автора, детально раскрывает программу и предлагает бесшовную рассрочку.</p>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-val">+185%</div>
+            <p class="stat-desc">рост продаж дорогих пакетов обучения после внедрения рассрочки Долями и Сплит</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">1.2 сек</div>
+            <p class="stat-desc">мгновенная загрузка видео-визитки и программы без тормозов на смартфонах</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">100%</div>
+            <p class="stat-desc">автоматизация: оплата $ightarrow$ выдача доступов в GetCourse $ightarrow$ чек 54-ФЗ</p>
+          </div>
+        </div>
+
+        <div class="cta-banner">
+          <div>
+            <p><strong>Планируете запуск курса или перезапуск онлайн-школы?</strong></p>
+            <span style="font-size:0.88rem;color:var(--muted);">Соберем продающую структуру, подключим GetCourse, Prodamus и рассрочки.</span>
+          </div>
+          <a class="btn-action" href="#tariffs">Смотреть тарифы ↓</a>
+        </div>
+
+        <h2>Почему типовые шаблонные лендинги больше не работают в EdTech?</h2>
+        <p>Современные студенты стали избирательнее и видели сотни однотипных сайтов. Чтобы убедить купить ваш курс, сайт должен решать 4 ключевые задачи:</p>
+        <ul>
+          <li><strong>Неоспоримые доказательства экспертности:</strong> твердые факты вместо «успешного успеха» — реализованные проекты, оцифрованные кейсы учеников, реальные скрины их доходов или результатов.</li>
+          <li><strong>Прозрачная программа без «воды»:</strong> интерактивный аккордеон с темами уроков, практическими заданиями и шаблонами, которые получает студент.</li>
+          <li><strong>Мультивариантная оплата:</strong> СБП, карты РФ и зарубежные карты (для студентов из СНГ и Европы через Prodamus), рассрочки без первого взноса от банков (Тинькофф, Сбер).</li>
+          <li><strong>Геймификация и таймеры брони:</strong> фиксация спеццены со скидкой и динамический таймер до закрытия набора на поток.</li>
+        </ul>
+
+        <h2>Функционал эффективного сайта онлайн-школы</h2>
+
+        <h3>1. Прямая интеграция с GetCourse и LMS-платформами</h3>
+        <p>Никакой ручной работы администратора: после подтверждения платежа система создает пользователя в GetCourse, привязывает купленный тренинг и высылает пароль на email и в Telegram-бот.</p>
+
+        <h3>2. Оплата частями и банковские рассрочки</h3>
+        <p>Интеграция популярных сервисов BNPL (Долями от Т-Банка, Яндекс Сплит) и банковских рассрочек на 3, 6, 12 или 24 месяца. Это позволяет продавать курсы за 50 000 – 150 000 ₽ с комфортным платежом от 3 000 ₽ в месяц.</p>
+
+        <h3>3. Быстрый сбор регистраций на бесплатные вебинары и марафоны</h3>
+        <p>Лид-магнит за 1 клик через Telegram Login Widget: пользователь жмет кнопку «Смотреть урок в Telegram» и моментально попадает в чат-бот, где стартует автоворонка прогрева.</p>
+
+        <!-- Interactive Tariffs Widget -->
+        <h2 id="tariffs">Тарифы на разработку продающего сайта онлайн-курсов</h2>
+        <p>Выберите оптимальный формат под ваш запуск. Нажмите на карточку для выбора:</p>
+
+        <div id="landing-tariffs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 28px 0 16px;">
+          
+          <!-- Card 1 -->
+          <div class="tariff-card" data-tariff="Продающий лендинг онлайн-курса" data-price="от 35 000 ₽" onclick="selectArticleTariff(this)">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Для одного курса / интенсива</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">6–8 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Лендинг курса / вебинара</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Идеально для запуска флагманского продукта эксперта, марафона или мастер-класса.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 35 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Смысловая AIDA-структура высокой конверсии</li>
+                <li>Интерактивная программа обучения по модулям</li>
+                <li>Тарифная сетка (Самостоятельный / С куратором / VIP)</li>
+                <li>Интеграция эквайринга СБП и банковских карт</li>
+                <li>Связка с Telegram-ботом и мгновенные уведомления</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
+
+          <!-- Card 2 (Recommended) -->
+          <div class="tariff-card active" data-tariff="Сайт онлайн-школы с линейкой курсов" data-price="от 65 000 ₽" onclick="selectArticleTariff(this)" style="border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);">
+            <div style="position: absolute; top: -12px; right: 18px; background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.05em;">Хит продаж</div>
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оптимальный выбор</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">12–16 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Сайт онлайн-школы под ключ</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Полноценный каталог обучающих программ с автоматизацией GetCourse и рассрочками.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 65 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все возможности тарифа «Лендинг курса»</li>
+                <li>Каталог курсов с фильтрацией по уровням подготовки</li>
+                <li>Бесшовная интеграция с GetCourse / Prodamus по API</li>
+                <li>Подключение рассрочек (Долями, Яндекс Сплит, Т-Банк)</li>
+                <li>Личный кабинет эксперта / визитка преподавателей</li>
+                <li>Микроразметка Schema.org Course + FAQPage для поисковиков</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбранный тариф</button>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="tariff-card" data-tariff="EdTech-платформа под ключ" data-price="от 120 000 ₽" onclick="selectArticleTariff(this)">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Флагманский EdTech</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">20–30 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">EdTech-платформа с LMS</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Собственная независимая платформа обучения без ежемесячных платежей за GetCourse.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 120 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все опции тарифа «Сайт онлайн-школы»</li>
+                <li>Собственный личный кабинет студента с видеоплеером</li>
+                <li>Проверка домашних заданий кураторами внутри системы</li>
+                <li>Автоматическая выдача именных сертификатов в PDF</li>
+                <li>Международный прием оплат для зарубежных студентов</li>
+                <li>Индивидуальный дизайн и пожизненная независимость от LMS</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
+
+        </div>
+
+        <!-- Mobile swipe dots -->
+        <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin-bottom: 24px;">
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+          <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+        </div>
+
+        <!-- Dynamic Form for Selected Tariff -->
+        <div id="tariff-order-block" style="background: color-mix(in srgb, currentColor 3%, transparent); border: 1.5px solid var(--accent); border-radius: 16px; padding: 26px; margin: 30px 0;">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px;">
+            <div>
+              <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оставить заявку на разработку</span>
+              <h3 id="selected-tariff-title" style="margin: 4px 0 0; font-size: 1.35rem;">Сайт онлайн-школы под ключ</h3>
+            </div>
+            <div id="selected-tariff-price" style="font-size: 1.45rem; font-weight: 800; color: var(--accent);">от 65 000 ₽</div>
+          </div>
+          
+          <form onsubmit="submitLandingLead(event)" style="display: grid; grid-template-columns: 1fr; gap: 14px;">
+            <input type="hidden" id="lead-tariff-input" name="tariff" value="Сайт онлайн-школы под ключ (от 65 000 ₽)">
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Ваше имя</label>
+                <input type="text" name="name" placeholder="Дмитрий" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Телефон или Telegram *</label>
+                <input type="text" name="contact" required placeholder="+7 (999) 000-00-00 или @username" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;">
+              </div>
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Тематика курса / ссылка на текущие материалы</label>
+              <textarea name="comment" rows="2" placeholder="Например: Курс по веб-дизайну, нужен лендинг к запуску потока через 2 недели" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem; font-family: inherit; resize: vertical;"></textarea>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--muted);">
+              <input type="checkbox" checked required id="consent-courses" style="accent-color: var(--accent); width: 16px; height: 16px;">
+              <label for="consent-courses">Согласен на обработку персональных данных в соответствии с <a href="/privacy" style="color:var(--accent);text-decoration:underline;">152-ФЗ</a></label>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-top: 6px;">
+              <button type="submit" class="btn-action" style="padding: 14px 28px; font-size: 1rem;">Получить консультацию и расчет</button>
+              <span style="font-size: 0.82rem; color: var(--muted);">⚡ Мгновенный ответ разработчика в Telegram</span>
+            </div>
+
+            <div id="landing-form-status" style="font-size: 0.9rem; margin-top: 4px;"></div>
+          </form>
+        </div>
+
+        <h2>Наши кейсы в сфере образования и консалтинга</h2>
+        
+        <div class="portfolio-grid-inline">
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Экспертный консалтинг · EdTech</span>
+              <h4>Промо-сайт эксперта по финансам</h4>
+              <p>Создание продающей страницы с видео-визиткой, структурой мастер-класса и подключением оплат по СБП.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Детский развивающий центр</span>
+              <h4>Академия раннего развития</h4>
+              <p>Интерактивная карта направлений, онлайн-тестирование уровня ребенка и запись на пробный урок в мини-группе.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Профессиональные курсы</span>
+              <h4>Школа digital-профессий</h4>
+              <p>Многостраничный портал со сравнительной таблицей тарифов, интеграцией с GetCourse и оформлением рассрочки.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+        </div>
+
+        <h2>Частые вопросы создателей онлайн-курсов (FAQ)</h2>
+
+        <h3>Как лендинг связывается с GetCourse или другой LMS?</h3>
+        <p>Мы настраиваем прямую передачу заказов через API GetCourse, Prodamus или Webhook. После оплаты на сайте ученик автоматически регистрируется на обучающей платформе и получает доступы в личный кабинет на email.</p>
+
+        <h3>Поддерживается ли оплата частями (Долями, Яндекс Сплит, рассрочки)?</h3>
+        <p>Да. Интеграция сервисов беспроцентной рассрочки и сплитования повышает конверсию в оплату дорогих тарифов в 2–3 раза, так как сумма покупки делится на комфортные ежемесячные взносы.</p>
+
+        <h3>Что входит в структуру продающего лендинга курса?</h3>
+        <p>Оффер по формуле 4U, видео-презентация спикера, блок болей целевой аудитории, интерактивная программа по модулям с домашними заданиями, тарифная сетка, отзывы с подтвержденными пруфами и форма быстрой брони места.</p>
+
+        <div class="cta mt-40">
+          <h2>Заказать разработку продающего сайта курса</h2>
+          <p>Готовы обеспечить солдаут вашего следующего потока? Обсудите концепцию с разработчиком студии VOID Digital.</p>
+          <a class="btn" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Обсудить проект в Telegram</a>
+        </div>
+
+      </div> <!-- .post-body -->
+    </div> <!-- .container.container-sm -->
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+    <ul class="social" aria-label="Связаться с нами">
+      <li><a href="tel:+79538550813" aria-label="Позвонить +7 953 855-08-13" title="Позвонить"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a></li>
+      <li><a href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"/></svg></a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg></a></li>
+      <li><a href="mailto:voiddigital@mail.ru" aria-label="Написать на почту voiddigital@mail.ru" title="Почта"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a></li>
+    </ul>
+    <ul class="footer-links">
+      <li><a href="/services">Услуги</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a href="/privacy">Политика конфиденциальности</a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener">Telegram</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="/js/main.js?v=75bccd28"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+
+<script>
+  let selectedTariffName = "";
+  let selectedTariffPrice = "";
+
+  function selectArticleTariff(el) {
+    document.querySelectorAll('.tariff-card').forEach(c => {
+      c.classList.remove('active');
+      const b = c.querySelector('.btn-action');
+      if (b) b.textContent = 'Выбрать этот тариф';
+    });
+    el.classList.add('active');
+    const btn = el.querySelector('.btn-action');
+    if (btn) btn.textContent = 'Выбранный тариф';
+
+    selectedTariffName = el.getAttribute('data-tariff') || "";
+    selectedTariffPrice = el.getAttribute('data-price') || "";
+
+    const titleEl = document.getElementById('selected-tariff-title');
+    const priceEl = document.getElementById('selected-tariff-price');
+    const inputEl = document.getElementById('lead-tariff-input');
+
+    if (titleEl) titleEl.textContent = selectedTariffName;
+    if (priceEl) priceEl.textContent = selectedTariffPrice;
+    if (inputEl) inputEl.value = selectedTariffName + ' (' + selectedTariffPrice + ')';
+
+    const orderBlock = document.getElementById('tariff-order-block');
+    if (orderBlock) {
+      orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  // Mobile swipe dots indicator
+  const tariffsGrid = document.getElementById('landing-tariffs-grid');
+  const dots = document.querySelectorAll('.tariff-dot');
+  if (tariffsGrid && dots.length > 0) {
+    tariffsGrid.addEventListener('scroll', () => {
+      const scrollLeft = tariffsGrid.scrollLeft;
+      const cardWidth = tariffsGrid.offsetWidth * 0.82;
+      const activeIndex = Math.round(scrollLeft / cardWidth);
+      dots.forEach((dot, idx) => {
+        if (idx === activeIndex) {
+          dot.style.background = 'var(--accent)';
+          dot.style.width = '20px';
+          dot.style.borderRadius = '4px';
+        } else {
+          dot.style.background = 'var(--border)';
+          dot.style.width = '8px';
+          dot.style.borderRadius = '50%';
+        }
+      });
+    }, { passive: true });
+  }
+
+  // Telegram direct lead submit with fallback
+  async function submitLandingLead(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const statusMsg = document.getElementById('landing-form-status');
+    const name = form.querySelector('[name="name"]').value.trim();
+    const contact = form.querySelector('[name="contact"]').value.trim();
+    const comment = form.querySelector('[name="comment"]') ? form.querySelector('[name="comment"]').value.trim() : "";
+    const tariff = document.getElementById('lead-tariff-input') ? document.getElementById('lead-tariff-input').value : "Не выбран";
+    const pageTitle = document.title;
+    const pageUrl = window.location.href;
+
+    if (!contact) {
+      if (statusMsg) {
+        statusMsg.textContent = "Пожалуйста, укажите телефон или ник в Telegram.";
+        statusMsg.style.color = "#ef4444";
+      }
+      return;
+    }
+
+    btn.disabled = true;
+    const origBtnText = btn.textContent;
+    btn.textContent = "Отправка...";
+
+    const text = `🔥 Новая заявка на разработку сайта!
+
+` +
+                 `📋 Ниша: ${pageTitle}
+` +
+                 `💼 Тариф: ${tariff}
+` +
+                 `👤 Имя: ${name || 'Не указано'}
+` +
+                 `📞 Контакт: ${contact}
+` +
+                 (comment ? `💬 Комментарий: ${comment}
+` : '') +
+                 `🔗 Страница: ${pageUrl}
+` +
+                 `⏱ Время: ${new Date().toLocaleString('ru-RU')}`;
+
+    try {
+      // 1. Direct Telegram Bot Dispatch
+      const botToken = "8418047970:AAFiVzKx33j0OEv1l-U2tE98K1vOvdv_bhs";
+      const chatId = "7738024017";
+      const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text,
+          parse_mode: "Markdown"
+        })
+      });
+
+      if (tgRes.ok) {
+        if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
+        form.reset();
+        if (statusMsg) {
+          statusMsg.innerHTML = "✅ <strong>Спасибо за заявку!</strong> Мы уже получили сообщение в Telegram и ответим вам в течение 15 минут.";
+          statusMsg.style.color = "#22c55e";
+        }
+      } else {
+        throw new Error("Telegram dispatch failed");
+      }
+    } catch (err) {
+      // 2. Server API fallback
+      try {
+        const fallbackRes = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            contact: contact,
+            tariff: tariff,
+            comment: comment,
+            source: pageUrl
+          })
+        });
+        if (fallbackRes.ok) {
+          if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
+          form.reset();
+          if (statusMsg) {
+            statusMsg.innerHTML = "✅ <strong>Заявка успешно отправлена!</strong> Мы свяжемся с вами в течение 15 минут.";
+            statusMsg.style.color = "#22c55e";
+          }
+        } else {
+          throw new Error("API fallback failed");
+        }
+      } catch (fbErr) {
+        if (statusMsg) {
+          statusMsg.innerHTML = '⚠️ Не удалось отправить форму напрямую. Пожалуйста, напишите нам в Telegram: <a href="https://t.me/Voiddigit" target="_blank" style="color:var(--accent);text-decoration:underline;">@Voiddigit</a>';
+          statusMsg.style.color = "#ef4444";
+        }
+      }
+    } finally {
+      btn.disabled = false;
+      btn.textContent = origBtnText;
+    }
+  }
+</script>
+
+</body>
+</html>

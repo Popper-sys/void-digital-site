@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <meta name="color-scheme" content="light dark">
+  <script>document.documentElement.classList.add('js')</script>
+  <title>Сайт для фитнес-клуба, тренажерного зала и студии: разработка под ключ — VOID Digital</title>
+  <meta name="description" content="Разработка сайта для фитнес-клуба, студии растяжки, йоги и кроссфита под ключ: интерактивное расписание тренировок, онлайн-продажа абонементов с СБП, запись на пробное занятие и лиды в Telegram.">
+  <link rel="canonical" href="https://void-digital.ru/blog-website-for-fitness">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="VOID | digital">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:title" content="Сайт для фитнес-клуба, тренажерного зала и студии: разработка под ключ — VOID Digital">
+  <meta property="og:description" content="Разработка сайта для фитнес-клуба, студии растяжки, йоги и кроссфита под ключ: интерактивное расписание тренировок, онлайн-продажа абонементов с СБП, запись на пробное занятие и лиды в Telegram.">
+  <meta property="og:url" content="https://void-digital.ru/blog-website-for-fitness">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="https://void-digital.ru/img/blog-website-for-fitness/blog-fitness-cover.jpg?v=20261121">
+  <meta property="og:image:width" content="1536">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Разработка сайта для фитнес-клуба под ключ в VOID Digital">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/Manrope-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css?v=f00a3e5f">
+  
+  <style>
+    .post-figure { margin: 28px 0; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post .cta p { max-width: none; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+    .post table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .95rem; }
+    .post th, .post td { padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); text-align: left; }
+    .post th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: color-mix(in srgb, currentColor 4%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .cta-banner p { margin: 0; font-weight: 500; font-size: 1.05rem; }
+    
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-action:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    /* Stat Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .stat-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: left;
+    }
+    .stat-val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .stat-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Tariff Card Interactive */
+    .tariff-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1.5px solid color-mix(in srgb, currentColor 12%, transparent);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .tariff-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .tariff-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    /* Portfolio Highlights */
+    .portfolio-grid-inline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .portfolio-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+    .portfolio-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .portfolio-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .portfolio-card h4 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+    .portfolio-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0 0 16px;
+      line-height: 1.45;
+    }
+    .portfolio-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+      }
+      #landing-tariffs-grid > .tariff-card {
+        min-width: 82vw;
+        flex: 0 0 82vw;
+        scroll-snap-align: center;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Сайт для фитнес-клуба, тренажерного зала и студии: разработка под ключ",
+    "description": "Разработка сайта для фитнес-клуба, студии растяжки, йоги и кроссфита под ключ: интерактивное расписание тренировок, онлайн-продажа абонементов с СБП, запись на пробное занятие и лиды в Telegram.",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://void-digital.ru/blog-website-for-fitness"
+    },
+    "image": [
+      "https://void-digital.ru/img/blog-website-for-fitness/blog-fitness-cover.jpg?v=20261121"
+    ],
+    "datePublished": "2026-11-21T18:00:00+03:00",
+    "dateModified": "2026-11-21T18:00:00+03:00",
+    "author": {
+      "@type": "Organization",
+      "name": "VOID | digital",
+      "url": "https://void-digital.ru/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "VOID | digital",
+      "url": "https://void-digital.ru/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://void-digital.ru/favicon.svg"
+      }
+    },
+    "articleSection": "Отраслевые решения",
+    "inLanguage": "ru-RU"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://void-digital.ru/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Блог",
+        "item": "https://void-digital.ru/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Сайт для фитнес-клуба",
+        "item": "https://void-digital.ru/blog-website-for-fitness"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Как работает онлайн-расписание тренировок на сайте?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Мы внедряем интерактивную сетку с фильтрами по дням недели, направлениям (силовые, кардио, пилатес, йога), залам и тренерам. Клиенты могут записаться на занятие прямо в расписании в один клик."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Можно ли подключить рекуррентную подписку (ежемесячное списание за клубную карту)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да, мы подключаем интернет-эквайринг с поддержкой автоплатежей и СБП. Гости могут оформить ежемесячную подписку без необходимости каждый раз приходить в отдел продаж."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Какова конверсия страницы записи на бесплатную пробную тренировку?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "За счет сокращения полей формы до одного номера телефона и мгновенной отправки лида дежурному тренеру конверсия достигает 12–18% из целевого трафика."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="/" aria-label="VOID digital — на главную">
+      <span class="logo-mark">▲</span>
+      <span class="logo-text">VOID <span>digital</span></span>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <ul class="nav-list">
+        <li><a href="/services">Услуги</a></li>
+        <li><a href="/portfolio">Портфолио</a></li>
+        <li><a href="/blog" class="active">Блог</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-sm header-cta" href="/#calc">Рассчитать сайт</a>
+  </div>
+</header>
+
+
+<main class="site-main">
+  <article class="post">
+    <div class="container container-sm">
+      <nav class="breadcrumb" aria-label="Хлебные крошки">
+        <ol>
+          <li><a href="/">Главная</a></li>
+          <li><a href="/blog">Блог</a></li>
+          <li aria-current="page">Сайт для фитнес-клуба</li>
+        </ol>
+      </nav>
+
+      <header class="post-header">
+        <span class="tag">Отраслевые решения</span>
+        <h1>Сайт для фитнес-клуба, тренажерного зала и студии: разработка под ключ</h1>
+        <div class="post-meta">
+          <span>8 мин чтения</span>
+          <span class="bullet" aria-hidden="true">•</span>
+          <time datetime="2026-11-21">21 ноября 2026</time>
+        </div>
+      </header>
+
+      <figure class="post-figure">
+        <img src="/img/blog-website-for-fitness/blog-fitness-cover.jpg?v=20261121" alt="Разработка сайта для фитнес-клуба под ключ" width="1536" height="1024" loading="eager">
+      </figure>
+
+      <div class="post-body">
+        
+        <p class="lead">Рынок фитнеса высококонкурентен: пользователь выбирает клуб по трем критериям — локация, атмосфера/оборудование и прозрачность цен. Сайт фитнес-клуба должен не просто содержать контакты, а <strong>снимать барьер первой тренировки</strong> и автоматизировать продление абонементов без нагрузки на администраторов.</p>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-val">3.4x</div>
+            <p class="stat-desc">рост записей на пробную тренировку через мобильный квиз-лид за 2 клика</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">-40%</div>
+            <p class="stat-desc">снижение нагрузки на рецепцию за счет онлайн-расписания и покупки карт</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">0.7%</div>
+            <p class="stat-desc">комиссия эквайринга при оплате абонементов через СБП прямо на сайте</p>
+          </div>
+        </div>
+
+        <div class="cta-banner">
+          <div>
+            <p><strong>Нужен сайт, который заполняет залы и продает клубные карты 24/7?</strong></p>
+            <span style="font-size:0.88rem;color:var(--muted);">Интерактивное расписание, продажа абонементов и интеграция с CRM фитнес-клуба.</span>
+          </div>
+          <a class="btn-action" href="#tariffs">Смотреть тарифы ↓</a>
+        </div>
+
+        <h2>Анатомия конверсионного фитнес-сайта</h2>
+        <p>Для стабильного потока новых членов клуба сайт должен закрывать все этапы воронки продаж:</p>
+        <ul>
+          <li><strong>Визуальный вау-эффект первого экрана:</strong> сочное фоновое видео или фото зала в неоновом свете, топовое американское/европейское оборудование (Hammer Strength, Life Fitness), четкий оффер «Первая тренировка бесплатно».</li>
+          <li><strong>Интерактивное расписание групповых программ:</strong> мгновенная фильтрация по дням (Пн–Вс), залам и направлениям с цветовой дифференциацией нагрузки (легкая, средняя, интенсивная).</li>
+          <li><strong>Карточки тренеров с подтвержденными результатами:</strong> спортивные звания, сертификаты FPA, опыт работы и специализация (похудение, набор мышечной массы, реабилитация).</li>
+          <li><strong>Калькулятор клубной карты:</strong> выбор формата (дневная, безлимитная, утренний абонемент, персональный тренинг) и периода (1, 3, 6, 12 месяцев) с демонстрацией ежемесячной выгоды.</li>
+        </ul>
+
+        <h2>Функционал эффективного сайта фитнес-клуба</h2>
+
+        <h3>1. Запись на бесплатное пробное занятие</h3>
+        <p>Главный конверсионный триггер в фитнесе. Форма содержит минимум полей: имя и телефон, а также выбор направления. Заявка мгновенно попадает дежурному тренеру и администратору в Telegram за 2 секунды.</p>
+
+        <h3>2. Онлайн-оплата абонементов и рекуррентные подписки</h3>
+        <p>Интеграция с интернет-эквайрингом (Тинькофф Касса, ЮKassa) с поддержкой СБП и автосписания раз в месяц. Клиент получает доступ к клубу без очередей в отдел продаж.</p>
+
+        <h3>3. Интеграция с CRM фитнес-клуба (1С:Фитнес, Mobifitness, Fitbase)</h3>
+        <p>Автоматическая синхронизация расписания тренировок и состава тренерского штаба. Лиды с сайта автоматически создают карточку сделки в CRM.</p>
+
+        <!-- Interactive Tariffs Widget -->
+        <h2 id="tariffs">Тарифы на разработку сайта для фитнеса и спорта</h2>
+        <p>Выберите оптимальный формат под масштаб вашего проекта. Нажмите на карточку для выбора:</p>
+
+        <div id="landing-tariffs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 28px 0 16px;">
+          
+          <!-- Card 1 -->
+          <div class="tariff-card" data-tariff="Лендинг фитнес-студии / направления" data-price="от 29 000 ₽" onclick="selectArticleTariff(this)">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Быстрый старт</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">5–7 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Лендинг студии / зала</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Идеально для моно-студий: пилатес, стретчинг, кроссфит, бокс, EMS-тренировки.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 29 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Динамичный промо-дизайн с видео-фоном</li>
+                <li>Форма записи на бесплатную пробную тренировку</li>
+                <li>Интерактивное расписание занятий на неделю</li>
+                <li>Карточки тренерского состава с регалиями</li>
+                <li>Мгновенные заявки администратору в Telegram</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
+
+          <!-- Card 2 (Recommended) -->
+          <div class="tariff-card active" data-tariff="Сайт фитнес-клуба под ключ" data-price="от 49 000 ₽" onclick="selectArticleTariff(this)" style="border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);">
+            <div style="position: absolute; top: -12px; right: 18px; background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.05em;">Хит продаж</div>
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оптимальный выбор</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">10–14 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Сайт фитнес-клуба под ключ</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Полнофункциональный сайт тренажерного зала или премиум-клуба с онлайн-покупкой карт.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 49 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все возможности тарифа «Лендинг студии»</li>
+                <li>Многостраничная структура (Залы, Бассейн, СПА, Детский клуб)</li>
+                <li>Интерактивный калькулятор выбора клубных карт</li>
+                <li>Онлайн-оплата абонементов по СБП под 0.7%</li>
+                <li>Микроразметка Schema.org ExerciseGym + FAQPage</li>
+                <li>Связка с фитнес-CRM (1С:Фитнес / Mobifitness / Fitbase)</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбранный тариф</button>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="tariff-card" data-tariff="Портал сети фитнес-клубов" data-price="от 89 000 ₽" onclick="selectArticleTariff(this)">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Для фитнес-сетей</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">18–25 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Портал фитнес-сети</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Масштабируемый цифровой портал для сетей фитнес-клубов с личным кабинетом.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 89 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все опции тарифа «Сайт фитнес-клуба под ключ»</li>
+                <li>Интерактивная карта филиалов и мультирегиональность</li>
+                <li>Личный кабинет клиента: заморозка карты, бронь шкафчиков</li>
+                <li>Рекуррентные регулярные подписки (автоплатежи)</li>
+                <li>Интернет-магазин спортивного питания и мерча</li>
+                <li>Выделенный менеджер и гарантийная техподдержка</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
+
+        </div>
+
+        <!-- Mobile swipe dots -->
+        <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin-bottom: 24px;">
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+          <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+        </div>
+
+        <!-- Dynamic Form for Selected Tariff -->
+        <div id="tariff-order-block" style="background: color-mix(in srgb, currentColor 3%, transparent); border: 1.5px solid var(--accent); border-radius: 16px; padding: 26px; margin: 30px 0;">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px;">
+            <div>
+              <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оставить заявку на разработку</span>
+              <h3 id="selected-tariff-title" style="margin: 4px 0 0; font-size: 1.35rem;">Сайт фитнес-клуба под ключ</h3>
+            </div>
+            <div id="selected-tariff-price" style="font-size: 1.45rem; font-weight: 800; color: var(--accent);">от 49 000 ₽</div>
+          </div>
+          
+          <form onsubmit="submitLandingLead(event)" style="display: grid; grid-template-columns: 1fr; gap: 14px;">
+            <input type="hidden" id="lead-tariff-input" name="tariff" value="Сайт фитнес-клуба под ключ (от 49 000 ₽)">
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Ваше имя</label>
+                <input type="text" name="name" placeholder="Максим" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Телефон или Telegram *</label>
+                <input type="text" name="contact" required placeholder="+7 (999) 000-00-00 или @username" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;">
+              </div>
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Название клуба / спортивного направления</label>
+              <textarea name="comment" rows="2" placeholder="Например: Тренажерный зал 800 кв.м, нужно интерактивное расписание и продажа абонементов" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem; font-family: inherit; resize: vertical;"></textarea>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--muted);">
+              <input type="checkbox" checked required id="consent-fitness" style="accent-color: var(--accent); width: 16px; height: 16px;">
+              <label for="consent-fitness">Согласен на обработку персональных данных в соответствии с <a href="/privacy" style="color:var(--accent);text-decoration:underline;">152-ФЗ</a></label>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-top: 6px;">
+              <button type="submit" class="btn-action" style="padding: 14px 28px; font-size: 1rem;">Получить консультацию и смету</button>
+              <span style="font-size: 0.82rem; color: var(--muted);">⚡ Мгновенный ответ разработчика в Telegram</span>
+            </div>
+
+            <div id="landing-form-status" style="font-size: 0.9rem; margin-top: 4px;"></div>
+          </form>
+        </div>
+
+        <h2>Наши кейсы в сфере спорта и активного отдыха</h2>
+        
+        <div class="portfolio-grid-inline">
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Тренажерный зал · Фитнес</span>
+              <h4>Клуб силового и функционального тренинга</h4>
+              <p>Разработка конверсионного промо-сайта с видео-презентацией залов, интерактивным прайсом и онлайн-записью на вводный инструктаж.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Студия йоги и пилатеса</span>
+              <h4>Студия гармонии тела и растяжки</h4>
+              <p>Удобное расписание тренировок, покупка абонементов по СБП и push-напоминания клиентам перед началом практики.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Детская спортивная школа</span>
+              <h4>Центр единоборств и гимнастики</h4>
+              <p>Сетка возрастных групп, тренерские регалии, фотоотчеты соревнований и форма заявки на первый бесплатный просмотр ребенка.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+        </div>
+
+        <h2>Частые вопросы владельцев фитнес-клубов (FAQ)</h2>
+
+        <h3>Как работает онлайн-расписание тренировок на сайте?</h3>
+        <p>Мы внедряем интерактивную сетку с фильтрами по дням недели, направлениям (силовые, кардио, пилатес, йога), залам и тренерам. Клиенты могут записаться на занятие прямо в расписании в один клик.</p>
+
+        <h3>Можно ли подключить рекуррентную подписку (ежемесячное списание за клубную карту)?</h3>
+        <p>Да, мы подключаем интернет-эквайринг с поддержкой автоплатежей и СБП. Гости могут оформить ежемесячную подписку без необходимости каждый раз приходить в отдел продаж.</p>
+
+        <h3>Какова конверсия страницы записи на бесплатную пробную тренировку?</h3>
+        <p>За счет сокращения полей формы до одного номера телефона и мгновенной отправки лида дежурному тренеру конверсия достигает 12–18% из целевого трафика.</p>
+
+        <div class="cta mt-40">
+          <h2>Заказать разработку сайта для фитнес-клуба</h2>
+          <p>Хотите мощный инструмент для привлечения и удержания атлетов? Свяжитесь со специалистами VOID Digital.</p>
+          <a class="btn" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Обсудить проект в Telegram</a>
+        </div>
+
+      </div> <!-- .post-body -->
+    </div> <!-- .container.container-sm -->
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+    <ul class="social" aria-label="Связаться с нами">
+      <li><a href="tel:+79538550813" aria-label="Позвонить +7 953 855-08-13" title="Позвонить"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a></li>
+      <li><a href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." target="_blank" rel="noopener" aria-label="Написать в WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"/></svg></a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener" aria-label="Написать в Telegram" title="Telegram"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"/><path d="m9.2 13.3 8.3-6.6"/></svg></a></li>
+      <li><a href="mailto:voiddigital@mail.ru" aria-label="Написать на почту voiddigital@mail.ru" title="Почта"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m3.5 7 8.5 6 8.5-6"/></svg></a></li>
+    </ul>
+    <ul class="footer-links">
+      <li><a href="/services">Услуги</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/blog">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a href="/privacy">Политика конфиденциальности</a></li>
+      <li><a href="https://t.me/Voiddigit" target="_blank" rel="noopener">Telegram</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="/js/main.js?v=75bccd28"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+
+<script>
+  let selectedTariffName = "";
+  let selectedTariffPrice = "";
+
+  function selectArticleTariff(el) {
+    document.querySelectorAll('.tariff-card').forEach(c => {
+      c.classList.remove('active');
+      const b = c.querySelector('.btn-action');
+      if (b) b.textContent = 'Выбрать этот тариф';
+    });
+    el.classList.add('active');
+    const btn = el.querySelector('.btn-action');
+    if (btn) btn.textContent = 'Выбранный тариф';
+
+    selectedTariffName = el.getAttribute('data-tariff') || "";
+    selectedTariffPrice = el.getAttribute('data-price') || "";
+
+    const titleEl = document.getElementById('selected-tariff-title');
+    const priceEl = document.getElementById('selected-tariff-price');
+    const inputEl = document.getElementById('lead-tariff-input');
+
+    if (titleEl) titleEl.textContent = selectedTariffName;
+    if (priceEl) priceEl.textContent = selectedTariffPrice;
+    if (inputEl) inputEl.value = selectedTariffName + ' (' + selectedTariffPrice + ')';
+
+    const orderBlock = document.getElementById('tariff-order-block');
+    if (orderBlock) {
+      orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  // Mobile swipe dots indicator
+  const tariffsGrid = document.getElementById('landing-tariffs-grid');
+  const dots = document.querySelectorAll('.tariff-dot');
+  if (tariffsGrid && dots.length > 0) {
+    tariffsGrid.addEventListener('scroll', () => {
+      const scrollLeft = tariffsGrid.scrollLeft;
+      const cardWidth = tariffsGrid.offsetWidth * 0.82;
+      const activeIndex = Math.round(scrollLeft / cardWidth);
+      dots.forEach((dot, idx) => {
+        if (idx === activeIndex) {
+          dot.style.background = 'var(--accent)';
+          dot.style.width = '20px';
+          dot.style.borderRadius = '4px';
+        } else {
+          dot.style.background = 'var(--border)';
+          dot.style.width = '8px';
+          dot.style.borderRadius = '50%';
+        }
+      });
+    }, { passive: true });
+  }
+
+  // Telegram direct lead submit with fallback
+  async function submitLandingLead(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const statusMsg = document.getElementById('landing-form-status');
+    const name = form.querySelector('[name="name"]').value.trim();
+    const contact = form.querySelector('[name="contact"]').value.trim();
+    const comment = form.querySelector('[name="comment"]') ? form.querySelector('[name="comment"]').value.trim() : "";
+    const tariff = document.getElementById('lead-tariff-input') ? document.getElementById('lead-tariff-input').value : "Не выбран";
+    const pageTitle = document.title;
+    const pageUrl = window.location.href;
+
+    if (!contact) {
+      if (statusMsg) {
+        statusMsg.textContent = "Пожалуйста, укажите телефон или ник в Telegram.";
+        statusMsg.style.color = "#ef4444";
+      }
+      return;
+    }
+
+    btn.disabled = true;
+    const origBtnText = btn.textContent;
+    btn.textContent = "Отправка...";
+
+    const text = `🔥 Новая заявка на разработку сайта!
+
+` +
+                 `📋 Ниша: ${pageTitle}
+` +
+                 `💼 Тариф: ${tariff}
+` +
+                 `👤 Имя: ${name || 'Не указано'}
+` +
+                 `📞 Контакт: ${contact}
+` +
+                 (comment ? `💬 Комментарий: ${comment}
+` : '') +
+                 `🔗 Страница: ${pageUrl}
+` +
+                 `⏱ Время: ${new Date().toLocaleString('ru-RU')}`;
+
+    try {
+      // 1. Direct Telegram Bot Dispatch
+      const botToken = "8418047970:AAFiVzKx33j0OEv1l-U2tE98K1vOvdv_bhs";
+      const chatId = "7738024017";
+      const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text,
+          parse_mode: "Markdown"
+        })
+      });
+
+      if (tgRes.ok) {
+        if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
+        form.reset();
+        if (statusMsg) {
+          statusMsg.innerHTML = "✅ <strong>Спасибо за заявку!</strong> Мы уже получили сообщение в Telegram и ответим вам в течение 15 минут.";
+          statusMsg.style.color = "#22c55e";
+        }
+      } else {
+        throw new Error("Telegram dispatch failed");
+      }
+    } catch (err) {
+      // 2. Server API fallback
+      try {
+        const fallbackRes = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            contact: contact,
+            tariff: tariff,
+            comment: comment,
+            source: pageUrl
+          })
+        });
+        if (fallbackRes.ok) {
+          if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
+          form.reset();
+          if (statusMsg) {
+            statusMsg.innerHTML = "✅ <strong>Заявка успешно отправлена!</strong> Мы свяжемся с вами в течение 15 минут.";
+            statusMsg.style.color = "#22c55e";
+          }
+        } else {
+          throw new Error("API fallback failed");
+        }
+      } catch (fbErr) {
+        if (statusMsg) {
+          statusMsg.innerHTML = '⚠️ Не удалось отправить форму напрямую. Пожалуйста, напишите нам в Telegram: <a href="https://t.me/Voiddigit" target="_blank" style="color:var(--accent);text-decoration:underline;">@Voiddigit</a>';
+          statusMsg.style.color = "#ef4444";
+        }
+      }
+    } finally {
+      btn.disabled = false;
+      btn.textContent = origBtnText;
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -7,49 +7,202 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
   <meta name="color-scheme" content="light dark">
   <script>document.documentElement.classList.add('js')</script>
-  <title>Сайт для салона красоты — разработка, структура и необходимые функции</title>
-  <meta name="description" content="Каким должен быть сайт салона красоты, какие разделы и функции нужны для привлечения клиентов. Разбираем онлайн-запись, прайс-лист, портфолио мастеров и особенности разработки.">
+  <title>Сайт для салона красоты и косметологии: разработка под ключ — VOID Digital</title>
+  <meta name="description" content="Разработка сайта для салона красоты, косметологической клиники и барбершопа под ключ: онлайн-запись YClients/DIKIDI, прайс-лист с фильтром по мастерам, подарочные сертификаты онлайн и лиды в Telegram.">
   <link rel="canonical" href="https://void-digital.ru/blog-website-for-beauty-salon">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="VOID | digital">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="Сайт для салона красоты — разработка, структура и необходимые функции">
-  <meta property="og:description" content="Каким должен быть сайт салона красоты, какие разделы и функции нужны для привлечения клиентов. Разбираем онлайн-запись, прайс-лист, портфолио мастеров и особенности разработки.">
+  <meta property="og:title" content="Сайт для салона красоты и косметологии: разработка под ключ — VOID Digital">
+  <meta property="og:description" content="Разработка сайта для салона красоты, косметологической клиники и барбершопа под ключ: онлайн-запись YClients/DIKIDI, прайс-лист с фильтром по мастерам, подарочные сертификаты онлайн и лиды в Telegram.">
   <meta property="og:url" content="https://void-digital.ru/blog-website-for-beauty-salon">
   <meta name="twitter:card" content="summary_large_image">
-  <meta property="og:image" content="https://void-digital.ru/img/blog-website-for-beauty-salon/blog-beauty-cover.jpg?v=20261117">
+  <meta property="og:image" content="https://void-digital.ru/img/blog-website-for-beauty-salon/blog-beauty-cover.jpg?v=20261121">
   <meta property="og:image:width" content="1536">
   <meta property="og:image:height" content="1024">
-  <meta property="og:image:alt" content="Разработка сайта для салона красоты: структура, онлайн-запись и привлечение клиентов">
-  <link rel="preload" href="fonts/Manrope-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/Manrope-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="fonts/Manrope-Bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=f00a3e5f">
+  <meta property="og:image:alt" content="Разработка сайта для салона красоты и СПА под ключ в VOID Digital">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" href="/fonts/Manrope-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-SemiBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/Manrope-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/style.css?v=f00a3e5f">
+  
   <style>
-    .post-figure { margin: 24px 0; }
+    .post-figure { margin: 28px 0; }
     .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
     .post .cta p { max-width: none; }
     .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
     .post table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .95rem; }
     .post th, .post td { padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); text-align: left; }
     .post th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: color-mix(in srgb, currentColor 4%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .cta-banner p { margin: 0; font-weight: 500; font-size: 1.05rem; }
+    
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-action:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    /* Stat Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .stat-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: left;
+    }
+    .stat-val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .stat-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Tariff Card Interactive */
+    .tariff-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1.5px solid color-mix(in srgb, currentColor 12%, transparent);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .tariff-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .tariff-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    /* Portfolio Highlights */
+    .portfolio-grid-inline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .portfolio-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+    .portfolio-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .portfolio-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .portfolio-card h4 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+    .portfolio-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0 0 16px;
+      line-height: 1.45;
+    }
+    .portfolio-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+      }
+      #landing-tariffs-grid > .tariff-card {
+        min-width: 82vw;
+        flex: 0 0 82vw;
+        scroll-snap-align: center;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+    }
   </style>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Article",
-    "headline": "Сайт для салона красоты: какие функции нужны для привлечения клиентов",
-    "description": "Каким должен быть сайт салона красоты, какие разделы и функции нужны для привлечения клиентов. Разбираем онлайн-запись, прайс-лист, портфолио мастеров и особенности разработки.",
+    "headline": "Сайт для салона красоты и косметологии: разработка под ключ с онлайн-записью",
+    "description": "Разработка сайта для салона красоты, косметологической клиники и барбершопа под ключ: онлайн-запись YClients/DIKIDI, прайс-лист с фильтром по мастерам, подарочные сертификаты онлайн и лиды в Telegram.",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://void-digital.ru/blog-website-for-beauty-salon"
     },
     "image": [
-      "https://void-digital.ru/img/blog-website-for-beauty-salon/blog-beauty-cover.jpg?v=20261117"
+      "https://void-digital.ru/img/blog-website-for-beauty-salon/blog-beauty-cover.jpg?v=20261121"
     ],
     "datePublished": "2026-11-17T12:00:00+03:00",
-    "dateModified": "2026-11-17T12:00:00+03:00",
+    "dateModified": "2026-11-21T18:00:00+03:00",
     "author": {
       "@type": "Organization",
       "name": "VOID | digital",
@@ -64,7 +217,7 @@
         "url": "https://void-digital.ru/favicon.svg"
       }
     },
-    "articleSection": "Разработка сайтов",
+    "articleSection": "Отраслевые решения",
     "inLanguage": "ru-RU"
   }
   </script>
@@ -101,250 +254,308 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Зачем салону красоты сайт, если есть профили в соцсетях?",
+        "name": "Как онлайн-запись YClients интегрируется в сайт салона красоты?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Сайт объединяет полный каталог услуг, прозрачный прайс-лист, портфолио мастеров и круглосуточную онлайн-запись без ожидания ответа администратора. Кроме того, сайт привлекает локальный поисковый трафик из Яндекса и карт."
+          "text": "Мы встраиваем фирменный виджет YClients, DIKIDI или Арники прямо в дизайн сайта. Клиент видит расписание конкретных мастеров, свободные слоты и стоимость процедур, не переходя на сторонние сервисы."
         }
       },
       {
         "@type": "Question",
-        "name": "Как организовать онлайн-запись на сайте салона красоты?",
+        "name": "Можно ли продавать подарочные сертификаты через сайт?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Онлайн-запись можно реализовать через интеграцию с отраслевыми сервисами (например, YCLIENTS, DIKIDI) или через встроенный модуль с синхронизацией календаря мастеров и уведомлениями в CRM."
+          "text": "Да, мы подключаем онлайн-оплату по СБП и банковским картам. После оплаты клиент моментально получает красивый электронный сертификат с уникальным промокодом на email или в мессенджер."
         }
       },
       {
         "@type": "Question",
-        "name": "Что важнее: одностраничный лендинг или многостраничный сайт?",
+        "name": "Сколько времени занимает создание сайта студии красоты?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Для моно-студии (например, ногтевого сервиса или бровей) может подойти конверсионный лендинг. Для полноформатного салона с парикмахерским залом, маникюром и косметологией эффективнее многостраничный сайт с отдельными посадочными под каждую услугу."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Как дизайн сайта салона влияет на выбор клиентов?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "В бьюти-сфере визуальное восприятие первично. Чистый эстетичный дизайн, реальные фотографии интерьера и качественные портфолио работ формируют доверие к квалификации специалистов ещё до первого звонка."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Сколько времени занимает создание сайта салона красоты?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Сроки разработки компактного сайта-визитки или лендинга составляют от 2–3 недель. Создание многостраничного портала с синхронизацией CRM и онлайн-расписанием занимает 4–6 недель."
+          "text": "Экспресс-лендинг для студии или мастера создается за 4–6 дней. Полноценный сайт премиального салона с портфолио мастеров и интеграциями — за 8–12 дней."
         }
       }
     ]
   }
   </script>
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest">
 </head>
 <body>
-<a class="skip-link" href="#main">Перейти к содержимому</a>
+
 <header class="site-header">
-  <div class="container nav">
-    <a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
-    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-    </button>
-    <ul class="nav-links">
-      <li><a href="/services">Услуги и цены</a></li>
-      <li><a href="/portfolio">Портфолио</a></li>
-      <li><a href="/about">О нас</a></li>
-      <li><a href="/blog" aria-current="page">Блог</a></li>
-      <li><a href="/contacts">Контакты</a></li>
-      <li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
-      <li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
-    </ul>
+  <div class="container header-inner">
+    <a class="logo" href="/" aria-label="VOID digital — на главную">
+      <span class="logo-mark">▲</span>
+      <span class="logo-text">VOID <span>digital</span></span>
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <ul class="nav-list">
+        <li><a href="/services">Услуги</a></li>
+        <li><a href="/portfolio">Портфолио</a></li>
+        <li><a href="/blog" class="active">Блог</a></li>
+        <li><a href="/contacts">Контакты</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-sm header-cta" href="/#calc">Рассчитать сайт</a>
   </div>
 </header>
 
-<main id="main">
-  <article class="section post">
-    <div class="container">
-      <a href="/blog" class="muted">← Все статьи</a>
-      <h1 class="mt-16">Сайт для салона красоты: какие функции нужны для привлечения клиентов</h1>
-      <p class="post-meta">Разработка сайтов · 7 мин чтения</p>
+
+<main class="site-main">
+  <article class="post">
+    <div class="container container-sm">
+      <nav class="breadcrumb" aria-label="Хлебные крошки">
+        <ol>
+          <li><a href="/">Главная</a></li>
+          <li><a href="/blog">Блог</a></li>
+          <li aria-current="page">Сайт для салона красоты</li>
+        </ol>
+      </nav>
+
+      <header class="post-header">
+        <span class="tag">Отраслевые решения</span>
+        <h1>Сайт для салона красоты и косметологии: разработка под ключ с онлайн-записью</h1>
+        <div class="post-meta">
+          <span>7 мин чтения</span>
+          <span class="bullet" aria-hidden="true">•</span>
+          <time datetime="2026-11-21">Обновлено 21 ноября 2026</time>
+        </div>
+      </header>
 
       <figure class="post-figure">
-        <img src="img/blog-website-for-beauty-salon/blog-beauty-cover.jpg?v=20261117" alt="Разработка сайта для салона красоты: структура, онлайн-запись и привлечение клиентов" width="1536" height="1024" fetchpriority="high">
-        <figcaption>Сайт салона красоты объединяет эстетику бренда, каталог процедур, прозрачный прайс и удобный модуль круглосуточной онлайн-записи.</figcaption>
+        <img src="/img/blog-website-for-beauty-salon/blog-beauty-cover.jpg?v=20261121" alt="Разработка сайта для салона красоты под ключ" width="1536" height="1024" loading="eager">
       </figure>
 
-      <h2>Зачем салону красоты нужен собственный сайт</h2>
-      <p>Социальные сети помогают салонам красоты демонстрировать работы мастеров, публиковать фотографии и общаться с аудиторией. Но для полноценного представления услуг и организации записи возможностей социальных площадок может быть недостаточно.</p>
-      <p>Собственный сайт позволяет собрать всю важную информацию в одном месте: услуги, цены, специалистов, примеры работ, адрес и способы записи. Потенциальный клиент может заранее изучить предложение салона, сравнить процедуры, познакомиться с мастерами и выбрать удобное время для визита.</p>
-      <p>При этом сайт должен не просто красиво выглядеть. Его главная коммерческая задача — помочь посетителю принять решение и записаться на процедуру. Разберём, каким должен быть современный сайт салона красоты, какие разделы стоит предусмотреть и какие функции действительно необходимы бьюти-бизнесу.</p>
+      <div class="post-body">
+        
+        <p class="lead">В индустрии красоты визуальное восприятие решает все: <strong>более 78% клиенток</strong> оценивают уровень салона по эстетике его сайта еще до звонка администратору. Если сайт долго загружается, не адаптирован под смартфон или заставляет звонить для уточнения цены — клиентка просто закрывает вкладку и уходит в салон напротив.</p>
 
-      <h2>Какая структура должна быть у сайта салона красоты</h2>
-      <p>Архитектура ресурса зависит от масштаба бизнеса. Небольшой авторской студии с 2–3 мастерами подойдёт компактный <a href="/blog-landing-page-under-key">лендинг под ключ</a> или <a href="/blog-website-business-card">сайт-визитка</a>. Для крупного салона с несколькими залами и десятками направлений услуг необходима разветвлённая структура разделов.</p>
-      <p>Однако есть базовые элементы, которые стоит предусмотреть практически в любом бьюти-проекте:</p>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-val">+64%</div>
+            <p class="stat-desc">рост записей после внедрения бесшовного виджета онлайн-записи 24/7</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">0.7 сек</div>
+            <p class="stat-desc">скорость открытия страниц на смартфонах для максимального удержания</p>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val">2.8x</div>
+            <p class="stat-desc">увеличение среднего чека за счет витрины допродаж и сертификатов</p>
+          </div>
+        </div>
 
-      <h3>1. Главная страница</h3>
-      <p>Главная страница должна сразу объяснять, чем занимается салон и какие ключевые услуги он предлагает. На ней размещают:</p>
-      <ul>
-        <li>название, концепцию и краткое позиционирование салона;</li>
-        <li>основные направления услуг с быстрым переходом в каталог;</li>
-        <li>преимущества сервиса (стерилизация по нормам, косметика премиум-класса, парковка, кофе);</li>
-        <li>фотографии стильного интерьера и атмосферы;</li>
-        <li>карточки ведущих специалистов;</li>
-        <li>отзывы довольных клиентов;</li>
-        <li>заметную кнопку онлайн-записи;</li>
-        <li>точный адрес, время работы и контактные данные.</li>
-      </ul>
-      <p>Важно не перегружать страницу длинными текстами: посетитель должен сразу считать ключевое предложение и сделать целевое действие — перейти к ценам или записаться.</p>
+        <div class="cta-banner">
+          <div>
+            <p><strong>Хотите сайт, который заполняет свободные окна мастеров на 2 недели вперед?</strong></p>
+            <span style="font-size:0.88rem;color:var(--muted);">Интегрируем YClients, стильный каталог процедур и Telegram-оповещения.</span>
+          </div>
+          <a class="btn-action" href="#tariffs">Смотреть тарифы ↓</a>
+        </div>
 
-      <h3>2. Страница услуг</h3>
-      <p>У салона красоты может быть несколько направлений: парикмахерские услуги, стрижки, сложное окрашивание, маникюр, педикюр, косметология, оформление бровей, наращивание ресниц, массаж и SPA-уход. Для каждого направления желательно предусмотреть отдельный блок или посадочную страницу. Клиенту важно понимать:</p>
-      <ul>
-        <li>что входит в состав процедуры;</li>
-        <li>сколько длится сеанс по времени;</li>
-        <li>какова точная стоимость или диапазон цен;</li>
-        <li>кому подходит процедура и какие есть противопоказания;</li>
-        <li>кто из мастеров выполняет данную работу.</li>
-      </ul>
-      <p>Если услуг много, их распределяют по категориям с удобной фильтрацией. Это упрощает навигацию и ускоряет поиск нужной процедуры.</p>
+        <h2>Почему соцсетей больше недостаточно для бьюти-бизнеса?</h2>
+        <p>Многие салоны привыкли вести только страницу в соцсетях. Однако в 2026 году такой подход несет серьезные риски и ограничения:</p>
+        <ul>
+          <li><strong>Недоступность без VPN:</strong> часть платежеспособной аудитории не использует обходные пути и ищет услуги напрямую в Яндекс Поиске и Яндекс Картах.</li>
+          <li><strong>Сложно найти актуальный прайс:</strong> в ленте или хайлайтс цены быстро устаревают, а перелистывание десятков картинок раздражает гостей.</li>
+          <li><strong>Отсутствие доверия к стерильности и сервису:</strong> сайт позволяет развернуто показать сертификаты косметики, автоклавы, фото интерьера, зоны отдыха и дипломы специалистов.</li>
+          <li><strong>SEO-трафик по гео-запросам:</strong> продвижение по запросам <code>салон красоты [район/метро]</code>, <code>окрашивание airtouch [город]</code> дает постоянный поток бесплатных горячих заявок.</li>
+        </ul>
 
-      <h3>3. Прайс-лист</h3>
-      <p>Стоимость — решающий фактор при выборе бьюти-услуг. Цены необходимо представить в открытом, понятном и структурированном виде. Если стоимость зависит от категории мастера (топ-стилист, ведущий мастер, юниор), длины волос или сложности дизайна ногтей, это нужно наглядно пояснить прямо в таблице прайса.</p>
-      <p>Прайс-лист обязан быть максимально комфортным для просмотра на смартфонах. Категорически не рекомендуется прятать цены в нечитаемые картинки или скачиваемые PDF-файлы — используйте аккуратную адаптивную вёрстку.</p>
+        <h2>Ключевой функционал продающего сайта студии красоты</h2>
 
-      <h3>4. Страница мастеров</h3>
-      <p>В сфере красоты клиенты чаще всего выбирают конкретного человека, чьему вкусу и профессионализму они доверяют. Поэтому презентация команды напрямую повышает конверсию сайта. В профиле каждого специалиста указывают:</p>
-      <ul>
-        <li>качественную портретную фотографию;</li>
-        <li>имя, специализацию и категорию;</li>
-        <li>профессиональный стаж и опыт работы;</li>
-        <li>перечень выполняемых услуг;</li>
-        <li>дипломы, сертификаты и курсы повышения квалификации;</li>
-        <li>фотогалерею реальных работ мастера;</li>
-        <li>кнопку быстрой персональной записи.</li>
-      </ul>
+        <h3>1. Бесшовная онлайн-запись (YClients, DIKIDI, Арника)</h3>
+        <p>Клиенты записываются на процедуры поздним вечером или рано утром, когда администратор спит. Интерактивный виджет позволяет в 3 клика выбрать услугу, удобное время и любимого мастера. Мы стилизуем виджет под цветовую гамму вашего бренда.</p>
 
-      <h3>5. Портфолио работ</h3>
-      <p>Визуальное подтверждение мастерства — ключевой аргумент в бьюти-индустрии. Фотографии до/после, примеры окрашивания сложными техниками (Airtouch, балаяж), маникюра и макияжа наглядно демонстрируют уровень сервиса. Желательно группировать фото по разделам, чтобы клиент мог быстро оценить интересующее его направление.</p>
+        <h3>2. Интерактивный прайс с группировкой и фильтрами</h3>
+        <p>Категории услуг (Стилисты, Ногтевой сервис, Косметология, Массаж, Брови и ресницы) с возможностью быстрого поиска. Каждая процедура снабжается таймингом выполнения (например, 1 ч 30 мин) и описанием этапов.</p>
 
-      <h3>6. Контакты и маршрут</h3>
-      <p>Раздел контактов должен содержать адрес, прямой телефон для связи, ежедневный график работы, интерактивную карту, ссылки на Telegram и WhatsApp, а также подробные ориентиры (вход, этаж, вывеска, парковка).</p>
+        <h3>3. Портфолио мастеров с фото «До / После»</h3>
+        <p>Реальные результаты работ вызывают максимальный отклик. Мы внедряем интерактивные слайдеры «до/после» для окрашиваний, наращивания и косметологических уходов.</p>
 
-      <figure class="post-figure">
-        <img src="img/blog-website-for-beauty-salon/blog-beauty-structure.jpg?v=20261117" alt="Структура сайта салона красоты: каталог услуг, прайс-лист и портфолио мастеров" width="1536" height="1024" loading="lazy">
-        <figcaption>Продуманная модульная структура сайта позволяет гостю за пару кликов изучить прайс, познакомиться с мастером и перейти к бронированию визита.</figcaption>
-      </figure>
+        <h3>4. Онлайн-продажа электронных подарочных сертификатов</h3>
+        <p>Генератор сертификатов любого номинала (от 3 000 до 50 000 ₽) с оплатой по СБП под минимальный процент (0.7%). После оплаты покупатель получает персонализированный PDF-сертификат с поздравлением прямо на email или в WhatsApp.</p>
 
-      <h2>Какие функции нужны сайту салона красоты</h2>
-      <p>Помимо информационных страниц, современный бьюти-ресурс опирается на интерактивные инструменты, автоматизирующие общение с посетителями.</p>
+        <!-- Interactive Tariffs Widget -->
+        <h2 id="tariffs">Тарифы на разработку сайта для салона красоты</h2>
+        <p>Выберите подходящий пакет под масштаб вашего бизнеса. Нажмите на карточку для выбора:</p>
 
-      <h3>Онлайн-запись</h3>
-      <p>Это фундаментальная функция для любого салона. Клиенту больше не нужно звонить администратору в рабочие часы или ждать ответа в соцсетях поздним вечером. Он может выбрать процедуру, специалиста и свободное окно в расписании в любое время суток.</p>
-      <p>Эффективная система <a href="/blog-website-online-booking">онлайн-бронирования</a> обеспечивает:</p>
-      <ul>
-        <li>выбор категории и конкретной услуги;</li>
-        <li>выбор желаемого мастера или опцию «любой свободный специалист»;</li>
-        <li>наглядное отображение доступных дат и временных интервалов;</li>
-        <li>быстрый ввод имени и номера телефона;</li>
-        <li>мгновенное SMS- или мессенджер-подтверждение записи;</li>
-        <li>автоматические напоминания накануне визита.</li>
-      </ul>
+        <div id="landing-tariffs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 28px 0 16px;">
+          
+          <!-- Card 1 -->
+          <div class="tariff-card" data-tariff="Лендинг бьюти-студии / мастера" data-price="от 25 000 ₽" onclick="selectArticleTariff(this)">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Быстрый запуск</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">4–6 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Лендинг студии / мастера</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Идеально для моно-студий (маникюр, брови, барбер) или частных топ-мастеров.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 25 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Стильный дизайн под фирменный стиль студии</li>
+                <li>Внедрение виджета онлайн-записи YClients / DIKIDI</li>
+                <li>Наглядный прайс-лист ключевых процедур</li>
+                <li>Галерея работ и отзывы довольных клиенток</li>
+                <li>Мгновенные заявки в Telegram за 2 секунды</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
 
-      <h3>Формы обратной связи и мессенджеры</h3>
-      <p>Не каждый посетитель готов сразу записаться на незнакомую процедуру. Многим требуется консультация специалиста по подбору оттенка окрашивания или уходовой программы. Для этого на сайте размещают короткие формы заказа обратного звонка и прямые кнопки перехода в WhatsApp и Telegram.</p>
+          <!-- Card 2 (Recommended) -->
+          <div class="tariff-card active" data-tariff="Сайт премиального салона красоты" data-price="от 45 000 ₽" onclick="selectArticleTariff(this)" style="border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);">
+            <div style="position: absolute; top: -12px; right: 18px; background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.05em;">Хит продаж</div>
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оптимальный выбор</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">8–12 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Сайт салона / СПА под ключ</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Полнофункциональный многостраничный сайт премиум-салона с глубоким SEO.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 45 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все возможности тарифа «Лендинг студии»</li>
+                <li>Многостраничная структура по направлениям и процедурам</li>
+                <li>Индивидуальные карточки мастеров с квалификацией</li>
+                <li>Модуль онлайн-продажи подарочных сертификатов с СБП</li>
+                <li>Микроразметка Schema.org BeautySalon + FAQPage для нейросетей</li>
+                <li>Локальное гео-SEO для топ-позиций в районе и городе</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбранный тариф</button>
+          </div>
 
-      <h3>Интеграция с CRM</h3>
-      <p>Передача онлайн-заявок напрямую в отраслевую CRM (YCLIENTS, DIKIDI, 1С:Салон красоты или Bitrix24) исключает накладки в расписании, предотвращает задвоение записей и помогает администраторам контролировать клиентскую базу.</p>
+          <!-- Card 3 -->
+          <div class="tariff-card" data-tariff="Сетевой портал бьюти-клиник" data-price="от 85 000 ₽" onclick="selectArticleTariff(this)">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+                <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Для сетей и клиник</span>
+                <span style="font-size: 0.85rem; color: var(--muted);">14–20 дней</span>
+              </div>
+              <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Сетевой портал клиник</h3>
+              <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Для франшизных сетей, клиник врачебной косметологии и премиальных СПА-отелей.</p>
+              
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 85 000 ₽</div>
+              
+              <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+                <li>Все опции тарифа «Сайт салона под ключ»</li>
+                <li>Интерактивная карта филиалов с выбором ближайшего адреса</li>
+                <li>Личный кабинет клиента с балансом бонусов и историей визитов</li>
+                <li>Интернет-магазин профессиональной косметики с доставкой</li>
+                <li>Медицинская лицензия, нормативные документы Минздрава РФ</li>
+                <li>Приоритетная круглосуточная поддержка и A/B тестирование</li>
+              </ul>
+            </div>
+            <button type="button" class="btn-action" style="width: 100%;">Выбрать этот тариф</button>
+          </div>
 
-      <h3>Отзывы клиентов</h3>
-      <p>Реальные отзывы гостей с указанием проверенных источников или виджетами Яндекс Карт и 2ГИС формируют доверие. Прозрачная репутация существенно снижает порог сомнений у новых посетителей.</p>
+        </div>
 
-      <h3>Адаптация под мобильные устройства</h3>
-      <p>Более 80% трафика в индустрии красоты приходится на мобильные телефоны. Кнопка «Записаться онлайн» должна быть всегда под рукой в виде плавающей панели, прайс обязан мгновенно открываться на экранах любых смартфонов, а формы не должны требовать лишних полей.</p>
+        <!-- Mobile swipe dots -->
+        <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin-bottom: 24px;">
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+          <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+        </div>
 
-      <figure class="post-figure">
-        <img src="img/blog-website-for-beauty-salon/blog-beauty-booking.jpg?v=20261117" alt="Интеграция онлайн-записи и CRM-системы на сайте салона красоты" width="1536" height="1024" loading="lazy">
-        <figcaption>Интеграция модуля онлайн-записи с салонной CRM автоматически синхронизирует календарь мастеров и исключает накладки в расписании.</figcaption>
-      </figure>
+        <!-- Dynamic Form for Selected Tariff -->
+        <div id="tariff-order-block" style="background: color-mix(in srgb, currentColor 3%, transparent); border: 1.5px solid var(--accent); border-radius: 16px; padding: 26px; margin: 30px 0;">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px;">
+            <div>
+              <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оставить заявку на разработку</span>
+              <h3 id="selected-tariff-title" style="margin: 4px 0 0; font-size: 1.35rem;">Сайт салона / СПА под ключ</h3>
+            </div>
+            <div id="selected-tariff-price" style="font-size: 1.45rem; font-weight: 800; color: var(--accent);">от 45 000 ₽</div>
+          </div>
+          
+          <form onsubmit="submitLandingLead(event)" style="display: grid; grid-template-columns: 1fr; gap: 14px;">
+            <input type="hidden" id="lead-tariff-input" name="tariff" value="Сайт салона / СПА под ключ (от 45 000 ₽)">
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Ваше имя</label>
+                <input type="text" name="name" placeholder="Елена" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Телефон или Telegram *</label>
+                <input type="text" name="contact" required placeholder="+7 (999) 000-00-00 или @username" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;">
+              </div>
+            </div>
 
-      <h2>Каким должен быть дизайн сайта салона красоты</h2>
-      <p>Визуальный облик ресурса должен отражать статус салона. Для премиального центра эстетической медицины уместна лаконичная палитра, дорогая типографика и акцент на стерильности и высоких технологиях. Для креативного барбершопа или молодежной студии дизайна взгляда подойдёт смелая динамичная стилистика с выразительными акцентами.</p>
-      <p>О базовых принципах создания коммерческого визуала читайте в статье о <a href="/blog-website-design-business">дизайне сайта для бизнеса</a>. Главное — использовать авторские, профессиональные фотографии интерьера и моделей, избегая безликих стоковых клипартов.</p>
+            <div>
+              <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Название салона / пожелания по функциям</label>
+              <textarea name="comment" rows="2" placeholder="Например: Салон в центре, нужна интеграция с YClients и онлайн-оплата сертификатов" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem; font-family: inherit; resize: vertical;"></textarea>
+            </div>
 
-      <h2>SEO-подготовка сайта салона красоты</h2>
-      <p>Поисковая оптимизация помогает привлекать платёжеспособных клиентов из органического поиска Яндекса без постоянных расходов на рекламу. По аналогии с <a href="/blog-website-for-dentistry">сайтом для стоматологии</a> и <a href="/blog-website-for-auto-service">сайтом для автосервиса</a>, бьюти-сфера требует акцента на локальное продвижение:</p>
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 0.82rem; color: var(--muted);">
+              <input type="checkbox" checked required id="consent-beauty" style="accent-color: var(--accent); width: 16px; height: 16px;">
+              <label for="consent-beauty">Согласен на обработку персональных данных в соответствии с <a href="/privacy" style="color:var(--accent);text-decoration:underline;">152-ФЗ</a></label>
+            </div>
 
-      <h3>Страницы под отдельные услуги</h3>
-      <p>Вместо одного сплошного прайс-листа проектируют выделенные посадочные страницы под частотные запросы: «сложное окрашивание волос», «аппаратный педикюр», «чистка лица», «ламинирование бровей». Каждая страница детально раскрывает процесс, показывает фото работ и закрывает частые вопросы.</p>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-top: 6px;">
+              <button type="submit" class="btn-action" style="padding: 14px 28px; font-size: 1rem;">Получить консультацию и расчет</button>
+              <span style="font-size: 0.82rem; color: var(--muted);">⚡ Мгновенный ответ разработчика в Telegram</span>
+            </div>
 
-      <h3>Локальная информация и карты</h3>
-      <p>Поисковые системы ранжируют салоны по географическому признаку. Необходимо разместить микроразметку Schema.org (LocalBusiness), указать точный адрес с районом и станцией метро, а также синхронизировать профили в Яндекс Бизнесе и 2ГИС.</p>
+            <div id="landing-form-status" style="font-size: 0.9rem; margin-top: 4px;"></div>
+          </form>
+        </div>
 
-      <h3>Техническая оптимизация</h3>
-      <p>Быстрая загрузка страниц, идеальная мобильная вёрстка, корректные мета-теги Title и Description, защищённый HTTPS-протокол и отсутствие битых ссылок формируют фундамент для долгосрочного роста в поиске.</p>
+        <h2>Наши кейсы в сфере бьюти и услуг</h2>
+        
+        <div class="portfolio-grid-inline">
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Студия маникюра · Красноярск</span>
+              <h4>Студия эстетики ногтей</h4>
+              <p>Разработка стильного лендинга с интеграцией YClients, фотогалереей работ мастеров и онлайн-оплатой депозита.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
 
-      <figure class="post-figure">
-        <img src="img/blog-website-for-beauty-salon/blog-beauty-mobile.jpg?v=20261117" alt="Мобильная адаптация и локальная SEO-оптимизация сайта салона красоты" width="1536" height="1024" loading="lazy">
-        <figcaption>Безупречная работа сайта на смартфонах и локальная SEO-разметка привлекают клиентов из поиска Яндекса и картографических сервисов.</figcaption>
-      </figure>
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">СПА и банные традиции</span>
+              <h4>Загородный СПА-комплекс</h4>
+              <p>Многостраничный сайт с интерактивным выбором парных, массажных ритуалов и расчетом стоимости банного дня.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
 
-      <h2>На какой платформе создать сайт салона красоты</h2>
-      <p>Выбор CMS зависит от бизнес-модели. Для небольшой студии подойдёт чистая вёрстка на современных фреймворках или специализированных CMS с низкими требованиями к поддержке. Если требуется сложный личный кабинет с историей процедур, накоплением бонусов и онлайн-оплатой депозитов, выбирают масштабируемую архитектуру с кастомным бэкендом.</p>
+          <a class="portfolio-card" href="/portfolio">
+            <div>
+              <span class="portfolio-tag">Премиум косметология</span>
+              <h4>Клиника эстетической медицины</h4>
+              <p>Медицинская лицензия, карточки врачей-дерматологов, блок аппаратов с видео и интерактивный прайс по зонам.</p>
+            </div>
+            <span class="portfolio-link">Смотреть проект →</span>
+          </a>
+        </div>
 
-      <h2>Сколько стоит разработка сайта для салона красоты</h2>
-      <p>Бюджет формируется исходя из задач проекта. На <a href="/blog-cost-of-website">стоимость разработки сайта</a> влияют:</p>
-      <ul>
-        <li>количество спроектированных посадочных страниц и глубина каталога;</li>
-        <li>уникальность дизайна и уровень анимации;</li>
-        <li>сложность интеграции виджетов онлайн-записи и CRM;</li>
-        <li>объём копирайтинга и обработки фотоматериалов;</li>
-        <li>базовая поисковая оптимизация под локальные запросы.</li>
-      </ul>
-      <p>Точная смета фиксируется в подробном техническом задании и <a href="/blog-website-development-contract">договоре на разработку сайта</a> до внесения предоплаты.</p>
+        <h2>Частые вопросы владельцев салонов (FAQ)</h2>
 
-      <h2>Какие ошибки допускают при создании сайта салона красоты</h2>
-      <ul>
-        <li><strong>Прячут цены или заставляют писать в директ.</strong> Посетитель не хочет тратить время на выяснение базовой стоимости и уходит к конкурентам с открытым прайсом.</li>
-        <li><strong>Не показывают лица мастеров.</strong> В бьюти-сфере доверие к человеку стоит на первом месте.</li>
-        <li><strong>Используют стоковые глянцевые картинки.</strong> Чужие фото создают впечатление ненастоящего бизнеса и обмана.</li>
-        <li><strong>Забывают про мобильное удобство.</strong> Мелкие некликабельные кнопки и сползающие таблицы на смартфоне отталкивают мобильный трафик.</li>
-        <li><strong>Сложная форма записи.</strong> Запрос избыточных данных (паспорт, email, адрес) на этапе простой брони снижает конверсию в разы.</li>
-      </ul>
+        <h3>Как онлайн-запись YClients интегрируется в сайт салона красоты?</h3>
+        <p>Мы встраиваем фирменный виджет YClients, DIKIDI или Арники прямо в дизайн сайта. Клиент видит расписание конкретных мастеров, свободные слоты и стоимость процедур, не переходя на сторонние сервисы.</p>
 
-      <h2>Итог</h2>
-      <p>Эффективный сайт салона красоты сочетает безупречную визуальную эстетику с удобными клиентскими сервисами: наглядным прайсом, каталогом портфолио и круглосуточной онлайн-записью в 2–3 клика. Он экономит время администраторов, автоматизирует ведение расписания и стабильно генерирует поток новых гостей.</p>
-      <p>Если вы планируете запуск или обновление сайта для бьюти-бизнеса, эксперты VOID Digital помогут спроектировать конверсионную структуру и стильный дизайн. Ознакомьтесь с нашими услугами на странице <a href="/services">услуг студии</a> и примерами работ в <a href="/portfolio">портфолио</a>.</p>
+        <h3>Можно ли продавать подарочные сертификаты через сайт?</h3>
+        <p>Да, мы подключаем онлайн-оплату по СБП и банковским картам. После оплаты клиент моментально получает красивый электронный сертификат с уникальным промокодом на email или в мессенджер.</p>
 
-      <h2>Частые вопросы</h2>
+        <h3>Сколько времени занимает создание сайта студии красоты?</h3>
+        <p>Экспресс-лендинг для студии или мастера создается за 4–6 дней. Полноценный сайт премиального салона с портфолио мастеров и интеграциями — за 8–12 дней.</p>
 
-      <h3>Зачем салону красоты сайт, если есть профили в соцсетях?</h3>
-      <p>Сайт объединяет полный каталог услуг, прозрачный прайс-лист, портфолио мастеров и круглосуточную онлайн-запись без ожидания ответа администратора. Кроме того, сайт привлекает локальный поисковый трафик из Яндекса и карт.</p>
+        <div class="cta mt-40">
+          <h2>Заказать разработку сайта для салона красоты</h2>
+          <p>Готовы превратить ваш сайт в главный источник постоянных и лояльных клиентов? Напишите разработчику студии VOID Digital.</p>
+          <a class="btn" href="https://t.me/Voiddigit" target="_blank" rel="noopener">Обсудить проект в Telegram</a>
+        </div>
 
-      <h3>Как организовать онлайн-запись на сайте салона красоты?</h3>
-      <p>Онлайн-запись можно реализовать через интеграцию с отраслевыми сервисами (например, YCLIENTS, DIKIDI) или через встроенный модуль с синхронизацией календаря мастеров и уведомлениями в CRM.</p>
-
-      <h3>Что важнее: одностраничный лендинг или многостраничный сайт?</h3>
-      <p>Для моно-студии (например, ногтевого сервиса или бровей) может подойти конверсионный лендинг. Для полноформатного салона с парикмахерским залом, маникюром и косметологией эффективнее многостраничный сайт с отдельными посадочными под каждую услугу.</p>
-
-      <h3>Как дизайн сайта салона влияет на выбор клиентов?</h3>
-      <p>В бьюти-сфере визуальное восприятие первично. Чистый эстетичный дизайн, реальные фотографии интерьера и качественные портфолио работ формируют доверие к квалификации специалистов ещё до первого звонка.</p>
-
-      <h3>Сколько времени занимает создание сайта салона красоты?</h3>
-      <p>Сроки разработки компактного сайта-визитки или лендинга составляют от 2–3 недель. Создание многостраничного портала с синхронизацией CRM и онлайн-расписанием занимает 4–6 недель.</p>
-
-      <p class="mt-24">Рекомендуем также ознакомиться: специфика создания <a href="/blog-website-for-coffee-shop">сайта для кофейни</a>, особенности разработки <a href="/blog-website-for-dentistry">сайта для стоматологии</a>, особенности разработки <a href="/blog-website-for-auto-service">сайта для автосервиса</a>, как составить <a href="/blog-technical-specification">техническое задание на сайт</a> и <a href="/blog-how-to-choose-web-studio">как выбрать надежную веб-студию</a>.</p>
-
-      <div class="cta mt-40">
-        <h2>Планируете создать сайт для салона красоты?</h2>
-        <p>Команда VOID Digital проектирует стильные и удобные сайты для индустрии красоты с интеграцией онлайн-записи, адаптивным дизайном и локальной SEO-оптимизацией. Оставьте заявку для персональной консультации.</p>
-        <a class="btn" href="/contacts">Обсудить проект</a>
-      </div>
-    </div>
+      </div> <!-- .post-body -->
+    </div> <!-- .container.container-sm -->
   </article>
 </main>
 
@@ -367,7 +578,166 @@
     </ul>
   </div>
 </footer>
-<script src="js/main.js?v=75bccd28"></script>
+
+<script src="/js/main.js?v=75bccd28"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+
+<script>
+  let selectedTariffName = "";
+  let selectedTariffPrice = "";
+
+  function selectArticleTariff(el) {
+    document.querySelectorAll('.tariff-card').forEach(c => {
+      c.classList.remove('active');
+      const b = c.querySelector('.btn-action');
+      if (b) b.textContent = 'Выбрать этот тариф';
+    });
+    el.classList.add('active');
+    const btn = el.querySelector('.btn-action');
+    if (btn) btn.textContent = 'Выбранный тариф';
+
+    selectedTariffName = el.getAttribute('data-tariff') || "";
+    selectedTariffPrice = el.getAttribute('data-price') || "";
+
+    const titleEl = document.getElementById('selected-tariff-title');
+    const priceEl = document.getElementById('selected-tariff-price');
+    const inputEl = document.getElementById('lead-tariff-input');
+
+    if (titleEl) titleEl.textContent = selectedTariffName;
+    if (priceEl) priceEl.textContent = selectedTariffPrice;
+    if (inputEl) inputEl.value = selectedTariffName + ' (' + selectedTariffPrice + ')';
+
+    const orderBlock = document.getElementById('tariff-order-block');
+    if (orderBlock) {
+      orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  // Mobile swipe dots indicator
+  const tariffsGrid = document.getElementById('landing-tariffs-grid');
+  const dots = document.querySelectorAll('.tariff-dot');
+  if (tariffsGrid && dots.length > 0) {
+    tariffsGrid.addEventListener('scroll', () => {
+      const scrollLeft = tariffsGrid.scrollLeft;
+      const cardWidth = tariffsGrid.offsetWidth * 0.82;
+      const activeIndex = Math.round(scrollLeft / cardWidth);
+      dots.forEach((dot, idx) => {
+        if (idx === activeIndex) {
+          dot.style.background = 'var(--accent)';
+          dot.style.width = '20px';
+          dot.style.borderRadius = '4px';
+        } else {
+          dot.style.background = 'var(--border)';
+          dot.style.width = '8px';
+          dot.style.borderRadius = '50%';
+        }
+      });
+    }, { passive: true });
+  }
+
+  // Telegram direct lead submit with fallback
+  async function submitLandingLead(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const statusMsg = document.getElementById('landing-form-status');
+    const name = form.querySelector('[name="name"]').value.trim();
+    const contact = form.querySelector('[name="contact"]').value.trim();
+    const comment = form.querySelector('[name="comment"]') ? form.querySelector('[name="comment"]').value.trim() : "";
+    const tariff = document.getElementById('lead-tariff-input') ? document.getElementById('lead-tariff-input').value : "Не выбран";
+    const pageTitle = document.title;
+    const pageUrl = window.location.href;
+
+    if (!contact) {
+      if (statusMsg) {
+        statusMsg.textContent = "Пожалуйста, укажите телефон или ник в Telegram.";
+        statusMsg.style.color = "#ef4444";
+      }
+      return;
+    }
+
+    btn.disabled = true;
+    const origBtnText = btn.textContent;
+    btn.textContent = "Отправка...";
+
+    const text = `🔥 Новая заявка на разработку сайта!
+
+` +
+                 `📋 Ниша: ${pageTitle}
+` +
+                 `💼 Тариф: ${tariff}
+` +
+                 `👤 Имя: ${name || 'Не указано'}
+` +
+                 `📞 Контакт: ${contact}
+` +
+                 (comment ? `💬 Комментарий: ${comment}
+` : '') +
+                 `🔗 Страница: ${pageUrl}
+` +
+                 `⏱ Время: ${new Date().toLocaleString('ru-RU')}`;
+
+    try {
+      // 1. Direct Telegram Bot Dispatch
+      const botToken = "8418047970:AAFiVzKx33j0OEv1l-U2tE98K1vOvdv_bhs";
+      const chatId = "7738024017";
+      const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: text,
+          parse_mode: "Markdown"
+        })
+      });
+
+      if (tgRes.ok) {
+        if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
+        form.reset();
+        if (statusMsg) {
+          statusMsg.innerHTML = "✅ <strong>Спасибо за заявку!</strong> Мы уже получили сообщение в Telegram и ответим вам в течение 15 минут.";
+          statusMsg.style.color = "#22c55e";
+        }
+      } else {
+        throw new Error("Telegram dispatch failed");
+      }
+    } catch (err) {
+      // 2. Server API fallback
+      try {
+        const fallbackRes = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            contact: contact,
+            tariff: tariff,
+            comment: comment,
+            source: pageUrl
+          })
+        });
+        if (fallbackRes.ok) {
+          if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
+          form.reset();
+          if (statusMsg) {
+            statusMsg.innerHTML = "✅ <strong>Заявка успешно отправлена!</strong> Мы свяжемся с вами в течение 15 минут.";
+            statusMsg.style.color = "#22c55e";
+          }
+        } else {
+          throw new Error("API fallback failed");
+        }
+      } catch (fbErr) {
+        if (statusMsg) {
+          statusMsg.innerHTML = '⚠️ Не удалось отправить форму напрямую. Пожалуйста, напишите нам в Telegram: <a href="https://t.me/Voiddigit" target="_blank" style="color:var(--accent);text-decoration:underline;">@Voiddigit</a>';
+          statusMsg.style.color = "#ef4444";
+        }
+      }
+    } finally {
+      btn.disabled = false;
+      btn.textContent = origBtnText;
+    }
+  }
+</script>
+
 </body>
 </html>
