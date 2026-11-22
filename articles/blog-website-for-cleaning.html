@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fafaf9">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
+  <title>Сайт для клининговой компании под ключ от 45 000 ₽ — VOID Digital</title>
+  <meta name="description" content="Разработка сайта для клининговой компании под ключ: онлайн-калькулятор м², выбор типа уборки, оплата по СБП, лиды в Telegram. ✓ Договор ИП. Смотрите тарифы!">
+  <link rel="canonical" href="https://void-digital.ru/blog-website-for-cleaning">
+  <meta property="og:title" content="Сайт для клининговой компании под ключ от 45 000 ₽ — VOID Digital">
+  <meta property="og:description" content="Разработка сайта для клининговой компании под ключ: онлайн-калькулятор м², выбор типа уборки, оплата по СБП, лиды в Telegram. ✓ Договор ИП. Смотрите тарифы!">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://void-digital.ru/blog-website-for-cleaning">
+  <meta property="og:image" content="https://void-digital.ru/img/blog-website-for-cleaning/blog-cleaning-cover.jpg">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/css/style.css?v=20261122">
+
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Сайт для клининговой компании и уборки помещений: разработка под ключ с калькулятором м²",
+  "description": "Разработка сайта для клининговой компании под ключ: онлайн-калькулятор м², выбор типа уборки, оплата по СБП, лиды в Telegram. ✓ Договор ИП. Смотрите тарифы!",
+  "image": "https://void-digital.ru/img/blog-website-for-cleaning/blog-cleaning-cover.jpg",
+  "author": {
+    "@type": "Organization",
+    "name": "VOID Digital",
+    "url": "https://void-digital.ru"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "VOID Digital",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://void-digital.ru/icon.svg"
+    }
+  },
+  "datePublished": "2026-11-22",
+  "dateModified": "2026-11-22",
+  "mainEntityOfPage": "https://void-digital.ru/blog-website-for-cleaning"
+}
+  </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Сколько стоит разработка сайта для клининговой компании?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Базовый лендинг клининга стоит от 35 000 ₽. Полноценный сайт с интерактивным калькулятором м² и квизом — от 55 000 ₽. B2B-портал для работы с юрлицами — от 85 000 ₽."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как работает калькулятор стоимости уборки на сайте?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Клиент выбирает тип объекта (квартира, дом, офис), указывает метраж ползунком и отмечает галочками доп. услуги (мытье окон, духовка, балкон). Сайт мгновенно считает цену и предлагает отправить заявку в Telegram с фиксацией скидки."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Поможет ли сайт получать заявки из Яндекс Поиска?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да! Мы закладываем грамотную структуру посадочных страниц под все популярные запросы («уборка после ремонта», «генеральная уборка», «клининг офисов»), прописываем микроразметку и подключаем протокол IndexNow для быстрой индексации."
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://void-digital.ru/" },
+      { "@type": "ListItem", "position": 2, "name": "Блог", "item": "https://void-digital.ru/blog" },
+      { "@type": "ListItem", "position": 3, "name": "Сайт для клининговой компании и уборки помещений: разработка под ключ с калькулятором м²", "item": "https://void-digital.ru/blog-website-for-cleaning" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+    }
+    .tariff-price {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 10px 0 4px;
+    }
+    .tariff-features {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 18px;
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .tariff-features li {
+      margin-bottom: 7px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .tariff-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .tariff-features li.dimmed {
+      color: var(--muted);
+      opacity: 0.7;
+    }
+    .tariff-features li.dimmed::before {
+      content: "–";
+      color: var(--muted);
+    }
+
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin: 12px 0 16px;
+      text-align: left;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 12px !important;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      #landing-tariffs-grid .tariff-card {
+        min-width: 84vw;
+        max-width: 84vw;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+    <button class="nav-toggle" aria-label="Меню" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/services">Услуги и цены</a></li>
+      <li><a href="/portfolio">Портфолио</a></li>
+      <li><a href="/about">О нас</a></li>
+      <li><a href="/blog" aria-current="page">Блог</a></li>
+      <li><a href="/contacts">Контакты</a></li>
+      <li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
+      <li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="post-wrap">
+  <div class="container container-sm">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки" style="margin: 24px 0 16px; font-size: 0.85rem; color: var(--muted);">
+      <a href="/" style="color: inherit; text-decoration: none;">Главная</a>
+      <span class="sep" style="margin: 0 6px;">/</span>
+      <a href="/blog" style="color: inherit; text-decoration: none;">Блог</a>
+      <span class="sep" style="margin: 0 6px;">/</span>
+      <span style="color: var(--text);">Отраслевые решения</span>
+    </nav>
+
+    <header class="post-header" style="margin-bottom: 24px;">
+      <span class="tag" style="background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); font-weight: 700; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">ОТРАСЛЕВЫЕ РЕШЕНИЯ • КЛИНИНГ</span>
+      <h1 class="post-title" style="font-size: 2.1rem; font-weight: 800; line-height: 1.25; margin: 14px 0 12px;">Сайт для клининговой компании и уборки помещений: разработка под ключ с калькулятором м²</h1>
+      <div class="post-meta" style="font-size: 0.85rem; color: var(--muted); display: flex; gap: 14px; align-items: center;">
+        <span>22 ноября 2026</span>
+        <span>•</span>
+        <span>7 мин чтения</span>
+        <span>•</span>
+        <span>Даниил, веб-студия VOID digital</span>
+      </div>
+    </header>
+
+    <div class="post-cover" style="margin-bottom: 32px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border);">
+      <img src="/img/blog-website-for-cleaning/blog-cleaning-cover.jpg" alt="Сайт для клининговой компании и уборки помещений: разработка под ключ с калькулятором м²" width="1536" height="1024" style="width: 100%; height: auto; display: block;" loading="eager">
+    </div>
+
+    <article class="article-content" style="line-height: 1.7; font-size: 1.05rem; color: var(--text);">
+      <p style="font-size: 1.15rem; font-weight: 500; color: var(--text); margin-bottom: 24px;">
+        В этой нише клиент принимает решение о заказе за считанные секунды: если на сайте нет мгновенного расчета стоимости, прозрачного прайс-листа и возможности оставить заявку в 1 клик — он закрывает вкладку и уходит к конкурентам. Разбираем, как разработать продающий сайт с интерактивными калькуляторами, интеграцией Telegram и гарантией лидов.
+      </p>
+
+      <h2>Почему шаблонные сайты в этой сфере сливают рекламный бюджет</h2>
+      <p>Большинство предпринимателей заказывают стандартные лендинги на бесплатных шаблонах. В итоге они сталкиваются с тремя типичными проблемами:</p>
+      <ul>
+        <li><strong>Отсутствие калькулятора стоимости:</strong> Заказчики не хотят звонить «чтобы просто узнать цену». Без интерактивного расчета конверсия падает в 3–4 раза.</li>
+        <li><strong>Медленная обработка лидов:</strong> Заявки падают на почту, которую проверяют раз в день. Пока менеджер перезванивает, клиент уже заказал услугу у конкурента.</li>
+        <li><strong>Слабая мобильная версия:</strong> До 85% трафика в сфере услуг идет со смартфонов. Если кнопка вызова или форма не адаптированы под палец — 8 из 10 клиентов уходят.</li>
+      </ul>
+
+      <h2>Ключевые модули продающего сайта под ключ</h2>
+      <p>Чтобы сайт стабильно приносил поток платежеспособных клиентов, мы проектируем индивидуальную архитектуру:</p>
+      <ul>
+        <li><strong>Интерактивный квиз / калькулятор параметров:</strong> расчет сметы в 3 шага с фиксацией скидки за отправку заявки.</li>
+        <li><strong>Моментальный захват лидов:</strong> заявки доставляются за 2 секунды прямо в Telegram руководителя и в CRM-систему.</li>
+        <li><strong>Убедительный блок доверия:</strong> реальные кейсы «До/После», отзывы, сертификаты и официальный договор ИП с финансовой ответственностью.</li>
+        <li><strong>AI-Ready и SEO-оптимизация:</strong> чистый код, семантический файл llms.txt и микроразметка для попадания в ответы Яндекс Нейро и ChatGPT Search.</li>
+      </ul>
+
+      <!-- ТАРИФНАЯ СЕТКА -->
+      <section class="tariffs-section" id="tariffs" style="margin: 48px 0;">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 32px;">
+          <span class="tag" style="background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); font-weight: 700; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">Фиксированные цены по договору</span>
+          <h2 style="font-size: 1.85rem; font-weight: 800; margin: 12px 0 8px;">Стоимость и тарифы разработки под ключ</h2>
+          <p style="color: var(--muted); font-size: 0.95rem; margin: 0;">Выберите подходящий формат: от быстрого экспресс-запуска до полноценного отраслевого сервиса.</p>
+        </div>
+
+        <div class="grid grid-3" id="landing-tariffs-grid" style="gap: 16px;">
+          
+        <div class="card tariff-card" data-index="0" data-tariff="Клининг Экспресс" data-price="от 35 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted);">Быстрый старт</span>
+              <span style="font-size: 0.78rem; color: var(--muted); font-weight: 700;">от 7 дней</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Клининг Экспресс</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Посадочная страница под 1–2 ключевые услуги: уборка квартир, мойка окон или химчистка мебели.</p>
+            <div class="tariff-price">от 35 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">под ключ с договором ИП</div>
+            <ul class="tariff-features">
+              <li>Конверсионный лендинг с адаптацией под смартфоны</li><li>Краткий прайс-лист с разбивкой по типам комнат</li><li>Форма быстрой заявки с моментальной доставкой в Telegram</li><li>Фотогалерея «До / После» и отзывы клиентов</li><li>Базовая SEO-настройка и подключение Яндекс Метрики</li>
+              <li class="dimmed">Калькулятор расчета стоимости по м²</li><li class="dimmed">Онлайн-оплата и интеграция CRM</li>
+            </ul>
+          </div>
+          <div><button type="button" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбрать этот тариф</button></div>
+        </div>
+        
+        <div class="card tariff-card active" data-index="1" data-tariff="Клининг Профи (Калькулятор м²)" data-price="от 55 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="tariff-badge">Хит продаж</span>
+              <span style="font-size: 0.78rem; color: var(--accent); font-weight: 700;">от 12 дней</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Клининг Профи (Калькулятор м²)</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Полноценный продающий сайт клининговой службы с интерактивным калькулятором сметы в 3 клика.</p>
+            <div class="tariff-price" style="color: var(--accent);">от 55 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">под ключ с договором ИП</div>
+            <ul class="tariff-features">
+              <li><strong>Все опции базового тарифа</strong> в авторском UI/UX дизайне</li><li>Интерактивный калькулятор: выбор площади м², доп. опций и степени загрязнения</li><li>Разделение услуг: частный клининг (квартиры, коттеджи) и B2B (офисы, склады)</li><li>Онлайн-запись даты и времени выезда клинеров</li><li>Мгновенный захват лидов в Telegram и CRM (amoCRM/Битрикс24)</li><li>SEO-оптимизация под 30+ поисковых запросов в вашем городе</li>
+              
+            </ul>
+          </div>
+          <div><button type="button" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбранный тариф</button></div>
+        </div>
+        
+        <div class="card tariff-card" data-index="2" data-tariff="Клининг Премиум / B2B Сервис" data-price="от 85 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted);">Для сетей и B2B</span>
+              <span style="font-size: 0.78rem; color: var(--muted); font-weight: 700;">от 18 дней</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Клининг Премиум / B2B Сервис</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Масштабный портал для крупных клининговых компаний, госконтрактов и обслуживания коммерческой недвижимости.</p>
+            <div class="tariff-price">от 85 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">под ключ с договором ИП</div>
+            <ul class="tariff-features">
+              <li>Отдельные разделы для тендеров, юрлиц, управляющих компаний и ТЦ</li><li>Опросные листы и генерация коммерческих предложений в PDF</li><li>Прием оплат и предоплат онлайн через СБП с фискализацией (54-ФЗ)</li><li>Личный кабинет постоянного B2B-клиента с актами и счетами</li><li>Оптимизация под AI-поиск (Яндекс Нейро, ChatGPT Search, AIO)</li><li>SLA техподдержка и гарантия 12 месяцев</li>
+              
+            </ul>
+          </div>
+          <div><button type="button" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбрать этот тариф</button></div>
+        </div>
+        
+        </div>
+
+        <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin: 18px 0 28px;">
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+          <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+          <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+        </div>
+
+        <!-- ФОРМА ЗАХВАТА -->
+        <div id="tariff-order-block" class="card" style="margin-top: 24px; padding: 28px; border: 1.5px solid var(--accent); background: color-mix(in srgb, var(--accent) 3%, var(--card-bg, #1a1a1f)); border-radius: 16px;">
+          <div style="max-width: 600px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 20px;">
+              <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent); text-transform: uppercase;">Расчет стоимости проекта</span>
+              <h3 style="font-size: 1.45rem; font-weight: 800; margin: 6px 0;">Выбранный тариф: <span id="selected-tariff-name" style="color: var(--accent);">Клининг Профи (Калькулятор м²)</span></h3>
+              <p style="color: var(--muted); font-size: 0.9rem; margin: 0;">Стоимость: <strong id="selected-tariff-price" style="color: var(--text);">от 55 000 ₽</strong>. Ответим в Telegram за 15 минут со сметой под вашу компанию.</p>
+            </div>
+
+            <form id="article-lead-form" style="display: grid; gap: 14px;">
+              <input type="hidden" id="form-tariff-input" name="tariff" value="Клининг Профи (Калькулятор м²) (от 55 000 ₽)">
+              <div>
+                <label for="lead-contact" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Телефон или контакт в Telegram <span style="color: var(--accent);">*</span></label>
+                <input type="text" id="lead-contact" name="contact" placeholder="+7 (999) 000-00-00 или @username" required style="width: 100%; padding: 12px 16px; font-size: 0.95rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);">
+              </div>
+              <div>
+                <label for="lead-task" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Город и пожелания к сайту</label>
+                <textarea id="lead-task" name="task" rows="3" placeholder="Например: клининговая компания в Москве, уборка квартир и офисов, нужен калькулятор м² и лиды в Telegram" style="width: 100%; padding: 12px 16px; font-size: 0.95rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-family: inherit; resize: vertical;"></textarea>
+              </div>
+              <label class="consent-check-label">
+                <input type="checkbox" id="lead-consent-check" name="consent" checked required>
+                <span>Даю согласие на <a href="/consent" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+              </label>
+              <div class="tariff-btn-row" style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+                <button type="submit" id="lead-submit-btn" class="btn btn-primary" style="padding: 13px 28px; font-size: 1rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 8px; border: none; cursor: pointer;">
+                  Рассчитать смету и получить консультацию →
+                </button>
+                <a href="https://t.me/Voiddigit?text=Здравствуйте!%20Хочу%20обсудить%20разработку%20сайта." target="_blank" rel="noopener" style="font-size: 0.9rem; color: var(--muted); text-decoration: underline;">Или написать сразу в Telegram</a>
+              </div>
+              <div id="lead-status-msg" style="display: none; padding: 14px; border-radius: 8px; font-size: 0.95rem; margin-top: 10px;"></div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <h2>Часто задаваемые вопросы (FAQ)</h2>
+      
+        <div style="margin-bottom: 20px; padding: 18px 22px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg);">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0 0 8px; color: var(--accent);">Сколько стоит разработка сайта для клининговой компании?</h3>
+          <p style="font-size: 0.95rem; color: var(--text); line-height: 1.6; margin: 0;">Базовый лендинг клининга стоит от 35 000 ₽. Полноценный сайт с интерактивным калькулятором м² и квизом — от 55 000 ₽. B2B-портал для работы с юрлицами — от 85 000 ₽.</p>
+        </div>
+        
+        <div style="margin-bottom: 20px; padding: 18px 22px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg);">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0 0 8px; color: var(--accent);">Как работает калькулятор стоимости уборки на сайте?</h3>
+          <p style="font-size: 0.95rem; color: var(--text); line-height: 1.6; margin: 0;">Клиент выбирает тип объекта (квартира, дом, офис), указывает метраж ползунком и отмечает галочками доп. услуги (мытье окон, духовка, балкон). Сайт мгновенно считает цену и предлагает отправить заявку в Telegram с фиксацией скидки.</p>
+        </div>
+        
+        <div style="margin-bottom: 20px; padding: 18px 22px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg);">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin: 0 0 8px; color: var(--accent);">Поможет ли сайт получать заявки из Яндекс Поиска?</h3>
+          <p style="font-size: 0.95rem; color: var(--text); line-height: 1.6; margin: 0;">Да! Мы закладываем грамотную структуру посадочных страниц под все популярные запросы («уборка после ремонта», «генеральная уборка», «клининг офисов»), прописываем микроразметку и подключаем протокол IndexNow для быстрой индексации.</p>
+        </div>
+        
+
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-col">
+      <a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+      <p class="footer-desc">Дизайн и разработка сайтов для малого бизнеса под ключ. Официальный договор ИП, соблюдение сроков и прямая связь с разработчиком.</p>
+      <div class="footer-socials">
+        <a href="https://t.me/Voiddigit" target="_blank" rel="noopener" aria-label="Telegram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></a>
+        <a href="https://wa.me/79538550813" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Услуги</h4>
+      <ul>
+        <li><a href="/services">Все услуги и цены</a></li>
+        <li><a href="/blog-landing-page-development">Лендинги под ключ</a></li>
+        <li><a href="/blog-corporate-website">Корпоративные сайты</a></li>
+        <li><a href="/blog-telegram-bots-development">Telegram-боты</a></li>
+        <li><a href="/blog-seo-promotion-under-key">SEO-продвижение</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Отраслевые решения</h4>
+      <ul>
+        <li><a href="/blog-website-for-construction">Строительство</a></li>
+        <li><a href="/blog-website-for-dentistry">Стоматология</a></li>
+        <li><a href="/blog-website-for-real-estate">Недвижимость</a></li>
+        <li><a href="/blog-website-for-hotel">Отели и глэмпинги</a></li>
+        <li><a href="/blog-website-for-cleaning">Клининговые компании</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Контакты</h4>
+      <p><a href="tel:+79538550813">+7 953 855-08-13</a></p>
+      <p><a href="https://t.me/Voiddigit" target="_blank" rel="noopener">@Voiddigit (Telegram)</a></p>
+      <p style="font-size: 0.82rem; color: var(--muted); margin-top: 10px;">Пн–Вс: 9:00 — 21:00 (МСК)</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <p>© 2026 VOID digital. Все права защищены.</p>
+      <div class="footer-legal">
+        <a href="/privacy">Политика конфиденциальности</a>
+        <a href="/consent">Согласие на обработку данных</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function() {
+    var currentTariff = 'Клининг Профи (Калькулятор м²)';
+    var currentPrice = 'от 55 000 ₽';
+
+    window.selectArticleTariff = function(cardElem) {
+      var cards = document.querySelectorAll('.tariff-card');
+      cards.forEach(function(c) {
+        c.classList.remove('active');
+        c.style.borderColor = 'var(--border)';
+        c.style.boxShadow = 'none';
+        var btn = c.querySelector('button');
+        if (btn) btn.textContent = 'Выбрать этот тариф';
+      });
+
+      cardElem.classList.add('active');
+      cardElem.style.borderColor = 'var(--accent)';
+      cardElem.style.boxShadow = '0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06)';
+      var activeBtn = cardElem.querySelector('button');
+      if (activeBtn) activeBtn.textContent = 'Выбранный тариф';
+
+      currentTariff = cardElem.getAttribute('data-tariff') || 'Клининг Профи (Калькулятор м²)';
+      currentPrice = cardElem.getAttribute('data-price') || 'от 55 000 ₽';
+
+      var titleSpan = document.getElementById('selected-tariff-name');
+      var priceSpan = document.getElementById('selected-tariff-price');
+      var hiddenInput = document.getElementById('form-tariff-input');
+
+      if (titleSpan) titleSpan.textContent = currentTariff;
+      if (priceSpan) priceSpan.textContent = currentPrice;
+      if (hiddenInput) hiddenInput.value = currentTariff + ' (' + currentPrice + ')';
+
+      var orderBlock = document.getElementById('tariff-order-block');
+      if (orderBlock && window.innerWidth <= 768) {
+        orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    };
+
+    function initPage() {
+      var grid = document.getElementById('landing-tariffs-grid');
+      var dots = document.querySelectorAll('.tariff-dot');
+      var cards = document.querySelectorAll('.tariff-card');
+
+      dots.forEach(function(dot, idx) {
+        dot.style.cursor = 'pointer';
+        dot.addEventListener('click', function() {
+          if (cards[idx]) {
+            window.selectArticleTariff(cards[idx]);
+            if (window.innerWidth <= 768 && grid) {
+              cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+          }
+        });
+      });
+
+      if (window.innerWidth <= 768 && grid && cards[1]) {
+        setTimeout(function() {
+          cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+        }, 120);
+        setTimeout(function() {
+          cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+        }, 350);
+      }
+
+      if (grid && dots.length > 0) {
+        grid.addEventListener('scroll', function() {
+          var scrollLeft = grid.scrollLeft;
+          var cardWidth = (grid.querySelector('.tariff-card') ? grid.querySelector('.tariff-card').offsetWidth : 280) + 12;
+          var index = Math.round(scrollLeft / cardWidth);
+          dots.forEach(function(dot, i) {
+            if (i === index) {
+              dot.classList.add('active');
+              dot.style.background = 'var(--accent)';
+              dot.style.width = '20px';
+              dot.style.borderRadius = '4px';
+            } else {
+              dot.classList.remove('active');
+              dot.style.background = 'var(--border)';
+              dot.style.width = '8px';
+              dot.style.borderRadius = '50%';
+            }
+          });
+        }, { passive: true });
+      }
+
+      var form = document.getElementById('article-lead-form');
+      var submitBtn = document.getElementById('lead-submit-btn');
+      var statusMsg = document.getElementById('lead-status-msg');
+
+      if (!form || !submitBtn) return;
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var contactVal = (document.getElementById('lead-contact').value || '').trim();
+        var taskVal = (document.getElementById('lead-task').value || '').trim();
+        var consentCheck = document.getElementById('lead-consent-check');
+
+        if (!contactVal) {
+          alert('Пожалуйста, укажите ваш контакт (телефон или Telegram)');
+          return;
+        }
+        if (consentCheck && !consentCheck.checked) {
+          alert('Необходимо согласие на обработку персональных данных');
+          return;
+        }
+
+        var originalBtnHtml = submitBtn.innerHTML;
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'Отправка заявки...';
+        statusMsg.style.display = 'none';
+
+        var messageText = '🧹 <b>НОВАЯ ЗАЯВКА: САЙТ ДЛЯ КЛИНИНГА!</b>\n\n' +
+                          '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+                          '📞 <b>Контакт:</b> ' + contactVal + '\n' +
+                          '💬 <b>Проект/Задача:</b> ' + (taskVal || 'Не указано') + '\n' +
+                          '🔗 <b>Страница:</b> ' + window.location.href;
+
+        var tgBotToken = '8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs';
+        var tgChatId = '7738024017';
+        var tgUrl = 'https://api.telegram.org/bot' + tgBotToken + '/sendMessage';
+
+        fetch(tgUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: tgChatId,
+            text: messageText,
+            parse_mode: 'HTML'
+          })
+        }).then(function(resp) {
+          return resp.json();
+        }).then(function(data) {
+          if (data && data.ok) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '✓ Заявка доставлена!';
+            statusMsg.style.display = 'block';
+            statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+            statusMsg.style.border = '1.5px solid var(--accent)';
+            statusMsg.style.color = 'var(--text)';
+            statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+            form.reset();
+            if (consentCheck) consentCheck.checked = true;
+          } else {
+            throw new Error('Telegram API error');
+          }
+        }).catch(function(err) {
+          fetch('/api/lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              tariff: currentTariff + ' (' + currentPrice + ')',
+              contact: contactVal,
+              message: taskVal,
+              page: window.location.href
+            })
+          }).finally(function() {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+            statusMsg.style.display = 'block';
+            statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+            statusMsg.style.border = '1.5px solid var(--accent)';
+            statusMsg.style.color = 'var(--text)';
+            statusMsg.innerHTML = '🎉 <b>Заявка принята!</b> Если хотите написать сразу в диалог: <a href="https://t.me/Voiddigit?text=' + encodeURIComponent('Здравствуйте! Заявка на тариф ' + currentTariff + '. Мой контакт: ' + contactVal) + '" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: underline;">Открыть чат с Даниилом</a>';
+          });
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+      initPage();
+    }
+  })();
+</script>
+
+</body>
+</html>

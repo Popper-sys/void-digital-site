@@ -7,14 +7,14 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
   <meta name="color-scheme" content="light dark">
   <script>document.documentElement.classList.add('js')</script>
-  <title>Редизайн сайта: заказать обновление сайта для бизнеса — VOID Digital</title>
-  <meta name="description" content="Когда бизнесу нужен редизайн сайта, что входит в обновление дизайна и структуры и сколько это стоит? Разбираем этапы работы и критерии выбора подрядчика.">
+  <title>Редизайн сайта под ключ от 29 000 ₽: модернизация — VOID Digital</title>
+  <meta name="description" content="Профессиональный редизайн сайта для бизнеса от 29 000 ₽: современный UI/UX дизайн, адаптация под смартфоны, сохранение SEO-трафика. ✓ Договор ИП. Закажите редизайн!">
   <link rel="canonical" href="https://void-digital.ru/blog-website-redesign">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="VOID | digital">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="Редизайн сайта: заказать обновление сайта для бизнеса — VOID Digital">
-  <meta property="og:description" content="Когда бизнесу нужен редизайн сайта, что входит в обновление дизайна и структуры и сколько это стоит? Разбираем этапы работы и критерии выбора подрядчика.">
+  <meta property="og:title" content="Редизайн сайта под ключ от 29 000 ₽: модернизация — VOID Digital">
+  <meta property="og:description" content="Профессиональный редизайн сайта для бизнеса от 29 000 ₽: современный UI/UX дизайн, адаптация под смартфоны, сохранение SEO-трафика. ✓ Договор ИП. Закажите редизайн!">
   <meta property="og:url" content="https://void-digital.ru/blog-website-redesign">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:image" content="https://void-digital.ru/img/blog-website-redesign/blog-redesign-cover.jpg?v=20261104">
@@ -32,6 +32,130 @@
     .post table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 15px; }
     .post th, .post td { text-align: left; padding: 10px 14px; border: 1px solid color-mix(in srgb, currentColor 16%, transparent); vertical-align: top; }
     .post thead th { font-weight: 600; }
+  
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+    }
+    .tariff-price {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 10px 0 4px;
+    }
+    .tariff-features {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 18px;
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .tariff-features li {
+      margin-bottom: 7px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .tariff-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .tariff-features li.dimmed {
+      color: var(--muted);
+      opacity: 0.7;
+    }
+    .tariff-features li.dimmed::before {
+      content: "–";
+      color: var(--muted);
+    }
+
+    /* Consent label 152-FZ */
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin: 12px 0 16px;
+      text-align: left;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 12px !important;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      #landing-tariffs-grid .tariff-card {
+        min-width: 84vw;
+        max-width: 84vw;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+    }
+
   </style>
   <script type="application/ld+json">
   {
@@ -341,7 +465,124 @@
 <p>Может повлиять как положительно, так и отрицательно. Если при обновлении сохранить важные страницы, контент и корректные перенаправления, можно снизить риск потери поисковой видимости. Само по себе обновление дизайна не гарантирует роста позиций.</p>
 <p><strong>Планируете заказать редизайн сайта?</strong> Обсудите проект с VOID Digital: оценим текущий ресурс и определим, какие изменения необходимы для задач вашего бизнеса.</p>
       <p>Материал связан с <a href="/blog-site-audit">аудитом сайта</a> и <a href="/blog-website-improvements">доработкой действующего сайта</a>: если фундаментальный редизайн пока не требуется, точечные улучшения помогут развить проект быстрее и с меньшими затратами.</p>
-      <div class="cta mt-40"><h2>Обсудить редизайн сайта</h2><p>Расскажите о задачах бизнеса и действующем сайте. Вместе определим подходящий формат обновления.</p><a class="btn" href="/contacts">Обсудить проект</a></div>
+      <div class="cta mt-40">
+    <section class="tariffs-section" id="tariffs" style="margin: 48px 0;">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 32px;">
+        <span class="tag" style="background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); font-weight: 700; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">Модернизация без потери позиций</span>
+        <h2 style="font-size: 1.85rem; font-weight: 800; margin: 12px 0 8px;">Тарифы на редизайн и обновление сайта</h2>
+        <p style="color: var(--muted); font-size: 0.95rem; margin: 0;">Переводим устаревший сайт на современный визуальный язык, удваиваем конверсию и бережно сохраняем весь поисковый трафик.</p>
+      </div>
+
+      <div class="grid grid-3" id="landing-tariffs-grid" style="gap: 16px;">
+        <div class="card tariff-card" data-index="0" data-tariff="Освежение интерфейса (UI)" data-price="от 25 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted);">Косметический</span>
+              <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">от 7 дней</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Освежение (UI Refresh)</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Быстрое визуальное омоложение сайта без изменения внутренней логики и структуры.</p>
+            <div class="tariff-price">от 25 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">фикс по договору</div>
+            <ul class="tariff-features">
+              <li>Замена устаревших шрифтов на современные и читаемые гарнитуры</li>
+              <li>Обновление цветовой палитры, кнопок и контрастности</li>
+              <li>Редизайн первого экрана и шапки сайта под смартфоны</li>
+              <li>Замена старых иконок и некачественных фото на современные</li>
+              <li class="dimmed">Глубокая переработка пути клиента (UX)</li>
+              <li class="dimmed">Перенос на новый быстрый движок / CMS</li>
+            </ul>
+          </div>
+          <div><button type="button" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбрать этот тариф</button></div>
+        </div>
+
+        <div class="card tariff-card active" data-index="1" data-tariff="Полный редизайн сайта" data-price="от 49 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="tariff-badge">Хит • Рост конверсии 2x</span>
+              <span style="font-size: 0.78rem; color: var(--accent); font-weight: 700;">от 14 дней</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Полный редизайн (UX/UI)</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Комплексная перезагрузка сайта: новая структура, идеальный мобильный вид и рост лидов.</p>
+            <div class="tariff-price" style="color: var(--accent);">от 49 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">сохранение 100% SEO-позиций</div>
+            <ul class="tariff-features">
+              <li><strong>Все опции базового тарифа</strong> с глубоким аудитом конверсии</li>
+              <li>Проектирование новой конверсионной структуры и пути клиента</li>
+              <li>Сохранение всех старых URL и редиректов (0 потерь в поиске)</li>
+              <li>Внедрение интерактивных квизов, калькуляторов и фильтров</li>
+              <li>Адаптивная верстка, летающая на смартфонах за 1 секунду</li>
+              <li>Мгновенный захват лидов в Telegram и CRM (Битрикс24/amoCRM)</li>
+            </ul>
+          </div>
+          <div><button type="button" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбранный тариф</button></div>
+        </div>
+
+        <div class="card tariff-card" data-index="2" data-tariff="Редизайн + Перенос на новый стек" data-price="от 79 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted);">Под ключ</span>
+              <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">от 22 дней</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Редизайн + Новый стек</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Миграция со старых «тяжелых» CMS на чистый быстрый код или Tilda с переработкой логики.</p>
+            <div class="tariff-price">от 79 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">максимальная скорость и надежность</div>
+            <ul class="tariff-features">
+              <li>Полный перенос базы данных, товаров, статей и медиа</li>
+              <li>Ускорение загрузки сайта (Google PageSpeed 90+ в зеленой зоне)</li>
+              <li>Защита от взломов, спама и вредоносного кода</li>
+              <li>Настройка сквозной аналитики и микроразметки Schema.org</li>
+              <li>Удобная админка без необходимости нанимать программиста на правки</li>
+              <li>Гарантия на все работы и техподдержка 6 месяцев</li>
+            </ul>
+          </div>
+          <div><button type="button" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбрать этот тариф</button></div>
+        </div>
+      </div>
+
+      <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin: 18px 0 28px;">
+        <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+        <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+        <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+      </div>
+
+      <div id="tariff-order-block" class="card" style="margin-top: 24px; padding: 28px; border: 1.5px solid var(--accent); background: color-mix(in srgb, var(--accent) 3%, var(--card-bg, #1a1a1f)); border-radius: 16px;">
+        <div style="max-width: 600px; margin: 0 auto;">
+          <div style="text-align: center; margin-bottom: 20px;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent); text-transform: uppercase;">Заявка на редизайн</span>
+            <h3 style="font-size: 1.45rem; font-weight: 800; margin: 6px 0;">Выбранный тариф: <span id="selected-tariff-name" style="color: var(--accent);">Полный редизайн сайта</span></h3>
+            <p style="color: var(--muted); font-size: 0.9rem; margin: 0;">Стоимость: <strong id="selected-tariff-price" style="color: var(--text);">от 49 000 ₽</strong>. Проанализируем ваш сайт и подготовим концепцию редизайна.</p>
+          </div>
+
+          <form id="article-lead-form" style="display: grid; gap: 14px;">
+            <input type="hidden" id="form-tariff-input" name="tariff" value="Полный редизайн сайта (от 49 000 ₽)">
+            <div>
+              <label for="lead-contact" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Телефон или контакт в Telegram <span style="color: var(--accent);">*</span></label>
+              <input type="text" id="lead-contact" name="contact" placeholder="+7 (999) 000-00-00 или @username" required style="width: 100%; padding: 12px 16px; font-size: 0.95rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);">
+            </div>
+            <div>
+              <label for="lead-task" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Адрес действующего сайта для редизайна</label>
+              <input type="text" id="lead-task" name="task" placeholder="https://vash-sait.ru" style="width: 100%; padding: 12px 16px; font-size: 0.95rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);">
+            </div>
+            <label class="consent-check-label">
+              <input type="checkbox" id="lead-consent-check" name="consent" checked required>
+              <span>Даю согласие на <a href="/consent" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+            </label>
+            <div class="tariff-btn-row" style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+              <button type="submit" id="lead-submit-btn" class="btn btn-primary" style="padding: 13px 28px; font-size: 1rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 8px; border: none; cursor: pointer;">
+                Рассчитать стоимость редизайна →
+              </button>
+              <a href="https://t.me/Voiddigit?text=Здравствуйте!%20Хочу%20обсудить%20редизайн%20сайта." target="_blank" rel="noopener" style="font-size: 0.9rem; color: var(--muted); text-decoration: underline;">Или написать в Telegram</a>
+            </div>
+            <div id="lead-status-msg" style="display: none; padding: 14px; border-radius: 8px; font-size: 0.95rem; margin-top: 10px;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+
+      <h2>Обсудить редизайн сайта</h2><p>Расскажите о задачах бизнеса и действующем сайте. Вместе определим подходящий формат обновления.</p><a class="btn" href="/contacts">Обсудить проект</a></div>
     </div></div>
   </article>
 </main>
@@ -367,6 +608,183 @@
 </footer>
 <script src="js/main.js?v=75bccd28"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+    <script>
+      (function() {
+        var currentTariff = 'Полный редизайн сайта';
+        var currentPrice = 'от 49 000 ₽';
+
+        window.selectArticleTariff = function(cardElem) {
+          var cards = document.querySelectorAll('.tariff-card');
+          cards.forEach(function(c) {
+            c.classList.remove('active');
+            c.style.borderColor = 'var(--border)';
+            c.style.boxShadow = 'none';
+            var btn = c.querySelector('button');
+            if (btn) btn.textContent = 'Выбрать этот тариф';
+          });
+
+          cardElem.classList.add('active');
+          cardElem.style.borderColor = 'var(--accent)';
+          cardElem.style.boxShadow = '0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06)';
+          var activeBtn = cardElem.querySelector('button');
+          if (activeBtn) activeBtn.textContent = 'Выбранный тариф';
+
+          currentTariff = cardElem.getAttribute('data-tariff') || 'Полный редизайн сайта';
+          currentPrice = cardElem.getAttribute('data-price') || 'от 49 000 ₽';
+
+          var titleSpan = document.getElementById('selected-tariff-name');
+          var priceSpan = document.getElementById('selected-tariff-price');
+          var hiddenInput = document.getElementById('form-tariff-input');
+
+          if (titleSpan) titleSpan.textContent = currentTariff;
+          if (priceSpan) priceSpan.textContent = currentPrice;
+          if (hiddenInput) hiddenInput.value = currentTariff + ' (' + currentPrice + ')';
+
+          var orderBlock = document.getElementById('tariff-order-block');
+          if (orderBlock && window.innerWidth <= 768) {
+            orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        };
+
+        function initTariffPage() {
+          var grid = document.getElementById('landing-tariffs-grid');
+          var dots = document.querySelectorAll('.tariff-dot');
+          var cards = document.querySelectorAll('.tariff-card');
+
+          dots.forEach(function(dot, idx) {
+            dot.style.cursor = 'pointer';
+            dot.addEventListener('click', function() {
+              if (cards[idx]) {
+                window.selectArticleTariff(cards[idx]);
+                if (window.innerWidth <= 768 && grid) {
+                  cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+              }
+            });
+          });
+
+          if (window.innerWidth <= 768 && grid && cards[1]) {
+            setTimeout(function() {
+              cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+            }, 120);
+            setTimeout(function() {
+              cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+            }, 350);
+          }
+
+          if (grid && dots.length > 0) {
+            grid.addEventListener('scroll', function() {
+              var scrollLeft = grid.scrollLeft;
+              var cardWidth = (grid.querySelector('.tariff-card') ? grid.querySelector('.tariff-card').offsetWidth : 280) + 12;
+              var index = Math.round(scrollLeft / cardWidth);
+              dots.forEach(function(dot, i) {
+                if (i === index) {
+                  dot.classList.add('active');
+                  dot.style.background = 'var(--accent)';
+                  dot.style.width = '20px';
+                  dot.style.borderRadius = '4px';
+                } else {
+                  dot.classList.remove('active');
+                  dot.style.background = 'var(--border)';
+                  dot.style.width = '8px';
+                  dot.style.borderRadius = '50%';
+                }
+              });
+            }, { passive: true });
+          }
+
+          var form = document.getElementById('article-lead-form');
+          var submitBtn = document.getElementById('lead-submit-btn');
+          var statusMsg = document.getElementById('lead-status-msg');
+
+          if (!form || !submitBtn) return;
+
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var contactVal = (document.getElementById('lead-contact').value || '').trim();
+            var taskVal = (document.getElementById('lead-task').value || '').trim();
+            var consentCheck = document.getElementById('lead-consent-check');
+
+            if (!contactVal) {
+              alert('Пожалуйста, укажите ваш контакт (телефон или Telegram)');
+              return;
+            }
+            if (consentCheck && !consentCheck.checked) {
+              alert('Необходимо согласие на обработку персональных данных');
+              return;
+            }
+
+            var originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Отправка заявки...';
+            statusMsg.style.display = 'none';
+
+            var messageText = '🎨 <b>ЗАЯВКА НА РЕДИЗАЙН САЙТА!</b>\n\n' +
+                              '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+                              '📞 <b>Контакт:</b> ' + contactVal + '\n' +
+                              '💬 <b>Проект/Задача:</b> ' + (taskVal || 'Не указано') + '\n' +
+                              '🔗 <b>Страница:</b> ' + window.location.href;
+
+            var tgBotToken = '8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs';
+            var tgChatId = '7738024017';
+            var tgUrl = 'https://api.telegram.org/bot' + tgBotToken + '/sendMessage';
+
+            fetch(tgUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                chat_id: tgChatId,
+                text: messageText,
+                parse_mode: 'HTML'
+              })
+            }).then(function(resp) {
+              return resp.json();
+            }).then(function(data) {
+              if (data && data.ok) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '✓ Заявка доставлена!';
+                statusMsg.style.display = 'block';
+                statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                statusMsg.style.border = '1.5px solid var(--accent)';
+                statusMsg.style.color = 'var(--text)';
+                statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+                form.reset();
+                if (consentCheck) consentCheck.checked = true;
+              } else {
+                throw new Error('Telegram API error');
+              }
+            }).catch(function(err) {
+              fetch('/api/lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  tariff: currentTariff + ' (' + currentPrice + ')',
+                  contact: contactVal,
+                  message: taskVal,
+                  page: window.location.href
+                })
+              }).finally(function() {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
+                statusMsg.style.display = 'block';
+                statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                statusMsg.style.border = '1.5px solid var(--accent)';
+                statusMsg.style.color = 'var(--text)';
+                statusMsg.innerHTML = '🎉 <b>Заявка принята!</b> Если хотите написать сразу в диалог: <a href="https://t.me/Voiddigit?text=' + encodeURIComponent('Здравствуйте! Заявка на тариф ' + currentTariff + '. Мой контакт: ' + contactVal) + '" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: underline;">Открыть чат с Даниилом</a>';
+              });
+            });
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initTariffPage);
+        } else {
+          initTariffPage();
+        }
+      })();
+    </script>
+    
 </body>
 </html>
 

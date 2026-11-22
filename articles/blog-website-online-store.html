@@ -7,14 +7,14 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
   <meta name="color-scheme" content="light dark">
   <script>document.documentElement.classList.add('js')</script>
-  <title>Создание сайта интернет-магазина — функции, этапы и особенности разработки</title>
-  <meta name="description" content="Что входит в создание сайта интернет-магазина, какие функции нужны для онлайн-продаж и на что обратить внимание при разработке. Разбираем структуру, корзину, оплату и управление заказами.">
+  <title>Разработка интернет-магазина под ключ от 79 000 ₽ — VOID Digital</title>
+  <meta name="description" content="Создание интернет-магазина под ключ от 79 000 ₽: каталог, фильтры, корзина, онлайн-оплата по СБП, интеграция 1С/МойСклад. ✓ Договор ИП. Смотрите тарифы магазина!">
   <link rel="canonical" href="https://void-digital.ru/blog-website-online-store">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="VOID | digital">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="Создание сайта интернет-магазина — функции, этапы и особенности разработки">
-  <meta property="og:description" content="Что входит в создание сайта интернет-магазина, какие функции нужны для онлайн-продаж и на что обратить внимание при разработке. Разбираем структуру, корзину, оплату и управление заказами.">
+  <meta property="og:title" content="Разработка интернет-магазина под ключ от 79 000 ₽ — VOID Digital">
+  <meta property="og:description" content="Создание интернет-магазина под ключ от 79 000 ₽: каталог, фильтры, корзина, онлайн-оплата по СБП, интеграция 1С/МойСклад. ✓ Договор ИП. Смотрите тарифы магазина!">
   <meta property="og:url" content="https://void-digital.ru/blog-website-online-store">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:image" content="https://void-digital.ru/img/blog-website-online-store/blog-store-cover.jpg?v=20261115">
@@ -34,6 +34,130 @@
     .post table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .95rem; }
     .post th, .post td { padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); text-align: left; }
     .post th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
+  
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+    }
+    .tariff-price {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 10px 0 4px;
+    }
+    .tariff-features {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 18px;
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .tariff-features li {
+      margin-bottom: 7px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .tariff-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .tariff-features li.dimmed {
+      color: var(--muted);
+      opacity: 0.7;
+    }
+    .tariff-features li.dimmed::before {
+      content: "–";
+      color: var(--muted);
+    }
+
+    /* Consent label 152-FZ */
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin: 12px 0 16px;
+      text-align: left;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 12px !important;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      #landing-tariffs-grid .tariff-card {
+        min-width: 84vw;
+        max-width: 84vw;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+    }
+
   </style>
   <script type="application/ld+json">
   {
@@ -338,7 +462,124 @@
       <p class="mt-24">Рекомендуем также изучить: в чём отличия и специфика <a href="/blog-website-catalog">сайта-каталога для компании</a>, когда требуется <a href="/blog-website-personal-account">разработка личного кабинета</a>, как выбрать подрядчика в статье о <a href="/blog-how-to-choose-web-studio">выборе веб-студии</a> и из чего складывается <a href="/blog-cost-of-website">стоимость разработки сайта</a>.</p>
 
       <div class="cta mt-40">
-        <h2>Планируете запуск интернет-магазина?</h2>
+        
+    <section class="tariffs-section" id="tariffs" style="margin: 48px 0;">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 32px;">
+        <span class="tag" style="background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); font-weight: 700; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">E-Commerce под ключ</span>
+        <h2 style="font-size: 1.85rem; font-weight: 800; margin: 12px 0 8px;">Тарифы на создание интернет-магазина</h2>
+        <p style="color: var(--muted); font-size: 0.95rem; margin: 0;">Быстрый каталог, корзина в 1 шаг, оплата по СБП и картам без лишних комиссий, синхронизация склада.</p>
+      </div>
+
+      <div class="grid grid-3" id="landing-tariffs-grid" style="gap: 16px;">
+        <div class="card tariff-card" data-index="0" data-tariff="E-commerce Старт" data-price="от 59 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted);">До 150 товаров</span>
+              <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">от 14 дней</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">E-commerce Старт</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Идеально для запуска продаж монопродукта, одежды, крафтовых товаров и небольшого каталога.</p>
+            <div class="tariff-price">от 59 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">под ключ с договором ИП</div>
+            <ul class="tariff-features">
+              <li>Каталог товаров с категориями и карточками товара</li>
+              <li>Быстрая корзина и оформление заказа в 1 клик</li>
+              <li>Прием онлайн-оплат банковскими картами и СБП (0.7% комиссия)</li>
+              <li>Моментальное получение заказов в Telegram владельца</li>
+              <li class="dimmed">Сложная фильтрация по десяткам характеристик</li>
+              <li class="dimmed">Автоматическая синхронизация остатков с 1С</li>
+            </ul>
+          </div>
+          <div><button type="button" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбрать этот тариф</button></div>
+        </div>
+
+        <div class="card tariff-card active" data-index="1" data-tariff="Оптимальный магазин" data-price="от 89 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="tariff-badge">Хит продаж</span>
+              <span style="font-size: 0.78rem; color: var(--accent); font-weight: 700;">от 20 дней</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Оптимальный магазин</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Полноценный онлайн-магазин для ритейла и дистрибуции с интеграцией служб доставки.</p>
+            <div class="tariff-price" style="color: var(--accent);">от 89 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">максимум конверсии в покупку</div>
+            <ul class="tariff-features">
+              <li><strong>Все опции базового тарифа</strong> без ограничений по товарам</li>
+              <li>Умная фасетная фильтрация (цена, бренд, цвет, размеры)</li>
+              <li>Интеграция служб доставки: расчет СДЭК, Boxberry, Почта РФ</li>
+              <li>Синхронизация остатков и цен с МойСклад или 1С</li>
+              <li>Промокоды, скидки, таймеры акций и допродажи (Cross-sell)</li>
+              <li>SEO-структура каталога с микроразметкой Product и Offer</li>
+            </ul>
+          </div>
+          <div><button type="button" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбранный тариф</button></div>
+        </div>
+
+        <div class="card tariff-card" data-index="2" data-tariff="E-commerce Премиум" data-price="от 149 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted);">Маркетплейс/B2B</span>
+              <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">от 30 дней</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">E-commerce Премиум</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Для крупных магазинов и оптовиков: личный кабинет, оптовые цены, программа лояльности.</p>
+            <div class="tariff-price">от 149 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">масштабируемый проект</div>
+            <ul class="tariff-features">
+              <li>Личный кабинет клиента с бонусами, кэшбэком и историей покупок</li>
+              <li>B2B оптовые цены: раздельные условия для розницы и юрлиц</li>
+              <li>Двусторонняя интеграция с 1С (заказы, счета, накладные)</li>
+              <li>Интеграция с маркетплейсами (Wildberries, Ozon) через API</li>
+              <li>Высокая скорость загрузки при 50 000+ товаров в базе</li>
+              <li>SLA техподдержка и гарантия 12 месяцев</li>
+            </ul>
+          </div>
+          <div><button type="button" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбрать этот тариф</button></div>
+        </div>
+      </div>
+
+      <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin: 18px 0 28px;">
+        <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+        <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+        <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+      </div>
+
+      <div id="tariff-order-block" class="card" style="margin-top: 24px; padding: 28px; border: 1.5px solid var(--accent); background: color-mix(in srgb, var(--accent) 3%, var(--card-bg, #1a1a1f)); border-radius: 16px;">
+        <div style="max-width: 600px; margin: 0 auto;">
+          <div style="text-align: center; margin-bottom: 20px;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent); text-transform: uppercase;">Заказ интернет-магазина</span>
+            <h3 style="font-size: 1.45rem; font-weight: 800; margin: 6px 0;">Выбранный тариф: <span id="selected-tariff-name" style="color: var(--accent);">Оптимальный магазин</span></h3>
+            <p style="color: var(--muted); font-size: 0.9rem; margin: 0;">Стоимость: <strong id="selected-tariff-price" style="color: var(--text);">от 89 000 ₽</strong>. Ответим в Telegram за 15 минут со сметой.</p>
+          </div>
+
+          <form id="article-lead-form" style="display: grid; gap: 14px;">
+            <input type="hidden" id="form-tariff-input" name="tariff" value="Оптимальный магазин (от 89 000 ₽)">
+            <div>
+              <label for="lead-contact" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Телефон или контакт в Telegram <span style="color: var(--accent);">*</span></label>
+              <input type="text" id="lead-contact" name="contact" placeholder="+7 (999) 000-00-00 или @username" required style="width: 100%; padding: 12px 16px; font-size: 0.95rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);">
+            </div>
+            <div>
+              <label for="lead-task" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Категория товаров и примерный объем каталога</label>
+              <input type="text" id="lead-task" name="task" placeholder="Например: магазин автозапчастей, около 500 позиций, нужна выгрузка из МойСклад" style="width: 100%; padding: 12px 16px; font-size: 0.95rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);">
+            </div>
+            <label class="consent-check-label">
+              <input type="checkbox" id="lead-consent-check" name="consent" checked required>
+              <span>Даю согласие на <a href="/consent" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+            </label>
+            <div class="tariff-btn-row" style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+              <button type="submit" id="lead-submit-btn" class="btn btn-primary" style="padding: 13px 28px; font-size: 1rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 8px; border: none; cursor: pointer;">
+                Рассчитать смету интернет-магазина →
+              </button>
+              <a href="https://t.me/Voiddigit?text=Здравствуйте!%20Хочу%20заказать%20интернет-магазин." target="_blank" rel="noopener" style="font-size: 0.9rem; color: var(--muted); text-decoration: underline;">Или написать в Telegram</a>
+            </div>
+            <div id="lead-status-msg" style="display: none; padding: 14px; border-radius: 8px; font-size: 0.95rem; margin-top: 10px;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+
+      <h2>Планируете запуск интернет-магазина?</h2>
         <p>Команда VOID Digital спроектирует удобный каталог, настроит быструю онлайн-оплату и подключит интеграцию со складом и службами доставки. Обсудите ваш e-commerce проект с нашими экспертами.</p>
         <a class="btn" href="/contacts">Обсудить проект</a>
       </div>
@@ -367,5 +608,182 @@
 </footer>
 <script src="js/main.js?v=75bccd28"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+    <script>
+      (function() {
+        var currentTariff = 'Оптимальный магазин';
+        var currentPrice = 'от 89 000 ₽';
+
+        window.selectArticleTariff = function(cardElem) {
+          var cards = document.querySelectorAll('.tariff-card');
+          cards.forEach(function(c) {
+            c.classList.remove('active');
+            c.style.borderColor = 'var(--border)';
+            c.style.boxShadow = 'none';
+            var btn = c.querySelector('button');
+            if (btn) btn.textContent = 'Выбрать этот тариф';
+          });
+
+          cardElem.classList.add('active');
+          cardElem.style.borderColor = 'var(--accent)';
+          cardElem.style.boxShadow = '0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06)';
+          var activeBtn = cardElem.querySelector('button');
+          if (activeBtn) activeBtn.textContent = 'Выбранный тариф';
+
+          currentTariff = cardElem.getAttribute('data-tariff') || 'Оптимальный магазин';
+          currentPrice = cardElem.getAttribute('data-price') || 'от 89 000 ₽';
+
+          var titleSpan = document.getElementById('selected-tariff-name');
+          var priceSpan = document.getElementById('selected-tariff-price');
+          var hiddenInput = document.getElementById('form-tariff-input');
+
+          if (titleSpan) titleSpan.textContent = currentTariff;
+          if (priceSpan) priceSpan.textContent = currentPrice;
+          if (hiddenInput) hiddenInput.value = currentTariff + ' (' + currentPrice + ')';
+
+          var orderBlock = document.getElementById('tariff-order-block');
+          if (orderBlock && window.innerWidth <= 768) {
+            orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        };
+
+        function initTariffPage() {
+          var grid = document.getElementById('landing-tariffs-grid');
+          var dots = document.querySelectorAll('.tariff-dot');
+          var cards = document.querySelectorAll('.tariff-card');
+
+          dots.forEach(function(dot, idx) {
+            dot.style.cursor = 'pointer';
+            dot.addEventListener('click', function() {
+              if (cards[idx]) {
+                window.selectArticleTariff(cards[idx]);
+                if (window.innerWidth <= 768 && grid) {
+                  cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+              }
+            });
+          });
+
+          if (window.innerWidth <= 768 && grid && cards[1]) {
+            setTimeout(function() {
+              cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+            }, 120);
+            setTimeout(function() {
+              cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+            }, 350);
+          }
+
+          if (grid && dots.length > 0) {
+            grid.addEventListener('scroll', function() {
+              var scrollLeft = grid.scrollLeft;
+              var cardWidth = (grid.querySelector('.tariff-card') ? grid.querySelector('.tariff-card').offsetWidth : 280) + 12;
+              var index = Math.round(scrollLeft / cardWidth);
+              dots.forEach(function(dot, i) {
+                if (i === index) {
+                  dot.classList.add('active');
+                  dot.style.background = 'var(--accent)';
+                  dot.style.width = '20px';
+                  dot.style.borderRadius = '4px';
+                } else {
+                  dot.classList.remove('active');
+                  dot.style.background = 'var(--border)';
+                  dot.style.width = '8px';
+                  dot.style.borderRadius = '50%';
+                }
+              });
+            }, { passive: true });
+          }
+
+          var form = document.getElementById('article-lead-form');
+          var submitBtn = document.getElementById('lead-submit-btn');
+          var statusMsg = document.getElementById('lead-status-msg');
+
+          if (!form || !submitBtn) return;
+
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var contactVal = (document.getElementById('lead-contact').value || '').trim();
+            var taskVal = (document.getElementById('lead-task').value || '').trim();
+            var consentCheck = document.getElementById('lead-consent-check');
+
+            if (!contactVal) {
+              alert('Пожалуйста, укажите ваш контакт (телефон или Telegram)');
+              return;
+            }
+            if (consentCheck && !consentCheck.checked) {
+              alert('Необходимо согласие на обработку персональных данных');
+              return;
+            }
+
+            var originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Отправка заявки...';
+            statusMsg.style.display = 'none';
+
+            var messageText = '🛒 <b>ЗАЯВКА НА ИНТЕРНЕТ-МАГАЗИН!</b>\n\n' +
+                              '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+                              '📞 <b>Контакт:</b> ' + contactVal + '\n' +
+                              '💬 <b>Проект/Задача:</b> ' + (taskVal || 'Не указано') + '\n' +
+                              '🔗 <b>Страница:</b> ' + window.location.href;
+
+            var tgBotToken = '8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs';
+            var tgChatId = '7738024017';
+            var tgUrl = 'https://api.telegram.org/bot' + tgBotToken + '/sendMessage';
+
+            fetch(tgUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                chat_id: tgChatId,
+                text: messageText,
+                parse_mode: 'HTML'
+              })
+            }).then(function(resp) {
+              return resp.json();
+            }).then(function(data) {
+              if (data && data.ok) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '✓ Заявка доставлена!';
+                statusMsg.style.display = 'block';
+                statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                statusMsg.style.border = '1.5px solid var(--accent)';
+                statusMsg.style.color = 'var(--text)';
+                statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+                form.reset();
+                if (consentCheck) consentCheck.checked = true;
+              } else {
+                throw new Error('Telegram API error');
+              }
+            }).catch(function(err) {
+              fetch('/api/lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  tariff: currentTariff + ' (' + currentPrice + ')',
+                  contact: contactVal,
+                  message: taskVal,
+                  page: window.location.href
+                })
+              }).finally(function() {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
+                statusMsg.style.display = 'block';
+                statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                statusMsg.style.border = '1.5px solid var(--accent)';
+                statusMsg.style.color = 'var(--text)';
+                statusMsg.innerHTML = '🎉 <b>Заявка принята!</b> Если хотите написать сразу в диалог: <a href="https://t.me/Voiddigit?text=' + encodeURIComponent('Здравствуйте! Заявка на тариф ' + currentTariff + '. Мой контакт: ' + contactVal) + '" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: underline;">Открыть чат с Даниилом</a>';
+              });
+            });
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initTariffPage);
+        } else {
+          initTariffPage();
+        }
+      })();
+    </script>
+    
 </body>
 </html>
