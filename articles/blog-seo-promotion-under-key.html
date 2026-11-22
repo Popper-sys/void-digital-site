@@ -7,14 +7,14 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
   <meta name="color-scheme" content="light dark">
   <script>document.documentElement.classList.add('js')</script>
-  <title>SEO-продвижение сайта под ключ — что входит в услугу и как она работает</title>
-  <meta name="description" content="Что такое SEO-продвижение сайта под ключ, какие работы входят в комплексную услугу и как оценить подрядчика. Разбираем этапы, результаты и критерии выбора.">
+  <title>SEO-продвижение сайта под ключ в ТОП-10 от 35 000 ₽ — VOID Digital</title>
+  <meta name="description" content="Комплексное SEO-продвижение сайта под ключ в ТОП-10 Яндекса и Google: аудит, семантика, ссылки, оптимизация под AI-поиск (GEO). ✓ Тарифы от 35 000 ₽. Рассчитайте смету!">
   <link rel="canonical" href="https://void-digital.ru/blog-seo-promotion-under-key">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="VOID | digital">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="SEO-продвижение сайта под ключ — что входит в услугу и как она работает">
-  <meta property="og:description" content="Что такое SEO-продвижение сайта под ключ, какие работы входят в комплексную услугу и как оценить подрядчика. Разбираем этапы, результаты и критерии выбора.">
+  <meta property="og:title" content="SEO-продвижение сайта под ключ в ТОП-10 от 35 000 ₽ — VOID Digital">
+  <meta property="og:description" content="Комплексное SEO-продвижение сайта под ключ в ТОП-10 Яндекса и Google: аудит, семантика, ссылки, оптимизация под AI-поиск (GEO). ✓ Тарифы от 35 000 ₽. Рассчитайте смету!">
   <meta property="og:url" content="https://void-digital.ru/blog-seo-promotion-under-key">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:image" content="https://void-digital.ru/img/blog-seo-promotion-under-key/blog-turnkey-seo-cover.jpg?v=20261109">
@@ -34,6 +34,130 @@
     .table th, .table td { padding: 12px 16px; border-bottom: 1px solid color-mix(in srgb, currentColor 10%, transparent); }
     .table th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
     .table tr:last-child td { border-bottom: none; }
+  
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+    }
+    .tariff-price {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 10px 0 4px;
+    }
+    .tariff-features {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 18px;
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .tariff-features li {
+      margin-bottom: 7px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .tariff-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .tariff-features li.dimmed {
+      color: var(--muted);
+      opacity: 0.7;
+    }
+    .tariff-features li.dimmed::before {
+      content: "–";
+      color: var(--muted);
+    }
+
+    /* Consent label 152-FZ */
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin: 12px 0 16px;
+      text-align: left;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 12px !important;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      #landing-tariffs-grid .tariff-card {
+        min-width: 84vw;
+        max-width: 84vw;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+    }
+
   </style>
   <script type="application/ld+json">
   {
@@ -356,7 +480,146 @@
       <p class="mt-24">Материал дополняет наши публикации: ознакомьтесь с <a href="/blog-site-audit">аудитом сайта перед продвижением</a>, разбором <a href="/blog-seo-optimization">состава работ по SEO-оптимизации</a> и анализом того, <a href="/blog-seo-promotion-cost">как формируется стоимость SEO-продвижения</a>, а также с организацией регулярной <a href="/blog-technical-support">технической поддержки ресурса</a>.</p>
 
       <div class="cta mt-40">
-        <h2>Обсудить комплексное продвижение сайта</h2>
+        
+    <!-- ИНТЕРАКТИВНЫЕ ТАРИФЫ НА КОМПЛЕКСНОЕ SEO ПОД КЛЮЧ -->
+    <section class="tariffs-section" id="tariffs" style="margin: 48px 0;">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 32px;">
+        <span class="tag" style="background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); font-weight: 700; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">Белое SEO с гарантией результата</span>
+        <h2 style="font-size: 1.85rem; font-weight: 800; margin: 12px 0 8px;">Тарифы на комплексное SEO-продвижение под ключ</h2>
+        <p style="color: var(--muted); font-size: 0.95rem; margin: 0;">Вывод страниц в ТОП-10 Яндекса и Google, генерация целевых заявок и оптимизация под нейропоиск (AIO / Яндекс Нейро).</p>
+      </div>
+
+      <div class="grid grid-3" id="landing-tariffs-grid" style="gap: 16px;">
+        
+        <!-- Карточка 0: SEO-Старт -->
+        <div class="card tariff-card" data-index="0" data-tariff="SEO-Старт (Аудит + Базовая оптимизация)" data-price="от 35 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Разовый старт</span>
+              <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">10–14 дней</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">SEO-Старт</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Полная техническая подготовка сайта к продвижению и устранение ошибок индексации.</p>
+            <div class="tariff-price">от 35 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">разово без абонентской платы</div>
+            <ul class="tariff-features">
+              <li>Глубокий технический аудит по 50+ чек-листам поисковиков</li>
+              <li>Сбор и кластеризация семантического ядра до 200 запросов</li>
+              <li>Оптимизация мета-тегов (Title, Description, H1) для всех страниц</li>
+              <li>Настройка sitemap.xml, robots.txt и IndexNow протокола</li>
+              <li>Внедрение микроразметки Schema.org и файла llms.txt</li>
+              <li class="dimmed">Ежемесячное написание экспертных статей</li>
+              <li class="dimmed">Внешняя ссылочная масса и PR-продвижение</li>
+            </ul>
+          </div>
+          <div>
+            <button type="button" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбрать этот тариф</button>
+          </div>
+        </div>
+
+        <!-- Карточка 1: Комплекс ТОП-10 (АКТИВНАЯ / ХИТ) -->
+        <div class="card tariff-card active" data-index="1" data-tariff="Комплексное SEO в ТОП-10" data-price="от 49 000 ₽ / мес">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="tariff-badge">Хит • Максимум лидов</span>
+              <span style="font-size: 0.78rem; color: var(--accent); font-weight: 700;">от 3 мес</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Комплекс ТОП-10</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Ежемесячное продвижение с выводом сайта на 1-ю страницу Яндекса и Google.</p>
+            <div class="tariff-price" style="color: var(--accent);">от 49 000 ₽<span style="font-size: 0.85rem; font-weight: 500; color: var(--muted);">/мес</span></div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">ежемесячное сопровождение</div>
+            <ul class="tariff-features">
+              <li><strong>Все работы стартового аудита</strong> включены в первый месяц</li>
+              <li>Расширение семантического ядра до 1 000 коммерческих запросов</li>
+              <li>Написание 4–6 оптимизированных посадочных лонгридов в месяц</li>
+              <li>Безопасная ссылочная стратегия (крауд, профильные ресурсы, статьи)</li>
+              <li>Прокачка коммерческих факторов (цены, доверие, отзывы, конверсия)</li>
+              <li>Ежемесячный прозрачный отчет по динамике позиций и росту трафика</li>
+            </ul>
+          </div>
+          <div>
+            <button type="button" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбранный тариф</button>
+          </div>
+        </div>
+
+        <!-- Карточка 2: Лидер ниши -->
+        <div class="card tariff-card" data-index="2" data-tariff="Лидер ниши + AI-поиск (GEO/AIO)" data-price="от 85 000 ₽ / мес">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Лидер рынка</span>
+              <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">Премиум</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Лидер ниши + AI</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Полное доминирование в тематике: традиционный поиск + ИИ-выдача (GEO/AIO).</p>
+            <div class="tariff-price">от 85 000 ₽<span style="font-size: 0.85rem; font-weight: 500; color: var(--muted);">/мес</span></div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">максимальный трафик и брендинг</div>
+            <ul class="tariff-features">
+              <li>Охват всей ниши: тысячи запросов (ВЧ, СЧ, НЧ, интентные)</li>
+              <li>Оптимизация под AI-поисковики: попадание в ответы Яндекс Нейро, ChatGPT и Perplexity</li>
+              <li>До 12 публикаций в месяц с инфографикой и интерактивом</li>
+              <li>A/B тестирование поисковых сниппетов для рекордного CTR</li>
+              <li>Настройка сквозной аналитики и отслеживание окупаемости (ROI)</li>
+              <li>Персональный ведущий SEO-стратег и приоритет 24/7</li>
+            </ul>
+          </div>
+          <div>
+            <button type="button" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбрать этот тариф</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Мобильные точки -->
+      <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin: 18px 0 28px;">
+        <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+        <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+        <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+      </div>
+
+      <!-- ФОРМА БЫСТРОГО ЗАКАЗА -->
+      <div id="tariff-order-block" class="card" style="margin-top: 24px; padding: 28px; border: 1.5px solid var(--accent); background: color-mix(in srgb, var(--accent) 3%, var(--card-bg, #1a1a1f)); border-radius: 16px;">
+        <div style="max-width: 600px; margin: 0 auto;">
+          <div style="text-align: center; margin-bottom: 20px;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent); text-transform: uppercase;">Бесплатный экспресс-аудит сайта</span>
+            <h3 style="font-size: 1.45rem; font-weight: 800; margin: 6px 0;">Выбранный тариф: <span id="selected-tariff-name" style="color: var(--accent);">Комплексное SEO в ТОП-10</span></h3>
+            <p style="color: var(--muted); font-size: 0.9rem; margin: 0;">Стоимость: <strong id="selected-tariff-price" style="color: var(--text);">от 49 000 ₽ / мес</strong>. Отправьте адрес сайта — подготовим предварительный аудит точек роста за 30 минут.</p>
+          </div>
+
+          <form id="article-lead-form" style="display: grid; gap: 14px;">
+            <input type="hidden" id="form-tariff-input" name="tariff" value="Комплексное SEO в ТОП-10 (от 49 000 ₽ / мес)">
+            
+            <div>
+              <label for="lead-contact" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Телефон или контакт в Telegram <span style="color: var(--accent);">*</span></label>
+              <input type="text" id="lead-contact" name="contact" placeholder="+7 (999) 000-00-00 или @username" required style="width: 100%; padding: 12px 16px; font-size: 0.95rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);">
+            </div>
+
+            <div>
+              <label for="lead-task" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Адрес вашего сайта для SEO-анализа</label>
+              <input type="text" id="lead-task" name="task" placeholder="https://vash-sait.ru" style="width: 100%; padding: 12px 16px; font-size: 0.95rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);">
+            </div>
+
+            <label class="consent-check-label">
+              <input type="checkbox" id="lead-consent-check" name="consent" checked required>
+              <span>Даю согласие на <a href="/consent" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+            </label>
+
+            <div class="tariff-btn-row" style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+              <button type="submit" id="lead-submit-btn" class="btn btn-primary" style="padding: 13px 28px; font-size: 1rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 8px; border: none; cursor: pointer;">
+                Получить аудит и стратегию продвижения →
+              </button>
+              <a href="https://t.me/Voiddigit?text=Здравствуйте!%20Хочу%20получить%20аудит%20и%20заказать%20SEO-продвижение." target="_blank" rel="noopener" style="font-size: 0.9rem; color: var(--muted); text-decoration: underline; display: flex; align-items: center; gap: 6px;">
+                <span>Или написать сразу в Telegram</span>
+              </a>
+            </div>
+
+            <div id="lead-status-msg" style="display: none; padding: 14px; border-radius: 8px; font-size: 0.95rem; margin-top: 10px;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+
+      <h2>Обсудить комплексное продвижение сайта</h2>
         <p>Расскажите о текущем сайте и задачах бизнеса. Проанализируем проект, определим реальные точки роста и предложим понятный план развития поисковой видимости.</p>
         <a class="btn" href="/contacts">Обсудить проект</a>
       </div>
@@ -385,5 +648,182 @@
 </footer>
 <script src="js/main.js?v=75bccd28"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+    <script>
+      (function() {
+        var currentTariff = 'Комплексное SEO в ТОП-10';
+        var currentPrice = 'от 49 000 ₽ / мес';
+
+        window.selectArticleTariff = function(cardElem) {
+          var cards = document.querySelectorAll('.tariff-card');
+          cards.forEach(function(c) {
+            c.classList.remove('active');
+            c.style.borderColor = 'var(--border)';
+            c.style.boxShadow = 'none';
+            var btn = c.querySelector('button');
+            if (btn) btn.textContent = 'Выбрать этот тариф';
+          });
+
+          cardElem.classList.add('active');
+          cardElem.style.borderColor = 'var(--accent)';
+          cardElem.style.boxShadow = '0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06)';
+          var activeBtn = cardElem.querySelector('button');
+          if (activeBtn) activeBtn.textContent = 'Выбранный тариф';
+
+          currentTariff = cardElem.getAttribute('data-tariff') || 'Комплексное SEO в ТОП-10';
+          currentPrice = cardElem.getAttribute('data-price') || 'от 49 000 ₽ / мес';
+
+          var titleSpan = document.getElementById('selected-tariff-name');
+          var priceSpan = document.getElementById('selected-tariff-price');
+          var hiddenInput = document.getElementById('form-tariff-input');
+
+          if (titleSpan) titleSpan.textContent = currentTariff;
+          if (priceSpan) priceSpan.textContent = currentPrice;
+          if (hiddenInput) hiddenInput.value = currentTariff + ' (' + currentPrice + ')';
+
+          var orderBlock = document.getElementById('tariff-order-block');
+          if (orderBlock && window.innerWidth <= 768) {
+            orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        };
+
+        function initTurnkeySeoTariffs() {
+          var grid = document.getElementById('landing-tariffs-grid');
+          var dots = document.querySelectorAll('.tariff-dot');
+          var cards = document.querySelectorAll('.tariff-card');
+
+          dots.forEach(function(dot, idx) {
+            dot.style.cursor = 'pointer';
+            dot.addEventListener('click', function() {
+              if (cards[idx]) {
+                window.selectArticleTariff(cards[idx]);
+                if (window.innerWidth <= 768 && grid) {
+                  cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+              }
+            });
+          });
+
+          if (window.innerWidth <= 768 && grid && cards[1]) {
+            setTimeout(function() {
+              cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+            }, 120);
+            setTimeout(function() {
+              cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+            }, 350);
+          }
+
+          if (grid && dots.length > 0) {
+            grid.addEventListener('scroll', function() {
+              var scrollLeft = grid.scrollLeft;
+              var cardWidth = (grid.querySelector('.tariff-card') ? grid.querySelector('.tariff-card').offsetWidth : 280) + 12;
+              var index = Math.round(scrollLeft / cardWidth);
+              dots.forEach(function(dot, i) {
+                if (i === index) {
+                  dot.classList.add('active');
+                  dot.style.background = 'var(--accent)';
+                  dot.style.width = '20px';
+                  dot.style.borderRadius = '4px';
+                } else {
+                  dot.classList.remove('active');
+                  dot.style.background = 'var(--border)';
+                  dot.style.width = '8px';
+                  dot.style.borderRadius = '50%';
+                }
+              });
+            }, { passive: true });
+          }
+
+          var form = document.getElementById('article-lead-form');
+          var submitBtn = document.getElementById('lead-submit-btn');
+          var statusMsg = document.getElementById('lead-status-msg');
+
+          if (!form || !submitBtn) return;
+
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var contactVal = (document.getElementById('lead-contact').value || '').trim();
+            var taskVal = (document.getElementById('lead-task').value || '').trim();
+            var consentCheck = document.getElementById('lead-consent-check');
+
+            if (!contactVal) {
+              alert('Пожалуйста, укажите ваш контакт (телефон или Telegram)');
+              return;
+            }
+            if (consentCheck && !consentCheck.checked) {
+              alert('Необходимо согласие на обработку персональных данных');
+              return;
+            }
+
+            var originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Отправка заявки...';
+            statusMsg.style.display = 'none';
+
+            var messageText = '📈 <b>НОВАЯ ЗАЯВКА НА SEO ПОД КЛЮЧ!</b>\n\n' +
+                              '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+                              '📞 <b>Контакт:</b> ' + contactVal + '\n' +
+                              '🌐 <b>Сайт для аудита:</b> ' + (taskVal || 'Не указан') + '\n' +
+                              '🔗 <b>Страница:</b> ' + window.location.href;
+
+            var tgBotToken = '8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs';
+            var tgChatId = '7738024017';
+            var tgUrl = 'https://api.telegram.org/bot' + tgBotToken + '/sendMessage';
+
+            fetch(tgUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                chat_id: tgChatId,
+                text: messageText,
+                parse_mode: 'HTML'
+              })
+            }).then(function(resp) {
+              return resp.json();
+            }).then(function(data) {
+              if (data && data.ok) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '✓ Заявка доставлена!';
+                statusMsg.style.display = 'block';
+                statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                statusMsg.style.border = '1.5px solid var(--accent)';
+                statusMsg.style.color = 'var(--text)';
+                statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и подготовит аудит в течение 30 минут.';
+                form.reset();
+                if (consentCheck) consentCheck.checked = true;
+              } else {
+                throw new Error('Telegram API error');
+              }
+            }).catch(function(err) {
+              fetch('/api/lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  tariff: currentTariff + ' (' + currentPrice + ')',
+                  contact: contactVal,
+                  message: taskVal,
+                  page: window.location.href
+                })
+              }).finally(function() {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
+                statusMsg.style.display = 'block';
+                statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                statusMsg.style.border = '1.5px solid var(--accent)';
+                statusMsg.style.color = 'var(--text)';
+                statusMsg.innerHTML = '🎉 <b>Заявка принята!</b> Если хотите написать сразу в диалог: <a href="https://t.me/Voiddigit?text=' + encodeURIComponent('Здравствуйте! Заявка на SEO под ключ: ' + currentTariff + '. Мой сайт: ' + taskVal + '. Контакт: ' + contactVal) + '" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: underline;">Открыть чат с Даниилом</a>';
+              });
+            });
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initTurnkeySeoTariffs);
+        } else {
+          initTurnkeySeoTariffs();
+        }
+      })();
+    </script>
+    
 </body>
 </html>

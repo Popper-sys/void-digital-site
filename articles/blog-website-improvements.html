@@ -7,14 +7,14 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
   <meta name="color-scheme" content="light dark">
   <script>document.documentElement.classList.add('js')</script>
-  <title>Доработка функционала сайта и веб-сайтов компании: рекомендации и стоимость — VOID Digital</title>
-  <meta name="description" content="Создание и профессиональная доработка сайтов компании: доработка функционала сайта, обновление дизайна, исправление ошибок и развитие проекта. Рекомендации экспертов VOID Digital.">
+  <title>Доработка сайтов и техподдержка под ключ от 4 900 ₽ — VOID Digital</title>
+  <meta name="description" content="Профессиональная доработка функционала и поддержка сайтов под ключ: исправление багов, интеграция Telegram/CRM, ускорение. ✓ От 4 900 ₽ ✓ Срок от 1 дня. Оставьте заявку!">
   <link rel="canonical" href="https://void-digital.ru/blog-website-improvements">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="VOID | digital">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="Доработка функционала сайта и веб-сайтов компании: рекомендации и стоимость — VOID Digital">
-  <meta property="og:description" content="Создание и профессиональная доработка сайтов компании: доработка функционала сайта, обновление дизайна, исправление ошибок и развитие проекта. Рекомендации экспертов VOID Digital.">
+  <meta property="og:title" content="Доработка сайтов и техподдержка под ключ от 4 900 ₽ — VOID Digital">
+  <meta property="og:description" content="Профессиональная доработка функционала и поддержка сайтов под ключ: исправление багов, интеграция Telegram/CRM, ускорение. ✓ От 4 900 ₽ ✓ Срок от 1 дня. Оставьте заявку!">
   <meta property="og:url" content="https://void-digital.ru/blog-website-improvements">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:image" content="https://void-digital.ru/img/blog-website-improvements/blog-improvements-cover.jpg?v=20261105">
@@ -29,6 +29,130 @@
     .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
     .post .cta p { max-width: none; }
     .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+  
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+    }
+    .tariff-price {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 10px 0 4px;
+    }
+    .tariff-features {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 18px;
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .tariff-features li {
+      margin-bottom: 7px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .tariff-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .tariff-features li.dimmed {
+      color: var(--muted);
+      opacity: 0.7;
+    }
+    .tariff-features li.dimmed::before {
+      content: "–";
+      color: var(--muted);
+    }
+
+    /* Consent label 152-FZ */
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin: 12px 0 16px;
+      text-align: left;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 12px !important;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      #landing-tariffs-grid .tariff-card {
+        min-width: 84vw;
+        max-width: 84vw;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+    }
+    
   </style>
   <script type="application/ld+json">
   {
@@ -307,6 +431,144 @@
       <h3>Этап 5. Проверка результата</h3>
       <p>Перед сдачей проекта проверяется отображение на разных экранах, корректность работы форм, ссылок, анимаций и подключённых интеграций. Только после проверки изменения можно считать готовыми к публикации.</p>
 
+      
+    <!-- ИНТЕРАКТИВНЫЕ ТАРИФЫ НА ДОРАБОТКУ САЙТА -->
+    <section class="tariffs-section" id="tariffs" style="margin: 48px 0;">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 32px;">
+        <span class="tag" style="background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); font-weight: 700; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">Прозрачные цены без скрытых доплат</span>
+        <h2 style="font-size: 1.85rem; font-weight: 800; margin: 12px 0 8px;">Тарифы на доработку и техническую поддержку</h2>
+        <p style="color: var(--muted); font-size: 0.95rem; margin: 0;">Выберите формат: точечное исправление задач, пакет рабочих часов со скидкой или постоянная поддержка 24/7 с договором ИП.</p>
+      </div>
+
+      <div class="grid grid-3" id="landing-tariffs-grid" style="gap: 16px;">
+        
+        <!-- Карточка 0: Разовая задача -->
+        <div class="card tariff-card" data-index="0" data-tariff="Точечная доработка" data-price="от 4 900 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Экспресс-помощь</span>
+              <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">1–2 дня</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Точечная доработка</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Быстрое исправление конкретной проблемы, ошибки верстки или подключение скрипта.</p>
+            <div class="tariff-price">от 4 900 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">разово по чек-листу задачи</div>
+            <ul class="tariff-features">
+              <li>Исправление багов верстки и отображения на смартфонах</li>
+              <li>Настройка форм заявок и отправки в Telegram/почту</li>
+              <li>Установка пикселей, счетчиков Яндекс Метрики и целей</li>
+              <li>Замена контактов, текстов, баннеров и прайс-листов</li>
+              <li class="dimmed">Редизайн блоков и страниц</li>
+              <li class="dimmed">Сложная интеграция с 1С и CRM</li>
+            </ul>
+          </div>
+          <div>
+            <button type="button" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбрать этот тариф</button>
+          </div>
+        </div>
+
+        <!-- Карточка 1: Пакет 20 часов (АКТИВНАЯ / ХИТ) -->
+        <div class="card tariff-card active" data-index="1" data-tariff="Пакет доработок (20 часов)" data-price="от 29 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="tariff-badge">Хит • Выгодно</span>
+              <span style="font-size: 0.78rem; color: var(--accent); font-weight: 700;">1 450 ₽/час</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Пакет доработок (20ч)</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Комплексное внедрение нового функционала, редизайн и ускорение сайта.</p>
+            <div class="tariff-price" style="color: var(--accent);">от 29 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">пул 20 рабочих часов разработчика</div>
+            <ul class="tariff-features">
+              <li><strong>Все работы точечного тарифа</strong> в приоритетной очереди</li>
+              <li>Внедрение интерактивных квизов, калькуляторов и фильтров</li>
+              <li>Подключение CRM (amoCRM, Битрикс24) и онлайн-оплаты по СБП</li>
+              <li>Оптимизация скорости загрузки (Google PageSpeed в зеленую зону)</li>
+              <li>Редизайн устаревших экранов под современные тренды</li>
+              <li>Детальный отчет о затраченном времени по трекеру</li>
+            </ul>
+          </div>
+          <div>
+            <button type="button" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбранный тариф</button>
+          </div>
+        </div>
+
+        <!-- Карточка 2: Ежемесячная техподдержка -->
+        <div class="card tariff-card" data-index="2" data-tariff="Ежемесячная техподдержка 24/7" data-price="от 39 000 ₽ / мес">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Для бизнеса</span>
+              <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">SLA 15 мин</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Абонентская поддержка</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Ваш личный IT-отдел на аутсорсе: мониторинг доступности, безопасность и развитие.</p>
+            <div class="tariff-price">от 39 000 ₽<span style="font-size: 0.85rem; font-weight: 500; color: var(--muted);">/мес</span></div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">до 35 рабочих часов в месяц включено</div>
+            <ul class="tariff-features">
+              <li>Круглосуточный мониторинг доступности сайта (Uptime 99.9%)</li>
+              <li>Ежедневное создание резервных копий (бэкапов) в облако</li>
+              <li>Мгновенное устранение сбоев и вирусов по SLA до 15 минут</li>
+              <li>Постоянные SEO-доработки и расширение страниц сайта</li>
+              <li>Выделенный senior-разработчик в Telegram-чате компании</li>
+              <li>Официальный договор ИП, акты и закрывающие документы</li>
+            </ul>
+          </div>
+          <div>
+            <button type="button" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбрать этот тариф</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Мобильные точки -->
+      <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin: 18px 0 28px;">
+        <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+        <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+        <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+      </div>
+
+      <!-- ФОРМА БЫСТРОГО ЗАКАЗА ДОРАБОТКИ -->
+      <div id="tariff-order-block" class="card" style="margin-top: 24px; padding: 28px; border: 1.5px solid var(--accent); background: color-mix(in srgb, var(--accent) 3%, var(--card-bg, #1a1a1f)); border-radius: 16px;">
+        <div style="max-width: 600px; margin: 0 auto;">
+          <div style="text-align: center; margin-bottom: 20px;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent); text-transform: uppercase;">Заявка на расчет задачи</span>
+            <h3 style="font-size: 1.45rem; font-weight: 800; margin: 6px 0;">Выбранный тариф: <span id="selected-tariff-name" style="color: var(--accent);">Пакет доработок (20 часов)</span></h3>
+            <p style="color: var(--muted); font-size: 0.9rem; margin: 0;">Стоимость: <strong id="selected-tariff-price" style="color: var(--text);">от 29 000 ₽</strong>. Напишите нам — ответим в течение 15 минут с точной оценкой срока и стоимости.</p>
+          </div>
+
+          <form id="article-lead-form" style="display: grid; gap: 14px;">
+            <input type="hidden" id="form-tariff-input" name="tariff" value="Пакет доработок (20 часов) (от 29 000 ₽)">
+            
+            <div>
+              <label for="lead-contact" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Ваш телефон или контакт в Telegram <span style="color: var(--accent);">*</span></label>
+              <input type="text" id="lead-contact" name="contact" placeholder="+7 (999) 000-00-00 или @username" required style="width: 100%; padding: 12px 16px; font-size: 0.95rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);">
+            </div>
+
+            <div>
+              <label for="lead-task" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Адрес вашего сайта и описание задачи</label>
+              <textarea id="lead-task" name="task" rows="3" placeholder="Например: сайт moy-biznes.ru, нужно починить форму отправки, сделать адаптив шапки и подключить Telegram-уведомления" style="width: 100%; padding: 12px 16px; font-size: 0.95rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-family: inherit; resize: vertical;"></textarea>
+            </div>
+
+            <label class="consent-check-label">
+              <input type="checkbox" id="lead-consent-check" name="consent" checked required>
+              <span>Даю согласие на <a href="/consent" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+            </label>
+
+            <div class="tariff-btn-row" style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+              <button type="submit" id="lead-submit-btn" class="btn btn-primary" style="padding: 13px 28px; font-size: 1rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 8px; border: none; cursor: pointer;">
+                Отправить задачу на расчет →
+              </button>
+              <a href="https://t.me/Voiddigit?text=Здравствуйте!%20Хочу%20обсудить%20доработку%20сайта." target="_blank" rel="noopener" style="font-size: 0.9rem; color: var(--muted); text-decoration: underline; display: flex; align-items: center; gap: 6px;">
+                <span>Или написать сразу в Telegram</span>
+              </a>
+            </div>
+
+            <div id="lead-status-msg" style="display: none; padding: 14px; border-radius: 8px; font-size: 0.95rem; margin-top: 10px;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+
       <h2>Сколько стоит доработка сайта</h2>
       <p>Стоимость доработки не может быть одинаковой для всех проектов, так как задачи различаются по объёму и сложности.</p>
       <p>На цену влияют:</p>
@@ -389,5 +651,186 @@
 </footer>
 <script src="js/main.js?v=75bccd28"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+    <script>
+      (function() {
+        var currentTariff = 'Пакет доработок (20 часов)';
+        var currentPrice = 'от 29 000 ₽';
+
+        window.selectArticleTariff = function(cardElem) {
+          var cards = document.querySelectorAll('.tariff-card');
+          cards.forEach(function(c) {
+            c.classList.remove('active');
+            c.style.borderColor = 'var(--border)';
+            c.style.boxShadow = 'none';
+            var btn = c.querySelector('button');
+            if (btn) btn.textContent = 'Выбрать этот тариф';
+          });
+
+          cardElem.classList.add('active');
+          cardElem.style.borderColor = 'var(--accent)';
+          cardElem.style.boxShadow = '0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06)';
+          var activeBtn = cardElem.querySelector('button');
+          if (activeBtn) activeBtn.textContent = 'Выбранный тариф';
+
+          currentTariff = cardElem.getAttribute('data-tariff') || 'Пакет доработок (20 часов)';
+          currentPrice = cardElem.getAttribute('data-price') || 'от 29 000 ₽';
+
+          var titleSpan = document.getElementById('selected-tariff-name');
+          var priceSpan = document.getElementById('selected-tariff-price');
+          var hiddenInput = document.getElementById('form-tariff-input');
+
+          if (titleSpan) titleSpan.textContent = currentTariff;
+          if (priceSpan) priceSpan.textContent = currentPrice;
+          if (hiddenInput) hiddenInput.value = currentTariff + ' (' + currentPrice + ')';
+
+          var orderBlock = document.getElementById('tariff-order-block');
+          if (orderBlock && window.innerWidth <= 768) {
+            orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        };
+
+        function initImprovementsTariffs() {
+          var grid = document.getElementById('landing-tariffs-grid');
+          var dots = document.querySelectorAll('.tariff-dot');
+          var cards = document.querySelectorAll('.tariff-card');
+
+          // Dots click
+          dots.forEach(function(dot, idx) {
+            dot.style.cursor = 'pointer';
+            dot.addEventListener('click', function() {
+              if (cards[idx]) {
+                window.selectArticleTariff(cards[idx]);
+                if (window.innerWidth <= 768 && grid) {
+                  cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+              }
+            });
+          });
+
+          // Mobile auto-center middle card
+          if (window.innerWidth <= 768 && grid && cards[1]) {
+            setTimeout(function() {
+              cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+            }, 120);
+            setTimeout(function() {
+              cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+            }, 350);
+          }
+
+          // Mobile swipe dots sync
+          if (grid && dots.length > 0) {
+            grid.addEventListener('scroll', function() {
+              var scrollLeft = grid.scrollLeft;
+              var cardWidth = (grid.querySelector('.tariff-card') ? grid.querySelector('.tariff-card').offsetWidth : 280) + 12;
+              var index = Math.round(scrollLeft / cardWidth);
+              dots.forEach(function(dot, i) {
+                if (i === index) {
+                  dot.classList.add('active');
+                  dot.style.background = 'var(--accent)';
+                  dot.style.width = '20px';
+                  dot.style.borderRadius = '4px';
+                } else {
+                  dot.classList.remove('active');
+                  dot.style.background = 'var(--border)';
+                  dot.style.width = '8px';
+                  dot.style.borderRadius = '50%';
+                }
+              });
+            }, { passive: true });
+          }
+
+          // Lead Form Submission
+          var form = document.getElementById('article-lead-form');
+          var submitBtn = document.getElementById('lead-submit-btn');
+          var statusMsg = document.getElementById('lead-status-msg');
+
+          if (!form || !submitBtn) return;
+
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var contactVal = (document.getElementById('lead-contact').value || '').trim();
+            var taskVal = (document.getElementById('lead-task').value || '').trim();
+            var consentCheck = document.getElementById('lead-consent-check');
+
+            if (!contactVal) {
+              alert('Пожалуйста, укажите ваш контакт (телефон или Telegram)');
+              return;
+            }
+            if (consentCheck && !consentCheck.checked) {
+              alert('Необходимо согласие на обработку персональных данных');
+              return;
+            }
+
+            var originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Отправка заявки...';
+            statusMsg.style.display = 'none';
+
+            var messageText = '🛠 <b>НОВАЯ ЗАЯВКА НА ДОРАБОТКУ САЙТА!</b>\n\n' +
+                              '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+                              '📞 <b>Контакт:</b> ' + contactVal + '\n' +
+                              '🌐 <b>Сайт/Задача:</b> ' + (taskVal || 'Не указано') + '\n' +
+                              '🔗 <b>Страница:</b> ' + window.location.href;
+
+            var tgBotToken = '8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs';
+            var tgChatId = '7738024017';
+            var tgUrl = 'https://api.telegram.org/bot' + tgBotToken + '/sendMessage';
+
+            fetch(tgUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                chat_id: tgChatId,
+                text: messageText,
+                parse_mode: 'HTML'
+              })
+            }).then(function(resp) {
+              return resp.json();
+            }).then(function(data) {
+              if (data && data.ok) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '✓ Заявка доставлена!';
+                statusMsg.style.display = 'block';
+                statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                statusMsg.style.border = '1.5px solid var(--accent)';
+                statusMsg.style.color = 'var(--text)';
+                statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+                form.reset();
+                if (consentCheck) consentCheck.checked = true;
+              } else {
+                throw new Error('Telegram API error');
+              }
+            }).catch(function(err) {
+              fetch('/api/lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  tariff: currentTariff + ' (' + currentPrice + ')',
+                  contact: contactVal,
+                  message: taskVal,
+                  page: window.location.href
+                })
+              }).finally(function() {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
+                statusMsg.style.display = 'block';
+                statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                statusMsg.style.border = '1.5px solid var(--accent)';
+                statusMsg.style.color = 'var(--text)';
+                statusMsg.innerHTML = '🎉 <b>Заявка принята!</b> Если хотите написать сразу в диалог: <a href="https://t.me/Voiddigit?text=' + encodeURIComponent('Здравствуйте! Заявка на доработку: ' + currentTariff + '. Мой контакт: ' + contactVal) + '" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: underline;">Открыть чат с Даниилом в Telegram</a>';
+              });
+            });
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initImprovementsTariffs);
+        } else {
+          initImprovementsTariffs();
+        }
+      })();
+    </script>
+    
 </body>
 </html>

@@ -7,14 +7,14 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111114">
   <meta name="color-scheme" content="light dark">
   <script>document.documentElement.classList.add('js')</script>
-  <title>Сайт для онлайн-бронирования услуг — функции и разработка</title>
-  <meta name="description" content="Как создать сайт для онлайн-бронирования услуг, какие функции нужны клиентам и бизнесу. Разбираем календарь записи, выбор специалиста, уведомления и стоимость разработки.">
+  <title>Сайт для онлайн-бронирования услуг под ключ от 35 000 ₽ — VOID</title>
+  <meta name="description" content="Разработка сайта для онлайн-бронирования услуг под ключ: календарь записей, выбор специалиста, оплата по СБП, уведомления в Telegram. ✓ Тарифы от 35 000 ₽. Выберите тариф!">
   <link rel="canonical" href="https://void-digital.ru/blog-website-online-booking">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="VOID | digital">
   <meta property="og:locale" content="ru_RU">
-  <meta property="og:title" content="Сайт для онлайн-бронирования услуг — функции и разработка">
-  <meta property="og:description" content="Как создать сайт для онлайн-бронирования услуг, какие функции нужны клиентам и бизнесу. Разбираем календарь записи, выбор специалиста, уведомления и стоимость разработки.">
+  <meta property="og:title" content="Сайт для онлайн-бронирования услуг под ключ от 35 000 ₽ — VOID">
+  <meta property="og:description" content="Разработка сайта для онлайн-бронирования услуг под ключ: календарь записей, выбор специалиста, оплата по СБП, уведомления в Telegram. ✓ Тарифы от 35 000 ₽. Выберите тариф!">
   <meta property="og:url" content="https://void-digital.ru/blog-website-online-booking">
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:image" content="https://void-digital.ru/img/blog-website-online-booking/blog-booking-cover.jpg?v=20261110">
@@ -34,6 +34,130 @@
     .post table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .95rem; }
     .post th, .post td { padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); text-align: left; }
     .post th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
+  
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: color-mix(in srgb, var(--accent) 4%, var(--bg));
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: var(--accent);
+      color: #fff;
+    }
+    .tariff-price {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text);
+      margin: 10px 0 4px;
+    }
+    .tariff-features {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 18px;
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .tariff-features li {
+      margin-bottom: 7px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .tariff-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .tariff-features li.dimmed {
+      color: var(--muted);
+      opacity: 0.7;
+    }
+    .tariff-features li.dimmed::before {
+      content: "–";
+      color: var(--muted);
+    }
+
+    /* Consent label 152-FZ */
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin: 12px 0 16px;
+      text-align: left;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 12px !important;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      #landing-tariffs-grid .tariff-card {
+        min-width: 84vw;
+        max-width: 84vw;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+    }
+
   </style>
   <script type="application/ld+json">
   {
@@ -276,7 +400,145 @@
       <p class="mt-24">Узнайте больше о создании эффективных веб-проектов: как работает <a href="/blog-website-personal-account">разработка личного кабинета</a>, когда необходим <a href="/blog-landing-page-under-key">лендинг под ключ</a> и на что обратить внимание при выборе формата в статье о <a href="/blog-website-for-small-business">сайте для малого бизнеса</a>.</p>
 
       <div class="cta mt-40">
-        <h2>Внедрить онлайн-бронирование на сайт</h2>
+        
+    <!-- ИНТЕРАКТИВНЫЕ ТАРИФЫ НА САЙТ С ОНЛАЙН-БРОНИРОВАНИЕМ -->
+    <section class="tariffs-section" id="tariffs" style="margin: 48px 0;">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto 32px;">
+        <span class="tag" style="background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); font-weight: 700; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem;">Автоматизация записи 24/7</span>
+        <h2 style="font-size: 1.85rem; font-weight: 800; margin: 12px 0 8px;">Тарифы на разработку сайтов с онлайн-бронированием</h2>
+        <p style="color: var(--muted); font-size: 0.95rem; margin: 0;">Интеграция готовых виджетов записи (YClients, DIKIDI, Bnovo) или индивидуальный сервис бронирования без ежемесячных комиссий.</p>
+      </div>
+
+      <div class="grid grid-3" id="landing-tariffs-grid" style="gap: 16px;">
+        
+        <!-- Карточка 0: Виджет -->
+        <div class="card tariff-card" data-index="0" data-tariff="Сайт с виджетом онлайн-записи" data-price="от 35 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Быстрый запуск</span>
+              <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">от 7 дней</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Сайт + Виджет записи</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Продающий сайт услуг с подключением внешнего сервиса записи (YClients, DIKIDI, Calendly).</p>
+            <div class="tariff-price">от 35 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">под ключ с договором ИП</div>
+            <ul class="tariff-features">
+              <li>Разработка продающего лендинга услуг с адаптацией под мобильные</li>
+              <li>Бесшовная интеграция виджета записи и прайс-листа</li>
+              <li>Настройка автоматических уведомлений о записях в Telegram</li>
+              <li>Базовая SEO-оптимизация и подключение Яндекс Метрики</li>
+              <li class="dimmed">Прием предоплат и оплат по СБП прямо на сайте</li>
+              <li class="dimmed">Кастомный личный кабинет клиента</li>
+            </ul>
+          </div>
+          <div>
+            <button type="button" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбрать этот тариф</button>
+          </div>
+        </div>
+
+        <!-- Карточка 1: Сервис бронирования (АКТИВНАЯ / ХИТ) -->
+        <div class="card tariff-card active" data-index="1" data-tariff="Сервис бронирования под ключ" data-price="от 59 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="tariff-badge">Хит продаж</span>
+              <span style="font-size: 0.78rem; color: var(--accent); font-weight: 700;">от 12 дней</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Бронирование под ключ</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Индивидуальный сервис без внешних подписок и комиссий: календарь, выбор мастера и оплата.</p>
+            <div class="tariff-price" style="color: var(--accent);">от 59 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">без абонентской платы за сервис</div>
+            <ul class="tariff-features">
+              <li><strong>Все опции базового тарифа</strong> с авторским UX/UI дизайном</li>
+              <li>Нативный интерактивный календарь свободных слотов и дат</li>
+              <li>Выбор специалиста, филиала, длительности и стоимости услуги</li>
+              <li>Прием предоплаты или полной стоимости через СБП и эквайринг</li>
+              <li>Автоматические напоминания клиентам о визите за 24ч и 2ч</li>
+              <li>Лиды и управление расписанием прямо в Telegram администратора</li>
+            </ul>
+          </div>
+          <div>
+            <button type="button" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбранный тариф</button>
+          </div>
+        </div>
+
+        <!-- Карточка 2: Портал услуг -->
+        <div class="card tariff-card" data-index="2" data-tariff="Портал услуг и расписаний" data-price="от 89 000 ₽">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Сети и клиники</span>
+              <span style="font-size: 0.78rem; color: var(--muted); font-weight: 600;">от 18 дней</span>
+            </div>
+            <h3 style="font-size: 1.25rem; font-weight: 800; margin: 0 0 6px;">Портал расписаний</h3>
+            <p style="font-size: 0.84rem; color: var(--muted); margin: 0 0 12px;">Для медцентров, сетей салонов, почасовой аренды залов и студий с личными кабинетами.</p>
+            <div class="tariff-price">от 89 000 ₽</div>
+            <div style="font-size: 0.8rem; color: var(--muted); margin-bottom: 14px;">масштабируемая веб-система</div>
+            <ul class="tariff-features">
+              <li>Личный кабинет клиента с историей записей и бонусами</li>
+              <li>Кабинет специалиста/мастера с управлением своим графиком</li>
+              <li>Поддержка сети филиалов и гибкого ценообразования (день/ночь)</li>
+              <li>Интеграция с 1С, МойСклад, amoCRM и онлайн-кассами (54-ФЗ)</li>
+              <li>Сквозная аналитика загрузки мастеров и выручки по филиалам</li>
+              <li>Приоритетная техподдержка и гарантия 12 месяцев</li>
+            </ul>
+          </div>
+          <div>
+            <button type="button" class="btn btn-outline" style="width: 100%; justify-content: center; padding: 12px;" onclick="window.selectArticleTariff(this.closest('.tariff-card'))">Выбрать этот тариф</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Мобильные точки -->
+      <div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin: 18px 0 28px;">
+        <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+        <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+        <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+      </div>
+
+      <!-- ФОРМА БЫСТРОГО ЗАКАЗА -->
+      <div id="tariff-order-block" class="card" style="margin-top: 24px; padding: 28px; border: 1.5px solid var(--accent); background: color-mix(in srgb, var(--accent) 3%, var(--card-bg, #1a1a1f)); border-radius: 16px;">
+        <div style="max-width: 600px; margin: 0 auto;">
+          <div style="text-align: center; margin-bottom: 20px;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent); text-transform: uppercase;">Расчет проекта бронирования</span>
+            <h3 style="font-size: 1.45rem; font-weight: 800; margin: 6px 0;">Выбранный тариф: <span id="selected-tariff-name" style="color: var(--accent);">Сервис бронирования под ключ</span></h3>
+            <p style="color: var(--muted); font-size: 0.9rem; margin: 0;">Стоимость: <strong id="selected-tariff-price" style="color: var(--text);">от 59 000 ₽</strong>. Ответим в Telegram за 15 минут с точной сметой под вашу нишу.</p>
+          </div>
+
+          <form id="article-lead-form" style="display: grid; gap: 14px;">
+            <input type="hidden" id="form-tariff-input" name="tariff" value="Сервис бронирования под ключ (от 59 000 ₽)">
+            
+            <div>
+              <label for="lead-contact" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Телефон или контакт в Telegram <span style="color: var(--accent);">*</span></label>
+              <input type="text" id="lead-contact" name="contact" placeholder="+7 (999) 000-00-00 или @username" required style="width: 100%; padding: 12px 16px; font-size: 0.95rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text);">
+            </div>
+
+            <div>
+              <label for="lead-task" style="display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px;">Ваша сфера деятельности и требования к записи</label>
+              <textarea id="lead-task" name="task" rows="3" placeholder="Например: аренда фотостудии по часам, нужна оплата предоплаты 50% по СБП и календарь свободных залов" style="width: 100%; padding: 12px 16px; font-size: 0.95rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-family: inherit; resize: vertical;"></textarea>
+            </div>
+
+            <label class="consent-check-label">
+              <input type="checkbox" id="lead-consent-check" name="consent" checked required>
+              <span>Даю согласие на <a href="/consent" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
+            </label>
+
+            <div class="tariff-btn-row" style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+              <button type="submit" id="lead-submit-btn" class="btn btn-primary" style="padding: 13px 28px; font-size: 1rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 8px; border: none; cursor: pointer;">
+                Рассчитать стоимость сайта с бронированием →
+              </button>
+              <a href="https://t.me/Voiddigit?text=Здравствуйте!%20Хочу%20заказать%20сайт%20с%20онлайн-бронированием." target="_blank" rel="noopener" style="font-size: 0.9rem; color: var(--muted); text-decoration: underline; display: flex; align-items: center; gap: 6px;">
+                <span>Или написать сразу в Telegram</span>
+              </a>
+            </div>
+
+            <div id="lead-status-msg" style="display: none; padding: 14px; border-radius: 8px; font-size: 0.95rem; margin-top: 10px;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+    
+
+      <h2>Внедрить онлайн-бронирование на сайт</h2>
         <p>Хотите перевести запись клиентов в автоматический режим и избавиться от пропущенных звонков? Специалисты VOID Digital разработают удобный интерфейс записи, настроят напоминания и подключат синхронизацию с вашей CRM-системой.</p>
         <a class="btn" href="/contacts">Обсудить проект</a>
       </div>
@@ -305,5 +567,182 @@
 </footer>
 <script src="js/main.js?v=75bccd28"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+    <script>
+      (function() {
+        var currentTariff = 'Сервис бронирования под ключ';
+        var currentPrice = 'от 59 000 ₽';
+
+        window.selectArticleTariff = function(cardElem) {
+          var cards = document.querySelectorAll('.tariff-card');
+          cards.forEach(function(c) {
+            c.classList.remove('active');
+            c.style.borderColor = 'var(--border)';
+            c.style.boxShadow = 'none';
+            var btn = c.querySelector('button');
+            if (btn) btn.textContent = 'Выбрать этот тариф';
+          });
+
+          cardElem.classList.add('active');
+          cardElem.style.borderColor = 'var(--accent)';
+          cardElem.style.boxShadow = '0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06)';
+          var activeBtn = cardElem.querySelector('button');
+          if (activeBtn) activeBtn.textContent = 'Выбранный тариф';
+
+          currentTariff = cardElem.getAttribute('data-tariff') || 'Сервис бронирования под ключ';
+          currentPrice = cardElem.getAttribute('data-price') || 'от 59 000 ₽';
+
+          var titleSpan = document.getElementById('selected-tariff-name');
+          var priceSpan = document.getElementById('selected-tariff-price');
+          var hiddenInput = document.getElementById('form-tariff-input');
+
+          if (titleSpan) titleSpan.textContent = currentTariff;
+          if (priceSpan) priceSpan.textContent = currentPrice;
+          if (hiddenInput) hiddenInput.value = currentTariff + ' (' + currentPrice + ')';
+
+          var orderBlock = document.getElementById('tariff-order-block');
+          if (orderBlock && window.innerWidth <= 768) {
+            orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        };
+
+        function initBookingTariffs() {
+          var grid = document.getElementById('landing-tariffs-grid');
+          var dots = document.querySelectorAll('.tariff-dot');
+          var cards = document.querySelectorAll('.tariff-card');
+
+          dots.forEach(function(dot, idx) {
+            dot.style.cursor = 'pointer';
+            dot.addEventListener('click', function() {
+              if (cards[idx]) {
+                window.selectArticleTariff(cards[idx]);
+                if (window.innerWidth <= 768 && grid) {
+                  cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+              }
+            });
+          });
+
+          if (window.innerWidth <= 768 && grid && cards[1]) {
+            setTimeout(function() {
+              cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+            }, 120);
+            setTimeout(function() {
+              cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+            }, 350);
+          }
+
+          if (grid && dots.length > 0) {
+            grid.addEventListener('scroll', function() {
+              var scrollLeft = grid.scrollLeft;
+              var cardWidth = (grid.querySelector('.tariff-card') ? grid.querySelector('.tariff-card').offsetWidth : 280) + 12;
+              var index = Math.round(scrollLeft / cardWidth);
+              dots.forEach(function(dot, i) {
+                if (i === index) {
+                  dot.classList.add('active');
+                  dot.style.background = 'var(--accent)';
+                  dot.style.width = '20px';
+                  dot.style.borderRadius = '4px';
+                } else {
+                  dot.classList.remove('active');
+                  dot.style.background = 'var(--border)';
+                  dot.style.width = '8px';
+                  dot.style.borderRadius = '50%';
+                }
+              });
+            }, { passive: true });
+          }
+
+          var form = document.getElementById('article-lead-form');
+          var submitBtn = document.getElementById('lead-submit-btn');
+          var statusMsg = document.getElementById('lead-status-msg');
+
+          if (!form || !submitBtn) return;
+
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var contactVal = (document.getElementById('lead-contact').value || '').trim();
+            var taskVal = (document.getElementById('lead-task').value || '').trim();
+            var consentCheck = document.getElementById('lead-consent-check');
+
+            if (!contactVal) {
+              alert('Пожалуйста, укажите ваш контакт (телефон или Telegram)');
+              return;
+            }
+            if (consentCheck && !consentCheck.checked) {
+              alert('Необходимо согласие на обработку персональных данных');
+              return;
+            }
+
+            var originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Отправка заявки...';
+            statusMsg.style.display = 'none';
+
+            var messageText = '📅 <b>НОВАЯ ЗАЯВКА НА САЙТ ОНЛАЙН-БРОНИРОВАНИЯ!</b>\n\n' +
+                              '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+                              '📞 <b>Контакт:</b> ' + contactVal + '\n' +
+                              '💬 <b>Сфера/Задача:</b> ' + (taskVal || 'Не указано') + '\n' +
+                              '🔗 <b>Страница:</b> ' + window.location.href;
+
+            var tgBotToken = '8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs';
+            var tgChatId = '7738024017';
+            var tgUrl = 'https://api.telegram.org/bot' + tgBotToken + '/sendMessage';
+
+            fetch(tgUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                chat_id: tgChatId,
+                text: messageText,
+                parse_mode: 'HTML'
+              })
+            }).then(function(resp) {
+              return resp.json();
+            }).then(function(data) {
+              if (data && data.ok) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '✓ Заявка доставлена!';
+                statusMsg.style.display = 'block';
+                statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                statusMsg.style.border = '1.5px solid var(--accent)';
+                statusMsg.style.color = 'var(--text)';
+                statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+                form.reset();
+                if (consentCheck) consentCheck.checked = true;
+              } else {
+                throw new Error('Telegram API error');
+              }
+            }).catch(function(err) {
+              fetch('/api/lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  tariff: currentTariff + ' (' + currentPrice + ')',
+                  contact: contactVal,
+                  message: taskVal,
+                  page: window.location.href
+                })
+              }).finally(function() {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
+                statusMsg.style.display = 'block';
+                statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+                statusMsg.style.border = '1.5px solid var(--accent)';
+                statusMsg.style.color = 'var(--text)';
+                statusMsg.innerHTML = '🎉 <b>Заявка принята!</b> Напишите в диалог: <a href="https://t.me/Voiddigit?text=' + encodeURIComponent('Здравствуйте! Заявка на сайт бронирования: ' + currentTariff + '. Мой контакт: ' + contactVal) + '" target="_blank" style="color: var(--accent); font-weight: 700; text-decoration: underline;">Открыть чат с Даниилом</a>';
+              });
+            });
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initBookingTariffs);
+        } else {
+          initBookingTariffs();
+        }
+      })();
+    </script>
+    
 </body>
 </html>
