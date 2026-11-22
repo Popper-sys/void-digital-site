@@ -134,6 +134,36 @@
       }
     }
 
+  
+    /* Consent label 152-FZ */
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin: 12px 0 16px;
+      text-align: left;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+
   </style>
   <script type="application/ld+json">
   {
@@ -521,12 +551,10 @@
               </div>
             </div>
 
-            <div style="margin-bottom: 16px;">
-              <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.82rem; color: var(--muted); cursor: pointer;">
-                <input type="checkbox" id="lead-consent" checked required style="margin-top: 3px;">
-                <span>Согласен на обработку персональных данных в соответствии с <a href="/consent" target="_blank" style="color: var(--accent); text-decoration: underline;">Согласием</a> и <a href="/privacy" target="_blank" style="color: var(--accent); text-decoration: underline;">Политикой</a></span>
+            <label class="consent-check-label">
+                <input type="checkbox" id="lead-consent-check" name="consent" checked required>
+                <span>Даю согласие на <a href="/consent" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
               </label>
-            </div>
 
             <div class="tariff-btn-row" style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
               <button type="submit" id="lead-submit-btn" class="btn btn-primary" style="padding: 13px 28px; font-size: 1rem; font-weight: 700; background: var(--accent); color: #fff; border-radius: 8px; border: none; cursor: pointer;">Отправить заявку в Telegram</button>
@@ -582,7 +610,32 @@
               var grid = document.getElementById('landing-tariffs-grid');
               var dots = document.querySelectorAll('.tariff-dot');
               if (grid && dots.length > 0) {
-                grid.addEventListener('scroll', function() {
+                // Dot click selection and smooth center
+              dots.forEach(function(dot, idx) {
+                dot.style.cursor = 'pointer';
+                dot.addEventListener('click', function() {
+                  var allCards = document.querySelectorAll('.tariff-card');
+                  if (allCards[idx]) {
+                    window.selectArticleTariff(allCards[idx]);
+                    if (window.innerWidth <= 768 && grid) {
+                      allCards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                    }
+                  }
+                });
+              });
+
+              // Mobile auto-center middle tariff on load
+              var cards = document.querySelectorAll('.tariff-card');
+              if (window.innerWidth <= 768 && grid && cards[1]) {
+                setTimeout(function() {
+                  cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+                }, 120);
+                setTimeout(function() {
+                  cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
+                }, 350);
+              }
+
+              grid.addEventListener('scroll', function() {
                   var scrollLeft = grid.scrollLeft;
                   var cardWidth = grid.querySelector('.tariff-card').offsetWidth + 12;
                   var index = Math.round(scrollLeft / cardWidth);
@@ -612,7 +665,7 @@
                 e.preventDefault();
                 var contactVal = (document.getElementById('lead-contact').value || '').trim();
                 var taskVal = (document.getElementById('lead-task').value || '').trim();
-                var consentCheck = document.getElementById('lead-consent');
+                var consentCheck = document.getElementById('lead-consent-check');
 
                 if (!contactVal) {
                   alert('Пожалуйста, укажите ваш контакт (телефон или Telegram)');
