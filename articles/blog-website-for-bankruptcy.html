@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#fafaf9" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="#111114" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="light dark" name="color-scheme"/>
+<script>document.documentElement.classList.add('js')</script>
+<title>Разработка сайта по банкротству физлиц и списанию долгов (ФЗ-127) под ключ: квиз-калькулятор</title>
+<meta content="Создание сайта для юристов по банкротству физических лиц (БФЛ) под ключ. Интерактивный квиз-калькулятор списания долгов, карточки арбитражных управляющих, реестр выигранных дел, интеграция с amoCRM." name="description"/>
+<link href="https://void-digital.ru/blog-website-for-bankruptcy" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="VOID | digital" property="og:site_name"/>
+<meta content="ru_RU" property="og:locale"/>
+<meta content="Разработка сайта по банкротству физлиц и списанию долгов (ФЗ-127) под ключ: квиз-калькулятор" property="og:title"/>
+<meta content="Создание сайта для юристов по банкротству физических лиц (БФЛ) под ключ. Интерактивный квиз-калькулятор списания долгов, карточки арбитражных управляющих, реестр выигранных дел, интеграция с amoCRM." property="og:description"/>
+<meta content="https://void-digital.ru/blog-website-for-bankruptcy" property="og:url"/>
+<meta content="https://void-digital.ru/img/blog-website-for-bankruptcy/blog-bankruptcy-cover.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="favicon.ico" rel="icon" sizes="any"/>
+<link href="icon.svg" rel="icon" type="image/svg+xml"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link as="font" crossorigin="" href="fonts/manrope-cyrillic.woff2" rel="preload" type="font/woff2"/>
+<link href="css/style.css?v=f00a3e5f" rel="stylesheet"/>
+<style>
+    .post-figure { margin: 24px 0; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post .cta p { max-width: none; }
+    .post .cta p a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+  
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: var(--bg);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-card:active {
+      transform: scale(0.99);
+    }
+    
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 12px !important;
+        padding-bottom: 8px !important;
+        margin-inline: -12px !important;
+        padding-inline: 12px !important;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .tariff-card {
+        flex: 0 0 min(82vw, 300px) !important;
+        max-width: 300px !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+        padding: 20px 16px !important;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+      .tariff-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .tariff-btn-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .tariff-btn-row .btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .landing-calculator-widget {
+        padding: 18px 14px !important;
+        margin: 24px 0 !important;
+      }
+    }
+
+    .landing-calculator-widget input[type="text"] {
+      font-size: 16px !important;
+    }
+
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin-top: 2px;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://void-digital.ru/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Блог",
+          "item": "https://void-digital.ru/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Разработка сайта для компании по банкротству физлиц (ФЗ-127)",
+          "item": "https://void-digital.ru/blog-website-for-bankruptcy"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://void-digital.ru/blog-website-for-bankruptcy#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://void-digital.ru/blog-website-for-bankruptcy"
+      },
+      "headline": "Разработка сайта для компании по банкротству физлиц (ФЗ-127)",
+      "description": "Создание сайта для юристов по банкротству физических лиц (БФЛ) под ключ. Интерактивный квиз-калькулятор списания долгов, карточки арбитражных управляющих, реестр выигранных дел, интеграция с amoCRM.",
+      "image": "https://void-digital.ru/img/blog-website-for-bankruptcy/blog-bankruptcy-cover.jpg",
+      "datePublished": "2026-11-23T10:00:00+03:00",
+      "dateModified": "2026-11-23T10:00:00+03:00",
+      "author": {
+        "@type": "Person",
+        "name": "Даниил Лосуков",
+        "url": "https://void-digital.ru/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VOID | digital",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://void-digital.ru/icon.svg"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://void-digital.ru/blog-website-for-bankruptcy"
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Разработка сайта по банкротству физлиц и списанию долгов",
+      "description": "Создание сайта для юристов по банкротству физических лиц (БФЛ) под ключ. Интерактивный квиз-калькулятор списания долгов, карточки арбитражных управляющих, реестр выигранных дел, интеграция с amoCRM.",
+      "image": "https://void-digital.ru/img/blog-website-for-bankruptcy/blog-bankruptcy-cover.jpg",
+      "brand": {
+        "@type": "Brand",
+        "name": "VOID | digital"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "RUB",
+        "lowPrice": "39000",
+        "highPrice": "115000",
+        "offerCount": "3"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Почему в нише банкротства физлиц так важен квиз-калькулятор?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Человек с долгами находится под тяжелым психологическим давлением коллекторов и приставов. Прямая форма 'Запишитесь на консультацию' вызывает страх и отторжение. Интерактивный опросник из 4-5 простых вопросов (сумма долга, наличие имущества, типы кредиторов) снижает психологический барьер и показывает реальную конверсию из клика в заявку на уровне 8-14%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как сайт помогает снять страх потери единственного жилья?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Мы размещаем наглядный блок юридического разъяснения статьи 446 ГПК РФ с цитатами из постановлений Пленума Верховного Суда РФ: единственное жилье гражданина (если оно не находится в ипотеке) обладает безусловным исполнительским иммунитетом и по закону не подлежит изъятию или реализации."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как подтверждается экспертность и честность юридической компании?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Лучшее доказательство — официальные судебные акты. Мы создаем интерактивный реестр выигранных дел с прямыми кликабельными ссылками на картотеку kad.arbitr.ru, суммами списанных долгов, карточками арбитражных управляющих с номерами в реестре СРО и видеоотзывами клиентов, начавших жизнь с чистого листа."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как быстро заявка с сайта передается в отдел продаж?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Заявка со всеми ответами из квиза моментально за 1 секунду передается в Telegram дежурным юристам и в amoCRM. При подключении сервиса автодозвона менеджер связывается с клиентом уже через 20-30 секунд, пока тот еще изучает страницу 'Спасибо'."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113737288', 'ym');
+
+    ym(113737288, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img alt="" decoding="async" fetchpriority="high" src="https://mc.yandex.ru/watch/113737288" style="position:absolute; left:-9999px;"/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+<div class="container nav">
+<a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+<button aria-expanded="false" aria-label="Меню" class="nav-toggle">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+</button>
+<ul class="nav-links">
+<li><a href="/services">Услуги и цены</a></li>
+<li><a href="/portfolio">Портфолио</a></li>
+<li><a href="/about">О нас</a></li>
+<li><a aria-current="page" href="/blog">Блог</a></li>
+<li><a href="/contacts">Контакты</a></li>
+<li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
+<li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+</ul>
+</div>
+</header>
+<main id="main">
+<article class="section post">
+<div class="container">
+<a class="muted" href="/blog">← Все статьи</a>
+<h1 class="mt-16">Разработка сайта для компании по банкротству физлиц (ФЗ-127)</h1>
+<p class="post-meta">23 ноября 2026 · 14 мин чтения · Юриспруденция / БФЛ</p>
+<figure class="post-figure">
+<picture>
+<source srcset="img/blog-website-for-bankruptcy/blog-bankruptcy-cover.webp" type="image/webp"/>
+<img alt="Разработка сайта для компании по банкротству физлиц (ФЗ-127)" class="cover-image" decoding="async" fetchpriority="high" height="800" src="img/blog-website-for-bankruptcy/blog-bankruptcy-cover.jpg" width="1200"/>
+</picture>
+</figure>
+
+<p class="lead" style="font-size: 1.18rem; line-height: 1.65; color: var(--text); margin-bottom: 28px;">
+Рынок банкротства физических лиц (БФЛ) по Федеральному закону № 127-ФЗ — одна из самых высококонкурентных и дорогих ниш в российском интернет-маркетинге. Стоимость клика в Яндекс Директе по запросам «списание долгов» и «банкротство граждан» достигает 800–1500 рублей. В таких условиях сайт с конверсией 2–3% ведет к убыткам компании. Мы проектируем высококонверсионные посадочные страницы и порталы БФЛ с конверсией 8–15%, интерактивным квиз-калькулятором, интеграцией с kad.arbitr.ru и мгновенной передачей лидов в CRM.
+</p>
+
+<h2>Психология должника: почему стандартные юридические сайты проваливаются</h2>
+<p>
+Типичный посетитель сайта по банкротству находится в состоянии острого стресса: звонки служб взыскания, угрозы коллекторов, арестованные судебными приставами карты и страх потерять квартиру. 
+</p>
+<p>
+Классический сухой юридический сайт с параграфами законов и надписью «Оставьте заявку на платную консультацию» вызывает лишь недоверие и отталкивает посетителя. Продающая структура в БФЛ строится на трех психологических триггерах:
+</p>
+<ul style="margin: 18px 0; padding-left: 20px; line-height: 1.7;">
+<li><strong>Безопасность и сочувствие:</strong> позиция юриста как защитника, который законным путем прекращает давление кредиторов с первого дня подписания договора (ст. 213.11 ФЗ-127).</li>
+<li><strong>Развеивание мифов:</strong> железобетонные гарантии защиты единственного жилья по ст. 446 ГПК РФ, объяснение возможности выезда за границу и сохранения официальной работы.</li>
+<li><strong>Интерактивный расчет:</strong> человек хочет проверить, подходит ли его ситуация под закон, без немедленного звонка назойливого менеджера.</li>
+</ul>
+
+<h2>Анатомия конверсионного сайта по списанию долгов</h2>
+<p>
+Каждый блок страницы последовательно нейтрализует страхи и ведет к заполнению интерактивного теста:
+</p>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 30px 0;">
+<div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 14px); padding: 22px;">
+<div style="font-size: 1.8rem; margin-bottom: 10px;">🧮 📋</div>
+<h3 style="margin: 0 0 8px; font-size: 1.15rem;">Квиз-калькулятор долга</h3>
+<p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.55;">
+4 простых шага: сумма задолженности, банки или МФО, имущество, наличие просрочек. Позволяет точно квалифицировать лид еще до звонка.
+</p>
+</div>
+<div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 14px); padding: 22px;">
+<div style="font-size: 1.8rem; margin-bottom: 10px;">⚖️ 🏛️</div>
+<h3 style="margin: 0 0 8px; font-size: 1.15rem;">Реестр выигранных дел</h3>
+<p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.55;">
+Карточки завершенных процедур с реальными номерами дел в картотеке kad.arbitr.ru и суммами полностью списанных долгов (от 350 тыс. до 4.5 млн ₽).
+</p>
+</div>
+<div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 14px); padding: 22px;">
+<div style="font-size: 1.8rem; margin-bottom: 10px;">🛡️ 🏠</div>
+<h3 style="margin: 0 0 8px; font-size: 1.15rem;">Защита единственного жилья</h3>
+<p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.55;">
+Юридический разбор ст. 446 ГПК РФ и практики Верховного Суда: снятие главного страха человека остаться на улице без крыши над головой.
+</p>
+</div>
+<div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 14px); padding: 22px;">
+<div style="font-size: 1.8rem; margin-bottom: 10px;">💳 🤝</div>
+<h3 style="margin: 0 0 8px; font-size: 1.15rem;">Рассрочка от 5 000 ₽ в месяц</h3>
+<p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.55;">
+У должника нет 120 000 рублей сразу. Блок честной комфортной рассрочки с фиксированным платежом в месяц снимает финансовый барьер входа.
+</p>
+</div>
+</div>
+
+<h2>Интерактивный квиз: конверсия до 14% в горячую заявку</h2>
+<p>
+Квиз решает две ключевые задачи: дает посетителю ощущение индивидуального анализа ситуации и передает в отдел продаж готовую карточку клиента:
+</p>
+<ol style="margin: 18px 0; padding-left: 20px; line-height: 1.7;">
+<li><strong>Шаг 1:</strong> Общая сумма задолженности (до 300 000 ₽, 300 000 – 500 000 ₽, 500 000 – 1 500 000 ₽, свыше 1.5 млн ₽);</li>
+<li><strong>Шаг 2:</strong> Где оформлены кредиты (Крупные банки, Микрофинансовые организации / займы до зарплаты, Налоги, Долги ЖКХ);</li>
+<li><strong>Шаг 3:</strong> Какое имущество есть в собственности (Только единственная квартира/дом, Ипотечное жилье, Автомобиль, Земельный участок, Ничего нет);</li>
+<li><strong>Шаг 4:</strong> Есть ли просрочки по платежам (Уже более 3 месяцев, Начались недавно, Пока плачу без задержек, но больше нет сил).</li>
+</ol>
+
+
+<div class="landing-calculator-widget" id="landing-calc-widget" style="margin: 36px 0; padding: clamp(20px, 4vw, 32px); background: var(--surface); border: 2px solid var(--accent); border-radius: var(--radius-lg, 20px); box-shadow: 0 12px 36px rgba(0,0,0,0.06);">
+<div style="text-align: center; max-width: 680px; margin: 0 auto 28px;">
+<span style="display: inline-block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 8px;">Интерактивный расчет сметы</span>
+<h3 style="margin: 0 0 10px; font-size: clamp(1.3rem, 2.5vw, 1.7rem);">Выберите подходящий тариф разработки для компании по банкротству физлиц (ФЗ-127)</h3>
+<p style="margin: 0; font-size: 0.95rem; color: var(--muted);">Кликните на карточку тарифа для выбора. Смета фиксируется в официальном договоре с ИП с поэтапной оплатой.</p>
+</div>
+
+<div id="landing-tariffs-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+
+<!-- Тариф 1 -->
+<div class="card tariff-card" data-index="0" data-price="от 39 000 ₽" data-tariff="Квиз-Лендинг Экспресс">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+<span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Быстрый старт</span>
+<span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); background: transparent; display: grid; place-items: center; transition: all 180ms ease;"></span>
+</div>
+<h4 style="margin: 0 0 6px; font-size: 1.15rem;">Квиз-Лендинг Экспресс</h4>
+<p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Высококонверсионный одностраничник с интерактивным калькулятором списания долгов, проработкой страхов должников и сбором горячих заявок.</p>
+<div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 39 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+<ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+<li>✓ Интерактивный квиз-тест: «Подходит ли вам списание долгов по ФЗ-127»</li><li>✓ Блок снятия страхов (сохранение единственного жилья по ст. 446 ГПК)</li><li>✓ Быстрая посадка трафика из Яндекс Директ с конверсией 8-14%</li><li>✓ Мобильная адаптация со скоростью загрузки 95+ PageSpeed</li><li>✓ Моментальные уведомления дежурного юриста в Telegram</li><li>✓ Срок запуска — 6-9 рабочих дней</li>
+</ul>
+</div>
+
+<!-- Тариф 2 (Популярный по умолчанию) -->
+<div class="card tariff-card active" data-index="1" data-price="от 65 000 ₽" data-tariff="БФЛ Эксперт (Калькулятор + Арбитраж)">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+<span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; background: color-mix(in srgb, var(--accent) 15%, transparent); padding: 3px 8px; border-radius: 6px;">★ Самый популярный</span>
+<span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent); display: grid; place-items: center; transition: all 180ms ease;">
+<svg fill="none" height="8" viewbox="0 0 10 8" width="10"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</span>
+</div>
+<h4 style="margin: 0 0 6px; font-size: 1.15rem; color: var(--accent);">БФЛ Эксперт (Калькулятор + Арбитраж)</h4>
+<p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Многостраничный портал юридической компании: реестр выигранных дел с номерами КАД Арбитр, карточки финансовых управляющих и интеграция с amoCRM.</p>
+<div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 65 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+<ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+<li>✓ Реестр реальной судебной практики со ссылками на kad.arbitr.ru</li><li>✓ Карточки штатных арбитражных управляющих со свидетельствами СРО</li><li>✓ Калькулятор ежемесячного платежа в рассрочку от 5 000 ₽/мес</li><li>✓ Интеграция с amoCRM / Скорозвон для автодозвона за 20 секунд</li><li>✓ AIO/GEO оптимизация под выдачу Яндекса и нейросети</li><li>✓ Срок запуска — 12-16 рабочих дней</li>
+</ul>
+</div>
+
+<!-- Тариф 3 -->
+<div class="card tariff-card" data-index="2" data-price="от 115 000 ₽" data-tariff="Федеральная Сеть БФЛ (Мультигород + CRM)">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+<span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Премиум решение</span>
+<span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); background: transparent; display: grid; place-items: center; transition: all 180ms ease;"></span>
+</div>
+<h4 style="margin: 0 0 6px; font-size: 1.15rem;">Федеральная Сеть БФЛ (Мультигород + CRM)</h4>
+<p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Масштабная экосистема для сетевых юридических центров: мультирегиональность (100+ городов на поддоменах), сквозная аналитика и коллтрекинг.</p>
+<div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 115 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+<ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+<li>✓ Мультирегиональная сетка поддоменов (автоопределение города посетителя)</li><li>✓ Личный кабинет клиента с этапами сбора документов и судебных заседаний</li><li>✓ Двусторонняя интеграция со сквозной аналитикой (Roistat, Comagic)</li><li>✓ Прием регулярных платежей за ведение процедуры через СБП</li><li>✓ Глубокое SEO-ядро под 250+ гео-запросов банкротства граждан</li><li>✓ Срок запуска — 20-28 рабочих дней</li>
+</ul>
+</div>
+
+</div>
+
+<!-- Точки-индикаторы для мобильных устройств -->
+<div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin: 12px 0 20px;">
+<span class="tariff-dot" data-dot="0" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 180ms ease;"></span>
+<span class="tariff-dot active" data-dot="1" style="width: 22px; height: 8px; border-radius: 4px; background: var(--accent); cursor: pointer; transition: all 180ms ease;"></span>
+<span class="tariff-dot" data-dot="2" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 180ms ease;"></span>
+</div>
+
+<!-- Панель формы заявки -->
+<div style="margin-top: 24px; padding: clamp(16px, 3vw, 24px); background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--radius, 16px);">
+<div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px dashed var(--border);">
+<div style="font-size: 0.9rem; color: var(--muted);">Выбранный тариф:</div>
+<div id="selected-tariff-display" style="font-size: 1.15rem; font-weight: 800; color: var(--accent);">БФЛ Эксперт (Калькулятор + Арбитраж) (от 65 000 ₽)</div>
+</div>
+<form id="landing-lead-form" onsubmit="return false;" style="display: grid; gap: 14px; margin: 0;">
+<div class="tariff-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+<div>
+<label for="lead-contact-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Ваш телефон или @Telegram <span style="color: var(--accent);">*</span></label>
+<input id="lead-contact-input" placeholder="+7 (999) 000-00-00 или @username" required="" style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;" type="text"/>
+</div>
+<div>
+<label for="lead-task-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Адрес сайта / Ссылка (если есть)</label>
+<input id="lead-task-input" placeholder="mysite.ru или кратко о задаче" style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;" type="text"/>
+</div>
+</div>
+<!-- Согласие 152-ФЗ -->
+<label class="consent-check-label">
+<input checked="" id="lead-consent-check" required="" type="checkbox"/>
+<span>Согласен на обработку персональных данных в соответствии с <a href="/consent" target="_blank">согласием</a> и <a href="/privacy" target="_blank">политикой конфиденциальности</a></span>
+</label>
+<div class="tariff-btn-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 4px;">
+<button class="btn btn-primary" id="lead-submit-btn" style="padding: 13px 28px; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: none; border-radius: var(--radius, 12px); background: var(--accent); color: #fff; transition: opacity 160ms ease;" type="submit">Получить расчет сметы в Telegram →</button>
+<span style="font-size: 0.82rem; color: var(--muted);">Ответим за 15 минут · Без спама · Договор с ИП</span>
+</div>
+<div id="lead-status-msg" style="display: none; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem;"></div>
+</form>
+</div>
+
+<script>
+(function() {
+  function initWidget() {
+    var grid = document.getElementById('landing-tariffs-grid');
+    var cards = document.querySelectorAll('.tariff-card');
+    var dots = document.querySelectorAll('.tariff-dot');
+    var display = document.getElementById('selected-tariff-display');
+    var form = document.getElementById('landing-lead-form');
+    var contactInput = document.getElementById('lead-contact-input');
+    var taskInput = document.getElementById('lead-task-input');
+    var consentCheck = document.getElementById('lead-consent-check');
+    var submitBtn = document.getElementById('lead-submit-btn');
+    var statusMsg = document.getElementById('lead-status-msg');
+
+    if (!cards.length || !form) return;
+
+    var currentTariff = 'БФЛ Эксперт (Калькулятор + Арбитраж)';
+    var currentPrice = 'от 65 000 ₽';
+
+    if (consentCheck && submitBtn) {
+      consentCheck.addEventListener('change', function() {
+        if (!this.checked) {
+          submitBtn.style.opacity = '0.5';
+          submitBtn.style.cursor = 'not-allowed';
+        } else {
+          submitBtn.style.opacity = '1';
+          submitBtn.style.cursor = 'pointer';
+        }
+      });
+    }
+
+    function updateDots(activeIdx) {
+      dots.forEach(function(dot, idx) {
+        if (idx === activeIdx) {
+          dot.style.width = '22px';
+          dot.style.borderRadius = '4px';
+          dot.style.background = 'var(--accent)';
+        } else {
+          dot.style.width = '8px';
+          dot.style.borderRadius = '50%';
+          dot.style.background = 'var(--border)';
+        }
+      });
+    }
+
+    function selectCard(card, scrollIntoView) {
+      cards.forEach(function(c) {
+        c.classList.remove('active');
+        var radio = c.querySelector('.tariff-radio');
+        if (radio) {
+          radio.style.borderColor = 'var(--border)';
+          radio.style.background = 'transparent';
+          radio.innerHTML = '';
+        }
+      });
+
+      card.classList.add('active');
+      var radio = card.querySelector('.tariff-radio');
+      if (radio) {
+        radio.style.borderColor = 'var(--accent)';
+        radio.style.background = 'var(--accent)';
+        radio.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      }
+
+      currentTariff = card.getAttribute('data-tariff') || '';
+      currentPrice = card.getAttribute('data-price') || '';
+
+      if (display) {
+        display.textContent = currentTariff + ' (' + currentPrice + ')';
+      }
+
+      var idx = parseInt(card.getAttribute('data-index') || '0', 10);
+      updateDots(idx);
+
+      if (scrollIntoView && window.innerWidth <= 768 && grid) {
+        var targetLeft = card.offsetLeft - (grid.clientWidth - card.clientWidth) / 2;
+        if (grid.scrollTo) {
+          grid.scrollTo({ left: targetLeft, behavior: 'smooth' });
+        } else {
+          grid.scrollLeft = targetLeft;
+        }
+      }
+    }
+
+    cards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        selectCard(this, true);
+      });
+    });
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        var idx = parseInt(this.getAttribute('data-dot') || '0', 10);
+        if (cards[idx]) {
+          selectCard(cards[idx], true);
+        }
+      });
+    });
+
+    if (grid) {
+      var scrollTimer = null;
+      grid.addEventListener('scroll', function() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+          var scrollLeft = grid.scrollLeft;
+          var cardWidth = cards[0].offsetWidth + 12;
+          var activeIndex = Math.round(scrollLeft / cardWidth);
+          if (activeIndex >= 0 && activeIndex < cards.length) {
+            updateDots(activeIndex);
+          }
+        }, 50);
+      }, { passive: true });
+    }
+
+    // Auto-center middle tariff on mobile without scrolling window
+    if (window.innerWidth <= 768 && grid && cards[1]) {
+      setTimeout(function() {
+        if (grid && cards[1]) {
+          grid.scrollLeft = cards[1].offsetLeft - (grid.clientWidth - cards[1].clientWidth) / 2;
+        }
+      }, 120);
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (consentCheck && !consentCheck.checked) {
+        alert('Пожалуйста, подтвердите согласие на обработку персональных данных');
+        consentCheck.focus();
+        return;
+      }
+
+      var contactVal = contactInput ? contactInput.value.trim() : '';
+      var taskVal = taskInput ? taskInput.value.trim() : '';
+
+      if (!contactVal) {
+        if (contactInput) contactInput.focus();
+        return;
+      }
+
+      var originalBtnHtml = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Отправка...</span>';
+      statusMsg.style.display = 'none';
+
+      var tgText = '⚖️ Новая заявка на сайт для компании по банкротству физлиц (ФЗ-127)!\n\n' +
+        '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+        '📱 <b>Контакт:</b> ' + contactVal + '\n' +
+        (taskVal ? ('💬 <b>Задача / сайт:</b> ' + taskVal + '\n') : '') +
+        '🔗 <b>Страница:</b> https://void-digital.ru/blog-website-for-bankruptcy';
+
+      var tgPayload = JSON.stringify({
+        chat_id: '7738024017',
+        text: tgText,
+        parse_mode: 'HTML'
+      });
+
+      fetch('https://api.telegram.org/bot8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: tgPayload
+      }).then(function(res) {
+        return res.json();
+      }).then(function(data) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+
+        if (data && data.ok) {
+          statusMsg.style.display = 'block';
+          statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+          statusMsg.style.border = '1.5px solid var(--accent)';
+          statusMsg.style.color = 'var(--text)';
+          statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+          form.reset();
+          if (consentCheck) consentCheck.checked = true;
+        } else {
+          throw new Error(data && data.description ? data.description : 'Ошибка Telegram API');
+        }
+      }).catch(function(err) {
+        fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tariff: currentTariff + ' (' + currentPrice + ')',
+            contact: contactVal,
+            message: taskVal,
+            source: 'https://void-digital.ru/blog-website-for-bankruptcy'
+          })
+        }).then(function() {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+          statusMsg.style.display = 'block';
+          statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+          statusMsg.style.border = '1.5px solid var(--accent)';
+          statusMsg.style.color = 'var(--text)';
+          statusMsg.innerHTML = '🎉 <b>Заявка принята!</b> Мы свяжемся с вами в течение 15 минут.';
+          form.reset();
+          if (consentCheck) consentCheck.checked = true;
+        }).catch(function() {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+          statusMsg.style.display = 'block';
+          statusMsg.style.background = 'rgba(239, 68, 68, 0.15)';
+          statusMsg.style.border = '1.5px solid #ef4444';
+          statusMsg.style.color = 'var(--text)';
+          statusMsg.innerHTML = '⚠️ Не удалось отправить автоматически. Пожалуйста, напишите нам напрямую в Telegram: <a href="https://t.me/Voiddigit" target="_blank" style="color:var(--accent); text-decoration:underline;">@Voiddigit</a>';
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWidget);
+  } else {
+    initWidget();
+  }
+})();
+</script>
+</div>
+
+
+<h2>Сквозная интеграция с CRM и автодозвон за 20 секунд</h2>
+<p>
+В нише БФЛ лид остывает за считанные минуты. Клиент оставляет заявки сразу на 3-4 сайтах подряд. Кто первый позвонит — тот закроет встречу в офисе или онлайн-консультацию.
+</p>
+<p>
+Мы настраиваем профессиональную связку:
+</p>
+<ul style="margin: 18px 0; padding-left: 20px; line-height: 1.7;">
+<li>Прямая интеграция с amoCRM / Битрикс24: сделка создается со всеми ответами квиза, UTM-метками кампании и ключевым словом из Директа;</li>
+<li>Интеграция с сервисами автодозвона (Скорозвон, Sipuni): робот соединяет свободного юриста с клиентом уже через 20-30 секунд после клика на кнопку «Узнать результат»;</li>
+<li>Резервный канал в Telegram: мгновенное оповещение дежурного специалиста с кликабельным номером телефона клиента для звонка в 1 тап.</li>
+</ul>
+
+<h2>Часто задаваемые вопросы (FAQ)</h2>
+<div style="display: grid; gap: 14px; margin: 24px 0;">
+<details style="border: 1px solid var(--border); border-radius: var(--radius, 12px); padding: 16px 20px; background: var(--surface);">
+<summary style="font-weight: 700; cursor: pointer; color: var(--text);">Почему в нише банкротства физлиц так важен квиз-калькулятор?</summary>
+<p style="margin-top: 12px; color: var(--muted); line-height: 1.6;">
+Человек с долгами находится под тяжелым психологическим давлением коллекторов и приставов. Прямая форма "Запишитесь на консультацию" вызывает страх и отторжение. Интерактивный опросник из 4-5 простых вопросов (сумма долга, наличие имущества, типы кредиторов) снижает психологический барьер и показывает реальную конверсию из клика в заявку на уровне 8-14%.
+</p>
+</details>
+
+<details style="border: 1px solid var(--border); border-radius: var(--radius, 12px); padding: 16px 20px; background: var(--surface);">
+<summary style="font-weight: 700; cursor: pointer; color: var(--text);">Как сайт помогает снять страх потери единственного жилья?</summary>
+<p style="margin-top: 12px; color: var(--muted); line-height: 1.6;">
+Мы размещаем наглядный блок юридического разъяснения статьи 446 ГПК РФ с цитатами из постановлений Пленума Верховного Суда РФ: единственное жилье гражданина (если оно не находится в ипотеке) обладает безусловным исполнительским иммунитетом и по закону не подлежит изъятию или реализации.
+</p>
+</details>
+
+<details style="border: 1px solid var(--border); border-radius: var(--radius, 12px); padding: 16px 20px; background: var(--surface);">
+<summary style="font-weight: 700; cursor: pointer; color: var(--text);">Как подтверждается экспертность и честность юридической компании?</summary>
+<p style="margin-top: 12px; color: var(--muted); line-height: 1.6;">
+Лучшее доказательство — официальные судебные акты. Мы создаем интерактивный реестр выигранных дел с прямыми кликабельными ссылками на картотеку kad.arbitr.ru, суммами списанных долгов, карточками арбитражных управляющих с номерами в реестре СРО и видеоотзывами клиентов, начавших жизнь с чистого листа.
+</p>
+</details>
+
+<details style="border: 1px solid var(--border); border-radius: var(--radius, 12px); padding: 16px 20px; background: var(--surface);">
+<summary style="font-weight: 700; cursor: pointer; color: var(--text);">Как быстро заявка с сайта передается в отдел продаж?</summary>
+<p style="margin-top: 12px; color: var(--muted); line-height: 1.6;">
+Заявка со всеми ответами из квиза моментально за 1 секунду передается в Telegram дежурным юристам и в amoCRM. При подключении сервиса автодозвона менеджер связывается с клиентом уже через 20-30 секунд, пока тот еще изучает страницу "Спасибо".
+</p>
+</details>
+</div>
+<div class="cta mt-40">
+<h2>Готовы обсудить проект или заказать расчет?</h2>
+<p>Напишите нам в Telegram или оставьте заявку выше. Мы проведем бесплатный аудит задачи, покажем похожие кейсы и составим прозрачную смету с фиксированными сроками.</p>
+<div class="cta-actions">
+<a class="btn" href="#landing-calc-widget">Выбрать тариф в калькуляторе ↑</a>
+<a class="btn btn-outline" href="https://t.me/Voiddigit" rel="noopener" target="_blank">Написать в Telegram</a>
+</div>
+</div>
+</div>
+</article>
+</main>
+<footer class="site-footer">
+<div class="container footer-grid">
+<div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br/><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+<ul aria-label="Связаться с нами" class="social">
+<li><a aria-label="Позвонить +7 953 855-08-13" href="tel:+79538550813" title="Позвонить"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg></a></li>
+<li><a aria-label="Написать в WhatsApp" href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." rel="noopener" target="_blank" title="WhatsApp"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"></path><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"></path></svg></a></li>
+<li><a aria-label="Написать в Telegram" href="https://t.me/Voiddigit" rel="noopener" target="_blank" title="Telegram"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"></path><path d="m9.2 13.3 8.3-6.6"></path></svg></a></li>
+<li><a aria-label="Написать на почту voiddigital@mail.ru" href="mailto:voiddigital@mail.ru" title="Почта"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><rect height="14" rx="2.5" width="18" x="3" y="5"></rect><path d="m3.5 7 8.5 6 8.5-6"></path></svg></a></li>
+</ul>
+<ul class="footer-links">
+<li><a href="/services">Услуги</a></li>
+<li><a href="/portfolio">Портфолио</a></li>
+<li><a href="/blog">Блог</a></li>
+<li><a href="/contacts">Контакты</a></li>
+<li><a href="/privacy">Политика конфиденциальности</a></li>
+<li><a href="https://t.me/Voiddigit" rel="noopener" target="_blank">Telegram</a></li>
+</ul>
+</div>
+</footer>
+<script src="js/main.js?v=f00a3e5f"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0);
+  });
+</script>
+</body>
+</html>

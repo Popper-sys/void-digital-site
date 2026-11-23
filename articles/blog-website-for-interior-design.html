@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#fafaf9" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="#111114" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="light dark" name="color-scheme"/>
+<script>document.documentElement.classList.add('js')</script>
+<title>Разработка сайта для студии дизайна интерьера и архитектурного бюро под ключ</title>
+<meta content="Создание премиального сайта для студии интерьерного дизайна и архитектуры под ключ. Эстетичное портфолио, интерактивный квиз расчета сметы, 3D-визуализации, SEO и привлечение премиум-клиентов." name="description"/>
+<link href="https://void-digital.ru/blog-website-for-interior-design" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="VOID | digital" property="og:site_name"/>
+<meta content="ru_RU" property="og:locale"/>
+<meta content="Разработка сайта для студии дизайна интерьера и архитектурного бюро под ключ" property="og:title"/>
+<meta content="Создание премиального сайта для студии интерьерного дизайна и архитектуры под ключ. Эстетичное портфолио, интерактивный квиз расчета сметы, 3D-визуализации, SEO и привлечение премиум-клиентов." property="og:description"/>
+<meta content="https://void-digital.ru/blog-website-for-interior-design" property="og:url"/>
+<meta content="https://void-digital.ru/img/blog-website-for-interior-design/blog-interior-design-cover.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="favicon.ico" rel="icon" sizes="any"/>
+<link href="icon.svg" rel="icon" type="image/svg+xml"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link as="font" crossorigin="" href="fonts/manrope-cyrillic.woff2" rel="preload" type="font/woff2"/>
+<link href="css/style.css?v=f00a3e5f" rel="stylesheet"/>
+<style>
+    .post-figure { margin: 24px 0; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post .cta p { max-width: none; }
+    .post .cta p a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+  
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: var(--bg);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-card:active {
+      transform: scale(0.99);
+    }
+    
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 12px !important;
+        padding-bottom: 8px !important;
+        margin-inline: -12px !important;
+        padding-inline: 12px !important;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .tariff-card {
+        flex: 0 0 min(82vw, 300px) !important;
+        max-width: 300px !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+        padding: 20px 16px !important;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+      .tariff-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .tariff-btn-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .tariff-btn-row .btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .landing-calculator-widget {
+        padding: 18px 14px !important;
+        margin: 24px 0 !important;
+      }
+    }
+
+    .landing-calculator-widget input[type="text"] {
+      font-size: 16px !important;
+    }
+
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin-top: 2px;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://void-digital.ru/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Блог",
+          "item": "https://void-digital.ru/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Разработка сайта для студии дизайна интерьера и архитектурного бюро",
+          "item": "https://void-digital.ru/blog-website-for-interior-design"
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "@id": "https://void-digital.ru/blog-website-for-interior-design#article",
+      "isPartOf": {
+        "@type": "WebPage",
+        "@id": "https://void-digital.ru/blog-website-for-interior-design"
+      },
+      "headline": "Разработка сайта для студии дизайна интерьера и архитектурного бюро",
+      "description": "Создание премиального сайта для студии интерьерного дизайна и архитектуры под ключ. Эстетичное портфолио, интерактивный квиз расчета сметы, 3D-визуализации, SEO и привлечение премиум-клиентов.",
+      "image": "https://void-digital.ru/img/blog-website-for-interior-design/blog-interior-design-cover.jpg",
+      "datePublished": "2026-11-23T10:00:00+03:00",
+      "dateModified": "2026-11-23T10:00:00+03:00",
+      "author": {
+        "@type": "Person",
+        "name": "Даниил Лосуков",
+        "url": "https://void-digital.ru/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "VOID | digital",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://void-digital.ru/icon.svg"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://void-digital.ru/blog-website-for-interior-design"
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Разработка сайта для студии дизайна интерьера и архитектурного бюро",
+      "description": "Создание премиального сайта для студии интерьерного дизайна и архитектуры под ключ. Эстетичное портфолио, интерактивный квиз расчета сметы, 3D-визуализации, SEO и привлечение премиум-клиентов.",
+      "image": "https://void-digital.ru/img/blog-website-for-interior-design/blog-interior-design-cover.jpg",
+      "brand": {
+        "@type": "Brand",
+        "name": "VOID | digital"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "RUB",
+        "lowPrice": "45000",
+        "highPrice": "120000",
+        "offerCount": "3"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Как сайт студии дизайна помогает продавать проекты с чеком от 500 000 рублей?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Премиальный заказчик оценивает студию по трем критериям: безупречный визуальный вкус самого сайта, глубина проработки кейсов (не просто красивые рендеры, а чертежи, спецификации и фото реализованных объектов) и прозрачность этапов работы. Сайт формирует образ авторитетного эксперта за счет идеальной типографики, высокой скорости и презентации авторского надзора."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Не будут ли тяжелые рендеры 4K тормозить сайт на смартфонах?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Мы применяем многоступенчатую систему оптимизации медиа: конвертацию в современные форматы WebP и AVIF с сохранением идеальной цветопередачи, генерацию адаптивных размеров (responsive srcset), асинхронную отложенную загрузку (lazy loading) и размещение статики в CDN. Сайт открывается за доли секунды и набирает 95+ баллов в Google PageSpeed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Что дает интеграция квиза подбора интерьерного стиля?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Квиз вовлекает посетителя в диалог: клиент выбирает понравившиеся фото интерьеров (минимализм, ваби-саби, неоклассика, сканди), указывает площадь квартиры или дома, стадию объекта (новостройка в бетоне или вторичка) и ориентировочный бюджет. На выходе дизайнер получает готовый предварительный бриф прямо в Telegram еще до первого звонка."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сможем ли мы самостоятельно добавлять новые проекты в портфолио?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да, мы настраиваем удобную и интуитивную панель управления контентом, где вы сможете за 5 минут опубликовать новый кейс: загрузить фотографии, указать площадь, город, стиль и прикрепить отзыв владельца."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113737288', 'ym');
+
+    ym(113737288, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img alt="" decoding="async" fetchpriority="high" src="https://mc.yandex.ru/watch/113737288" style="position:absolute; left:-9999px;"/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+<div class="container nav">
+<a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+<button aria-expanded="false" aria-label="Меню" class="nav-toggle">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+</button>
+<ul class="nav-links">
+<li><a href="/services">Услуги и цены</a></li>
+<li><a href="/portfolio">Портфолио</a></li>
+<li><a href="/about">О нас</a></li>
+<li><a aria-current="page" href="/blog">Блог</a></li>
+<li><a href="/contacts">Контакты</a></li>
+<li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
+<li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+</ul>
+</div>
+</header>
+<main id="main">
+<article class="section post">
+<div class="container">
+<a class="muted" href="/blog">← Все статьи</a>
+<h1 class="mt-16">Разработка сайта для студии дизайна интерьера и архитектурного бюро</h1>
+<p class="post-meta">23 ноября 2026 · 13 мин чтения · Премиум / Дизайн и Архитектура</p>
+<figure class="post-figure">
+<picture>
+<source srcset="img/blog-website-for-interior-design/blog-interior-design-cover.webp" type="image/webp"/>
+<img alt="Разработка сайта для студии дизайна интерьера и архитектурного бюро" class="cover-image" decoding="async" fetchpriority="high" height="800" src="img/blog-website-for-interior-design/blog-interior-design-cover.jpg" width="1200"/>
+</picture>
+</figure>
+
+<p class="lead" style="font-size: 1.18rem; line-height: 1.65; color: var(--text); margin-bottom: 28px;">
+В сфере дизайна интерьера и архитектуры сайт — это не просто визитка, а главное отражение вашего профессионального вкуса и чувства стиля. Заказчик элитного жилья в Москве, Санкт-Петербурге или региональном мегаполисе не доверит проект стоимостью в сотни тысяч рублей бюро с неряшливым, перегруженным или медленным сайтом. Мы создаем архитектурные и интерьерные сайты премиум-класса с акцентом на кинематографическую визуализацию, безупречную типографику и конверсионную лидогенерацию.
+</p>
+
+<h2>Специфика ниши дизайна интерьеров: как сайт продает высокий чек</h2>
+<p>
+Клиенты, заказывающие дизайн-проект квартиры площадью 120–250 м² или загородного дома, выбирают не строительную бригаду, а стиль жизни, комфорт и статус. Продажа услуг в этом сегменте подчиняется строгим законам премиального брендинга:
+</p>
+<ul style="margin: 18px 0; padding-left: 20px; line-height: 1.7;">
+<li><strong>Минимализм и «воздух»:</strong> дизайн сайта должен служить нейтральным благородным обрамлением для ваших проектов, а не перетягивать внимание на вычурные элементы интерфейса.</li>
+<li><strong>Доказательность реализации:</strong> рынок перенасыщен студенческими 3D-рендерами. Доверие обеспеченных заказчиков вызывают реальные фотографии готовых объектов после ремонта рядом с исходными 3D-концепциями («Визуализация / Реализация 1 в 1»).</li>
+<li><strong>Продажа авторского надзора и комплектации:</strong> дизайн-проект — это лишь 20-30% выручки студии. Основной доход приносит управление закупками мебели, сантехники, света и контроль строителей. Сайт должен убедительно показывать экономию времени и нервов заказчика.</li>
+</ul>
+
+<h2>Архитектура кейса: от планировки до готового интерьера</h2>
+<p>
+Стандартной фотогалереи больше недостаточно. В наших сайтах для дизайн-студий каждый кейс превращается в захватывающую историю создания пространства:
+</p>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 30px 0;">
+<div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 14px); padding: 22px;">
+<div style="font-size: 1.8rem; margin-bottom: 10px;">📐 🧭</div>
+<h3 style="margin: 0 0 8px; font-size: 1.15rem;">Планировочные решения</h3>
+<p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.55;">
+Интерактивный просмотр планов расстановки мебели, демонтажа и возведения перегородок с акцентом на эргономику и функциональное зонирование.
+</p>
+</div>
+<div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 14px); padding: 22px;">
+<div style="font-size: 1.8rem; margin-bottom: 10px;">✨ 🛋️</div>
+<h3 style="margin: 0 0 8px; font-size: 1.15rem;">Интерактивный слайдер Было / Стало</h3>
+<p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.55;">
+Ползунок, позволяющий сравнить бетонную коробку новостройки и роскошный готовый интерьер с премиальными материалами и сценариями освещения.
+</p>
+</div>
+<div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 14px); padding: 22px;">
+<div style="font-size: 1.8rem; margin-bottom: 10px;">📋 💎</div>
+<h3 style="margin: 0 0 8px; font-size: 1.15rem;">Ведомость отделки и мебели</h3>
+<p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.55;">
+Блок с указанием фабрик, отделочных материалов (керамогранит, шпон, натуральный камень) и инженерных решений, демонстрирующий класс работы.
+</p>
+</div>
+<div style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 14px); padding: 22px;">
+<div style="font-size: 1.8rem; margin-bottom: 10px;">🎯 💰</div>
+<h3 style="margin: 0 0 8px; font-size: 1.15rem;">Сроки, бюджет и отзыв клиента</h3>
+<p style="margin: 0; font-size: 0.9rem; color: var(--muted); line-height: 1.55;">
+Четкие цифры: площадь объекта, срок разработки чертежей, срок реализации и видеоинтервью с владельцем недвижимости.
+</p>
+</div>
+</div>
+
+<h2>Интерактивный квиз подбора стиля: вовлечение и квалификация лидов</h2>
+<p>
+Многие клиенты на этапе выбора студии еще не могут точно сформулировать свои стилевые предпочтения. Интерактивный квиз с визуальными карточками решает эту задачу играючи:
+</p>
+<ol style="margin: 18px 0; padding-left: 20px; line-height: 1.7;">
+<li><strong>Шаг 1:</strong> Выбор эстетики по настроению (Уютный джапанди, Строгий минимализм, Неоклассика с молдингами, Брутальный лофт, Contemporary);</li>
+<li><strong>Шаг 2:</strong> Тип объекта и площадь (Квартира в ЖК премиум/бизнес-класса, Таунхаус, Загородная резиденция, Ресторан / Офис);</li>
+<li><strong>Шаг 3:</strong> Текущий статус готовности (Только получили ключи, Идет выдача через 3 месяца, Вторичка под снос стен);</li>
+<li><strong>Шаг 4:</strong> Желаемый уровень комплектации (Только рабочий проект чертежей, Проект + визуализации, Полная реализация под ключ с авторским надзором).</li>
+</ol>
+
+
+<div class="landing-calculator-widget" id="landing-calc-widget" style="margin: 36px 0; padding: clamp(20px, 4vw, 32px); background: var(--surface); border: 2px solid var(--accent); border-radius: var(--radius-lg, 20px); box-shadow: 0 12px 36px rgba(0,0,0,0.06);">
+<div style="text-align: center; max-width: 680px; margin: 0 auto 28px;">
+<span style="display: inline-block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 8px;">Интерактивный расчет сметы</span>
+<h3 style="margin: 0 0 10px; font-size: clamp(1.3rem, 2.5vw, 1.7rem);">Выберите подходящий тариф разработки для студии дизайна интерьера</h3>
+<p style="margin: 0; font-size: 0.95rem; color: var(--muted);">Кликните на карточку тарифа для выбора. Смета фиксируется в официальном договоре с ИП с поэтапной оплатой.</p>
+</div>
+
+<div id="landing-tariffs-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+
+<!-- Тариф 1 -->
+<div class="card tariff-card" data-index="0" data-price="от 45 000 ₽" data-tariff="Авторское Портфолио">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+<span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Быстрый старт</span>
+<span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); background: transparent; display: grid; place-items: center; transition: all 180ms ease;"></span>
+</div>
+<h4 style="margin: 0 0 6px; font-size: 1.15rem;">Авторское Портфолио</h4>
+<p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Стильный и лаконичный одностраничный сайт для частного дизайнера или камерной студии с акцентом на визуальную эстетику и подачу ключевых проектов.</p>
+<div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 45 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+<ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+<li>✓ Эстетичная галерея ТОП-10 дизайн-проектов с полноэкранным просмотром</li><li>✓ Блок презентации дизайнера, философии бюро и наград</li><li>✓ Базовый опросник брифа на разработку проекта</li><li>✓ Мобильная адаптация со скоростью загрузки 95+ PageSpeed</li><li>✓ Прямая интеграция заявок с Telegram и WhatsApp</li><li>✓ Срок запуска — 7-10 рабочих дней</li>
+</ul>
+</div>
+
+<!-- Тариф 2 (Популярный по умолчанию) -->
+<div class="card tariff-card active" data-index="1" data-price="от 69 000 ₽" data-tariff="Студия Профи (Квиз + Кейсы)">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+<span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; background: color-mix(in srgb, var(--accent) 15%, transparent); padding: 3px 8px; border-radius: 6px;">★ Самый популярный</span>
+<span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent); display: grid; place-items: center; transition: all 180ms ease;">
+<svg fill="none" height="8" viewbox="0 0 10 8" width="10"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</span>
+</div>
+<h4 style="margin: 0 0 6px; font-size: 1.15rem; color: var(--accent);">Студия Профи (Квиз + Кейсы)</h4>
+<p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Многостраничный презентационный сайт студии с интерактивным квизом стиля, детализированными карточками кейсов и калькулятором дизайн-проекта.</p>
+<div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 69 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+<ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+<li>✓ Глубокие карточки кейсов: чертежи, планировки, 3D-визуализации и сметы</li><li>✓ Интерактивный квиз: выбор стиля (минимализм, неоклассика, джапанди) и расчет м²</li><li>✓ Презентация услуг авторского надзора и комплектации объектов</li><li>✓ Интеграция с amoCRM / Битрикс24 и моментальный Telegram-бот</li><li>✓ AIO/GEO оптимизация под выдачу Яндекса и нейросети</li><li>✓ Срок запуска — 14-18 рабочих дней</li>
+</ul>
+</div>
+
+<!-- Тариф 3 -->
+<div class="card tariff-card" data-index="2" data-price="от 120 000 ₽" data-tariff="Архитектурный Премиум (3D + Брендинг)">
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+<span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;">Премиум решение</span>
+<span class="tariff-radio" style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border); background: transparent; display: grid; place-items: center; transition: all 180ms ease;"></span>
+</div>
+<h4 style="margin: 0 0 6px; font-size: 1.15rem;">Архитектурный Премиум (3D + Брендинг)</h4>
+<p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Флагманский сайт для масштабных архитектурных бюро и проектных институтов с 3D-панорамами, интерактивными генпланами и премиальной типографикой.</p>
+<div style="font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 14px;">от 120 000 ₽ <small style="font-size: 0.82rem; font-weight: 400; color: var(--muted);">/ проект</small></div>
+<ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; font-size: 0.84rem; color: var(--muted);">
+<li>✓ Интерактивные 3D-туры 360° и панорамы интерьеров в WebGL</li><li>✓ Разделы жилой и коммерческой архитектуры (HoReCa, офисы, ритейл)</li><li>✓ Сложные сценарии анимации и плавная кинематографическая верстка</li><li>✓ Закрытый личный кабинет заказчика для согласования чертежей и этапов</li><li>✓ Сквозная аналитика, SEO-структура под 120+ ключевых запросов</li><li>✓ Срок запуска — 25-30 рабочих дней</li>
+</ul>
+</div>
+
+</div>
+
+<!-- Точки-индикаторы для мобильных устройств -->
+<div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin: 12px 0 20px;">
+<span class="tariff-dot" data-dot="0" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 180ms ease;"></span>
+<span class="tariff-dot active" data-dot="1" style="width: 22px; height: 8px; border-radius: 4px; background: var(--accent); cursor: pointer; transition: all 180ms ease;"></span>
+<span class="tariff-dot" data-dot="2" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 180ms ease;"></span>
+</div>
+
+<!-- Панель формы заявки -->
+<div style="margin-top: 24px; padding: clamp(16px, 3vw, 24px); background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--radius, 16px);">
+<div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px dashed var(--border);">
+<div style="font-size: 0.9rem; color: var(--muted);">Выбранный тариф:</div>
+<div id="selected-tariff-display" style="font-size: 1.15rem; font-weight: 800; color: var(--accent);">Студия Профи (Квиз + Кейсы) (от 69 000 ₽)</div>
+</div>
+<form id="landing-lead-form" onsubmit="return false;" style="display: grid; gap: 14px; margin: 0;">
+<div class="tariff-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+<div>
+<label for="lead-contact-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Ваш телефон или @Telegram <span style="color: var(--accent);">*</span></label>
+<input id="lead-contact-input" placeholder="+7 (999) 000-00-00 или @username" required="" style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;" type="text"/>
+</div>
+<div>
+<label for="lead-task-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Адрес сайта / Ссылка (если есть)</label>
+<input id="lead-task-input" placeholder="mysite.ru или кратко о задаче" style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;" type="text"/>
+</div>
+</div>
+<!-- Согласие 152-ФЗ -->
+<label class="consent-check-label">
+<input checked="" id="lead-consent-check" required="" type="checkbox"/>
+<span>Согласен на обработку персональных данных в соответствии с <a href="/consent" target="_blank">согласием</a> и <a href="/privacy" target="_blank">политикой конфиденциальности</a></span>
+</label>
+<div class="tariff-btn-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 4px;">
+<button class="btn btn-primary" id="lead-submit-btn" style="padding: 13px 28px; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: none; border-radius: var(--radius, 12px); background: var(--accent); color: #fff; transition: opacity 160ms ease;" type="submit">Получить расчет сметы в Telegram →</button>
+<span style="font-size: 0.82rem; color: var(--muted);">Ответим за 15 минут · Без спама · Договор с ИП</span>
+</div>
+<div id="lead-status-msg" style="display: none; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem;"></div>
+</form>
+</div>
+
+<script>
+(function() {
+  function initWidget() {
+    var grid = document.getElementById('landing-tariffs-grid');
+    var cards = document.querySelectorAll('.tariff-card');
+    var dots = document.querySelectorAll('.tariff-dot');
+    var display = document.getElementById('selected-tariff-display');
+    var form = document.getElementById('landing-lead-form');
+    var contactInput = document.getElementById('lead-contact-input');
+    var taskInput = document.getElementById('lead-task-input');
+    var consentCheck = document.getElementById('lead-consent-check');
+    var submitBtn = document.getElementById('lead-submit-btn');
+    var statusMsg = document.getElementById('lead-status-msg');
+
+    if (!cards.length || !form) return;
+
+    var currentTariff = 'Студия Профи (Квиз + Кейсы)';
+    var currentPrice = 'от 69 000 ₽';
+
+    if (consentCheck && submitBtn) {
+      consentCheck.addEventListener('change', function() {
+        if (!this.checked) {
+          submitBtn.style.opacity = '0.5';
+          submitBtn.style.cursor = 'not-allowed';
+        } else {
+          submitBtn.style.opacity = '1';
+          submitBtn.style.cursor = 'pointer';
+        }
+      });
+    }
+
+    function updateDots(activeIdx) {
+      dots.forEach(function(dot, idx) {
+        if (idx === activeIdx) {
+          dot.style.width = '22px';
+          dot.style.borderRadius = '4px';
+          dot.style.background = 'var(--accent)';
+        } else {
+          dot.style.width = '8px';
+          dot.style.borderRadius = '50%';
+          dot.style.background = 'var(--border)';
+        }
+      });
+    }
+
+    function selectCard(card, scrollIntoView) {
+      cards.forEach(function(c) {
+        c.classList.remove('active');
+        var radio = c.querySelector('.tariff-radio');
+        if (radio) {
+          radio.style.borderColor = 'var(--border)';
+          radio.style.background = 'transparent';
+          radio.innerHTML = '';
+        }
+      });
+
+      card.classList.add('active');
+      var radio = card.querySelector('.tariff-radio');
+      if (radio) {
+        radio.style.borderColor = 'var(--accent)';
+        radio.style.background = 'var(--accent)';
+        radio.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      }
+
+      currentTariff = card.getAttribute('data-tariff') || '';
+      currentPrice = card.getAttribute('data-price') || '';
+
+      if (display) {
+        display.textContent = currentTariff + ' (' + currentPrice + ')';
+      }
+
+      var idx = parseInt(card.getAttribute('data-index') || '0', 10);
+      updateDots(idx);
+
+      if (scrollIntoView && window.innerWidth <= 768 && grid) {
+        var targetLeft = card.offsetLeft - (grid.clientWidth - card.clientWidth) / 2;
+        if (grid.scrollTo) {
+          grid.scrollTo({ left: targetLeft, behavior: 'smooth' });
+        } else {
+          grid.scrollLeft = targetLeft;
+        }
+      }
+    }
+
+    cards.forEach(function(card) {
+      card.addEventListener('click', function() {
+        selectCard(this, true);
+      });
+    });
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        var idx = parseInt(this.getAttribute('data-dot') || '0', 10);
+        if (cards[idx]) {
+          selectCard(cards[idx], true);
+        }
+      });
+    });
+
+    if (grid) {
+      var scrollTimer = null;
+      grid.addEventListener('scroll', function() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+          var scrollLeft = grid.scrollLeft;
+          var cardWidth = cards[0].offsetWidth + 12;
+          var activeIndex = Math.round(scrollLeft / cardWidth);
+          if (activeIndex >= 0 && activeIndex < cards.length) {
+            updateDots(activeIndex);
+          }
+        }, 50);
+      }, { passive: true });
+    }
+
+    // Auto-center middle tariff on mobile without scrolling window
+    if (window.innerWidth <= 768 && grid && cards[1]) {
+      setTimeout(function() {
+        if (grid && cards[1]) {
+          grid.scrollLeft = cards[1].offsetLeft - (grid.clientWidth - cards[1].clientWidth) / 2;
+        }
+      }, 120);
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (consentCheck && !consentCheck.checked) {
+        alert('Пожалуйста, подтвердите согласие на обработку персональных данных');
+        consentCheck.focus();
+        return;
+      }
+
+      var contactVal = contactInput ? contactInput.value.trim() : '';
+      var taskVal = taskInput ? taskInput.value.trim() : '';
+
+      if (!contactVal) {
+        if (contactInput) contactInput.focus();
+        return;
+      }
+
+      var originalBtnHtml = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Отправка...</span>';
+      statusMsg.style.display = 'none';
+
+      var tgText = '🏛️ Новая заявка на сайт для студии дизайна интерьера!\n\n' +
+        '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+        '📱 <b>Контакт:</b> ' + contactVal + '\n' +
+        (taskVal ? ('💬 <b>Задача / сайт:</b> ' + taskVal + '\n') : '') +
+        '🔗 <b>Страница:</b> https://void-digital.ru/blog-website-for-interior-design';
+
+      var tgPayload = JSON.stringify({
+        chat_id: '7738024017',
+        text: tgText,
+        parse_mode: 'HTML'
+      });
+
+      fetch('https://api.telegram.org/bot8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: tgPayload
+      }).then(function(res) {
+        return res.json();
+      }).then(function(data) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+
+        if (data && data.ok) {
+          statusMsg.style.display = 'block';
+          statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+          statusMsg.style.border = '1.5px solid var(--accent)';
+          statusMsg.style.color = 'var(--text)';
+          statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+          form.reset();
+          if (consentCheck) consentCheck.checked = true;
+        } else {
+          throw new Error(data && data.description ? data.description : 'Ошибка Telegram API');
+        }
+      }).catch(function(err) {
+        fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tariff: currentTariff + ' (' + currentPrice + ')',
+            contact: contactVal,
+            message: taskVal,
+            source: 'https://void-digital.ru/blog-website-for-interior-design'
+          })
+        }).then(function() {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+          statusMsg.style.display = 'block';
+          statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+          statusMsg.style.border = '1.5px solid var(--accent)';
+          statusMsg.style.color = 'var(--text)';
+          statusMsg.innerHTML = '🎉 <b>Заявка принята!</b> Мы свяжемся с вами в течение 15 минут.';
+          form.reset();
+          if (consentCheck) consentCheck.checked = true;
+        }).catch(function() {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+          statusMsg.style.display = 'block';
+          statusMsg.style.background = 'rgba(239, 68, 68, 0.15)';
+          statusMsg.style.border = '1.5px solid #ef4444';
+          statusMsg.style.color = 'var(--text)';
+          statusMsg.innerHTML = '⚠️ Не удалось отправить автоматически. Пожалуйста, напишите нам напрямую в Telegram: <a href="https://t.me/Voiddigit" target="_blank" style="color:var(--accent); text-decoration:underline;">@Voiddigit</a>';
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWidget);
+  } else {
+    initWidget();
+  }
+})();
+</script>
+</div>
+
+
+<h2>Кристальная четкость и быстрая загрузка фотографий 4K</h2>
+<p>
+Главный бич сайтов интерьерной тематики — мучительная загрузка тяжелых изображений. Дизайнеры загружают файлы по 10–15 мегабайт, в результате чего сайт зависает на смартфонах, а поисковые роботы Яндекса и Google понижают его позиции из-за плохих показателей Core Web Vitals.
+</p>
+<p>
+Мы используем бескомпромиссный инженерный подход:
+</p>
+<ul style="margin: 18px 0; padding-left: 20px; line-height: 1.7;">
+<li>Многоформатная генерация: автоматическое создание облегченных версий WebP и AVIF с сохранением тончайших нюансов теней и фактур дерева;</li>
+<li>Атрибуты <code>decoding="async"</code> и прогрессивный <code>srcset</code> под разрешение экрана смартфона, планшета и Retina-дисплея MacBook;</li>
+<li>Отложенная подгрузка картинок ниже первого экрана, благодаря чему первый экран отображается за 300–400 миллисекунд;</li>
+<li>Оценка 95–100 баллов в Google PageSpeed Insights и мгновенный отклик при скролле.</li>
+</ul>
+
+<h2>Часто задаваемые вопросы (FAQ)</h2>
+<div style="display: grid; gap: 14px; margin: 24px 0;">
+<details style="border: 1px solid var(--border); border-radius: var(--radius, 12px); padding: 16px 20px; background: var(--surface);">
+<summary style="font-weight: 700; cursor: pointer; color: var(--text);">Как сайт студии дизайна помогает продавать проекты с чеком от 500 000 рублей?</summary>
+<p style="margin-top: 12px; color: var(--muted); line-height: 1.6;">
+Премиальный заказчик оценивает студию по трем критериям: безупречный визуальный вкус самого сайта, глубина проработки кейсов (не просто красивые рендеры, а чертежи, спецификации и фото реализованных объектов) и прозрачность этапов работы. Сайт формирует образ авторитетного эксперта за счет идеальной типографики, высокой скорости и презентации авторского надзора.
+</p>
+</details>
+
+<details style="border: 1px solid var(--border); border-radius: var(--radius, 12px); padding: 16px 20px; background: var(--surface);">
+<summary style="font-weight: 700; cursor: pointer; color: var(--text);">Не будут ли тяжелые рендеры 4K тормозить сайт на смартфонах?</summary>
+<p style="margin-top: 12px; color: var(--muted); line-height: 1.6;">
+Мы применяем многоступенчатую систему оптимизации медиа: конвертацию в современные форматы WebP и AVIF с сохранением идеальной цветопередачи, генерацию адаптивных размеров (responsive srcset), асинхронную отложенную загрузку (lazy loading) и размещение статики в CDN. Сайт открывается за доли секунды и набирает 95+ баллов в Google PageSpeed.
+</p>
+</details>
+
+<details style="border: 1px solid var(--border); border-radius: var(--radius, 12px); padding: 16px 20px; background: var(--surface);">
+<summary style="font-weight: 700; cursor: pointer; color: var(--text);">Что дает интеграция квиза подбора интерьерного стиля?</summary>
+<p style="margin-top: 12px; color: var(--muted); line-height: 1.6;">
+Квиз вовлекает посетителя в диалог: клиент выбирает понравившиеся фото интерьеров (минимализм, ваби-саби, неоклассика, сканди), указывает площадь квартиры или дома, стадию объекта (новостройка в бетоне или вторичка) и ориентировочный бюджет. На выходе дизайнер получает готовый предварительный бриф прямо в Telegram еще до первого звонка.
+</p>
+</details>
+
+<details style="border: 1px solid var(--border); border-radius: var(--radius, 12px); padding: 16px 20px; background: var(--surface);">
+<summary style="font-weight: 700; cursor: pointer; color: var(--text);">Сможем ли мы самостоятельно добавлять новые проекты в портфолио?</summary>
+<p style="margin-top: 12px; color: var(--muted); line-height: 1.6;">
+Да, мы настраиваем удобную и интуитивную панель управления контентом, где вы сможете за 5 минут опубликовать новый кейс: загрузить фотографии, указать площадь, город, стиль и прикрепить отзыв владельца.
+</p>
+</details>
+</div>
+<div class="cta mt-40">
+<h2>Готовы обсудить проект или заказать расчет?</h2>
+<p>Напишите нам в Telegram или оставьте заявку выше. Мы проведем бесплатный аудит задачи, покажем похожие кейсы и составим прозрачную смету с фиксированными сроками.</p>
+<div class="cta-actions">
+<a class="btn" href="#landing-calc-widget">Выбрать тариф в калькуляторе ↑</a>
+<a class="btn btn-outline" href="https://t.me/Voiddigit" rel="noopener" target="_blank">Написать в Telegram</a>
+</div>
+</div>
+</div>
+</article>
+</main>
+<footer class="site-footer">
+<div class="container footer-grid">
+<div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br/><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+<ul aria-label="Связаться с нами" class="social">
+<li><a aria-label="Позвонить +7 953 855-08-13" href="tel:+79538550813" title="Позвонить"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg></a></li>
+<li><a aria-label="Написать в WhatsApp" href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." rel="noopener" target="_blank" title="WhatsApp"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"></path><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"></path></svg></a></li>
+<li><a aria-label="Написать в Telegram" href="https://t.me/Voiddigit" rel="noopener" target="_blank" title="Telegram"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"></path><path d="m9.2 13.3 8.3-6.6"></path></svg></a></li>
+<li><a aria-label="Написать на почту voiddigital@mail.ru" href="mailto:voiddigital@mail.ru" title="Почта"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><rect height="14" rx="2.5" width="18" x="3" y="5"></rect><path d="m3.5 7 8.5 6 8.5-6"></path></svg></a></li>
+</ul>
+<ul class="footer-links">
+<li><a href="/services">Услуги</a></li>
+<li><a href="/portfolio">Портфолио</a></li>
+<li><a href="/blog">Блог</a></li>
+<li><a href="/contacts">Контакты</a></li>
+<li><a href="/privacy">Политика конфиденциальности</a></li>
+<li><a href="https://t.me/Voiddigit" rel="noopener" target="_blank">Telegram</a></li>
+</ul>
+</div>
+</footer>
+<script src="js/main.js?v=f00a3e5f"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0);
+  });
+</script>
+</body>
+</html>
