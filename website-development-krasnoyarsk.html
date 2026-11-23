@@ -215,7 +215,62 @@
       color: var(--accent);
     }
 
-  </style>
+  
+    .tariff-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .tariff-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    @media (max-width: 768px) {
+      .tariff-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .tariff-btn-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .tariff-btn-row .btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+    }
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin: 4px 0 6px;
+      text-align: left;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+
+</style>
 
   <!-- Schema.org ProfessionalService for Krasnoyarsk -->
   <script type="application/ld+json">
@@ -474,47 +529,37 @@
         </div>
 
         <!-- Dynamic Form for Selected Tariff -->
-        <div id="tariff-order-block" style="background: color-mix(in srgb, currentColor 3%, transparent); border: 1.5px solid var(--accent); border-radius: 16px; padding: 26px; margin: 30px 0;">
-          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px;">
-            <div>
-              <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оставить заявку в Красноярске</span>
-              <h3 id="selected-tariff-title" style="margin: 4px 0 0; font-size: 1.35rem;">Корпоративный сайт компании (Красноярск)</h3>
-            </div>
-            <div id="selected-tariff-price" style="font-size: 1.45rem; font-weight: 800; color: var(--accent);">от 49 000 ₽</div>
-          </div>
-          
-          <form onsubmit="submitLandingLead(event)" style="display: grid; grid-template-columns: 1fr; gap: 14px;">
-            <input type="hidden" id="lead-tariff-input" name="tariff" value="Корпоративный сайт компании (Красноярск) (от 49 000 ₽)">
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
-              <div>
-                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Ваше имя</label>
-                <input type="text" name="name" placeholder="Даниил" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;">
-              </div>
-              <div>
-                <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Телефон или Telegram *</label>
-                <input type="text" name="contact" required placeholder="+7 (999) 000-00-00 или @username" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;">
-              </div>
-            </div>
-
-            <div>
-              <label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Сфера бизнеса в Красноярске / пожелания по сайту</label>
-              <textarea name="comment" rows="2" placeholder="Например: Строительная компания в Красноярске, нужен корпоративный сайт с каталогом домов" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem; font-family: inherit; resize: vertical;"></textarea>
-            </div>
-
-            <label class="consent-check-label">
-                <input type="checkbox" id="lead-consent-check" name="consent" checked required>
-                <span>Даю согласие на <a href="/consent" target="_blank" rel="noopener">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank" rel="noopener">политикой конфиденциальности</a></span>
-              </label>
-
-            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-top: 6px;">
-              <button type="submit" class="btn-action" style="padding: 14px 28px; font-size: 1rem;">Получить смету и консультацию</button>
-              <span style="font-size: 0.82rem; color: var(--muted);">⚡ Мгновенный ответ разработчика в Telegram</span>
-            </div>
-
-            <div id="landing-form-status" style="font-size: 0.9rem; margin-top: 4px;"></div>
-          </form>
-        </div>
+        <!-- Форма заявки на тариф (в стиле blog-website-for-auto-import) -->
+<!-- Форма заявки на тариф (в стиле blog-website-for-auto-import) -->
+<div id="tariff-order-block" style="background: color-mix(in srgb, currentColor 3%, transparent); border: 1.5px solid var(--accent); border-radius: 16px; padding: clamp(16px, 3vw, 24px); margin: 30px 0;">
+  <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px dashed var(--border);">
+    <div style="font-size: 0.9rem; color: var(--muted);">Выбранный тариф:</div>
+    <div id="selected-tariff-display" style="font-size: 1.15rem; font-weight: 800; color: var(--accent);">Корпоративный сайт (Красноярск) (от 49 000 ₽)</div>
+  </div>
+  
+  <form id="landing-lead-form" onsubmit="submitCityLead(event, 'Красноярск', 'website-development-krasnoyarsk')" style="display: grid; gap: 14px; margin: 0;">
+    <div class="tariff-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+      <div>
+        <label for="lead-contact-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Ваш телефон или @Telegram <span style="color: var(--accent);">*</span></label>
+        <input id="lead-contact-input" placeholder="+7 (999) 000-00-00 или @username" required="" style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;" type="text"/>
+      </div>
+      <div>
+        <label for="lead-task-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Адрес сайта / Ссылка (если есть)</label>
+        <input id="lead-task-input" placeholder="mysite.ru или кратко о задаче" style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;" type="text"/>
+      </div>
+    </div>
+    <!-- Согласие 152-ФЗ -->
+    <label class="consent-check-label">
+      <input checked="" id="lead-consent-check" required="" type="checkbox"/>
+      <span>Согласен на обработку персональных данных в соответствии с <a href="/consent" target="_blank">согласием</a> и <a href="/privacy" target="_blank">политикой конфиденциальности</a></span>
+    </label>
+    <div class="tariff-btn-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 4px;">
+      <button class="btn btn-primary" id="lead-submit-btn" style="padding: 13px 28px; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: none; border-radius: var(--radius, 12px); background: var(--accent); color: #fff; transition: opacity 160ms ease;" type="submit">Получить расчет сметы в Telegram →</button>
+      <span style="font-size: 0.82rem; color: var(--muted);">Ответим за 15 минут · Без спама · Договор с ИП</span>
+    </div>
+    <div id="lead-status-msg" style="display: none; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem;"></div>
+  </form>
+</div>
 
         <h2>Примеры проектов для красноярского бизнеса</h2>
         
@@ -592,199 +637,144 @@
 <script src="js/main.js?v=1b25cc4c"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 <script>
-  let selectedTariffName = "";
-  let selectedTariffPrice = "";
+var currentCity = 'Красноярск';
+var selectedTariffName = 'Корпоративный сайт (Красноярск)';
+var selectedTariffPrice = 'от 49 000 ₽';
 
-  function selectArticleTariff(el) {
-    document.querySelectorAll('.tariff-card').forEach(c => {
-      c.classList.remove('active');
-      const b = c.querySelector('.btn-action');
-      if (b) b.textContent = 'Выбрать этот тариф';
-    });
-    el.classList.add('active');
-    const btn = el.querySelector('.btn-action');
-    if (btn) btn.textContent = 'Выбранный тариф';
+function selectArticleTariff(el) {
+  document.querySelectorAll('#landing-tariffs-grid .tariff-card').forEach(function(c) {
+    c.classList.remove('active');
+    c.style.borderColor = 'color-mix(in srgb, currentColor 12%, transparent)';
+    c.style.boxShadow = 'none';
+    var btn = c.querySelector('button');
+    if (btn) btn.textContent = 'Выбрать этот тариф';
+  });
+  el.classList.add('active');
+  el.style.borderColor = 'var(--accent)';
+  el.style.boxShadow = '0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06)';
+  var b = el.querySelector('button');
+  if (b) b.textContent = 'Выбранный тариф';
 
-    selectedTariffName = el.getAttribute('data-tariff') || "";
-    selectedTariffPrice = el.getAttribute('data-price') || "";
+  selectedTariffName = el.getAttribute('data-tariff') || '';
+  selectedTariffPrice = el.getAttribute('data-price') || '';
 
-    const titleEl = document.getElementById('selected-tariff-title');
-    const priceEl = document.getElementById('selected-tariff-price');
-    const inputEl = document.getElementById('lead-tariff-input');
+  var displayEl = document.getElementById('selected-tariff-display');
+  if (displayEl) {
+    displayEl.textContent = selectedTariffName + ' (' + selectedTariffPrice + ')';
+  }
+  var titleEl = document.getElementById('selected-tariff-title');
+  var priceEl = document.getElementById('selected-tariff-price');
+  if (titleEl) titleEl.textContent = selectedTariffName;
+  if (priceEl) priceEl.textContent = selectedTariffPrice;
+}
 
-    if (titleEl) titleEl.textContent = selectedTariffName;
-    if (priceEl) priceEl.textContent = selectedTariffPrice;
-    if (inputEl) inputEl.value = selectedTariffName + ' (' + selectedTariffPrice + ')';
+function submitCityLead(e, cityName, pageSlug) {
+  e.preventDefault();
+  var contactInput = document.getElementById('lead-contact-input');
+  var taskInput = document.getElementById('lead-task-input');
+  var consent = document.getElementById('lead-consent-check');
+  var status = document.getElementById('lead-status-msg');
+  var btn = document.getElementById('lead-submit-btn');
 
-    const orderBlock = document.getElementById('tariff-order-block');
-    if (orderBlock) {
-      orderBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
+  if (consent && !consent.checked) {
+    alert('Пожалуйста, подтвердите согласие на обработку персональных данных (152-ФЗ)');
+    return;
   }
 
-  // Dot click handler
-  dots.forEach((dot, idx) => {
-    dot.style.cursor = 'pointer';
-    dot.addEventListener('click', () => {
-      const allCards = document.querySelectorAll('.tariff-card');
-      if (allCards[idx]) {
-        selectArticleTariff(allCards[idx]);
-        if (window.innerWidth <= 768 && tariffsGrid) {
-          allCards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        }
-      }
+  var contactVal = contactInput ? contactInput.value.trim() : '';
+  var taskVal = taskInput ? taskInput.value.trim() : '';
+
+  if (!contactVal) {
+    if (contactInput) contactInput.focus();
+    return;
+  }
+
+  var originalHtml = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span>Отправка...</span>';
+  status.style.display = 'none';
+
+  var text = '🏙️ Новая заявка на сайт: ' + cityName + '\n\n' +
+    '📌 <b>Тариф:</b> ' + selectedTariffName + ' (' + selectedTariffPrice + ')\n' +
+    '📱 <b>Контакт:</b> ' + contactVal + '\n' +
+    (taskVal ? ('💬 <b>Сайт / задача:</b> ' + taskVal + '\n') : '') +
+    '🔗 <b>Страница:</b> https://void-digital.ru/' + pageSlug;
+
+  fetch('https://api.telegram.org/bot8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: '7738024017', text: text, parse_mode: 'HTML' })
+  }).then(function(res) {
+    return res.json();
+  }).then(function(data) {
+    btn.disabled = false;
+    btn.innerHTML = originalHtml;
+    status.style.display = 'block';
+    if (data && data.ok) {
+      status.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+      status.style.border = '1.5px solid var(--accent)';
+      status.style.color = 'var(--text)';
+      status.innerHTML = '🎉 <b>Заявка принята!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+      e.target.reset();
+      if (consent) consent.checked = true;
+    } else {
+      throw new Error('Telegram API error');
+    }
+  }).catch(function(err) {
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tariff: selectedTariffName + ' (' + selectedTariffPrice + ')',
+        contact: contactVal,
+        message: taskVal,
+        source: 'https://void-digital.ru/' + pageSlug
+      })
+    }).then(function() {
+      btn.disabled = false;
+      btn.innerHTML = originalHtml;
+      status.style.display = 'block';
+      status.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+      status.style.border = '1.5px solid var(--accent)';
+      status.style.color = 'var(--text)';
+      status.innerHTML = '🎉 <b>Заявка принята!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+      e.target.reset();
+      if (consent) consent.checked = true;
+    }).catch(function() {
+      btn.disabled = false;
+      btn.innerHTML = originalHtml;
+      status.style.display = 'block';
+      status.style.background = 'rgba(239, 68, 68, 0.15)';
+      status.style.border = '1px solid #ef4444';
+      status.style.color = 'var(--text)';
+      status.innerHTML = '⚠️ Не удалось отправить автоматически. Напишите напрямую в Telegram: <a href="https://t.me/Voiddigit" target="_blank" style="color:var(--accent); text-decoration:underline;">@Voiddigit</a>';
     });
   });
+}
 
-  // Auto-center middle tariff on mobile load
-  function centerMiddleTariff() {
-    const cards = document.querySelectorAll('.tariff-card');
-    if (cards.length >= 2 && window.innerWidth <= 768 && tariffsGrid) {
-      cards[1].scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
-    }
+window.addEventListener('DOMContentLoaded', function() {
+  window.scrollTo(0, 0);
+  var grid = document.getElementById('landing-tariffs-grid');
+  var cards = grid ? grid.querySelectorAll('.tariff-card') : [];
+  if (window.innerWidth <= 768 && grid && cards[1]) {
+    setTimeout(function() {
+      grid.scrollLeft = cards[1].offsetLeft - (grid.clientWidth - cards[1].clientWidth) / 2;
+    }, 120);
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(centerMiddleTariff, 80);
-      setTimeout(centerMiddleTariff, 300);
-    });
-  } else {
-    setTimeout(centerMiddleTariff, 80);
-    setTimeout(centerMiddleTariff, 300);
-  }
-  window.addEventListener('load', () => setTimeout(centerMiddleTariff, 120));
-
-  // Mobile swipe dots indicator
-  const tariffsGrid = document.getElementById('landing-tariffs-grid');
-  const dots = document.querySelectorAll('.tariff-dot');
-  if (tariffsGrid && dots.length > 0) {
-    tariffsGrid.addEventListener('scroll', () => {
-      const scrollLeft = tariffsGrid.scrollLeft;
-      const cardWidth = tariffsGrid.offsetWidth * 0.82;
-      const activeIndex = Math.round(scrollLeft / cardWidth);
-      dots.forEach((dot, idx) => {
-        if (idx === activeIndex) {
-          dot.style.background = 'var(--accent)';
-          dot.style.width = '20px';
-          dot.style.borderRadius = '4px';
-        } else {
-          dot.style.background = 'var(--border)';
-          dot.style.width = '8px';
-          dot.style.borderRadius = '50%';
-        }
-      });
-    }, { passive: true });
-  }
-
-  // Telegram direct lead submit with fallback
-  async function submitLandingLead(e) {
-    e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector('button[type="submit"]');
-    const statusMsg = document.getElementById('landing-form-status');
-    const name = form.querySelector('[name="name"]').value.trim();
-    const contact = form.querySelector('[name="contact"]').value.trim();
-    const comment = form.querySelector('[name="comment"]') ? form.querySelector('[name="comment"]').value.trim() : "";
-    const tariff = document.getElementById('lead-tariff-input') ? document.getElementById('lead-tariff-input').value : "Не выбран";
-    const pageTitle = document.title;
-    const pageUrl = window.location.href;
-
-    const consent = form.querySelector('input[name="consent"], #lead-consent-check');
-    if (consent && !consent.checked) {
-      if (statusMsg) {
-        statusMsg.textContent = "Пожалуйста, подтвердите согласие на обработку персональных данных.";
-        statusMsg.style.color = "#ef4444";
-      }
-      consent.focus();
-      return;
-    }
-
-    if (!contact) {
-      if (statusMsg) {
-        statusMsg.textContent = "Пожалуйста, укажите телефон или ник в Telegram.";
-        statusMsg.style.color = "#ef4444";
-      }
-      return;
-    }
-
-    btn.disabled = true;
-    const origBtnText = btn.textContent;
-    btn.textContent = "Отправка...";
-
-    const text = `🔥 Новая заявка на сайт в Красноярске!
-
-` +
-                 `📍 Страница: ${pageTitle}
-` +
-                 `💼 Тариф: ${tariff}
-` +
-                 `👤 Имя: ${name || 'Не указано'}
-` +
-                 `📞 Контакт: ${contact}
-` +
-                 (comment ? `💬 Комментарий: ${comment}
-` : '') +
-                 `🔗 URL: ${pageUrl}
-` +
-                 `⏱ Время: ${new Date().toLocaleString('ru-RU')}`;
-
-    try {
-      const botToken = "8418047970:AAFiVzKx33j0OEv1l-U2tE98K1vOvdv_bhs";
-      const chatId = "7738024017";
-      const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: text,
-          parse_mode: "Markdown"
-        })
-      });
-
-      if (tgRes.ok) {
-        if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
-        form.reset();
-        if (statusMsg) {
-          statusMsg.innerHTML = "✅ <strong>Спасибо за заявку!</strong> Мы уже получили сообщение в Telegram и ответим вам в течение 15 минут.";
-          statusMsg.style.color = "#22c55e";
-        }
+  var consentCheck = document.getElementById('lead-consent-check');
+  var submitBtn = document.getElementById('lead-submit-btn');
+  if (consentCheck && submitBtn) {
+    consentCheck.addEventListener('change', function() {
+      if (!this.checked) {
+        submitBtn.style.opacity = '0.5';
+        submitBtn.style.cursor = 'not-allowed';
       } else {
-        throw new Error("Telegram dispatch failed");
+        submitBtn.style.opacity = '1';
+        submitBtn.style.cursor = 'pointer';
       }
-    } catch (err) {
-      try {
-        const fallbackRes = await fetch('/api/lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: name,
-            contact: contact,
-            tariff: tariff,
-            comment: comment,
-            source: pageUrl
-          })
-        });
-        if (fallbackRes.ok) {
-          if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
-          form.reset();
-          if (statusMsg) {
-            statusMsg.innerHTML = "✅ <strong>Заявка успешно отправлена!</strong> Мы свяжемся с вами в течение 15 минут.";
-            statusMsg.style.color = "#22c55e";
-          }
-        } else {
-          throw new Error("API fallback failed");
-        }
-      } catch (fbErr) {
-        if (statusMsg) {
-          statusMsg.innerHTML = '⚠️ Не удалось отправить форму напрямую. Пожалуйста, напишите нам в Telegram: <a href="https://t.me/Voiddigit" target="_blank" style="color:var(--accent);text-decoration:underline;">@Voiddigit</a>';
-          statusMsg.style.color = "#ef4444";
-        }
-      }
-    } finally {
-      btn.disabled = false;
-      btn.textContent = origBtnText;
-    }
+    });
   }
+});
 </script>
 </body>
 </html>

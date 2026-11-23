@@ -203,6 +203,61 @@
     .consent-check-label a:hover {
       color: var(--accent);
     }
+
+    .tariff-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .tariff-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    @media (max-width: 768px) {
+      .tariff-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .tariff-btn-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .tariff-btn-row .btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+    }
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin: 4px 0 6px;
+      text-align: left;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+
 </style>
 
 <!-- Schema.org ProfessionalService for Ростов-на-Дону -->
@@ -474,29 +529,35 @@
 </div>
 
 <!-- Dynamic Form for Selected Tariff -->
-<div id="tariff-order-block" style="background: color-mix(in srgb, currentColor 3%, transparent); border: 1.5px solid var(--accent); border-radius: 16px; padding: 26px; margin: 30px 0;">
-  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px;">
-    <div>
-      <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оставить заявку в Ростове-на-Дону</span>
-      <h3 id="selected-tariff-title" style="margin: 4px 0 0; font-size: 1.35rem;">Корпоративный сайт (Ростов-на-Дону)</h3>
-    </div>
-    <div id="selected-tariff-price" style="font-size: 1.45rem; font-weight: 800; color: var(--accent);">от 49 000 ₽</div>
+<!-- Форма заявки на тариф (в стиле blog-website-for-auto-import) -->
+<!-- Форма заявки на тариф (в стиле blog-website-for-auto-import) -->
+<div id="tariff-order-block" style="background: color-mix(in srgb, currentColor 3%, transparent); border: 1.5px solid var(--accent); border-radius: 16px; padding: clamp(16px, 3vw, 24px); margin: 30px 0;">
+  <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px dashed var(--border);">
+    <div style="font-size: 0.9rem; color: var(--muted);">Выбранный тариф:</div>
+    <div id="selected-tariff-display" style="font-size: 1.15rem; font-weight: 800; color: var(--accent);">Корпоративный сайт (Ростов-на-Дону) (от 49 000 ₽)</div>
   </div>
   
-  <form onsubmit="submitCityLead(event, 'Ростов-на-Дону', 'website-development-rostov-na-donu')" style="display: grid; grid-template-columns: 1fr; gap: 14px;">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
-      <input id="client-name" placeholder="Ваше имя" required="" style="padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 0.95rem; outline: none;" type="text"/>
-      <input id="client-phone" placeholder="Телефон или Telegram" required="" style="padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 0.95rem; outline: none;" type="text"/>
+  <form id="landing-lead-form" onsubmit="submitCityLead(event, 'Ростов-на-Дону', 'blog-website-development-rostov-na-donu')" style="display: grid; gap: 14px; margin: 0;">
+    <div class="tariff-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+      <div>
+        <label for="lead-contact-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Ваш телефон или @Telegram <span style="color: var(--accent);">*</span></label>
+        <input id="lead-contact-input" placeholder="+7 (999) 000-00-00 или @username" required="" style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;" type="text"/>
+      </div>
+      <div>
+        <label for="lead-task-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Адрес сайта / Ссылка (если есть)</label>
+        <input id="lead-task-input" placeholder="mysite.ru или кратко о задаче" style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;" type="text"/>
+      </div>
     </div>
-    <textarea id="client-comment" placeholder="Кратко о вашей сфере деятельности или пожеланиях к сайту..." rows="3" style="padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 0.95rem; outline: none; resize: vertical;"></textarea>
-    
+    <!-- Согласие 152-ФЗ -->
     <label class="consent-check-label">
-      <input checked="" id="client-consent" required="" type="checkbox"/>
-      <span>Согласен на обработку персональных данных в соответствии с <a href="/consent" target="_blank">согласием</a> и <a href="/privacy" target="_blank">политикой конфиденциальности</a> (152-ФЗ)</span>
+      <input checked="" id="lead-consent-check" required="" type="checkbox"/>
+      <span>Согласен на обработку персональных данных в соответствии с <a href="/consent" target="_blank">согласием</a> и <a href="/privacy" target="_blank">политикой конфиденциальности</a></span>
     </label>
-
-    <button class="btn-action" id="submit-btn" style="padding: 14px 28px; font-size: 1rem;" type="submit">Получить смету проекта в Ростове-на-Дону →</button>
-    <div id="form-status" style="display: none; padding: 12px 16px; border-radius: 8px; font-size: 0.9rem;"></div>
+    <div class="tariff-btn-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 4px;">
+      <button class="btn btn-primary" id="lead-submit-btn" style="padding: 13px 28px; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: none; border-radius: var(--radius, 12px); background: var(--accent); color: #fff; transition: opacity 160ms ease;" type="submit">Получить расчет сметы в Telegram →</button>
+      <span style="font-size: 0.82rem; color: var(--muted);">Ответим за 15 минут · Без спама · Договор с ИП</span>
+    </div>
+    <div id="lead-status-msg" style="display: none; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem;"></div>
   </form>
 </div>
 
@@ -615,6 +676,10 @@ function selectArticleTariff(el) {
   selectedTariffName = el.getAttribute('data-tariff') || '';
   selectedTariffPrice = el.getAttribute('data-price') || '';
 
+  var displayEl = document.getElementById('selected-tariff-display');
+  if (displayEl) {
+    displayEl.textContent = selectedTariffName + ' (' + selectedTariffPrice + ')';
+  }
   var titleEl = document.getElementById('selected-tariff-title');
   var priceEl = document.getElementById('selected-tariff-price');
   if (titleEl) titleEl.textContent = selectedTariffName;
@@ -623,45 +688,51 @@ function selectArticleTariff(el) {
 
 function submitCityLead(e, cityName, pageSlug) {
   e.preventDefault();
-  var name = document.getElementById('client-name').value.trim();
-  var phone = document.getElementById('client-phone').value.trim();
-  var comment = document.getElementById('client-comment').value.trim();
-  var consent = document.getElementById('client-consent');
-  var status = document.getElementById('form-status');
-  var btn = document.getElementById('submit-btn');
+  var contactInput = document.getElementById('lead-contact-input');
+  var taskInput = document.getElementById('lead-task-input');
+  var consent = document.getElementById('lead-consent-check');
+  var status = document.getElementById('lead-status-msg');
+  var btn = document.getElementById('lead-submit-btn');
 
   if (consent && !consent.checked) {
     alert('Пожалуйста, подтвердите согласие на обработку персональных данных (152-ФЗ)');
     return;
   }
 
-  var originalText = btn.textContent;
+  var contactVal = contactInput ? contactInput.value.trim() : '';
+  var taskVal = taskInput ? taskInput.value.trim() : '';
+
+  if (!contactVal) {
+    if (contactInput) contactInput.focus();
+    return;
+  }
+
+  var originalHtml = btn.innerHTML;
   btn.disabled = true;
-  btn.textContent = 'Отправка...';
+  btn.innerHTML = '<span>Отправка...</span>';
   status.style.display = 'none';
 
   var text = '🏙️ Новая заявка на сайт: ' + cityName + '\n\n' +
-    '📌 Тариф: ' + selectedTariffName + ' (' + selectedTariffPrice + ')\n' +
-    '👤 Имя: ' + name + '\n' +
-    '📱 Контакт: ' + phone + '\n' +
-    (comment ? ('💬 Пожелания: ' + comment + '\n') : '') +
-    '🔗 Страница: https://void-digital.ru/' + pageSlug;
+    '📌 <b>Тариф:</b> ' + selectedTariffName + ' (' + selectedTariffPrice + ')\n' +
+    '📱 <b>Контакт:</b> ' + contactVal + '\n' +
+    (taskVal ? ('💬 <b>Сайт / задача:</b> ' + taskVal + '\n') : '') +
+    '🔗 <b>Страница:</b> https://void-digital.ru/' + pageSlug;
 
   fetch('https://api.telegram.org/bot8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs/sendMessage', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: '7738024017', text: text })
+    body: JSON.stringify({ chat_id: '7738024017', text: text, parse_mode: 'HTML' })
   }).then(function(res) {
     return res.json();
   }).then(function(data) {
     btn.disabled = false;
-    btn.textContent = originalText;
+    btn.innerHTML = originalHtml;
     status.style.display = 'block';
-    if (data.ok) {
+    if (data && data.ok) {
       status.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
-      status.style.border = '1px solid var(--accent)';
+      status.style.border = '1.5px solid var(--accent)';
       status.style.color = 'var(--text)';
-      status.innerHTML = '🎉 <b>Заявка принята!</b> Мы свяжемся с вами в течение 15 минут.';
+      status.innerHTML = '🎉 <b>Заявка принята!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
       e.target.reset();
       if (consent) consent.checked = true;
     } else {
@@ -673,24 +744,23 @@ function submitCityLead(e, cityName, pageSlug) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         tariff: selectedTariffName + ' (' + selectedTariffPrice + ')',
-        contact: phone,
-        name: name,
-        message: comment,
+        contact: contactVal,
+        message: taskVal,
         source: 'https://void-digital.ru/' + pageSlug
       })
     }).then(function() {
       btn.disabled = false;
-      btn.textContent = originalText;
+      btn.innerHTML = originalHtml;
       status.style.display = 'block';
       status.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
-      status.style.border = '1px solid var(--accent)';
+      status.style.border = '1.5px solid var(--accent)';
       status.style.color = 'var(--text)';
-      status.innerHTML = '🎉 <b>Заявка принята!</b> Мы свяжемся с вами в течение 15 минут.';
+      status.innerHTML = '🎉 <b>Заявка принята!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
       e.target.reset();
       if (consent) consent.checked = true;
     }).catch(function() {
       btn.disabled = false;
-      btn.textContent = originalText;
+      btn.innerHTML = originalHtml;
       status.style.display = 'block';
       status.style.background = 'rgba(239, 68, 68, 0.15)';
       status.style.border = '1px solid #ef4444';
@@ -708,6 +778,19 @@ window.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
       grid.scrollLeft = cards[1].offsetLeft - (grid.clientWidth - cards[1].clientWidth) / 2;
     }, 120);
+  }
+  var consentCheck = document.getElementById('lead-consent-check');
+  var submitBtn = document.getElementById('lead-submit-btn');
+  if (consentCheck && submitBtn) {
+    consentCheck.addEventListener('change', function() {
+      if (!this.checked) {
+        submitBtn.style.opacity = '0.5';
+        submitBtn.style.cursor = 'not-allowed';
+      } else {
+        submitBtn.style.opacity = '1';
+        submitBtn.style.cursor = 'pointer';
+      }
+    });
   }
 });
 </script>
