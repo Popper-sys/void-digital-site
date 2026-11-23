@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#fafaf9" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="#111114" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="light dark" name="color-scheme"/>
+<script>document.documentElement.classList.add('js')</script>
+<title>Разработка сайтов в Ростове-на-Дону под ключ от от 25 000 ₽ — VOID Digital</title>
+<meta content="Создание сайтов в Ростове-на-Дону под ключ от 25 000 ₽: лендинги, корпоративные сайты, интернет-магазины. ✓ Договор ИП ✓ Сроки от 7 дней ✓ SEO в Яндекс по региону. Рассчитайте смету!" name="description"/>
+<link href="https://void-digital.ru/website-development-rostov-na-donu" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="VOID | digital" property="og:site_name"/>
+<meta content="ru_RU" property="og:locale"/>
+<meta content="Разработка сайтов в Ростове-на-Дону под ключ от от 25 000 ₽ — VOID Digital" property="og:title"/>
+<meta content="Создание сайтов в Ростове-на-Дону под ключ от 25 000 ₽: лендинги, корпоративные сайты, интернет-магазины. ✓ Договор ИП ✓ Сроки от 7 дней ✓ SEO в Яндекс по региону. Рассчитайте смету!" property="og:description"/>
+<meta content="https://void-digital.ru/website-development-rostov-na-donu" property="og:url"/>
+<meta content="https://void-digital.ru/img/website-development-rostov-na-donu/website-development-rostov-na-donu-cover.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="favicon.ico" rel="icon" sizes="any"/>
+<link href="icon.svg" rel="icon" type="image/svg+xml"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link as="font" crossorigin="" href="fonts/manrope-cyrillic.woff2" rel="preload" type="font/woff2"/>
+<link href="/css/style.css?v=44a7876a" rel="stylesheet"/>
+<style>
+    .post-figure { margin: 28px 0; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post .cta p { max-width: none; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+    .post table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: .95rem; }
+    .post th, .post td { padding: 12px 14px; border: 1px solid color-mix(in srgb, currentColor 12%, transparent); text-align: left; }
+    .post th { background: color-mix(in srgb, currentColor 5%, transparent); font-weight: 600; }
+
+    .cta-banner {
+      background: color-mix(in srgb, currentColor 4%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin: 28px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .cta-banner p { margin: 0; font-weight: 500; font-size: 1.05rem; }
+    
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 22px;
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-action:hover { opacity: 0.92; transform: translateY(-1px); }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .stat-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 20px;
+      text-align: left;
+    }
+    .stat-val {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .stat-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .tariff-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1.5px solid color-mix(in srgb, currentColor 12%, transparent);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .tariff-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .tariff-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .portfolio-grid-inline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .portfolio-card {
+      background: color-mix(in srgb, currentColor 3%, transparent);
+      border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+      border-radius: 14px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+    }
+    .portfolio-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .portfolio-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .portfolio-card h4 {
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+    }
+    .portfolio-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin: 0 0 16px;
+      line-height: 1.45;
+    }
+    .portfolio-link {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 12px;
+        -webkit-overflow-scrolling: touch;
+      }
+      #landing-tariffs-grid > .tariff-card {
+        min-width: 82vw;
+        flex: 0 0 82vw;
+        scroll-snap-align: center;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+    }
+  
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin: 12px 0 16px;
+      text-align: left;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+</style>
+
+<!-- Schema.org ProfessionalService for Ростов-на-Дону -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "name": "VOID Digital — Разработка сайтов в Ростове-на-Дону",
+      "image": "https://void-digital.ru/img/website-development-rostov-na-donu/website-development-rostov-na-donu-cover.jpg",
+      "@id": "https://void-digital.ru/#organization",
+      "url": "https://void-digital.ru/website-development-rostov-na-donu",
+      "telephone": "+79538550813",
+      "priceRange": "от 25 000 ₽ - от 89 000 ₽",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ростов-на-Дону",
+        "addressRegion": "Ростовская область",
+        "addressCountry": "RU"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 47.2357,
+        "longitude": 39.7015
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "20:00"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Главная",
+          "item": "https://void-digital.ru/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Услуги",
+          "item": "https://void-digital.ru/services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Разработка сайтов в Ростове-на-Дону",
+          "item": "https://void-digital.ru/website-development-rostov-na-donu"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Работаете ли вы по официальному договору в Ростове-на-Дону?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Мы заключаем официальный договор с ИП Лосуков Даниил Васильевич (ОГРНИП 326246800121182), фиксируем точные сроки, поэтапную оплату 50/50, техническое задание и гарантию 12 месяцев на все работы."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как проходит обсуждение проекта и согласование макетов?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Мы проводим подробный онлайн-брифинг в Telegram / Яндекс Телемост, демонстрируем прототипы в реальном времени, а весь документооборот ведем через ЭДО (Диадок / СБИС) или курьерской службой."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Сколько стоит создание сайта в Ростове-на-Дону?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Стоимость продающего лендинга начинается от от 25 000 ₽, многостраничного корпоративного сайта компании — от от 49 000 ₽, а интернет-магазина или B2B каталога — от от 89 000 ₽. В цену входит локальное SEO-продвижение под Ростов-на-Дону и регион."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113737288', 'ym');
+
+    ym(113737288, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img alt="" decoding="async" fetchpriority="high" src="https://mc.yandex.ru/watch/113737288" style="position:absolute; left:-9999px;"/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+<div class="container nav">
+<a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+<button aria-expanded="false" aria-label="Меню" class="nav-toggle">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+</button>
+<ul class="nav-links">
+<li><a aria-current="page" href="/services">Услуги и цены</a></li>
+<li><a href="/portfolio">Портфолио</a></li>
+<li><a href="/about">О нас</a></li>
+<li><a href="/blog">Блог</a></li>
+<li><a href="/contacts">Контакты</a></li>
+<li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
+<li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+</ul>
+</div>
+</header>
+
+<main class="site-main" id="main">
+<article class="post">
+<div class="container container-sm">
+<nav aria-label="Хлебные крошки" class="breadcrumb">
+<ol>
+<li><a href="/">Главная</a></li>
+<li><a href="/services">Услуги</a></li>
+<li aria-current="page">Разработка сайтов в Ростове-на-Дону</li>
+</ol>
+</nav>
+
+<header class="post-header">
+<span class="tag">Локальное GEO-SEO</span>
+<h1>Разработка сайтов в Ростове-на-Дону под ключ: веб-студия VOID Digital</h1>
+<div class="post-meta">
+<span>Ростов-на-Дону и Ростовская область</span>
+<span aria-hidden="true" class="bullet">•</span>
+<time datetime="2026-11-23">Обновлено 23 ноября 2026</time>
+</div>
+</header>
+
+<figure class="post-figure">
+<picture>
+<source srcset="img/website-development-rostov-na-donu/website-development-rostov-na-donu-cover.webp" type="image/webp"/>
+<img alt="Разработка сайтов в Ростове-на-Дону под ключ от веб-студии VOID Digital" class="cover-image" decoding="async" fetchpriority="high" height="670" src="img/website-development-rostov-na-donu/website-development-rostov-na-donu-cover.jpg" width="1200"/>
+</picture>
+</figure>
+
+<div class="post-body">
+<p class="lead">Ищете надежную веб-студию для создания современного сайта в Ростове-на-Дону с гарантией результата? <strong>VOID Digital</strong> разрабатывает продающие лендинги, корпоративные порталы и интернет-магазины с глубокой оптимизацией под региональный поиск Яндекса и мгновенной доставкой лидов в Telegram.</p>
+
+<div class="stats-grid">
+<div class="stat-card">
+<div class="stat-val">100%</div>
+<p class="stat-desc">официальный договор с ИП (ОГРНИП 326246800121182), фиксация сроков и сметы</p>
+</div>
+<div class="stat-card">
+<div class="stat-val">ТОП-3</div>
+<p class="stat-desc">в поисковой выдаче Яндекса по Ростове-на-Дону за счет локального GEO-SEO</p>
+</div>
+<div class="stat-card">
+<div class="stat-val">2 сек</div>
+<p class="stat-desc">скорость доставки заявки клиента с сайта вам в Telegram и CRM</p>
+</div>
+</div>
+
+<div class="cta-banner">
+<div>
+<p><strong>Нужен сайт для бизнеса в Ростове-на-Дону с окупаемостью с первого месяца?</strong></p>
+<span style="font-size:0.88rem;color:var(--muted);">Обсудим задачу и проведем детальный аудит конкурентов за 20 минут.</span>
+</div>
+<a class="btn-action" href="#tariffs">Выбрать тариф ↓</a>
+</div>
+
+<h2>Почему бизнес Ростова-на-Дону выбирает веб-студию VOID Digital?</h2>
+<p>Создание сайта для миллионного мегаполиса требует глубокого понимания специфики местного рынка: либо столичные агентства с оверпрайсом от 300 000 рублей, либо фрилансеры-одиночки без договора и гарантий. Мы предлагаем сбалансированный студийный подход:</p>
+<ul>
+<li><strong>Юридическая чистота и гарантии:</strong> работаем официально по договору ИП Лосуков Д.В., предоставляем закрывающие акты (ЭДО СБИС / Диадок), фиксируем права на интеллектуальную собственность за заказчиком.</li>
+<li><strong>Понимание экономики региона:</strong> бизнес в Ростове-на-Дону характеризуется статусом южной торговой столицы России, зернового трейдинга, агромашиностроения и транспортных коридоров Азово-Черноморского бассейна. Разрабатываем надежные торговые и корпоративные платформы.</li>
+<li><strong>Мгновенная скорость и мобильный приоритет:</strong> более 80% пользователей в Ростове-на-Дону заходят на сайты со смартфонов. Наши проекты загружаются за 0.8–1.2 секунды на чистом Vanilla JS без тяжелых конструкторов.</li>
+<li><strong>Локальная оптимизация (Яндекс Карты, 2ГИС, SEO Ростов-на-Дону):</strong> настраиваем микроразметку <code>LocalBusiness</code>, привязываем гео-координаты и карточки организаций для максимального органического трафика без переплат за клики.</li>
+</ul>
+
+<h2>Какие типы сайтов мы разрабатываем в Ростове-на-Дону</h2>
+
+<h3>1. Продающие лендинги (Landing Page) под рекламу</h3>
+<p>Идеальное решение для быстрого старта и лидогенерации конкретной услуги или товара в Ростове-на-Дону: ремонт, аренда техники, юридические услуги, медицина или курсы. Конверсия от 4% до 12%.</p>
+
+<h3>2. Многостраничные корпоративные сайты компаний</h3>
+<p>Полноценное онлайн-представительство для производственных предприятий, строительных компаний, медицинских центров и B2B поставщиков Ростовская область. Сетка услуг, портфолио сданных объектов, отзывы и сертификаты.</p>
+
+<h3>3. Каталоги продукции и интернет-магазины с СБП</h3>
+<p>Электронная витрина товаров с умным поиском, фильтрацией, корзиной и приемом оплат через Систему быстрых платежей с минимальной комиссией всего 0.7% (54-ФЗ).</p>
+
+<!-- Interactive Tariffs Widget -->
+<h2 id="tariffs">Тарифы на разработку сайтов в Ростове-на-Дону</h2>
+<p>Выберите подходящий пакет под ваши бизнес-цели. Нажмите на карточку для выбора:</p>
+
+<div id="landing-tariffs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin: 28px 0 16px;">
+  
+  <!-- Card 1 -->
+  <div class="tariff-card" data-tariff="Лендинг для бизнеса (Ростов-на-Дону)" data-price="от 25 000 ₽" onclick="selectArticleTariff(this)">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+        <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Быстрый запуск</span>
+        <span style="font-size: 0.85rem; color: var(--muted);">5–7 дней</span>
+      </div>
+      <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Лендинг под ключ</h3>
+      <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Одностраничный сайт высокой конверсии под запуск контекстной рекламы в Яндекс Директ.</p>
+      
+      <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 25 000 ₽</div>
+      
+      <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+        <li>Индивидуальный адаптивный дизайн (ПК + Смартфоны)</li>
+        <li>Продающая структура смысловых блоков (AIDA)</li>
+        <li>Мгновенные уведомления о заявках в ваш Telegram</li>
+        <li>Подключение Яндекс Метрики с настройкой конверсионных целей</li>
+        <li>Базовая SEO-оптимизация под Ростов-на-Дону</li>
+      </ul>
+    </div>
+    <button class="btn-action" style="width: 100%;" type="button">Выбрать этот тариф</button>
+  </div>
+
+  <!-- Card 2 (Recommended) -->
+  <div class="tariff-card active" data-tariff="Корпоративный сайт (Ростов-на-Дону)" data-price="от 49 000 ₽" onclick="selectArticleTariff(this)" style="border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);">
+    <div style="position: absolute; top: -12px; right: 18px; background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.05em;">Хит продаж</div>
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+        <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оптимальный выбор</span>
+        <span style="font-size: 0.85rem; color: var(--muted);">10–14 дней</span>
+      </div>
+      <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Корпоративный сайт</h3>
+      <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Многостраничный сайт для солидной компании с глубоким продвижением по региону.</p>
+      
+      <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 49 000 ₽</div>
+      
+      <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+        <li>Все возможности тарифа «Лендинг»</li>
+        <li>Многостраничная структура (Услуги, О компании, Кейсы, Контакты)</li>
+        <li>Интерактивный калькулятор расчета стоимости для клиентов</li>
+        <li>Связка с CRM (Битрикс24, AmoCRM) и Telegram-ботом</li>
+        <li>Расширенная микроразметка Schema.org LocalBusiness + FAQPage</li>
+        <li>Локальное GEO-SEO продвижение по Ростове-на-Дону и области</li>
+      </ul>
+    </div>
+    <button class="btn-action" style="width: 100%;" type="button">Выбранный тариф</button>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="tariff-card" data-tariff="Интернет-магазин / B2B (Ростов-на-Дону)" data-price="от 89 000 ₽" onclick="selectArticleTariff(this)">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+        <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 0.04em;">Масштабный бизнес</span>
+        <span style="font-size: 0.85rem; color: var(--muted);">18–25 дней</span>
+      </div>
+      <h3 style="margin: 0 0 10px; font-size: 1.25rem;">Интернет-магазин / B2B</h3>
+      <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--muted); line-height: 1.45;">Торговая площадка или оптовый каталог с онлайн-оплатой и синхронизацией складов.</p>
+      
+      <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 16px;">от 89 000 ₽</div>
+      
+      <ul style="margin: 0 0 20px; padding-left: 18px; font-size: 0.88rem; line-height: 1.5; color: var(--text);">
+        <li>Все опции тарифа «Корпоративный сайт»</li>
+        <li>Каталог с многоуровневой фильтрацией, корзина и чекаут</li>
+        <li>Прием платежей через СБП под 0.7% и банковскими картами</li>
+        <li>Интеграция с 1С / МойСклад / службами доставки (СДЭК)</li>
+        <li>Личный кабинет оптового покупателя с историей заказов</li>
+        <li>Приоритетная круглосуточная техподдержка 24/7</li>
+      </ul>
+    </div>
+    <button class="btn-action" style="width: 100%;" type="button">Выбрать этот тариф</button>
+  </div>
+
+</div>
+
+<!-- Mobile swipe dots -->
+<div class="tariff-dots-container" style="display: none; justify-content: center; gap: 8px; margin-bottom: 24px;">
+  <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+  <span class="tariff-dot active" style="width: 20px; height: 8px; border-radius: 4px; background: var(--accent);"></span>
+  <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
+</div>
+
+<!-- Dynamic Form for Selected Tariff -->
+<div id="tariff-order-block" style="background: color-mix(in srgb, currentColor 3%, transparent); border: 1.5px solid var(--accent); border-radius: 16px; padding: 26px; margin: 30px 0;">
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px;">
+    <div>
+      <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оставить заявку в Ростове-на-Дону</span>
+      <h3 id="selected-tariff-title" style="margin: 4px 0 0; font-size: 1.35rem;">Корпоративный сайт (Ростов-на-Дону)</h3>
+    </div>
+    <div id="selected-tariff-price" style="font-size: 1.45rem; font-weight: 800; color: var(--accent);">от 49 000 ₽</div>
+  </div>
+  
+  <form onsubmit="submitCityLead(event, 'Ростов-на-Дону', 'website-development-rostov-na-donu')" style="display: grid; grid-template-columns: 1fr; gap: 14px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+      <input id="client-name" placeholder="Ваше имя" required="" style="padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 0.95rem; outline: none;" type="text"/>
+      <input id="client-phone" placeholder="Телефон или Telegram" required="" style="padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 0.95rem; outline: none;" type="text"/>
+    </div>
+    <textarea id="client-comment" placeholder="Кратко о вашей сфере деятельности или пожеланиях к сайту..." rows="3" style="padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 0.95rem; outline: none; resize: vertical;"></textarea>
+    
+    <label class="consent-check-label">
+      <input checked="" id="client-consent" required="" type="checkbox"/>
+      <span>Согласен на обработку персональных данных в соответствии с <a href="/consent" target="_blank">согласием</a> и <a href="/privacy" target="_blank">политикой конфиденциальности</a> (152-ФЗ)</span>
+    </label>
+
+    <button class="btn-action" id="submit-btn" style="padding: 14px 28px; font-size: 1rem;" type="submit">Получить смету проекта в Ростове-на-Дону →</button>
+    <div id="form-status" style="display: none; padding: 12px 16px; border-radius: 8px; font-size: 0.9rem;"></div>
+  </form>
+</div>
+
+<h2>Примеры наших работ</h2>
+<p>Ознакомьтесь с реальными проектами веб-студии VOID Digital в смежных отраслях:</p>
+
+<div class="portfolio-grid-inline">
+  <a class="portfolio-card" href="/blog-website-for-construction">
+    <div>
+      <span class="portfolio-tag">Строительство</span>
+      <h4>Сайт строительной компании</h4>
+      <p>Каталог коттеджей, ипотечный калькулятор, 3D-планировки и лиды за 2 секунды.</p>
+    </div>
+    <span class="portfolio-link">Смотреть кейс →</span>
+  </a>
+
+  <a class="portfolio-card" href="/blog-website-for-auto-import">
+    <div>
+      <span class="portfolio-tag">Автобизнес</span>
+      <h4>Импорт авто из Китая и Кореи</h4>
+      <p>Интерактивный калькулятор растаможки, каталог с аукционов и интеграция с CRM.</p>
+    </div>
+    <span class="portfolio-link">Смотреть кейс →</span>
+  </a>
+
+  <a class="portfolio-card" href="/blog-website-for-medical-center">
+    <div>
+      <span class="portfolio-tag">Медицина</span>
+      <h4>Сайт медицинского центра</h4>
+      <p>Электронная запись к врачам, расписание, соблюдение 323-ФЗ и версия для слабовидящих.</p>
+    </div>
+    <span class="portfolio-link">Смотреть кейс →</span>
+  </a>
+</div>
+
+<h2>Часто задаваемые вопросы (FAQ)</h2>
+<div style="display: grid; gap: 14px; margin: 24px 0;">
+<details style="border: 1px solid var(--border); border-radius: var(--radius, 12px); padding: 16px 20px; background: var(--surface);">
+<summary style="font-weight: 700; cursor: pointer; color: var(--text);">Работаете ли вы по официальному договору в Ростове-на-Дону?</summary>
+<p style="margin-top: 12px; color: var(--muted); line-height: 1.6;">
+Да. Мы заключаем официальный договор с ИП Лосуков Даниил Васильевич (ОГРНИП 326246800121182), фиксируем точные сроки, поэтапную оплату 50/50, техническое задание и гарантию 12 месяцев на все работы.
+</p>
+</details>
+
+<details style="border: 1px solid var(--border); border-radius: var(--radius, 12px); padding: 16px 20px; background: var(--surface);">
+<summary style="font-weight: 700; cursor: pointer; color: var(--text);">Как проходит обсуждение проекта и согласование макетов?</summary>
+<p style="margin-top: 12px; color: var(--muted); line-height: 1.6;">
+Мы проводим подробный онлайн-брифинг в Telegram / Яндекс Телемост, демонстрируем прототипы в реальном времени, а весь документооборот ведем через ЭДО (Диадок / СБИС) или курьерской службой.
+</p>
+</details>
+
+<details style="border: 1px solid var(--border); border-radius: var(--radius, 12px); padding: 16px 20px; background: var(--surface);">
+<summary style="font-weight: 700; cursor: pointer; color: var(--text);">Сколько стоит создание сайта в Ростове-на-Дону?</summary>
+<p style="margin-top: 12px; color: var(--muted); line-height: 1.6;">
+Стоимость продающего лендинга начинается от от 25 000 ₽, многостраничного корпоративного сайта компании — от от 49 000 ₽, а интернет-магазина или B2B каталога — от от 89 000 ₽. В цену входит локальное SEO-продвижение под Ростов-на-Дону и регион.
+</p>
+</details>
+</div>
+
+</div>
+</div>
+</article>
+
+<div class="cta mt-40">
+<h2>Готовы заказать сайт для бизнеса в Ростове-на-Дону?</h2>
+<p>Напишите нам в Telegram или оставьте заявку выше. Мы проведем бесплатный экспресс-аудит вашей ниши в Ростове-на-Дону и составим прозрачную смету за 30 минут.</p>
+<div class="cta-actions">
+<a class="btn" href="#tariffs">Выбрать тариф в калькуляторе ↑</a>
+<a class="btn btn-outline" href="https://t.me/Voiddigit" rel="noopener" target="_blank">Написать в Telegram</a>
+</div>
+</div>
+
+</main>
+
+<footer class="site-footer">
+<div class="container footer-grid">
+<div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br/><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
+<ul aria-label="Связаться с нами" class="social">
+<li><a aria-label="Позвонить +7 953 855-08-13" href="tel:+79538550813" title="Позвонить"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg></a></li>
+<li><a aria-label="Написать в WhatsApp" href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." rel="noopener" target="_blank" title="WhatsApp"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"></path><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"></path></svg></a></li>
+<li><a aria-label="Написать в Telegram" href="https://t.me/Voiddigit" rel="noopener" target="_blank" title="Telegram"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"></path><path d="m9.2 13.3 8.3-6.6"></path></svg></a></li>
+<li><a aria-label="Написать на почту voiddigital@mail.ru" href="mailto:voiddigital@mail.ru" title="Почта"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><rect height="14" rx="2.5" width="18" x="3" y="5"></rect><path d="m3.5 7 8.5 6 8.5-6"></path></svg></a></li>
+</ul>
+<ul class="footer-links">
+<li><a href="/services">Услуги</a></li>
+<li><a href="/portfolio">Портфолио</a></li>
+<li><a href="/blog">Блог</a></li>
+<li><a href="/contacts">Контакты</a></li>
+<li><a href="/privacy">Политика конфиденциальности</a></li>
+<li><a href="https://t.me/Voiddigit" rel="noopener" target="_blank">Telegram</a></li>
+</ul>
+</div>
+</footer>
+<script src="/js/main.js?v=1b25cc4c"></script>
+
+<script>
+var currentCity = 'Ростов-на-Дону';
+var selectedTariffName = 'Корпоративный сайт (Ростов-на-Дону)';
+var selectedTariffPrice = 'от 49 000 ₽';
+
+function selectArticleTariff(el) {
+  document.querySelectorAll('#landing-tariffs-grid .tariff-card').forEach(function(c) {
+    c.classList.remove('active');
+    c.style.borderColor = 'color-mix(in srgb, currentColor 12%, transparent)';
+    c.style.boxShadow = 'none';
+    var btn = c.querySelector('button');
+    if (btn) btn.textContent = 'Выбрать этот тариф';
+  });
+  el.classList.add('active');
+  el.style.borderColor = 'var(--accent)';
+  el.style.boxShadow = '0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06)';
+  var b = el.querySelector('button');
+  if (b) b.textContent = 'Выбранный тариф';
+
+  selectedTariffName = el.getAttribute('data-tariff') || '';
+  selectedTariffPrice = el.getAttribute('data-price') || '';
+
+  var titleEl = document.getElementById('selected-tariff-title');
+  var priceEl = document.getElementById('selected-tariff-price');
+  if (titleEl) titleEl.textContent = selectedTariffName;
+  if (priceEl) priceEl.textContent = selectedTariffPrice;
+}
+
+function submitCityLead(e, cityName, pageSlug) {
+  e.preventDefault();
+  var name = document.getElementById('client-name').value.trim();
+  var phone = document.getElementById('client-phone').value.trim();
+  var comment = document.getElementById('client-comment').value.trim();
+  var consent = document.getElementById('client-consent');
+  var status = document.getElementById('form-status');
+  var btn = document.getElementById('submit-btn');
+
+  if (consent && !consent.checked) {
+    alert('Пожалуйста, подтвердите согласие на обработку персональных данных (152-ФЗ)');
+    return;
+  }
+
+  var originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Отправка...';
+  status.style.display = 'none';
+
+  var text = '🏙️ Новая заявка на сайт: ' + cityName + '\n\n' +
+    '📌 Тариф: ' + selectedTariffName + ' (' + selectedTariffPrice + ')\n' +
+    '👤 Имя: ' + name + '\n' +
+    '📱 Контакт: ' + phone + '\n' +
+    (comment ? ('💬 Пожелания: ' + comment + '\n') : '') +
+    '🔗 Страница: https://void-digital.ru/' + pageSlug;
+
+  fetch('https://api.telegram.org/bot8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: '7738024017', text: text })
+  }).then(function(res) {
+    return res.json();
+  }).then(function(data) {
+    btn.disabled = false;
+    btn.textContent = originalText;
+    status.style.display = 'block';
+    if (data.ok) {
+      status.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+      status.style.border = '1px solid var(--accent)';
+      status.style.color = 'var(--text)';
+      status.innerHTML = '🎉 <b>Заявка принята!</b> Мы свяжемся с вами в течение 15 минут.';
+      e.target.reset();
+      if (consent) consent.checked = true;
+    } else {
+      throw new Error('Telegram API error');
+    }
+  }).catch(function(err) {
+    fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tariff: selectedTariffName + ' (' + selectedTariffPrice + ')',
+        contact: phone,
+        name: name,
+        message: comment,
+        source: 'https://void-digital.ru/' + pageSlug
+      })
+    }).then(function() {
+      btn.disabled = false;
+      btn.textContent = originalText;
+      status.style.display = 'block';
+      status.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+      status.style.border = '1px solid var(--accent)';
+      status.style.color = 'var(--text)';
+      status.innerHTML = '🎉 <b>Заявка принята!</b> Мы свяжемся с вами в течение 15 минут.';
+      e.target.reset();
+      if (consent) consent.checked = true;
+    }).catch(function() {
+      btn.disabled = false;
+      btn.textContent = originalText;
+      status.style.display = 'block';
+      status.style.background = 'rgba(239, 68, 68, 0.15)';
+      status.style.border = '1px solid #ef4444';
+      status.style.color = 'var(--text)';
+      status.innerHTML = '⚠️ Не удалось отправить автоматически. Напишите напрямую в Telegram: <a href="https://t.me/Voiddigit" target="_blank" style="color:var(--accent); text-decoration:underline;">@Voiddigit</a>';
+    });
+  });
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  window.scrollTo(0, 0);
+  var grid = document.getElementById('landing-tariffs-grid');
+  var cards = grid ? grid.querySelectorAll('.tariff-card') : [];
+  if (window.innerWidth <= 768 && grid && cards[1]) {
+    setTimeout(function() {
+      grid.scrollLeft = cards[1].offsetLeft - (grid.clientWidth - cards[1].clientWidth) / 2;
+    }, 120);
+  }
+});
+</script>
+</body>
+</html>
