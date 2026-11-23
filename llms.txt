@@ -121,6 +121,9 @@
 
 - [Интеграция сайта с CRM и Telegram: захват лидов за 2 секунды](https://void-digital.ru/blog-website-crm-integration)
 
+- [Разработка сайтов с 3D-графикой и Three.js: интерактивный WebGL под ключ](https://void-digital.ru/blog-website-with-3d)
+- [Разработка калькуляторов стоимости и квизов для сайта: расчет сметы под ключ](https://void-digital.ru/blog-website-calculator-development)
+
 ## Контакты
 
 - Telegram: https://t.me/Voiddigit

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#fafaf9" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="#111114" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="light dark" name="color-scheme"/>
+<script>document.documentElement.classList.add('js')</script>
+<title>Разработка калькуляторов стоимости и квизов для сайта: расчет сметы под ключ — VOID | digital</title>
+<meta content="Разработка интерактивных калькуляторов и квизов для сайта под ключ. Пошаговые расчеты, параметрические формулы, квалификация лидов и моментальная передача в CRM и Telegram." name="description"/>
+<link href="https://void-digital.ru/blog-website-calculator-development" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="VOID | digital" property="og:site_name"/>
+<meta content="ru_RU" property="og:locale"/>
+<meta content="Разработка калькуляторов стоимости и квизов для сайта: расчет сметы под ключ — VOID | digital" property="og:title"/>
+<meta content="Разработка интерактивных калькуляторов и квизов для сайта под ключ. Пошаговые расчеты, параметрические формулы, квалификация лидов и моментальная передача в CRM и Telegram." property="og:description"/>
+<meta content="https://void-digital.ru/blog-website-calculator-development" property="og:url"/>
+<meta content="https://void-digital.ru/img/blog-website-calculator-development/blog-calculator-cover.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="favicon.ico" rel="icon" sizes="any"/>
+<link href="icon.svg" rel="icon" type="image/svg+xml"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link as="font" crossorigin="" href="fonts/manrope-cyrillic.woff2" rel="preload" type="font/woff2"/>
+<link href="css/style.css?v=f00a3e5f" rel="stylesheet"/>
+<style>
+    .post-figure { margin: 24px 0; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post .cta p { max-width: none; }
+    .post .cta p a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+  
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: var(--bg);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-card:active {
+      transform: scale(0.99);
+    }
+    
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 12px !important;
+        padding-bottom: 8px !important;
+        margin-inline: -12px !important;
+        padding-inline: 12px !important;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .tariff-card {
+        flex: 0 0 min(82vw, 300px) !important;
+        max-width: 300px !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+        padding: 20px 16px !important;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+      .tariff-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .tariff-btn-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .tariff-btn-row .btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .landing-calculator-widget {
+        padding: 18px 14px !important;
+        margin: 24px 0 !important;
+      }
+    }
+
+    .landing-calculator-widget input[type="text"] {
+      font-size: 16px !important;
+    }
+
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin-top: 2px;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Главная",
+      "item": "https://void-digital.ru/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Блог",
+      "item": "https://void-digital.ru/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Разработка калькуляторов стоимости и квизов для сайта: расчет сметы под ключ",
+      "item": "https://void-digital.ru/blog-website-calculator-development"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Разработка калькуляторов стоимости и квизов для сайта: расчет сметы под ключ",
+  "description": "Разработка интерактивных калькуляторов и квизов для сайта под ключ. Пошаговые расчеты, параметрические формулы, квалификация лидов и моментальная передача в CRM и Telegram.",
+  "image": "https://void-digital.ru/img/blog-website-calculator-development/blog-calculator-cover.jpg",
+  "inLanguage": "ru",
+  "datePublished": "2026-11-23",
+  "dateModified": "2026-11-23",
+  "author": {
+    "@type": "Person",
+    "name": "Даниил Лосуков",
+    "url": "https://void-digital.ru/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "VOID | digital",
+    "url": "https://void-digital.ru/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://void-digital.ru/apple-touch-icon.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://void-digital.ru/blog-website-calculator-development"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Разработка калькуляторов стоимости и квизов",
+  "description": "Разработка интерактивных калькуляторов и квизов для сайта под ключ. Пошаговые расчеты, параметрические формулы, квалификация лидов и моментальная передача в CRM и Telegram.",
+  "image": "https://void-digital.ru/img/blog-website-calculator-development/blog-calculator-cover.jpg",
+  "brand": {
+    "@type": "Brand",
+    "name": "VOID | digital"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "RUB",
+    "lowPrice": "25000",
+    "highPrice": "85000",
+    "offerCount": "3"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "В чем разница между квизом и калькулятором стоимости?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Квиз — это пошаговая викторина из 4–7 вопросов, цель которой — вовлечь пользователя простыми выборами («Какой у вас бюджет?», «Когда нужен запуск?») и взять контакт за бонус. Калькулятор — это функциональный инструмент с ползунками, формулами и коэффициентами, где клиент сам видит прозрачный расчет сметы под свои параметры."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно ли встроить калькулятор на уже существующий сайт (на Tilda, WordPress, Bitrix или самописный)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, абсолютно. Мы собираем калькулятор на чистом изолированном Vanilla JS и CSS. Он подключается одной строчкой кода (`<script src='...'>`) и работает автономно, не конфликтуя со стилями и скриптами вашего текущего сайта."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Куда приходят заявки из калькулятора?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Заявки с полным списком выбранных параметров, итоговой сметой и UTM-метками источника рекламы моментально приходят в ваш Telegram-чат или канал (@void_digital_leads_bot), а также автоматически создают сделку и контакт в вашей CRM-системе (Битрикс24, amoCRM)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как рассчитываются сложные формулы с опциями и скидками?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Мы закладываем любую математическую логику: ступенчатые тарифы (чем больше объем, тем ниже цена за единицу), сезонные коэффициенты, надбавки за срочность, расчет доставки в зависимости от километража или веса."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Соответствует ли форма калькулятора закону 152-ФЗ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, обязательно. Форма содержит чекбокс согласия на обработку персональных данных со ссылками на вашу Политику конфиденциальности и Согласие, а данные шифруются по HTTPS."
+      }
+    }
+  ]
+}
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113737288', 'ym');
+
+    ym(113737288, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img alt="" decoding="async" fetchpriority="high" src="https://mc.yandex.ru/watch/113737288" style="position:absolute; left:-9999px;"/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+<div class="container nav">
+<a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+<button aria-expanded="false" aria-label="Меню" class="nav-toggle">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+</button>
+<ul class="nav-links">
+<li><a href="/services">Услуги и цены</a></li>
+<li><a href="/portfolio">Портфолио</a></li>
+<li><a href="/about">О нас</a></li>
+<li><a aria-current="page" href="/blog">Блог</a></li>
+<li><a href="/contacts">Контакты</a></li>
+<li><a class="nav-phone" href="tel:+79939306030">+7 (993) 930-60-30</a></li>
+<li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+</ul>
+</div>
+</header>
+<main id="main">
+<article class="section post">
+<div class="container">
+<a class="muted" href="/blog">← Все статьи</a>
+<h1 class="mt-16">Разработка калькуляторов стоимости и квизов для сайта: расчет сметы под ключ</h1>
+<p class="post-meta">Калькуляторы & Квизы · 7 мин чтения · Лидогенерация</p>
+<figure class="post-figure">
+<picture>
+<source srcset="img/blog-website-calculator-development/blog-calculator-cover.webp" type="image/webp"/>
+<img alt="Разработка калькуляторов стоимости и квизов для сайта: расчет сметы под ключ" class="cover-image" decoding="async" fetchpriority="high" height="800" src="img/blog-website-calculator-development/blog-calculator-cover.jpg" width="1200"/>
+</picture>
+</figure>
+
+<h2>Почему стандартные формы «Оставьте заявку» проигрывают калькуляторам</h2>
+<p>Классическая форма с полями «Имя» и «Телефон» и кнопкой «Отправить» вызывает у современного пользователя отторжение: клиент понимает, что после этого ему начнут назойливо звонить менеджеры с допросом, вместо того чтобы дать конкретную цену.</p>
+<p>Интерактивный <strong>онлайн-калькулятор стоимости или квалификационный квиз</strong> дает пользователю мгновенную ценность — прозрачную оценку бюджета под его конкретную задачу. По статистике проектов VOID | digital, внедрение интерактивного калькулятора увеличивает конверсию страницы в 2.8–4.2 раза.</p>
+
+<div class="post-figure">
+<table style="width:100%; border-collapse: collapse; margin: 20px 0;">
+<thead>
+<tr style="border-bottom: 2px solid var(--accent); text-align: left;">
+<th style="padding: 12px 10px;">Тип инструмента</th>
+<th style="padding: 12px 10px;">Конверсия в лид</th>
+<th style="padding: 12px 10px;">Качество контакта</th>
+<th style="padding: 12px 10px;">Идеально для ниш</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid var(--border);">
+<td style="padding: 10px;"><strong>Обычная статичная форма</strong></td>
+<td style="padding: 10px;">1.1 – 1.8%</td>
+<td style="padding: 10px;">Холодный контакт без деталей</td>
+<td style="padding: 10px;">Простые товары, звонок в 1 клик</td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border);">
+<td style="padding: 10px;"><strong>Пошаговый квиз-опросник</strong></td>
+<td style="padding: 10px; color: var(--accent);"><strong>4.5 – 8.2%</strong></td>
+<td style="padding: 10px;">Прогретый лид с ответами на 5 вопросов</td>
+<td style="padding: 10px;">Ремонт, дизайн, недвижимость, обучение</td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border);">
+<td style="padding: 10px;"><strong>Параметрический калькулятор</strong></td>
+<td style="padding: 10px; color: var(--accent);"><strong>6.0 – 11.5%</strong></td>
+<td style="padding: 10px;">Готовое ТЗ с площадью, тиражом и сметой</td>
+<td style="padding: 10px;">Строительство, мебель, логистика, B2B</td>
+</tr>
+<tr>
+<td style="padding: 10px;"><strong>3D/2D Конфигуратор продукта</strong></td>
+<td style="padding: 10px; color: var(--accent);"><strong>8.5 – 14.0%</strong></td>
+<td style="padding: 10px;">Клиент выбрал цвет, опции и готов внести аванс</td>
+<td style="padding: 10px;">Премиальные товары, авто, загородные дома</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h2>Ключевые модули наших калькуляторов</h2>
+<ul>
+<li><strong>Моментальный пересчет на клиенте:</strong> Никаких перезагрузок страниц. При сдвиге ползунка или клике на чекбокс итоговая сумма меняется плавно с анимированным счетчиком цифр за 0.05 сек.</li>
+<li><strong>Ветвление логики (Conditional Logic):</strong> Если пользователь выбрал «Юридическое лицо», калькулятор раскрывает поля выбора безналичной оплаты и НДС; если «Физлицо» — предлагает рассрочку или СБП.</li>
+<li><strong>Генерация коммерческого предложения (PDF):</strong> Пользователь может в один клик скачать красиво оформленную спецификацию с логотипом компании и детализацией сметы, оставив свой контакт.</li>
+<li><strong>Сквозная интеграция с CRM и аналитикой:</strong> В сделку передаются все нажатые радиокнопки, значения ползунков, сумма сметы, страница захода, поисковая фраза из Яндекс Директа и Client ID метрики.</li>
+</ul>
+
+<!-- Interactive Tariffs & Cost Calculator Widget -->
+<div class="landing-calculator-widget" id="order" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 16px); padding: 32px 24px; margin: 40px 0;">
+<div style="text-align: center; max-width: 680px; margin: 0 auto 28px;">
+<span style="display: inline-block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 8px;">Калькулятор стоимости и тарифов</span>
+<h2 style="font-size: clamp(1.4rem, 3vw, 1.85rem); margin: 0 0 10px; color: var(--text);">Выберите подходящий тариф под ваши задачи</h2>
+<p style="font-size: 0.95rem; color: var(--muted); margin: 0;">Нажмите на карточку тарифа — смета и конфигурация автоматически прикрепятся к заявке</p>
+</div>
+
+<!-- Tariffs Grid with Mobile Swipe -->
+<div id="landing-tariffs-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 12px;">
+<div class="tariff-card" data-index="0" data-tariff="Квиз-Опросник" data-price="от 25 000 ₽">
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+<div style="font-size: 1.15rem; font-weight: 700; color: var(--text);">Квиз-Опросник</div>
+<div class="tariff-radio" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); background: transparent; display: flex; align-items: center; justify-content: center; transition: all 180ms ease;"></div>
+</div>
+<div style="font-size: 1.35rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">от 25 000 ₽</div>
+<div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">Срок: 3–5 дней</div>
+<p style="font-size: 0.88rem; line-height: 1.45; color: var(--text); margin-bottom: 14px; min-height: 40px;">Интерактивный пошаговый опросник для вовлечения и квалификации лидов</p>
+<ul style="list-style: none; padding: 0; margin: 0 0 14px; font-size: 0.82rem; color: var(--muted); line-height: 1.4;">
+<li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>До 7 логических шагов с ветвлением вопросов</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Прогресс-бар и фиксация скидки/бонуса за ответ</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Валидация телефона с маской и проверкой кода</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Моментальная отправка ответов в Telegram и CRM</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Адаптивная верстка под смартфоны без скролл-багов</span></li>
+</ul>
+<div style="font-size: 0.78rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;">✓ Выбрать этот тариф</div>
+</div>
+<div class="tariff-card active" data-index="1" data-tariff="Параметрический Калькулятор" data-price="от 45 000 ₽">
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+<div style="font-size: 1.15rem; font-weight: 700; color: var(--text);">Параметрический Калькулятор</div>
+<div class="tariff-radio" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent); display: flex; align-items: center; justify-content: center; transition: all 180ms ease;"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+</div>
+<div style="font-size: 1.35rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">от 45 000 ₽</div>
+<div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">Срок: 5–8 дней</div>
+<p style="font-size: 0.88rem; line-height: 1.45; color: var(--text); margin-bottom: 14px; min-height: 40px;">Инженерный расчет стоимости с ползунками, формулами и сметой</p>
+<ul style="list-style: none; padding: 0; margin: 0 0 14px; font-size: 0.82rem; color: var(--muted); line-height: 1.4;">
+<li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Интерактивные слайдеры (площадь, объем, тираж, опции)</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Сложные математические формулы и диапазоны цен</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Мгновенный пересчет сметы без перезагрузки (0 мс)</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Генерация детальной PDF-сметы для скачивания клиентом</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Передача всех полей расчета в сделку Битрикс24/amoCRM</span></li>
+</ul>
+<div style="font-size: 0.78rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;">✓ Выбрать этот тариф</div>
+</div>
+<div class="tariff-card" data-index="2" data-tariff="Визуальный Конфигуратор" data-price="от 85 000 ₽">
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+<div style="font-size: 1.15rem; font-weight: 700; color: var(--text);">Визуальный Конфигуратор</div>
+<div class="tariff-radio" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); background: transparent; display: flex; align-items: center; justify-content: center; transition: all 180ms ease;"></div>
+</div>
+<div style="font-size: 1.35rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">от 85 000 ₽</div>
+<div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">Срок: 10–18 дней</div>
+<p style="font-size: 0.88rem; line-height: 1.45; color: var(--text); margin-bottom: 14px; min-height: 40px;">2D/3D визуализация объекта с выбором параметров и онлайн-оплатой</p>
+<ul style="list-style: none; padding: 0; margin: 0 0 14px; font-size: 0.82rem; color: var(--muted); line-height: 1.4;">
+<li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Визуальное изменение цвета, отделки и компонентов</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Неограниченная вложенность условий и тарифов</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Интеграция с онлайн-оплатой аванса (СБП, эквайринг)</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Синхронизация остатков и цен с 1С / МойСклад</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Индивидуальный личный кабинет с сохранением сметы</span></li>
+</ul>
+<div style="font-size: 0.78rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;">✓ Выбрать этот тариф</div>
+</div>
+</div>
+
+<!-- Mobile Carousel Dots -->
+<div class="tariff-dots-container" style="display: none; justify-content: center; align-items: center; gap: 8px; margin: 12px 0 24px;">
+<div class="tariff-dot" data-dot="0" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 200ms ease;"></div>
+<div class="tariff-dot" data-dot="1" style="width: 22px; height: 8px; border-radius: 4px; background: var(--accent); cursor: pointer; transition: all 200ms ease;"></div>
+<div class="tariff-dot" data-dot="2" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 200ms ease;"></div>
+</div>
+
+<!-- Interactive Order Form -->
+<form id="landing-tariff-form" style="margin-top: 24px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius, 14px); padding: 22px;">
+<div style="font-weight: 600; font-size: 1rem; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+<span>Выбранный тариф: <strong id="selected-tariff-display" style="color: var(--accent);">Параметрический Калькулятор (от 45 000 ₽)</strong></span>
+<span style="font-size: 0.82rem; color: var(--muted);">✓ Фиксация сметы в договоре</span>
+</div>
+
+<div class="tariff-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+<div>
+<label style="display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 4px;">Ваше имя или компания *</label>
+<input type="text" id="landing-form-name" required placeholder="Константин / ООО «Вектор»" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); outline: none;">
+</div>
+<div>
+<label style="display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 4px;">Телефон или Telegram *</label>
+<input type="text" id="landing-form-contact" required placeholder="+7 (999) 000-00-00 или @username" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); outline: none;">
+</div>
+</div>
+
+<div style="margin-bottom: 16px;">
+<label style="display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 4px;">Ссылка на текущий сайт или комментарий к задаче</label>
+<input type="text" id="landing-form-task" placeholder="Например: нужен 3D-конфигуратор кухни / ускорить магазин на Tilda" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); outline: none;">
+</div>
+
+<div style="margin-bottom: 16px;">
+<label class="consent-check-label">
+<input type="checkbox" id="landing-consent-check" checked required>
+<span>Я согласен на <a href="/consent" target="_blank">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank">Политикой конфиденциальности</a> (152-ФЗ). Никакого спама.</span>
+</label>
+</div>
+
+<div class="tariff-btn-row" style="display: flex; align-items: center; gap: 16px;">
+<button type="submit" id="landing-form-submit" class="btn btn-primary" style="padding: 13px 28px; font-weight: 700; cursor: pointer;">
+Получить точный расчет и консультацию →
+</button>
+<span style="font-size: 0.82rem; color: var(--muted);">Отвечаем за 15 минут в рабочее время</span>
+</div>
+
+<div id="landing-form-status" style="display: none; margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 0.9rem;"></div>
+</form>
+</div>
+
+<script>
+(function() {
+  var grid = document.getElementById('landing-tariffs-grid');
+  var cards = grid ? grid.querySelectorAll('.tariff-card') : [];
+  var dots = document.querySelectorAll('.tariff-dot');
+  var display = document.getElementById('selected-tariff-display');
+  var form = document.getElementById('landing-tariff-form');
+  var submitBtn = document.getElementById('landing-form-submit');
+  var statusMsg = document.getElementById('landing-form-status');
+  var consentCheck = document.getElementById('landing-consent-check');
+  var nameInput = document.getElementById('landing-form-name');
+  var contactInput = document.getElementById('landing-form-contact');
+  var taskInput = document.getElementById('landing-form-task');
+
+  var currentTariff = 'Параметрический Калькулятор';
+  var currentPrice = 'от 45 000 ₽';
+
+  function updateDots(activeIdx) {
+    dots.forEach(function(dot, idx) {
+      if (idx === activeIdx) {
+        dot.style.width = '22px';
+        dot.style.borderRadius = '4px';
+        dot.style.background = 'var(--accent)';
+      } else {
+        dot.style.width = '8px';
+        dot.style.borderRadius = '50%';
+        dot.style.background = 'var(--border)';
+      }
+    });
+  }
+
+  function selectCard(card, scrollIntoView) {
+    cards.forEach(function(c) {
+      c.classList.remove('active');
+      var radio = c.querySelector('.tariff-radio');
+      if (radio) {
+        radio.style.borderColor = 'var(--border)';
+        radio.style.background = 'transparent';
+        radio.innerHTML = '';
+      }
+    });
+
+    card.classList.add('active');
+    var radio = card.querySelector('.tariff-radio');
+    if (radio) {
+      radio.style.borderColor = 'var(--accent)';
+      radio.style.background = 'var(--accent)';
+      radio.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+
+    currentTariff = card.getAttribute('data-tariff') || '';
+    currentPrice = card.getAttribute('data-price') || '';
+
+    if (display) {
+      display.textContent = currentTariff + ' (' + currentPrice + ')';
+    }
+
+    var idx = parseInt(card.getAttribute('data-index') || '0', 10);
+    updateDots(idx);
+
+    if (scrollIntoView && window.innerWidth <= 768 && grid) {
+      var targetLeft = card.offsetLeft - (grid.clientWidth - card.clientWidth) / 2;
+      if (grid.scrollTo) { grid.scrollTo({ left: targetLeft, behavior: 'smooth' }); }
+      else { grid.scrollLeft = targetLeft; }
+    }
+  }
+
+  cards.forEach(function(card) {
+    card.addEventListener('click', function() {
+      selectCard(this, true);
+    });
+  });
+
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      var idx = parseInt(this.getAttribute('data-dot') || '0', 10);
+      if (cards[idx]) {
+        selectCard(cards[idx], true);
+      }
+    });
+  });
+
+  if (grid) {
+    var scrollTimer = null;
+    grid.addEventListener('scroll', function() {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function() {
+        var scrollLeft = grid.scrollLeft;
+        var cardWidth = cards[0].offsetWidth + 12;
+        var activeIndex = Math.round(scrollLeft / cardWidth);
+        if (activeIndex >= 0 && activeIndex < cards.length) {
+          updateDots(activeIndex);
+        }
+      }, 50);
+    }, { passive: true });
+  }
+
+  // Auto-center middle card horizontally on mobile without scrolling window
+  if (window.innerWidth <= 768 && grid && cards[1]) {
+    setTimeout(function() {
+      grid.scrollLeft = cards[1].offsetLeft - (grid.clientWidth - cards[1].clientWidth) / 2;
+    }, 120);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    if (consentCheck && !consentCheck.checked) {
+      alert('Пожалуйста, подтвердите согласие на обработку персональных данных');
+      consentCheck.focus();
+      return;
+    }
+
+    var contactVal = contactInput ? contactInput.value.trim() : '';
+    var nameVal = nameInput ? nameInput.value.trim() : '';
+    var taskVal = taskInput ? taskInput.value.trim() : '';
+
+    if (!contactVal) {
+      if (contactInput) contactInput.focus();
+      return;
+    }
+
+    var originalBtnHtml = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Отправка...</span>';
+    statusMsg.style.display = 'none';
+
+    var tgText = '🚀 Новая заявка (Калькуляторы и квизы)!\n\n' +
+      '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+      (nameVal ? ('👤 <b>Имя:</b> ' + nameVal + '\n') : '') +
+      '📱 <b>Контакт:</b> ' + contactVal + '\n' +
+      (taskVal ? ('💬 <b>Задача / сайт:</b> ' + taskVal + '\n') : '') +
+      '🔗 <b>Страница:</b> https://void-digital.ru/blog-website-calculator-development';
+
+    var tgPayload = JSON.stringify({
+      chat_id: '7738024017',
+      text: tgText,
+      parse_mode: 'HTML'
+    });
+
+    fetch('https://api.telegram.org/bot8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs/sendMessage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: tgPayload
+    }).then(function(res) {
+      return res.json();
+    }).then(function(data) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+      statusMsg.style.display = 'block';
+      if (data.ok) {
+        statusMsg.style.background = 'rgba(16, 185, 129, 0.15)';
+        statusMsg.style.color = '#10b981';
+        statusMsg.style.border = '1px solid #10b981';
+        statusMsg.innerHTML = '✓ Спасибо! Заявка по тарифу <strong>' + currentTariff + '</strong> принята. Мы свяжемся с вами в течение 15 минут.';
+        form.reset();
+        if (typeof ym === 'function') {
+          ym(113737288, 'reachGoal', 'lead');
+        }
+      } else {
+        fallbackSubmit();
+      }
+    }).catch(function(err) {
+      fallbackSubmit();
+    });
+
+    function fallbackSubmit() {
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'Калькуляторы и квизы',
+          tariff: currentTariff,
+          price: currentPrice,
+          name: nameVal,
+          contact: contactVal,
+          task: taskVal,
+          source: 'https://void-digital.ru/blog-website-calculator-development'
+        })
+      }).then(function() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+        statusMsg.style.display = 'block';
+        statusMsg.style.background = 'rgba(16, 185, 129, 0.15)';
+        statusMsg.style.color = '#10b981';
+        statusMsg.style.border = '1px solid #10b981';
+        statusMsg.innerHTML = '✓ Спасибо! Заявка принята. Мы свяжемся с вами в течение 15 минут.';
+        form.reset();
+      }).catch(function() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+        statusMsg.style.display = 'block';
+        statusMsg.style.background = 'rgba(239, 68, 68, 0.15)';
+        statusMsg.style.color = '#ef4444';
+        statusMsg.style.border = '1px solid #ef4444';
+        statusMsg.innerHTML = 'Произошла ошибка при отправке. Пожалуйста, напишите нам в Telegram: <a href="https://t.me/void_digital_bot" target="_blank" style="color: inherit; text-decoration: underline;">@void_digital_bot</a> или позвоните по телефону.';
+      });
+    }
+  });
+})();
+</script>
+
+<h2>Часто задаваемые вопросы</h2>
+<div style="margin: 24px 0 40px;">
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">В чем разница между квизом и калькулятором стоимости?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">Квиз — это пошаговая викторина из 4–7 вопросов, цель которой — вовлечь пользователя простыми выборами («Какой у вас бюджет?», «Когда нужен запуск?») и взять контакт за бонус. Калькулятор — это функциональный инструмент с ползунками, формулами и коэффициентами, где клиент сам видит прозрачный расчет сметы под свои параметры.</p>
+</div>
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">Можно ли встроить калькулятор на уже существующий сайт (на Tilda, WordPress, Bitrix или самописный)?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">Да, абсолютно. Мы собираем калькулятор на чистом изолированном Vanilla JS и CSS. Он подключается одной строчкой кода (`<script src='...'>`) и работает автономно, не конфликтуя со стилями и скриптами вашего текущего сайта.</p>
+</div>
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">Куда приходят заявки из калькулятора?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">Заявки с полным списком выбранных параметров, итоговой сметой и UTM-метками источника рекламы моментально приходят в ваш Telegram-чат или канал (@void_digital_leads_bot), а также автоматически создают сделку и контакт в вашей CRM-системе (Битрикс24, amoCRM).</p>
+</div>
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">Как рассчитываются сложные формулы с опциями и скидками?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">Мы закладываем любую математическую логику: ступенчатые тарифы (чем больше объем, тем ниже цена за единицу), сезонные коэффициенты, надбавки за срочность, расчет доставки в зависимости от километража или веса.</p>
+</div>
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">Соответствует ли форма калькулятора закону 152-ФЗ?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">Да, обязательно. Форма содержит чекбокс согласия на обработку персональных данных со ссылками на вашу Политику конфиденциальности и Согласие, а данные шифруются по HTTPS.</p>
+</div>
+
+</div>
+
+<div class="cta mt-40" style="padding: 32px 24px; text-align: center; background: color-mix(in srgb, var(--accent) 8%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius: var(--radius, 16px); margin: 40px 0;">
+<h2 style="font-size: clamp(1.3rem, 2.5vw, 1.7rem); margin: 0 0 10px;">Готовы обсудить проект или заказать расчет?</h2>
+<p style="font-size: 0.95rem; color: var(--muted); max-width: 600px; margin: 0 auto 20px;">
+Напишите нам в Telegram или оставьте заявку выше. Мы проведем бесплатный аудит задачи, покажем похожие кейсы и составим прозрачную смету с фиксированными сроками.
+</p>
+<div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+<a class="btn btn-primary" href="#order" style="padding: 12px 26px;">Выбрать тариф в калькуляторе ↑</a>
+<a class="btn" href="https://t.me/void_digital_bot" rel="noopener" target="_blank" style="padding: 12px 26px; border: 1px solid var(--border); background: var(--bg);">Написать в Telegram</a>
+</div>
+</div>
+</div>
+</article>
+</main>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div>
+<div class="footer-logo">VOID<span class="sep">|</span><span class="dig">digital</span></div>
+<p class="footer-desc">Студия веб-разработки: быстрые сайты, 3D WebGL и сервисы под ключ.</p>
+</div>
+<div>
+<div class="footer-title">Навигация</div>
+<ul class="footer-links">
+<li><a href="/services">Услуги и цены</a></li>
+<li><a href="/portfolio">Портфолио</a></li>
+<li><a href="/about">О нас</a></li>
+<li><a href="/blog">Блог</a></li>
+<li><a href="/contacts">Контакты</a></li>
+</ul>
+</div>
+<div>
+<div class="footer-title">Контакты</div>
+<ul class="footer-links">
+<li><a href="tel:+79939306030">+7 (993) 930-60-30</a></li>
+<li><a href="mailto:voiddigital@mail.ru">voiddigital@mail.ru</a></li>
+<li><a href="https://t.me/void_digital_bot" rel="noopener" target="_blank">Telegram: @void_digital_bot</a></li>
+</ul>
+</div>
+<div>
+<div class="footer-title">Реквизиты</div>
+<p class="footer-desc">ИП Лосуков Даниил Васильевич<br/>ОГРНИП 326246800121182<br/>ИНН 246316209137</p>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© 2026 VOID | digital. Все права защищены.</div>
+<div>
+<a href="/privacy">Политика конфиденциальности</a>
+<span class="sep">·</span>
+<a href="/consent">Согласие на обработку данных</a>
+</div>
+</div>
+</div>
+</footer>
+<script src="js/main.js?v=f00a3e5f"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0);
+  });
+</script>
+</body>
+</html>

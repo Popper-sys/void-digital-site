@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#fafaf9" media="(prefers-color-scheme: light)" name="theme-color"/>
+<meta content="#111114" media="(prefers-color-scheme: dark)" name="theme-color"/>
+<meta content="light dark" name="color-scheme"/>
+<script>document.documentElement.classList.add('js')</script>
+<title>Разработка сайтов с 3D-графикой и Three.js: интерактивный WebGL под ключ — VOID | digital</title>
+<meta content="Разработка интерактивных 3D-сайтов на Three.js и WebGL под ключ. Плавная физика 60 FPS, кастомные GLSL шейдеры, скролл-анимация и адаптация под мобильные без просадки скорости." name="description"/>
+<link href="https://void-digital.ru/blog-website-with-3d" rel="canonical"/>
+<meta content="article" property="og:type"/>
+<meta content="VOID | digital" property="og:site_name"/>
+<meta content="ru_RU" property="og:locale"/>
+<meta content="Разработка сайтов с 3D-графикой и Three.js: интерактивный WebGL под ключ — VOID | digital" property="og:title"/>
+<meta content="Разработка интерактивных 3D-сайтов на Three.js и WebGL под ключ. Плавная физика 60 FPS, кастомные GLSL шейдеры, скролл-анимация и адаптация под мобильные без просадки скорости." property="og:description"/>
+<meta content="https://void-digital.ru/blog-website-with-3d" property="og:url"/>
+<meta content="https://void-digital.ru/img/blog-website-with-3d/blog-3d-website-cover.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="favicon.ico" rel="icon" sizes="any"/>
+<link href="icon.svg" rel="icon" type="image/svg+xml"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link as="font" crossorigin="" href="fonts/manrope-cyrillic.woff2" rel="preload" type="font/woff2"/>
+<link href="css/style.css?v=f00a3e5f" rel="stylesheet"/>
+<style>
+    .post-figure { margin: 24px 0; }
+    .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
+    .post .cta p { max-width: none; }
+    .post .cta p a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+    .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
+  
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: var(--bg);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-card:active {
+      transform: scale(0.99);
+    }
+    
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 12px !important;
+        padding-bottom: 8px !important;
+        margin-inline: -12px !important;
+        padding-inline: 12px !important;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .tariff-card {
+        flex: 0 0 min(82vw, 300px) !important;
+        max-width: 300px !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+        padding: 20px 16px !important;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+      .tariff-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .tariff-btn-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .tariff-btn-row .btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .landing-calculator-widget {
+        padding: 18px 14px !important;
+        margin: 24px 0 !important;
+      }
+    }
+
+    .landing-calculator-widget input[type="text"] {
+      font-size: 16px !important;
+    }
+
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin-top: 2px;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Главная",
+      "item": "https://void-digital.ru/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Блог",
+      "item": "https://void-digital.ru/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Разработка сайтов с 3D-графикой и Three.js: интерактивный WebGL под ключ",
+      "item": "https://void-digital.ru/blog-website-with-3d"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Разработка сайтов с 3D-графикой и Three.js: интерактивный WebGL под ключ",
+  "description": "Разработка интерактивных 3D-сайтов на Three.js и WebGL под ключ. Плавная физика 60 FPS, кастомные GLSL шейдеры, скролл-анимация и адаптация под мобильные без просадки скорости.",
+  "image": "https://void-digital.ru/img/blog-website-with-3d/blog-3d-website-cover.jpg",
+  "inLanguage": "ru",
+  "datePublished": "2026-11-23",
+  "dateModified": "2026-11-23",
+  "author": {
+    "@type": "Person",
+    "name": "Даниил Лосуков",
+    "url": "https://void-digital.ru/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "VOID | digital",
+    "url": "https://void-digital.ru/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://void-digital.ru/apple-touch-icon.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://void-digital.ru/blog-website-with-3d"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Разработка сайтов с 3D-графикой и Three.js",
+  "description": "Разработка интерактивных 3D-сайтов на Three.js и WebGL под ключ. Плавная физика 60 FPS, кастомные GLSL шейдеры, скролл-анимация и адаптация под мобильные без просадки скорости.",
+  "image": "https://void-digital.ru/img/blog-website-with-3d/blog-3d-website-cover.jpg",
+  "brand": {
+    "@type": "Brand",
+    "name": "VOID | digital"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "RUB",
+    "lowPrice": "85000",
+    "highPrice": "240000",
+    "offerCount": "3"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Будет ли сайт с 3D-графикой тормозить на обычных смартфонах?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет. Мы используем strict-оптимизацию: ретопологию low-poly моделей (до 30-50k полигонов), текстурный атлас со сжатием KTX2/Basis и ограничение разрешения рендера (DPR) на мобильных. На старых смартфонах автоматически активируется плавный fallback на легковесную CSS-анимацию или статичный рендер без задержек."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что входит в стоимость: входит ли создание 3D-моделей?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "В базовые тарифы входит адаптация, ретопология и запекание текстур готовых CAD/3D-моделей заказчика. Если моделей нет, наши 3D-дженералисты создают их с нуля в Blender по вашим чертежам, фотографиям или референсам."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как 3D-графика влияет на SEO и Core Web Vitals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Мы изолируем WebGL-канвас и откладываем инициализацию тяжелых шейдеров до завершения отрисовки критического контента (First Contentful Paint). Страница загружает текст и форму моментально, благодаря чему показатели LCP и CLS остаются в зеленой зоне (90+ баллов)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно ли интегрировать 3D-конфигуратор с корзиной и оплатой?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, пользователь может в реальном времени вращать объект, выбирать материалы, комплектацию или цвет, при этом калькулятор пересчитывает итоговую смету и передает выбранную конфигурацию в корзину с оплатой или прямо в CRM."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "На каком стеке разрабатываются 3D-сайты в VOID | digital?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Мы разрабатываем проекты на чистом Vanilla JavaScript, Three.js и собственных GLSL-шейдерах без громоздких фреймворков. Это обеспечивает минимальный вес скриптов (до 150-250 КБ) и стабильные 60 FPS."
+      }
+    }
+  ]
+}
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113737288', 'ym');
+
+    ym(113737288, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img alt="" decoding="async" fetchpriority="high" src="https://mc.yandex.ru/watch/113737288" style="position:absolute; left:-9999px;"/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+<a class="skip-link" href="#main">Перейти к содержимому</a>
+<header class="site-header">
+<div class="container nav">
+<a class="logo" href="/">VOID<span class="sep">|</span><span class="dig">digital</span></a>
+<button aria-expanded="false" aria-label="Меню" class="nav-toggle">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+</button>
+<ul class="nav-links">
+<li><a href="/services">Услуги и цены</a></li>
+<li><a href="/portfolio">Портфолио</a></li>
+<li><a href="/about">О нас</a></li>
+<li><a aria-current="page" href="/blog">Блог</a></li>
+<li><a href="/contacts">Контакты</a></li>
+<li><a class="nav-phone" href="tel:+79939306030">+7 (993) 930-60-30</a></li>
+<li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
+</ul>
+</div>
+</header>
+<main id="main">
+<article class="section post">
+<div class="container">
+<a class="muted" href="/blog">← Все статьи</a>
+<h1 class="mt-16">Разработка сайтов с 3D-графикой и Three.js: интерактивный WebGL под ключ</h1>
+<p class="post-meta">3D WebGL & Three.js · 8 мин чтения · Услуги веб-продакшна</p>
+<figure class="post-figure">
+<picture>
+<source srcset="img/blog-website-with-3d/blog-3d-website-cover.webp" type="image/webp"/>
+<img alt="Разработка сайтов с 3D-графикой и Three.js: интерактивный WebGL под ключ" class="cover-image" decoding="async" fetchpriority="high" height="800" src="img/blog-website-with-3d/blog-3d-website-cover.jpg" width="1200"/>
+</picture>
+</figure>
+
+<h2>Интерактивный 3D WebGL как инструмент удвоения конверсии</h2>
+<p>В премиальных сегментах бизнеса — девелопменте, интерьерах, эксклюзивной мебели, технологических продуктах и автомобилях — традиционные плоские сайты больше не создают вау-эффекта. Пользователи сканируют страницу за 3–5 секунд и уходят, если продукт подан шаблонно.</p>
+<p>Интерактивная трехмерная графика на базе <strong>Three.js и WebGL</strong> трансформирует пассивное чтение в осязаемый тактильный опыт. Клиент может своими руками покрутить изделие, рассмотреть текстуру материала, увидеть архитектуру ЖК в разрезе или управлять анимацией движением пальца.</p>
+
+<div class="post-figure">
+<table style="width:100%; border-collapse: collapse; margin: 20px 0;">
+<thead>
+<tr style="border-bottom: 2px solid var(--accent); text-align: left;">
+<th style="padding: 12px 10px;">Критерий оценки</th>
+<th style="padding: 12px 10px;">Обычный шаблонный сайт</th>
+<th style="padding: 12px 10px; color: var(--accent);">Интерактивный 3D-сайт VOID</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom: 1px solid var(--border);">
+<td style="padding: 10px;"><strong>Среднее время на сайте</strong></td>
+<td style="padding: 10px;">45–60 секунд</td>
+<td style="padding: 10px; color: var(--accent);"><strong>3 минуты 40 секунд (+380%)</strong></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border);">
+<td style="padding: 10px;"><strong>Глубина взаимодействия</strong></td>
+<td style="padding: 10px;">Линейная прокрутка 2 экранов</td>
+<td style="padding: 10px; color: var(--accent);"><strong>Скролл-сторителлинг и вращение 3D</strong></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border);">
+<td style="padding: 10px;"><strong>Запоминаемость бренда</strong></td>
+<td style="padding: 10px;">Низкая (сливается с конкурентами)</td>
+<td style="padding: 10px; color: var(--accent);"><strong>Высокая (упоминания и шеринг ссылки)</strong></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border);">
+<td style="padding: 10px;"><strong>Конверсия в заявку</strong></td>
+<td style="padding: 10px;">1.2 – 2.0%</td>
+<td style="padding: 10px; color: var(--accent);"><strong>4.8 – 7.5% на том же трафике</strong></td>
+</tr>
+<tr>
+<td style="padding: 10px;"><strong>Плавность кадров</strong></td>
+<td style="padding: 10px;">Зависания от тяжелых плагинов</td>
+<td style="padding: 10px; color: var(--accent);"><strong>Стабильные 60 FPS без фреймдропов</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<h2>Архитектура разработки: как мы создаем 3D без тормозов</h2>
+<p>Главный страх заказчиков при слове «3D-сайт» — медленная загрузка на мобильных и зависания. В VOID | digital мы разработали инженерный стандарт оптимизации WebGL:</p>
+
+<ol>
+<li><strong>Ретопология и запекание нормалей (Normal Maps):</strong> Сложные CAD-модели на миллионы полигонов мы перерабатываем в легкие low-poly сетки (15 000 – 40 000 полигонов). Вся детализация, фаски и рельеф запекаются в текстурные карты нормалей и шероховатостей.</li>
+<li><strong>Шейдеры GLSL и процедурные материалы:</strong> Вместо сотен тяжелых PNG-текстур мы пишем кастомные математические шейдеры жидкого стекла, преломления света и хрома, которые рассчитываются видеочипом на лету и весят меньше 5 килобайт.</li>
+<li><strong>Сжатие геометрии Draco и KTX2:</strong> Модели упаковываются в бинарные форматы GLB с компрессией Draco/Meshopt. Модель сложного автомобиля или здания сжимается с 45 МБ до 1.8 МБ.</li>
+<li><strong>Изоляция рендера (OffscreenCanvas & Dynamic DPR):</strong> На дисплеях Retina с высоким разрешением мы динамически регулируем плотность пикселей и отключаем рендеринг сцены, когда пользователь прокручивает страницу ниже и 3D-блок не находится в зоне видимости (Intersection Observer).</li>
+</ol>
+
+<h2>Сценарии применения 3D-графики для бизнеса</h2>
+<p>В каких сферах 3D-сайт окупается быстрее всего:</p>
+<ul>
+<li><strong>Жилые комплексы и коттеджные поселки:</strong> 3D-генплан, интерактивный выбор этажа, обзор планировок квартир с мебелью и вид из окон.</li>
+<li><strong>Премиальная мебель и кухни:</strong> Интерактивный конструктор фасадов, столешниц и механизмов с мгновенным расчетом цены.</li>
+<li><strong>Технологические B2B-продукты и оборудование:</strong> Анимированная взрыв-схема агрегата с демонстрацией внутренних узлов и потоков.</li>
+<li><strong>Бренды одежды и аксессуаров:</strong> 3D-демонстрация обуви, ювелирных изделий и сумок с приближением текстуры кожи и металла.</li>
+<li><strong>Digital-сервисы и FinTech:</strong> Интерактивные визуализации данных, голографические банковские карты и неоновые мета-миры.</li>
+</ul>
+
+<!-- Interactive Tariffs & Cost Calculator Widget -->
+<div class="landing-calculator-widget" id="order" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 16px); padding: 32px 24px; margin: 40px 0;">
+<div style="text-align: center; max-width: 680px; margin: 0 auto 28px;">
+<span style="display: inline-block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 8px;">Калькулятор стоимости и тарифов</span>
+<h2 style="font-size: clamp(1.4rem, 3vw, 1.85rem); margin: 0 0 10px; color: var(--text);">Выберите подходящий тариф под ваши задачи</h2>
+<p style="font-size: 0.95rem; color: var(--muted); margin: 0;">Нажмите на карточку тарифа — смета и конфигурация автоматически прикрепятся к заявке</p>
+</div>
+
+<!-- Tariffs Grid with Mobile Swipe -->
+<div id="landing-tariffs-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 12px;">
+<div class="tariff-card" data-index="0" data-tariff="3D-Акцент" data-price="от 85 000 ₽">
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+<div style="font-size: 1.15rem; font-weight: 700; color: var(--text);">3D-Акцент</div>
+<div class="tariff-radio" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); background: transparent; display: flex; align-items: center; justify-content: center; transition: all 180ms ease;"></div>
+</div>
+<div style="font-size: 1.35rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">от 85 000 ₽</div>
+<div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">Срок: 14–20 дней</div>
+<p style="font-size: 0.88rem; line-height: 1.45; color: var(--text); margin-bottom: 14px; min-height: 40px;">Интерактивный 3D-элемент на первом экране для мгновенного захвата внимания</p>
+<ul style="list-style: none; padding: 0; margin: 0 0 14px; font-size: 0.82rem; color: var(--muted); line-height: 1.4;">
+<li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>1 оптимизированная 3D-модель в hero-секции</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Интерактивное вращение мышью / тачем</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Настройка реалистичного освещения и материалов</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Адаптивный статичный fallback для слабых смартфонов</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Зеленая зона Google PageSpeed (90+)</span></li>
+</ul>
+<div style="font-size: 0.78rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;">✓ Выбрать этот тариф</div>
+</div>
+<div class="tariff-card active" data-index="1" data-tariff="Интерактивный WebGL" data-price="от 145 000 ₽">
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+<div style="font-size: 1.15rem; font-weight: 700; color: var(--text);">Интерактивный WebGL</div>
+<div class="tariff-radio" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent); display: flex; align-items: center; justify-content: center; transition: all 180ms ease;"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+</div>
+<div style="font-size: 1.35rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">от 145 000 ₽</div>
+<div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">Срок: 20–30 дней</div>
+<p style="font-size: 0.88rem; line-height: 1.45; color: var(--text); margin-bottom: 14px; min-height: 40px;">Полноценный 3D-сторителлинг с кинематографичной скролл-анимацией</p>
+<ul style="list-style: none; padding: 0; margin: 0 0 14px; font-size: 0.82rem; color: var(--muted); line-height: 1.4;">
+<li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Глубокая интеграция 3D со скроллом страницы</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Кастомные шейдеры GLSL (стекло, преломление, частицы)</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>До 3 интерактивных 3D-объектов с анимацией</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Конфигуратор цвета, ракурсов или взрыв-схема</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Интеграция с Telegram и CRM, 60 FPS на устройствах</span></li>
+</ul>
+<div style="font-size: 0.78rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;">✓ Выбрать этот тариф</div>
+</div>
+<div class="tariff-card" data-index="2" data-tariff="Wow-Продакшн" data-price="от 240 000 ₽">
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+<div style="font-size: 1.15rem; font-weight: 700; color: var(--text);">Wow-Продакшн</div>
+<div class="tariff-radio" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); background: transparent; display: flex; align-items: center; justify-content: center; transition: all 180ms ease;"></div>
+</div>
+<div style="font-size: 1.35rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">от 240 000 ₽</div>
+<div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">Срок: 30–45 дней</div>
+<p style="font-size: 0.88rem; line-height: 1.45; color: var(--text); margin-bottom: 14px; min-height: 40px;">Кастомный трехмерный мир с физикой и конфигуратором продукта</p>
+<ul style="list-style: none; padding: 0; margin: 0 0 14px; font-size: 0.82rem; color: var(--muted); line-height: 1.4;">
+<li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Многоуровневая 3D-сцена с физикой (Cannon.js / Rapier)</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Полноценный 3D-конфигуратор с расчетом сметы</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Интерактивное звуковое оформление (Web Audio API)</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>InstancedMesh и шейдерный инстансинг для 60 FPS</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Поддержка PBR-материалов и high-end анимаций</span></li>
+</ul>
+<div style="font-size: 0.78rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;">✓ Выбрать этот тариф</div>
+</div>
+</div>
+
+<!-- Mobile Carousel Dots -->
+<div class="tariff-dots-container" style="display: none; justify-content: center; align-items: center; gap: 8px; margin: 12px 0 24px;">
+<div class="tariff-dot" data-dot="0" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 200ms ease;"></div>
+<div class="tariff-dot" data-dot="1" style="width: 22px; height: 8px; border-radius: 4px; background: var(--accent); cursor: pointer; transition: all 200ms ease;"></div>
+<div class="tariff-dot" data-dot="2" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 200ms ease;"></div>
+</div>
+
+<!-- Interactive Order Form -->
+<form id="landing-tariff-form" style="margin-top: 24px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius, 14px); padding: 22px;">
+<div style="font-weight: 600; font-size: 1rem; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+<span>Выбранный тариф: <strong id="selected-tariff-display" style="color: var(--accent);">Интерактивный WebGL (от 145 000 ₽)</strong></span>
+<span style="font-size: 0.82rem; color: var(--muted);">✓ Фиксация сметы в договоре</span>
+</div>
+
+<div class="tariff-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+<div>
+<label style="display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 4px;">Ваше имя или компания *</label>
+<input type="text" id="landing-form-name" required placeholder="Константин / ООО «Вектор»" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); outline: none;">
+</div>
+<div>
+<label style="display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 4px;">Телефон или Telegram *</label>
+<input type="text" id="landing-form-contact" required placeholder="+7 (999) 000-00-00 или @username" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); outline: none;">
+</div>
+</div>
+
+<div style="margin-bottom: 16px;">
+<label style="display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 4px;">Ссылка на текущий сайт или комментарий к задаче</label>
+<input type="text" id="landing-form-task" placeholder="Например: нужен 3D-конфигуратор кухни / ускорить магазин на Tilda" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); outline: none;">
+</div>
+
+<div style="margin-bottom: 16px;">
+<label class="consent-check-label">
+<input type="checkbox" id="landing-consent-check" checked required>
+<span>Я согласен на <a href="/consent" target="_blank">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank">Политикой конфиденциальности</a> (152-ФЗ). Никакого спама.</span>
+</label>
+</div>
+
+<div class="tariff-btn-row" style="display: flex; align-items: center; gap: 16px;">
+<button type="submit" id="landing-form-submit" class="btn btn-primary" style="padding: 13px 28px; font-weight: 700; cursor: pointer;">
+Получить точный расчет и консультацию →
+</button>
+<span style="font-size: 0.82rem; color: var(--muted);">Отвечаем за 15 минут в рабочее время</span>
+</div>
+
+<div id="landing-form-status" style="display: none; margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 0.9rem;"></div>
+</form>
+</div>
+
+<script>
+(function() {
+  var grid = document.getElementById('landing-tariffs-grid');
+  var cards = grid ? grid.querySelectorAll('.tariff-card') : [];
+  var dots = document.querySelectorAll('.tariff-dot');
+  var display = document.getElementById('selected-tariff-display');
+  var form = document.getElementById('landing-tariff-form');
+  var submitBtn = document.getElementById('landing-form-submit');
+  var statusMsg = document.getElementById('landing-form-status');
+  var consentCheck = document.getElementById('landing-consent-check');
+  var nameInput = document.getElementById('landing-form-name');
+  var contactInput = document.getElementById('landing-form-contact');
+  var taskInput = document.getElementById('landing-form-task');
+
+  var currentTariff = 'Интерактивный WebGL';
+  var currentPrice = 'от 145 000 ₽';
+
+  function updateDots(activeIdx) {
+    dots.forEach(function(dot, idx) {
+      if (idx === activeIdx) {
+        dot.style.width = '22px';
+        dot.style.borderRadius = '4px';
+        dot.style.background = 'var(--accent)';
+      } else {
+        dot.style.width = '8px';
+        dot.style.borderRadius = '50%';
+        dot.style.background = 'var(--border)';
+      }
+    });
+  }
+
+  function selectCard(card, scrollIntoView) {
+    cards.forEach(function(c) {
+      c.classList.remove('active');
+      var radio = c.querySelector('.tariff-radio');
+      if (radio) {
+        radio.style.borderColor = 'var(--border)';
+        radio.style.background = 'transparent';
+        radio.innerHTML = '';
+      }
+    });
+
+    card.classList.add('active');
+    var radio = card.querySelector('.tariff-radio');
+    if (radio) {
+      radio.style.borderColor = 'var(--accent)';
+      radio.style.background = 'var(--accent)';
+      radio.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+
+    currentTariff = card.getAttribute('data-tariff') || '';
+    currentPrice = card.getAttribute('data-price') || '';
+
+    if (display) {
+      display.textContent = currentTariff + ' (' + currentPrice + ')';
+    }
+
+    var idx = parseInt(card.getAttribute('data-index') || '0', 10);
+    updateDots(idx);
+
+    if (scrollIntoView && window.innerWidth <= 768 && grid) {
+      var targetLeft = card.offsetLeft - (grid.clientWidth - card.clientWidth) / 2;
+      if (grid.scrollTo) { grid.scrollTo({ left: targetLeft, behavior: 'smooth' }); }
+      else { grid.scrollLeft = targetLeft; }
+    }
+  }
+
+  cards.forEach(function(card) {
+    card.addEventListener('click', function() {
+      selectCard(this, true);
+    });
+  });
+
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      var idx = parseInt(this.getAttribute('data-dot') || '0', 10);
+      if (cards[idx]) {
+        selectCard(cards[idx], true);
+      }
+    });
+  });
+
+  if (grid) {
+    var scrollTimer = null;
+    grid.addEventListener('scroll', function() {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function() {
+        var scrollLeft = grid.scrollLeft;
+        var cardWidth = cards[0].offsetWidth + 12;
+        var activeIndex = Math.round(scrollLeft / cardWidth);
+        if (activeIndex >= 0 && activeIndex < cards.length) {
+          updateDots(activeIndex);
+        }
+      }, 50);
+    }, { passive: true });
+  }
+
+  // Auto-center middle card horizontally on mobile without scrolling window
+  if (window.innerWidth <= 768 && grid && cards[1]) {
+    setTimeout(function() {
+      grid.scrollLeft = cards[1].offsetLeft - (grid.clientWidth - cards[1].clientWidth) / 2;
+    }, 120);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    if (consentCheck && !consentCheck.checked) {
+      alert('Пожалуйста, подтвердите согласие на обработку персональных данных');
+      consentCheck.focus();
+      return;
+    }
+
+    var contactVal = contactInput ? contactInput.value.trim() : '';
+    var nameVal = nameInput ? nameInput.value.trim() : '';
+    var taskVal = taskInput ? taskInput.value.trim() : '';
+
+    if (!contactVal) {
+      if (contactInput) contactInput.focus();
+      return;
+    }
+
+    var originalBtnHtml = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Отправка...</span>';
+    statusMsg.style.display = 'none';
+
+    var tgText = '🚀 Новая заявка (3D-сайты и WebGL)!\n\n' +
+      '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+      (nameVal ? ('👤 <b>Имя:</b> ' + nameVal + '\n') : '') +
+      '📱 <b>Контакт:</b> ' + contactVal + '\n' +
+      (taskVal ? ('💬 <b>Задача / сайт:</b> ' + taskVal + '\n') : '') +
+      '🔗 <b>Страница:</b> https://void-digital.ru/blog-website-with-3d';
+
+    var tgPayload = JSON.stringify({
+      chat_id: '7738024017',
+      text: tgText,
+      parse_mode: 'HTML'
+    });
+
+    fetch('https://api.telegram.org/bot8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs/sendMessage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: tgPayload
+    }).then(function(res) {
+      return res.json();
+    }).then(function(data) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+      statusMsg.style.display = 'block';
+      if (data.ok) {
+        statusMsg.style.background = 'rgba(16, 185, 129, 0.15)';
+        statusMsg.style.color = '#10b981';
+        statusMsg.style.border = '1px solid #10b981';
+        statusMsg.innerHTML = '✓ Спасибо! Заявка по тарифу <strong>' + currentTariff + '</strong> принята. Мы свяжемся с вами в течение 15 минут.';
+        form.reset();
+        if (typeof ym === 'function') {
+          ym(113737288, 'reachGoal', 'lead');
+        }
+      } else {
+        fallbackSubmit();
+      }
+    }).catch(function(err) {
+      fallbackSubmit();
+    });
+
+    function fallbackSubmit() {
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: '3D-сайты и WebGL',
+          tariff: currentTariff,
+          price: currentPrice,
+          name: nameVal,
+          contact: contactVal,
+          task: taskVal,
+          source: 'https://void-digital.ru/blog-website-with-3d'
+        })
+      }).then(function() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+        statusMsg.style.display = 'block';
+        statusMsg.style.background = 'rgba(16, 185, 129, 0.15)';
+        statusMsg.style.color = '#10b981';
+        statusMsg.style.border = '1px solid #10b981';
+        statusMsg.innerHTML = '✓ Спасибо! Заявка принята. Мы свяжемся с вами в течение 15 минут.';
+        form.reset();
+      }).catch(function() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+        statusMsg.style.display = 'block';
+        statusMsg.style.background = 'rgba(239, 68, 68, 0.15)';
+        statusMsg.style.color = '#ef4444';
+        statusMsg.style.border = '1px solid #ef4444';
+        statusMsg.innerHTML = 'Произошла ошибка при отправке. Пожалуйста, напишите нам в Telegram: <a href="https://t.me/void_digital_bot" target="_blank" style="color: inherit; text-decoration: underline;">@void_digital_bot</a> или позвоните по телефону.';
+      });
+    }
+  });
+})();
+</script>
+
+<h2>Часто задаваемые вопросы</h2>
+<div style="margin: 24px 0 40px;">
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">Будет ли сайт с 3D-графикой тормозить на обычных смартфонах?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">Нет. Мы используем strict-оптимизацию: ретопологию low-poly моделей (до 30-50k полигонов), текстурный атлас со сжатием KTX2/Basis и ограничение разрешения рендера (DPR) на мобильных. На старых смартфонах автоматически активируется плавный fallback на легковесную CSS-анимацию или статичный рендер без задержек.</p>
+</div>
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">Что входит в стоимость: входит ли создание 3D-моделей?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">В базовые тарифы входит адаптация, ретопология и запекание текстур готовых CAD/3D-моделей заказчика. Если моделей нет, наши 3D-дженералисты создают их с нуля в Blender по вашим чертежам, фотографиям или референсам.</p>
+</div>
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">Как 3D-графика влияет на SEO и Core Web Vitals?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">Мы изолируем WebGL-канвас и откладываем инициализацию тяжелых шейдеров до завершения отрисовки критического контента (First Contentful Paint). Страница загружает текст и форму моментально, благодаря чему показатели LCP и CLS остаются в зеленой зоне (90+ баллов).</p>
+</div>
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">Можно ли интегрировать 3D-конфигуратор с корзиной и оплатой?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">Да, пользователь может в реальном времени вращать объект, выбирать материалы, комплектацию или цвет, при этом калькулятор пересчитывает итоговую смету и передает выбранную конфигурацию в корзину с оплатой или прямо в CRM.</p>
+</div>
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">На каком стеке разрабатываются 3D-сайты в VOID | digital?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">Мы разрабатываем проекты на чистом Vanilla JavaScript, Three.js и собственных GLSL-шейдерах без громоздких фреймворков. Это обеспечивает минимальный вес скриптов (до 150-250 КБ) и стабильные 60 FPS.</p>
+</div>
+
+</div>
+
+<div class="cta mt-40" style="padding: 32px 24px; text-align: center; background: color-mix(in srgb, var(--accent) 8%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius: var(--radius, 16px); margin: 40px 0;">
+<h2 style="font-size: clamp(1.3rem, 2.5vw, 1.7rem); margin: 0 0 10px;">Готовы обсудить проект или заказать расчет?</h2>
+<p style="font-size: 0.95rem; color: var(--muted); max-width: 600px; margin: 0 auto 20px;">
+Напишите нам в Telegram или оставьте заявку выше. Мы проведем бесплатный аудит задачи, покажем похожие кейсы и составим прозрачную смету с фиксированными сроками.
+</p>
+<div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+<a class="btn btn-primary" href="#order" style="padding: 12px 26px;">Выбрать тариф в калькуляторе ↑</a>
+<a class="btn" href="https://t.me/void_digital_bot" rel="noopener" target="_blank" style="padding: 12px 26px; border: 1px solid var(--border); background: var(--bg);">Написать в Telegram</a>
+</div>
+</div>
+</div>
+</article>
+</main>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div>
+<div class="footer-logo">VOID<span class="sep">|</span><span class="dig">digital</span></div>
+<p class="footer-desc">Студия веб-разработки: быстрые сайты, 3D WebGL и сервисы под ключ.</p>
+</div>
+<div>
+<div class="footer-title">Навигация</div>
+<ul class="footer-links">
+<li><a href="/services">Услуги и цены</a></li>
+<li><a href="/portfolio">Портфолио</a></li>
+<li><a href="/about">О нас</a></li>
+<li><a href="/blog">Блог</a></li>
+<li><a href="/contacts">Контакты</a></li>
+</ul>
+</div>
+<div>
+<div class="footer-title">Контакты</div>
+<ul class="footer-links">
+<li><a href="tel:+79939306030">+7 (993) 930-60-30</a></li>
+<li><a href="mailto:voiddigital@mail.ru">voiddigital@mail.ru</a></li>
+<li><a href="https://t.me/void_digital_bot" rel="noopener" target="_blank">Telegram: @void_digital_bot</a></li>
+</ul>
+</div>
+<div>
+<div class="footer-title">Реквизиты</div>
+<p class="footer-desc">ИП Лосуков Даниил Васильевич<br/>ОГРНИП 326246800121182<br/>ИНН 246316209137</p>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© 2026 VOID | digital. Все права защищены.</div>
+<div>
+<a href="/privacy">Политика конфиденциальности</a>
+<span class="sep">·</span>
+<a href="/consent">Согласие на обработку данных</a>
+</div>
+</div>
+</div>
+</footer>
+<script src="js/main.js?v=f00a3e5f"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0);
+  });
+</script>
+</body>
+</html>

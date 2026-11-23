@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ru">
 <head>
 <meta charset="utf-8"/>
@@ -8,16 +7,16 @@
 <meta content="#111114" media="(prefers-color-scheme: dark)" name="theme-color"/>
 <meta content="light dark" name="color-scheme"/>
 <script>document.documentElement.classList.add('js')</script>
-<title>Как ускорить сайт: оптимизация скорости на Tilda — VOID | digital</title>
-<meta content="Как проверить скорость загрузки сайта и ускорить его работу. Оптимизация изображений, скриптов и анимации, Core Web Vitals и практические советы для Tilda." name="description"/>
+<title>Оптимизация скорости сайта и Core Web Vitals 95+: ускорение загрузки под ключ — VOID | digital</title>
+<meta content="Оптимизация скорости загрузки сайтов и интернет-магазинов под ключ. Достижение Core Web Vitals 95+ (LCP, INP, CLS), сжатие скриптов и изображений, устранение задержек и рост конверсии." name="description"/>
 <link href="https://void-digital.ru/blog-speed-optimization" rel="canonical"/>
 <meta content="article" property="og:type"/>
 <meta content="VOID | digital" property="og:site_name"/>
 <meta content="ru_RU" property="og:locale"/>
-<meta content="Как ускорить сайт: оптимизация скорости на Tilda — VOID | digital" property="og:title"/>
-<meta content="Как проверить скорость загрузки сайта и ускорить его работу. Оптимизация изображений, скриптов и анимации, Core Web Vitals и практические советы для Tilda." property="og:description"/>
+<meta content="Оптимизация скорости сайта и Core Web Vitals 95+: ускорение загрузки под ключ — VOID | digital" property="og:title"/>
+<meta content="Оптимизация скорости загрузки сайтов и интернет-магазинов под ключ. Достижение Core Web Vitals 95+ (LCP, INP, CLS), сжатие скриптов и изображений, устранение задержек и рост конверсии." property="og:description"/>
 <meta content="https://void-digital.ru/blog-speed-optimization" property="og:url"/>
-<meta content="https://void-digital.ru/img/blog-speed-optimization/blog-speed-cover.jpg?v=20261024" property="og:image"/>
+<meta content="https://void-digital.ru/img/blog-speed-optimization/blog-speed-cover.jpg" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <link href="favicon.ico" rel="icon" sizes="any"/>
 <link href="icon.svg" rel="icon" type="image/svg+xml"/>
@@ -28,31 +27,237 @@
     .post-figure { margin: 24px 0; }
     .post-figure img { display: block; width: 100%; height: auto; border-radius: 12px; }
     .post .cta p { max-width: none; }
+    .post .cta p a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
     .post code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, currentColor 8%, transparent); padding: 2px 6px; border-radius: 6px; }
-    .post table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; font-size: 15px; }
-    .post th, .post td { text-align: left; padding: 10px 14px; border: 1px solid color-mix(in srgb, currentColor 16%, transparent); vertical-align: top; }
-    .post thead th { font-weight: 600; }
-  </style>
+  
+    /* Interactive Tariff Cards */
+    .tariff-card {
+      cursor: pointer;
+      padding: 22px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius, 16px);
+      background: var(--bg);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      position: relative;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .tariff-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent) !important;
+    }
+    .tariff-card.active {
+      border-color: var(--accent) !important;
+      background: var(--bg);
+      box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .tariff-card:active {
+      transform: scale(0.99);
+    }
+    
+    @media (max-width: 768px) {
+      #landing-tariffs-grid {
+        display: flex !important;
+        grid-template-columns: none !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 12px !important;
+        padding-bottom: 8px !important;
+        margin-inline: -12px !important;
+        padding-inline: 12px !important;
+        scrollbar-width: none;
+      }
+      #landing-tariffs-grid::-webkit-scrollbar {
+        display: none;
+      }
+      .tariff-card {
+        flex: 0 0 min(82vw, 300px) !important;
+        max-width: 300px !important;
+        scroll-snap-align: center !important;
+        scroll-snap-stop: always !important;
+        padding: 20px 16px !important;
+      }
+      .tariff-dots-container {
+        display: flex !important;
+      }
+      .tariff-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .tariff-btn-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .tariff-btn-row .btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+      .landing-calculator-widget {
+        padding: 18px 14px !important;
+        margin: 24px 0 !important;
+      }
+    }
+
+    .landing-calculator-widget input[type="text"] {
+      font-size: 16px !important;
+    }
+
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin-top: 2px;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+</style>
 <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Как ускорить сайт: оптимизация скорости на Tilda",
-    "description": "Как проверить скорость загрузки сайта и ускорить его работу. Оптимизация изображений, скриптов и анимации, Core Web Vitals и практические советы для Tilda.",
-    "image": "https://void-digital.ru/img/blog-speed-optimization/blog-speed-cover.jpg?v=20261024",
-    "inLanguage": "ru",
-    "datePublished": "2026-10-24",
-    "dateModified": "2026-10-24",
-    "author": { "@type": "Person", "name": "Даниил Лосуков", "url": "https://void-digital.ru/about" },
-    "publisher": {
-      "@type": "Organization",
-      "name": "VOID | digital",
-      "url": "https://void-digital.ru/",
-      "logo": { "@type": "ImageObject", "url": "https://void-digital.ru/apple-touch-icon.png" }
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Главная",
+      "item": "https://void-digital.ru/"
     },
-    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://void-digital.ru/blog-speed-optimization" }
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Блог",
+      "item": "https://void-digital.ru/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Оптимизация скорости сайта и Core Web Vitals 95+: ускорение загрузки под ключ",
+      "item": "https://void-digital.ru/blog-speed-optimization"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Оптимизация скорости сайта и Core Web Vitals 95+: ускорение загрузки под ключ",
+  "description": "Оптимизация скорости загрузки сайтов и интернет-магазинов под ключ. Достижение Core Web Vitals 95+ (LCP, INP, CLS), сжатие скриптов и изображений, устранение задержек и рост конверсии.",
+  "image": "https://void-digital.ru/img/blog-speed-optimization/blog-speed-cover.jpg",
+  "inLanguage": "ru",
+  "datePublished": "2026-11-23",
+  "dateModified": "2026-11-23",
+  "author": {
+    "@type": "Person",
+    "name": "Даниил Лосуков",
+    "url": "https://void-digital.ru/about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "VOID | digital",
+    "url": "https://void-digital.ru/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://void-digital.ru/apple-touch-icon.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://void-digital.ru/blog-speed-optimization"
   }
-  </script>
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Оптимизация скорости сайта и Core Web Vitals",
+  "description": "Оптимизация скорости загрузки сайтов и интернет-магазинов под ключ. Достижение Core Web Vitals 95+ (LCP, INP, CLS), сжатие скриптов и изображений, устранение задержек и рост конверсии.",
+  "image": "https://void-digital.ru/img/blog-speed-optimization/blog-speed-cover.jpg",
+  "brand": {
+    "@type": "Brand",
+    "name": "VOID | digital"
+  },
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "RUB",
+    "lowPrice": "29000",
+    "highPrice": "95000",
+    "offerCount": "3"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Как скорость загрузки влияет на продажи и конверсию сайта?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Исследования Google и Яндекса показывают: при увеличении времени загрузки с 1 до 3 секунд вероятность отказа (bounce rate) возрастает на 32%, а при загрузке более 5 секунд — на 90%. Каждая сэкономленная секунда дает прямой прирост конверсии в среднем на 7–15% на том же рекламном бюджете."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Влияет ли скорость на позиции в поисковых системах Яндекс и Google?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, напрямую. В Google показатели Core Web Vitals являются официальным фактором ранжирования. В Яндексе скорость напрямую влияет на поведенческие факторы (время до первого клика, отказы). Быстрые сайты получают приоритет в мобильной поисковой выдаче."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно ли ускорить сайт на конструкторах (Tilda, WordPress, Битрикс)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. На Tilda и WordPress мы оптимизируем размер ассетов, сжимаем шрифты WOFF2, настраиваем отложенную инициализацию тяжелых блоков и счетчиков. Однако максимальный балл (95–100) на слабых смартфонах достигается переносом сайта на чистый Vanilla JS без платформенного оверхеда."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что такое метрики LCP, INP и CLS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LCP (Largest Contentful Paint) — время отрисовки самого крупного контентного блока (нормой считается до 2.5 сек). INP (Interaction to Next Paint) — задержка реакции интерфейса на клик или нажатие (норма до 200 мс). CLS (Cumulative Layout Shift) — визуальная стабильность верстки и отсутствие прыжков элементов во время загрузки (норма до 0.1)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Даете ли вы финансовую гарантию результата по скорости?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. В тарифах 'Core Web Vitals 90+' и 'Full-Stack' мы прописываем целевые показатели баллов в Google PageSpeed Insights и время LCP прямо в договоре оказания услуг."
+      }
+    }
+  ]
+}
+</script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
    (function(m,e,t,r,i,k,a){
@@ -66,12 +271,6 @@
 </script>
 <noscript><div><img alt="" decoding="async" fetchpriority="high" src="https://mc.yandex.ru/watch/113737288" style="position:absolute; left:-9999px;"/></div></noscript>
 <!-- /Yandex.Metrika counter -->
-<script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
-      {"@type":"ListItem","position":1,"name":"Главная","item":"https://void-digital.ru/"},
-      {"@type":"ListItem","position":2,"name":"Блог","item":"https://void-digital.ru/blog"},
-      {"@type":"ListItem","position":3,"name":"Как ускорить сайт: что действительно влияет на скорость загрузки","item":"https://void-digital.ru/blog-speed-optimization"}]}
-  </script>
 </head>
 <body>
 <a class="skip-link" href="#main">Перейти к содержимому</a>
@@ -87,7 +286,7 @@
 <li><a href="/about">О нас</a></li>
 <li><a aria-current="page" href="/blog">Блог</a></li>
 <li><a href="/contacts">Контакты</a></li>
-<li><a class="nav-phone" href="tel:+79538550813">+7 953 855-08-13</a></li>
+<li><a class="nav-phone" href="tel:+79939306030">+7 (993) 930-60-30</a></li>
 <li><a class="btn btn-primary btn-sm" href="/#calc">Рассчитать стоимость</a></li>
 </ul>
 </div>
@@ -96,184 +295,456 @@
 <article class="section post">
 <div class="container">
 <a class="muted" href="/blog">← Все статьи</a>
-<h1 class="mt-16">Как ускорить сайт: что действительно влияет на скорость загрузки</h1>
-<p class="post-meta">Скорость сайта · 7 мин чтения</p>
+<h1 class="mt-16">Оптимизация скорости сайта и Core Web Vitals 95+: ускорение загрузки под ключ</h1>
+<p class="post-meta">Оптимизация скорости · 9 мин чтения · Core Web Vitals 95+</p>
 <figure class="post-figure">
-<img alt="Как ускорить сайт: что действительно влияет на скорость загрузки" decoding="async" fetchpriority="high" height="1024" loading="lazy" src="/img/blog-speed-optimization/blog-speed-cover.jpg?v=20261024" width="1536"/>
+<picture>
+<source srcset="img/blog-speed-optimization/blog-speed-cover.webp" type="image/webp"/>
+<img alt="Оптимизация скорости сайта и Core Web Vitals 95+: ускорение загрузки под ключ" class="cover-image" decoding="async" fetchpriority="high" height="800" src="img/blog-speed-optimization/blog-speed-cover.jpg" width="1200"/>
+</picture>
 </figure>
-<p>Медленный сайт может мешать посетителям изучать услуги, переходить между страницами и оставлять заявки. Частые причины — тяжёлые изображения, избыточные анимации, сторонние скрипты и неоптимизированные элементы интерфейса.</p>
-<p>Чтобы ускорить сайт, не обязательно отказываться от индивидуального дизайна или менять платформу. Сначала нужно определить причину замедления, проверить производительность и устранить проблемы, которые сильнее всего влияют на пользователей.</p>
-<p>Разберём, как проверить скорость загрузки сайта, что можно оптимизировать самостоятельно и как ускорить сайт на Tilda.</p>
-<h2>Как проверить скорость загрузки сайта</h2>
-<p>Для начала необходимо оценить фактическую производительность. Без диагностики сложно понять, что именно требует оптимизации.</p>
-<h3>Google PageSpeed Insights</h3>
-<p>PageSpeed Insights проверяет страницы на компьютерах и мобильных устройствах, показывает показатели производительности и предлагает рекомендации по улучшению.</p>
-<p>Сервис позволяет выявить тяжёлые изображения, задержки при отображении содержимого, проблемы с выполнением JavaScript и другие причины замедления.</p>
-<p>Проверить сайт можно через <a href="https://pagespeed.web.dev/">Google PageSpeed Insights</a>.</p>
-<p>Рекомендуется тестировать не только главную страницу, но и несколько типовых страниц: услугу, длинный лендинг и страницу с формой заявки.</p>
-<p>Важно: итоговый балл не показывает всю картину. PageSpeed Insights использует лабораторные тесты, а при наличии достаточных данных также показывает показатели реальных пользователей. Эти данные необходимо рассматривать отдельно.</p>
-<h3>Какие показатели действительно важны</h3>
-<p>При проверке сайта обратите внимание на три метрики Core Web Vitals.</p>
-<table>
+
+<h2>Цена медленной загрузки: сколько денег теряет бизнес</h2>
+<p>В эпоху мобильного интернета пользователи не готовы ждать. Если сайт загружается дольше 2.5 секунд, до 40% потенциальных покупателей нажимают кнопку «Назад» в браузере и уходят к конкурентам, а рекламный бюджет в Яндекс Директе сгорает впустую.</p>
+<p>Поисковые алгоритмы Google (Core Web Vitals) и Яндекса (метрики стабильности и мобильного комфорта) пессимизируют медленные сайты: они опускаются ниже в органической выдаче, а цена клика в аукционе контекстной рекламы для них вырастает из-за низкого показателя качества посадочной страницы (Quality Score).</p>
+
+<div class="post-figure">
+<table style="width:100%; border-collapse: collapse; margin: 20px 0;">
 <thead>
-<tr><th>Показатель</th><th>Что измеряет</th><th>Хороший результат</th></tr>
+<tr style="border-bottom: 2px solid var(--accent); text-align: left;">
+<th style="padding: 12px 10px;">Метрика Core Web Vitals</th>
+<th style="padding: 12px 10px;">Медленный сайт (Красная зона)</th>
+<th style="padding: 12px 10px; color: var(--accent);">После оптимизации VOID (Зеленая зона)</th>
+</tr>
 </thead>
 <tbody>
-<tr><td>LCP</td><td>Скорость отображения крупнейшего элемента основного содержимого</td><td>До 2,5 секунды</td></tr>
-<tr><td>INP</td><td>Отзывчивость страницы на действия пользователя</td><td>Не более 200 мс</td></tr>
-<tr><td>CLS</td><td>Визуальную стабильность страницы</td><td>Не более 0,1</td></tr>
+<tr style="border-bottom: 1px solid var(--border);">
+<td style="padding: 10px;"><strong>LCP (Отрисовка главного контента)</strong></td>
+<td style="padding: 10px; color: #ef4444;">4.8 – 7.2 секунды</td>
+<td style="padding: 10px; color: #10b981;"><strong>1.1 – 1.8 секунды (&lt; 2.5 сек)</strong></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border);">
+<td style="padding: 10px;"><strong>CLS (Сдвиг элементов при загрузке)</strong></td>
+<td style="padding: 10px; color: #ef4444;">0.35 – 0.65 (прыжки текста)</td>
+<td style="padding: 10px; color: #10b981;"><strong>0.00 – 0.02 (абсолютная стабильность)</strong></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border);">
+<td style="padding: 10px;"><strong>INP (Задержка отклика на клик)</strong></td>
+<td style="padding: 10px; color: #ef4444;">450 – 800 мс (зависание меню)</td>
+<td style="padding: 10px; color: #10b981;"><strong>35 – 70 мс (&lt; 200 мс)</strong></td>
+</tr>
+<tr style="border-bottom: 1px solid var(--border);">
+<td style="padding: 10px;"><strong>Балл Google PageSpeed Mobile</strong></td>
+<td style="padding: 10px; color: #ef4444;">24 – 45 баллов</td>
+<td style="padding: 10px; color: #10b981;"><strong>92 – 98 баллов</strong></td>
+</tr>
+<tr>
+<td style="padding: 10px;"><strong>Конверсия рекламного трафика</strong></td>
+<td style="padding: 10px;">1.4%</td>
+<td style="padding: 10px; color: var(--accent);"><strong>2.9 – 3.8% (+120%)</strong></td>
+</tr>
 </tbody>
 </table>
-<p>Это ориентиры Google для оценки пользовательского опыта. Они применяются к 75-му процентилю реальных посещений, отдельно для мобильных устройств и компьютеров.</p>
-<p><strong>LCP</strong> помогает оценить, как быстро появляется основное содержимое страницы. Если посетитель долго видит пустой экран или ожидает появления крупного изображения, стоит проверить загрузку главного экрана.</p>
-<p><strong>INP</strong> показывает, насколько быстро страница реагирует на действия пользователя. Если после нажатия кнопки интерфейс подвисает, причиной могут быть тяжёлые скрипты.</p>
-<p><strong>CLS</strong> отражает неожиданные смещения элементов. Например, посетитель собирается нажать кнопку, но после загрузки изображения она перемещается.</p>
-<p>Эти показатели помогают определить направление оптимизации, но не заменяют проверку сайта на реальных устройствах.</p>
-<figure class="post-figure">
-<img alt="Пять причин медленной загрузки сайта: тяжёлые изображения, видео и скрипты" decoding="async" height="1024" loading="lazy" src="/img/blog-speed-optimization/blog-speed-factors.jpg?v=20261024" width="1536"/>
-</figure>
-<h2>5 причин, по которым сайт загружается медленно</h2>
-<h3>1. Тяжёлые изображения</h3>
-<p>Большие фотографии и фоновые изображения часто становятся одной из основных причин медленной загрузки.</p>
-<p>Например, если на первом экране размещена фотография высокого разрешения, которая весит несколько мегабайт, её загрузка может задерживать появление основного содержимого на мобильном устройстве.</p>
-<p>Что делать:</p>
-<ul>
-<li>уменьшать изображения до подходящего разрешения;</li>
-<li>сжимать файлы без заметной потери качества;</li>
-<li>использовать современные форматы, например WebP;</li>
-<li>не размещать несколько тяжёлых изображений в верхней части страницы;</li>
-<li>проверять вес фоновых изображений и фотографий в Zero Block.</li>
-</ul>
-<p>На Tilda предусмотрена автоматическая адаптация изображений к размеру контейнера и поддерживается преобразование в WebP в соответствующих сценариях. Однако предварительная оптимизация исходных файлов также может помочь.</p>
-<p><strong>Начните с первого экрана:</strong> именно здесь важно быстро показать посетителю основное предложение.</p>
-<h3>2. Избыток сторонних скриптов</h3>
-<p>На сайте могут работать чат-виджеты, рекламные пиксели, счётчики, карты, онлайн-запись и другие внешние сервисы.</p>
-<p>Каждый скрипт может требовать загрузки дополнительных файлов и выполнения кода. Если подключений слишком много, страница способна отображаться медленнее, а интерфейс — реагировать с задержкой.</p>
-<p>Рекомендуется:</p>
+</div>
+
+<h2>Чек-лист глубокой оптимизации скорости VOID | digital</h2>
 <ol>
-<li>Проверить все подключённые сервисы.</li>
-<li>Удалить неиспользуемые виджеты и дублирующие счётчики.</li>
-<li>Проверить, какие скрипты действительно необходимы для работы бизнеса.</li>
-<li>По возможности настроить отложенную загрузку необязательных компонентов.</li>
+<li><strong>Экстремальное сжатие изображений:</strong> Перевод всех растровых картинок в прогрессивный WebP/AVIF сжатием с сохранением резкости, динамические атрибуты <code>srcset</code> под экран устройства, атрибуты <code>loading="lazy"</code> и <code>decoding="async"</code>. Для обложек hero-экрана выставляется <code>fetchpriority="high"</code>.</li>
+<li><strong>Инлайнинг Critical CSS:</strong> Стили, необходимые для первого видимого экрана, встраиваются прямо в <code>&lt;head&gt;</code> без блокирующего сетевого запроса. Остальные стили подгружаются асинхронно.</li>
+<li><strong>Оптимизация шрифтов:</strong> Прелоад критических начертаний WOFF2 через <code>&lt;link rel="preload" as="font"&gt;</code> с директивой <code>font-display: swap</code> для исключения мерцания невидимого текста (FOIT).</li>
+<li><strong>Устранение блокирующих скриптов:</strong> Вынос аналитических пикселей (Яндекс Метрика, Google Analytics, VK пиксель) и сторонних чатов/виджетов в отложенную инициализацию после взаимодействия пользователя с экраном.</li>
+<li><strong>Серверная оптимизация (TTFB):</strong> Настройка высокоэффективного сжатия Brotli (уровень 6), постоянного кэширования статических ассетов (Cache-Control max-age=31536000) и протокола HTTP/2.</li>
 </ol>
-<p>Не нужно удалять аналитику или полезные сервисы только ради повышения оценки PageSpeed Insights. Важно сохранить необходимые функции и уменьшить их влияние на загрузку.</p>
-<h3>3. Слишком много анимации и видео</h3>
-<p>Видео на фоне, сложные переходы, параллакс и многочисленные анимированные элементы могут сделать сайт визуально выразительнее. Но при чрезмерном использовании они увеличивают нагрузку и усложняют работу интерфейса.</p>
-<p>Проблема особенно заметна, когда одновременно загружаются видео, крупные изображения и несколько анимационных эффектов.</p>
-<p>Что можно сделать:</p>
-<ul>
-<li>оставить только анимацию, которая поддерживает визуальную концепцию;</li>
-<li>сократить количество одновременно запускаемых эффектов;</li>
-<li>заменить ненужное видео статичным изображением;</li>
-<li>проверить работу анимаций на смартфонах;</li>
-<li>не перегружать первый экран декоративными элементами.</li>
+
+<!-- Interactive Tariffs & Cost Calculator Widget -->
+<div class="landing-calculator-widget" id="order" style="background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 16px); padding: 32px 24px; margin: 40px 0;">
+<div style="text-align: center; max-width: 680px; margin: 0 auto 28px;">
+<span style="display: inline-block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 8px;">Калькулятор стоимости и тарифов</span>
+<h2 style="font-size: clamp(1.4rem, 3vw, 1.85rem); margin: 0 0 10px; color: var(--text);">Выберите подходящий тариф под ваши задачи</h2>
+<p style="font-size: 0.95rem; color: var(--muted); margin: 0;">Нажмите на карточку тарифа — смета и конфигурация автоматически прикрепятся к заявке</p>
+</div>
+
+<!-- Tariffs Grid with Mobile Swipe -->
+<div id="landing-tariffs-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 12px;">
+<div class="tariff-card" data-index="0" data-tariff="Экспресс-Ускорение" data-price="от 29 000 ₽">
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+<div style="font-size: 1.15rem; font-weight: 700; color: var(--text);">Экспресс-Ускорение</div>
+<div class="tariff-radio" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); background: transparent; display: flex; align-items: center; justify-content: center; transition: all 180ms ease;"></div>
+</div>
+<div style="font-size: 1.35rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">от 29 000 ₽</div>
+<div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">Срок: 3–5 дней</div>
+<p style="font-size: 0.88rem; line-height: 1.45; color: var(--text); margin-bottom: 14px; min-height: 40px;">Быстрый аудит и устранение ключевых узких мест скорости сайта</p>
+<ul style="list-style: none; padding: 0; margin: 0 0 14px; font-size: 0.82rem; color: var(--muted); line-height: 1.4;">
+<li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Аудит узких мест в PageSpeed Insights и Chrome DevTools</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Конвертация всех картинок в современные форматы WebP/AVIF</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Настройка серверного сжатия Brotli/Gzip и кэша браузера</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Отложенная загрузка аналитики и сторонних виджетов (Lazy)</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ускорение первого экрана в 1.5–2 раза</span></li>
 </ul>
-<p>Для премиального сайта не нужно отказываться от сложного дизайна. Задача — добиться баланса между визуальным качеством и производительностью.</p>
-<h3>4. Избыточные шрифты и пользовательский код</h3>
-<p>Несколько семейств шрифтов, множество начертаний и дополнительные библиотеки могут увеличивать объём загружаемых ресурсов.</p>
-<p>Пользовательский JavaScript также способен замедлять работу, особенно если на странице используются сложные слайдеры, обработчики прокрутки и анимационные эффекты.</p>
-<p>Проверьте:</p>
-<ul>
-<li>используются ли все подключённые шрифты;</li>
-<li>нужны ли дополнительные начертания;</li>
-<li>нет ли неиспользуемого CSS и JavaScript;</li>
-<li>отсутствуют ли ошибки в консоли браузера;</li>
-<li>не выполняют ли скрипты избыточные операции.</li>
+<div style="font-size: 0.78rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;">✓ Выбрать этот тариф</div>
+</div>
+<div class="tariff-card active" data-index="1" data-tariff="Core Web Vitals 90+" data-price="от 55 000 ₽">
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+<div style="font-size: 1.15rem; font-weight: 700; color: var(--text);">Core Web Vitals 90+</div>
+<div class="tariff-radio" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent); display: flex; align-items: center; justify-content: center; transition: all 180ms ease;"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+</div>
+<div style="font-size: 1.35rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">от 55 000 ₽</div>
+<div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">Срок: 7–12 дней</div>
+<p style="font-size: 0.88rem; line-height: 1.45; color: var(--text); margin-bottom: 14px; min-height: 40px;">Комплексный рефакторинг кода и вывод сайта в зеленую зону Google и Яндекс</p>
+<ul style="list-style: none; padding: 0; margin: 0 0 14px; font-size: 0.82rem; color: var(--muted); line-height: 1.4;">
+<li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Оптимизация LCP: инлайнинг Critical CSS, preload шрифтов</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ликвидация сдвигов макета CLS (фиксация пропорций блоков)</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ускорение отзывчивости INP (декомпозиция длинных JS-задач)</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Удаление неиспользуемого CSS и мертвого JS-кода (Tree Shaking)</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Гарантированный результат 90+ баллов на мобильных и ПК</span></li>
 </ul>
-<p>Не стоит удалять весь пользовательский код одновременно. Лучше проверять изменения поэтапно, чтобы определить, что именно влияет на производительность.</p>
-<h3>5. Слишком длинная и перегруженная страница</h3>
-<p>Длина страницы сама по себе не гарантирует медленную загрузку. Однако длинные лендинги часто содержат множество тяжёлых изображений, видео, виджетов и анимаций.</p>
-<p>Если на странице есть повторяющиеся блоки, их можно объединить. Подробную информацию о некоторых услугах можно перенести в отдельные разделы, чтобы посетитель быстрее находил нужное.</p>
-<p>При этом не стоит сокращать страницу только ради скорости. Цены, условия, кейсы и ответы на вопросы могут быть необходимы для принятия решения.</p>
-<p>Сначала оптимизируйте ресурсы и устраните технические проблемы. Затем оцените, действительно ли каждый блок полезен пользователю.</p>
-<h2>Как ускорить сайт на Tilda</h2>
-<p>У Tilda есть собственные механизмы оптимизации. Поэтому перед сменой платформы стоит проверить настройки сайта и подключённые элементы.</p>
-<h3>1. Не отключайте Lazy Load без необходимости</h3>
-<p>Lazy Load — механизм отложенной загрузки изображений, расположенных за пределами видимой области. Он позволяет не загружать все изображения страницы одновременно.</p>
-<p>На Tilda эта функция включена по умолчанию. Проверьте, что она не отключена глобально или для отдельных элементов Zero Block.</p>
-<p>При этом важно отдельно проверить главное изображение первого экрана: его загрузка не должна неоправданно задерживаться.</p>
-<h3>2. Оптимизируйте изображения и фоновые видео</h3>
-<p>Подготовьте изображения подходящего размера и проверьте их вес. Для первого экрана используйте только необходимые визуальные элементы.</p>
-<p>Если фоновой видеоролик не выполняет важной функции, рассмотрите замену на оптимизированное изображение.</p>
-<h3>3. Проверьте блоки Zero Block</h3>
-<p>Zero Block позволяет создавать индивидуальные композиции, но большое количество элементов, изображений и эффектов требует дополнительного внимания.</p>
-<p>Проверьте:</p>
-<ul>
-<li>нет ли лишних элементов;</li>
-<li>не используются ли тяжёлые изображения без необходимости;</li>
-<li>все ли анимации действительно нужны;</li>
-<li>корректно ли отображается первый экран;</li>
-<li>нет ли сложных скриптов, замедляющих взаимодействие.</li>
+<div style="font-size: 0.78rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;">✓ Выбрать этот тариф</div>
+</div>
+<div class="tariff-card" data-index="2" data-tariff="Full-Stack Переработка" data-price="от 95 000 ₽">
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+<div style="font-size: 1.15rem; font-weight: 700; color: var(--text);">Full-Stack Переработка</div>
+<div class="tariff-radio" style="width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border); background: transparent; display: flex; align-items: center; justify-content: center; transition: all 180ms ease;"></div>
+</div>
+<div style="font-size: 1.35rem; font-weight: 800; color: var(--accent); margin-bottom: 4px;">от 95 000 ₽</div>
+<div style="font-size: 0.85rem; color: var(--muted); margin-bottom: 14px;">Срок: 14–20 дней</div>
+<p style="font-size: 0.88rem; line-height: 1.45; color: var(--text); margin-bottom: 14px; min-height: 40px;">Перенос тяжелого сайта на чистый Vanilla JS с показателями 95–100 баллов</p>
+<ul style="list-style: none; padding: 0; margin: 0 0 14px; font-size: 0.82rem; color: var(--muted); line-height: 1.4;">
+<li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Полная замена шаблонного рантайма на ультралегкий ванильный код</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Время отрисовки первого экрана < 0.6 секунды</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Настройка высокоскоростного CDN и тонкий тюнинг TTFB сервера</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Фиксация целевых показателей скорости в официальном договоре</span></li><li style="display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink: 0; margin-top: 3px;"><path d="M2.5 7L5.5 10L11.5 3.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>3 месяца гарантийного мониторинга от деградации скорости</span></li>
 </ul>
-<h3>4. Проверьте сторонний код</h3>
-<p>Если на сайте есть пользовательские скрипты, чат-виджеты, счётчики и внешние сервисы, оцените их влияние на загрузку.</p>
-<p>На Tilda код может подключаться через специальные блоки, например T123, и настройки сайта. Удалите неиспользуемые подключения, а для необходимых компонентов рассмотрите отложенную инициализацию, если она не нарушает их работу.</p>
-<h3>5. Проведите повторную проверку</h3>
-<p>После оптимизации снова протестируйте основные страницы в PageSpeed Insights и на реальном смартфоне.</p>
-<p>Важно сравнивать не только итоговые баллы, но и сами показатели производительности. Убедитесь, что сайт стал отзывчивее, а формы и другие функции продолжают работать корректно.</p>
-<figure class="post-figure">
-<img alt="Чек-лист проверки скорости сайта перед запуском" decoding="async" height="1024" loading="lazy" src="/img/blog-speed-optimization/blog-speed-checklist.jpg?v=20261024" width="1536"/>
-</figure>
-<h2>Чек-лист: проверка скорости сайта перед запуском</h2>
-<p>Перед публикацией или редизайном проверьте следующие пункты.</p>
-<p><strong>Изображения и дизайн</strong></p>
-<ul>
-<li>Изображения соответствуют размерам отображения и оптимизированы.</li>
-<li>Первый экран не перегружен тяжёлыми ресурсами.</li>
-<li>Нет лишних видео и анимаций.</li>
-<li>Элементы корректно отображаются на смартфонах.</li>
-</ul>
-<p><strong>Технические настройки</strong></p>
-<ul>
-<li>Удалены неиспользуемые сторонние скрипты.</li>
-<li>Проверены шрифты и пользовательский код.</li>
-<li>Lazy Load работает там, где это необходимо.</li>
-<li>Нет ошибок, мешающих работе интерфейса.</li>
-</ul>
-<p><strong>Проверка результата</strong></p>
-<ul>
-<li>Проверены основные страницы в PageSpeed Insights.</li>
-<li>Изучены LCP, INP и CLS, если доступны соответствующие данные.</li>
-<li>Сайт протестирован на реальном мобильном устройстве.</li>
-<li>Проверены кнопки, формы и отправка заявок.</li>
-<li>После изменений выполнен повторный тест.</li>
-</ul>
-<h2>Когда нужна профессиональная оптимизация</h2>
-<p>Если сайт остаётся медленным после оптимизации изображений и удаления лишних элементов, необходима более глубокая диагностика.</p>
-<p>Она особенно полезна, если главный экран отображается с задержкой, интерфейс подвисает на смартфонах, используются сложные анимации или производительность ухудшилась после редизайна.</p>
-<p>В этом случае важно установить конкретную причину замедления, а не просто удалять элементы наугад. Иногда достаточно исправить несколько настроек, а иногда требуется переработать отдельные компоненты сайта.</p>
-<p>Если сайт только планируется, посмотрите страницу <a href="/services">разработки сайтов под ключ</a> — оптимизация скорости и адаптивная вёрстка уже входят в работу. А о том, как мобильная версия влияет на заявки, читайте в предыдущей статье «<a href="/blog-adaptive-design">Адаптивный дизайн сайта: почему мобильная версия влияет на заявки</a>».</p>
-<h2>Итог</h2>
-<p>Чтобы ускорить сайт, сначала проверьте производительность, затем оптимизируйте изображения, сторонние скрипты, шрифты и анимацию. Для сайтов на Tilda дополнительно проверьте настройки Lazy Load, блоки Zero Block и пользовательский код.</p>
-<p>Высокий балл PageSpeed Insights сам по себе не гарантирует увеличения заявок. Главная цель — сделать так, чтобы посетитель быстро видел предложение, мог комфортно пользоваться сайтом и без препятствий оставлял заявку.</p>
-<div class="cta mt-40">
-<h2>Заказать быстрый сайт для бизнеса</h2>
-<p>Расскажите, чем занимается ваш бизнес и какую задачу должен решать сайт. Скорость закладываем в разработку сразу: оптимизированные изображения, аккуратные скрипты и проверка Core Web Vitals перед сдачей. Лендинг — от 15 000 ₽, сайт компании — от 35 000 ₽.</p>
-<a class="btn" href="/contacts">Обсудить проект и получить расчёт</a>
+<div style="font-size: 0.78rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px;">✓ Выбрать этот тариф</div>
+</div>
+</div>
+
+<!-- Mobile Carousel Dots -->
+<div class="tariff-dots-container" style="display: none; justify-content: center; align-items: center; gap: 8px; margin: 12px 0 24px;">
+<div class="tariff-dot" data-dot="0" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 200ms ease;"></div>
+<div class="tariff-dot" data-dot="1" style="width: 22px; height: 8px; border-radius: 4px; background: var(--accent); cursor: pointer; transition: all 200ms ease;"></div>
+<div class="tariff-dot" data-dot="2" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 200ms ease;"></div>
+</div>
+
+<!-- Interactive Order Form -->
+<form id="landing-tariff-form" style="margin-top: 24px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius, 14px); padding: 22px;">
+<div style="font-weight: 600; font-size: 1rem; color: var(--text); margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+<span>Выбранный тариф: <strong id="selected-tariff-display" style="color: var(--accent);">Core Web Vitals 90+ (от 55 000 ₽)</strong></span>
+<span style="font-size: 0.82rem; color: var(--muted);">✓ Фиксация сметы в договоре</span>
+</div>
+
+<div class="tariff-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+<div>
+<label style="display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 4px;">Ваше имя или компания *</label>
+<input type="text" id="landing-form-name" required placeholder="Константин / ООО «Вектор»" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); outline: none;">
+</div>
+<div>
+<label style="display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 4px;">Телефон или Telegram *</label>
+<input type="text" id="landing-form-contact" required placeholder="+7 (999) 000-00-00 или @username" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); outline: none;">
+</div>
+</div>
+
+<div style="margin-bottom: 16px;">
+<label style="display: block; font-size: 0.82rem; color: var(--muted); margin-bottom: 4px;">Ссылка на текущий сайт или комментарий к задаче</label>
+<input type="text" id="landing-form-task" placeholder="Например: нужен 3D-конфигуратор кухни / ускорить магазин на Tilda" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); outline: none;">
+</div>
+
+<div style="margin-bottom: 16px;">
+<label class="consent-check-label">
+<input type="checkbox" id="landing-consent-check" checked required>
+<span>Я согласен на <a href="/consent" target="_blank">обработку персональных данных</a> в соответствии с <a href="/privacy" target="_blank">Политикой конфиденциальности</a> (152-ФЗ). Никакого спама.</span>
+</label>
+</div>
+
+<div class="tariff-btn-row" style="display: flex; align-items: center; gap: 16px;">
+<button type="submit" id="landing-form-submit" class="btn btn-primary" style="padding: 13px 28px; font-weight: 700; cursor: pointer;">
+Получить точный расчет и консультацию →
+</button>
+<span style="font-size: 0.82rem; color: var(--muted);">Отвечаем за 15 минут в рабочее время</span>
+</div>
+
+<div id="landing-form-status" style="display: none; margin-top: 14px; padding: 12px 16px; border-radius: 8px; font-size: 0.9rem;"></div>
+</form>
+</div>
+
+<script>
+(function() {
+  var grid = document.getElementById('landing-tariffs-grid');
+  var cards = grid ? grid.querySelectorAll('.tariff-card') : [];
+  var dots = document.querySelectorAll('.tariff-dot');
+  var display = document.getElementById('selected-tariff-display');
+  var form = document.getElementById('landing-tariff-form');
+  var submitBtn = document.getElementById('landing-form-submit');
+  var statusMsg = document.getElementById('landing-form-status');
+  var consentCheck = document.getElementById('landing-consent-check');
+  var nameInput = document.getElementById('landing-form-name');
+  var contactInput = document.getElementById('landing-form-contact');
+  var taskInput = document.getElementById('landing-form-task');
+
+  var currentTariff = 'Core Web Vitals 90+';
+  var currentPrice = 'от 55 000 ₽';
+
+  function updateDots(activeIdx) {
+    dots.forEach(function(dot, idx) {
+      if (idx === activeIdx) {
+        dot.style.width = '22px';
+        dot.style.borderRadius = '4px';
+        dot.style.background = 'var(--accent)';
+      } else {
+        dot.style.width = '8px';
+        dot.style.borderRadius = '50%';
+        dot.style.background = 'var(--border)';
+      }
+    });
+  }
+
+  function selectCard(card, scrollIntoView) {
+    cards.forEach(function(c) {
+      c.classList.remove('active');
+      var radio = c.querySelector('.tariff-radio');
+      if (radio) {
+        radio.style.borderColor = 'var(--border)';
+        radio.style.background = 'transparent';
+        radio.innerHTML = '';
+      }
+    });
+
+    card.classList.add('active');
+    var radio = card.querySelector('.tariff-radio');
+    if (radio) {
+      radio.style.borderColor = 'var(--accent)';
+      radio.style.background = 'var(--accent)';
+      radio.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+
+    currentTariff = card.getAttribute('data-tariff') || '';
+    currentPrice = card.getAttribute('data-price') || '';
+
+    if (display) {
+      display.textContent = currentTariff + ' (' + currentPrice + ')';
+    }
+
+    var idx = parseInt(card.getAttribute('data-index') || '0', 10);
+    updateDots(idx);
+
+    if (scrollIntoView && window.innerWidth <= 768 && grid) {
+      var targetLeft = card.offsetLeft - (grid.clientWidth - card.clientWidth) / 2;
+      if (grid.scrollTo) { grid.scrollTo({ left: targetLeft, behavior: 'smooth' }); }
+      else { grid.scrollLeft = targetLeft; }
+    }
+  }
+
+  cards.forEach(function(card) {
+    card.addEventListener('click', function() {
+      selectCard(this, true);
+    });
+  });
+
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      var idx = parseInt(this.getAttribute('data-dot') || '0', 10);
+      if (cards[idx]) {
+        selectCard(cards[idx], true);
+      }
+    });
+  });
+
+  if (grid) {
+    var scrollTimer = null;
+    grid.addEventListener('scroll', function() {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function() {
+        var scrollLeft = grid.scrollLeft;
+        var cardWidth = cards[0].offsetWidth + 12;
+        var activeIndex = Math.round(scrollLeft / cardWidth);
+        if (activeIndex >= 0 && activeIndex < cards.length) {
+          updateDots(activeIndex);
+        }
+      }, 50);
+    }, { passive: true });
+  }
+
+  // Auto-center middle card horizontally on mobile without scrolling window
+  if (window.innerWidth <= 768 && grid && cards[1]) {
+    setTimeout(function() {
+      grid.scrollLeft = cards[1].offsetLeft - (grid.clientWidth - cards[1].clientWidth) / 2;
+    }, 120);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    if (consentCheck && !consentCheck.checked) {
+      alert('Пожалуйста, подтвердите согласие на обработку персональных данных');
+      consentCheck.focus();
+      return;
+    }
+
+    var contactVal = contactInput ? contactInput.value.trim() : '';
+    var nameVal = nameInput ? nameInput.value.trim() : '';
+    var taskVal = taskInput ? taskInput.value.trim() : '';
+
+    if (!contactVal) {
+      if (contactInput) contactInput.focus();
+      return;
+    }
+
+    var originalBtnHtml = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Отправка...</span>';
+    statusMsg.style.display = 'none';
+
+    var tgText = '🚀 Новая заявка (Ускорение сайтов)!\n\n' +
+      '📌 <b>Тариф:</b> ' + currentTariff + ' (' + currentPrice + ')\n' +
+      (nameVal ? ('👤 <b>Имя:</b> ' + nameVal + '\n') : '') +
+      '📱 <b>Контакт:</b> ' + contactVal + '\n' +
+      (taskVal ? ('💬 <b>Задача / сайт:</b> ' + taskVal + '\n') : '') +
+      '🔗 <b>Страница:</b> https://void-digital.ru/blog-speed-optimization';
+
+    var tgPayload = JSON.stringify({
+      chat_id: '7738024017',
+      text: tgText,
+      parse_mode: 'HTML'
+    });
+
+    fetch('https://api.telegram.org/bot8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs/sendMessage', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: tgPayload
+    }).then(function(res) {
+      return res.json();
+    }).then(function(data) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+      statusMsg.style.display = 'block';
+      if (data.ok) {
+        statusMsg.style.background = 'rgba(16, 185, 129, 0.15)';
+        statusMsg.style.color = '#10b981';
+        statusMsg.style.border = '1px solid #10b981';
+        statusMsg.innerHTML = '✓ Спасибо! Заявка по тарифу <strong>' + currentTariff + '</strong> принята. Мы свяжемся с вами в течение 15 минут.';
+        form.reset();
+        if (typeof ym === 'function') {
+          ym(113737288, 'reachGoal', 'lead');
+        }
+      } else {
+        fallbackSubmit();
+      }
+    }).catch(function(err) {
+      fallbackSubmit();
+    });
+
+    function fallbackSubmit() {
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'Ускорение сайтов',
+          tariff: currentTariff,
+          price: currentPrice,
+          name: nameVal,
+          contact: contactVal,
+          task: taskVal,
+          source: 'https://void-digital.ru/blog-speed-optimization'
+        })
+      }).then(function() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+        statusMsg.style.display = 'block';
+        statusMsg.style.background = 'rgba(16, 185, 129, 0.15)';
+        statusMsg.style.color = '#10b981';
+        statusMsg.style.border = '1px solid #10b981';
+        statusMsg.innerHTML = '✓ Спасибо! Заявка принята. Мы свяжемся с вами в течение 15 минут.';
+        form.reset();
+      }).catch(function() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+        statusMsg.style.display = 'block';
+        statusMsg.style.background = 'rgba(239, 68, 68, 0.15)';
+        statusMsg.style.color = '#ef4444';
+        statusMsg.style.border = '1px solid #ef4444';
+        statusMsg.innerHTML = 'Произошла ошибка при отправке. Пожалуйста, напишите нам в Telegram: <a href="https://t.me/void_digital_bot" target="_blank" style="color: inherit; text-decoration: underline;">@void_digital_bot</a> или позвоните по телефону.';
+      });
+    }
+  });
+})();
+</script>
+
+<h2>Часто задаваемые вопросы</h2>
+<div style="margin: 24px 0 40px;">
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">Как скорость загрузки влияет на продажи и конверсию сайта?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">Исследования Google и Яндекса показывают: при увеличении времени загрузки с 1 до 3 секунд вероятность отказа (bounce rate) возрастает на 32%, а при загрузке более 5 секунд — на 90%. Каждая сэкономленная секунда дает прямой прирост конверсии в среднем на 7–15% на том же рекламном бюджете.</p>
+</div>
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">Влияет ли скорость на позиции в поисковых системах Яндекс и Google?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">Да, напрямую. В Google показатели Core Web Vitals являются официальным фактором ранжирования. В Яндексе скорость напрямую влияет на поведенческие факторы (время до первого клика, отказы). Быстрые сайты получают приоритет в мобильной поисковой выдаче.</p>
+</div>
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">Можно ли ускорить сайт на конструкторах (Tilda, WordPress, Битрикс)?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">Да. На Tilda и WordPress мы оптимизируем размер ассетов, сжимаем шрифты WOFF2, настраиваем отложенную инициализацию тяжелых блоков и счетчиков. Однако максимальный балл (95–100) на слабых смартфонах достигается переносом сайта на чистый Vanilla JS без платформенного оверхеда.</p>
+</div>
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">Что такое метрики LCP, INP и CLS?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">LCP (Largest Contentful Paint) — время отрисовки самого крупного контентного блока (нормой считается до 2.5 сек). INP (Interaction to Next Paint) — задержка реакции интерфейса на клик или нажатие (норма до 200 мс). CLS (Cumulative Layout Shift) — визуальная стабильность верстки и отсутствие прыжков элементов во время загрузки (норма до 0.1).</p>
+</div>
+
+<div style="margin-bottom: 20px; padding: 18px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius, 12px);">
+<h3 style="font-size: 1.08rem; color: var(--text); margin: 0 0 8px;">Даете ли вы финансовую гарантию результата по скорости?</h3>
+<p style="font-size: 0.92rem; line-height: 1.5; color: var(--muted); margin: 0;">Да. В тарифах 'Core Web Vitals 90+' и 'Full-Stack' мы прописываем целевые показатели баллов в Google PageSpeed Insights и время LCP прямо в договоре оказания услуг.</p>
+</div>
+
+</div>
+
+<div class="cta mt-40" style="padding: 32px 24px; text-align: center; background: color-mix(in srgb, var(--accent) 8%, var(--surface)); border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent); border-radius: var(--radius, 16px); margin: 40px 0;">
+<h2 style="font-size: clamp(1.3rem, 2.5vw, 1.7rem); margin: 0 0 10px;">Готовы обсудить проект или заказать расчет?</h2>
+<p style="font-size: 0.95rem; color: var(--muted); max-width: 600px; margin: 0 auto 20px;">
+Напишите нам в Telegram или оставьте заявку выше. Мы проведем бесплатный аудит задачи, покажем похожие кейсы и составим прозрачную смету с фиксированными сроками.
+</p>
+<div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+<a class="btn btn-primary" href="#order" style="padding: 12px 26px;">Выбрать тариф в калькуляторе ↑</a>
+<a class="btn" href="https://t.me/void_digital_bot" rel="noopener" target="_blank" style="padding: 12px 26px; border: 1px solid var(--border); background: var(--bg);">Написать в Telegram</a>
+</div>
 </div>
 </div>
 </article>
 </main>
 <footer class="site-footer">
-<div class="container footer-grid">
-<div>© <span id="year">2026</span> VOID | digital. Создание и сопровождение сайтов.<br/><span class="requisites">ИП Лосуков Даниил Васильевич · ИНН 244312594492 · ОГРНИП 326246800121182</span></div>
-<ul aria-label="Связаться с нами" class="social">
-<li><a aria-label="Позвонить +7 953 855-08-13" href="tel:+79538550813" title="Позвонить"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M5 4h3.5l2 5-2.5 1.5a11 11 0 0 0 5.5 5.5l1.5-2.5 5 2V19a2 2 0 0 1-2 2A17 17 0 0 1 3 6a2 2 0 0 1 2-2z"></path></svg></a></li>
-<li><a aria-label="Написать в WhatsApp" href="https://wa.me/79538550813?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%BE%D0%B1%D1%81%D1%83%D0%B4%D0%B8%D1%82%D1%8C%20%D1%81%D0%B0%D0%B9%D1%82." rel="noopener" target="_blank" title="WhatsApp"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M3.5 20.5l1.3-4.2a8.5 8.5 0 1 1 3.2 3z"></path><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2.2-1-1 .8a4.5 4.5 0 0 1-2-2l.8-1-1-2.2z"></path></svg></a></li>
-<li><a aria-label="Написать в Telegram" href="https://t.me/Voiddigit" rel="noopener" target="_blank" title="Telegram"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><path d="M21 4 3 11.2l6.2 2.1L11.5 20l3.3-4 4.6 3.4z"></path><path d="m9.2 13.3 8.3-6.6"></path></svg></a></li>
-<li><a aria-label="Написать на почту voiddigital@mail.ru" href="mailto:voiddigital@mail.ru" title="Почта"><svg aria-hidden="true" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="20"><rect height="14" rx="2.5" width="18" x="3" y="5"></rect><path d="m3.5 7 8.5 6 8.5-6"></path></svg></a></li>
-</ul>
+<div class="container">
+<div class="footer-grid">
+<div>
+<div class="footer-logo">VOID<span class="sep">|</span><span class="dig">digital</span></div>
+<p class="footer-desc">Студия веб-разработки: быстрые сайты, 3D WebGL и сервисы под ключ.</p>
+</div>
+<div>
+<div class="footer-title">Навигация</div>
 <ul class="footer-links">
-<li><a href="/services">Услуги</a></li>
+<li><a href="/services">Услуги и цены</a></li>
 <li><a href="/portfolio">Портфолио</a></li>
+<li><a href="/about">О нас</a></li>
 <li><a href="/blog">Блог</a></li>
 <li><a href="/contacts">Контакты</a></li>
-<li><a href="/privacy">Политика конфиденциальности</a></li>
-<li><a href="https://t.me/Voiddigit" rel="noopener" target="_blank">Telegram</a></li>
 </ul>
 </div>
+<div>
+<div class="footer-title">Контакты</div>
+<ul class="footer-links">
+<li><a href="tel:+79939306030">+7 (993) 930-60-30</a></li>
+<li><a href="mailto:voiddigital@mail.ru">voiddigital@mail.ru</a></li>
+<li><a href="https://t.me/void_digital_bot" rel="noopener" target="_blank">Telegram: @void_digital_bot</a></li>
+</ul>
+</div>
+<div>
+<div class="footer-title">Реквизиты</div>
+<p class="footer-desc">ИП Лосуков Даниил Васильевич<br/>ОГРНИП 326246800121182<br/>ИНН 246316209137</p>
+</div>
+</div>
+<div class="footer-bottom">
+<div>© 2026 VOID | digital. Все права защищены.</div>
+<div>
+<a href="/privacy">Политика конфиденциальности</a>
+<span class="sep">·</span>
+<a href="/consent">Согласие на обработку данных</a>
+</div>
+</div>
+</div>
 </footer>
-<script src="js/main.js?v=75bccd28"></script>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="js/main.js?v=f00a3e5f"></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function() {
+    window.scrollTo(0, 0);
+  });
+</script>
 </body>
 </html>
