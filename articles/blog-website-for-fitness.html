@@ -216,7 +216,62 @@
       color: var(--accent);
     }
 
-  </style>
+  
+    .tariff-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .tariff-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    @media (max-width: 768px) {
+      .tariff-form-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .tariff-btn-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .tariff-btn-row .btn {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+    }
+    .consent-check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1.45;
+      margin: 4px 0 6px;
+      text-align: left;
+    }
+    .consent-check-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .consent-check-label a {
+      color: var(--text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .consent-check-label a:hover {
+      color: var(--accent);
+    }
+
+</style>
 <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -462,41 +517,254 @@
 <span class="tariff-dot" style="width: 8px; height: 8px; border-radius: 50%; background: var(--border);"></span>
 </div>
 <!-- Dynamic Form for Selected Tariff -->
-<div id="tariff-order-block" style="background: color-mix(in srgb, currentColor 3%, transparent); border: 1.5px solid var(--accent); border-radius: 16px; padding: 26px; margin: 30px 0;">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px;">
-<div>
-<span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.04em;">Оставить заявку на разработку</span>
-<h3 id="selected-tariff-title" style="margin: 4px 0 0; font-size: 1.35rem;">Сайт фитнес-клуба под ключ</h3>
+<!-- Форма заявки на тариф -->
+<div id="tariff-order-block" style="margin-top: 24px; padding: clamp(16px, 3vw, 24px); background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--radius, 16px);">
+<div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px dashed var(--border);">
+<div style="font-size: 0.9rem; color: var(--muted);">Выбранный тариф:</div>
+<div id="selected-tariff-display" style="font-size: 1.15rem; font-weight: 800; color: var(--accent);">Сайт фитнес-клуба под ключ (от 49 000 ₽)</div>
 </div>
-<div id="selected-tariff-price" style="font-size: 1.45rem; font-weight: 800; color: var(--accent);">от 49 000 ₽</div>
-</div>
-<form onsubmit="submitLandingLead(event)" style="display: grid; grid-template-columns: 1fr; gap: 14px;">
-<input id="lead-tariff-input" name="tariff" type="hidden" value="Сайт фитнес-клуба под ключ (от 49 000 ₽)"/>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+<form id="landing-lead-form" onsubmit="return false;" style="display: grid; gap: 14px; margin: 0;">
+<div class="tariff-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
 <div>
-<label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Ваше имя</label>
-<input name="name" placeholder="Максим" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;" type="text"/>
+<label for="lead-contact-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Ваш телефон или @Telegram <span style="color: var(--accent);">*</span></label>
+<input id="lead-contact-input" placeholder="+7 (999) 000-00-00 или @username" required="" style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;" type="text"/>
 </div>
 <div>
-<label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Телефон или Telegram *</label>
-<input name="contact" placeholder="+7 (999) 000-00-00 или @username" required="" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem;" type="text"/>
+<label for="lead-task-input" style="display: block; font-size: 0.84rem; font-weight: 600; margin-bottom: 6px; color: var(--text);">Адрес сайта / Ссылка (если есть)</label>
+<input id="lead-task-input" placeholder="mysite.ru или кратко о задаче" style="width: 100%; padding: 13px 16px; border-radius: var(--radius, 12px); border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; box-sizing: border-box;" type="text"/>
 </div>
 </div>
-<div>
-<label style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px;">Название клуба / спортивного направления</label>
-<textarea name="comment" placeholder="Например: Тренажерный зал 800 кв.м, нужно интерактивное расписание и продажа абонементов" rows="2" style="width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid color-mix(in srgb, currentColor 15%, transparent); background: transparent; color: inherit; font-size: 0.95rem; font-family: inherit; resize: vertical;"></textarea>
-</div>
+<!-- Согласие 152-ФЗ -->
 <label class="consent-check-label">
-<input checked="" id="lead-consent-check" name="consent" required="" type="checkbox"/>
-<span>Даю согласие на <a href="/consent" rel="noopener" target="_blank">обработку персональных данных</a> в соответствии с <a href="/privacy" rel="noopener" target="_blank">политикой конфиденциальности</a></span>
+<input checked="" id="lead-consent-check" required="" type="checkbox"/>
+<span>Согласен на обработку персональных данных в соответствии с <a href="/consent" target="_blank">согласием</a> и <a href="/privacy" target="_blank">политикой конфиденциальности</a></span>
 </label>
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-top: 6px;">
-<button class="btn-action" style="padding: 14px 28px; font-size: 1rem;" type="submit">Получить консультацию и смету</button>
-<span style="font-size: 0.82rem; color: var(--muted);">⚡ Мгновенный ответ разработчика в Telegram</span>
+<div class="tariff-btn-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 4px;">
+<button class="btn btn-primary" id="lead-submit-btn" style="padding: 13px 28px; font-weight: 700; font-size: 0.95rem; cursor: pointer; border: none; border-radius: var(--radius, 12px); background: var(--accent); color: #fff; transition: opacity 160ms ease;" type="submit">Получить расчет сметы в Telegram →</button>
+<span style="font-size: 0.82rem; color: var(--muted);">Ответим за 15 минут · Без спама · Договор с ИП</span>
 </div>
-<div id="landing-form-status" style="font-size: 0.9rem; margin-top: 4px;"></div>
+<div id="lead-status-msg" style="display: none; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem;"></div>
 </form>
 </div>
+
+<script>
+(function() {
+  var currentTariff = 'Сайт фитнес-клуба под ключ';
+  var currentPrice = 'от 49 000 ₽';
+  var pageSlug = 'blog-website-for-fitness';
+
+  window.selectArticleTariff = function(el) {
+    if (!el) return;
+    document.querySelectorAll('.tariff-card').forEach(function(c) {
+      c.classList.remove('active');
+      var b = c.querySelector('.btn-action');
+      if (b) b.textContent = 'Выбрать этот тариф';
+      var radio = c.querySelector('.tariff-radio');
+      if (radio) {
+        radio.style.borderColor = 'var(--border)';
+        radio.style.background = 'transparent';
+        radio.innerHTML = '';
+      }
+    });
+    el.classList.add('active');
+    var btn = el.querySelector('.btn-action');
+    if (btn) btn.textContent = 'Выбранный тариф';
+    var radio = el.querySelector('.tariff-radio');
+    if (radio) {
+      radio.style.borderColor = 'var(--accent)';
+      radio.style.background = 'var(--accent)';
+      radio.innerHTML = '<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    }
+
+    currentTariff = el.getAttribute('data-tariff') || currentTariff;
+    currentPrice = el.getAttribute('data-price') || currentPrice;
+
+    var display = document.getElementById('selected-tariff-display');
+    if (display) {
+      display.textContent = currentPrice ? (currentTariff + ' (' + currentPrice + ')') : currentTariff;
+    }
+  };
+
+  function initWidget() {
+    var grid = document.getElementById('landing-tariffs-grid');
+    var cards = document.querySelectorAll('.tariff-card');
+    var dots = document.querySelectorAll('.tariff-dot');
+    var form = document.getElementById('landing-lead-form');
+    var contactInput = document.getElementById('lead-contact-input');
+    var taskInput = document.getElementById('lead-task-input');
+    var consentCheck = document.getElementById('lead-consent-check');
+    var submitBtn = document.getElementById('lead-submit-btn');
+    var statusMsg = document.getElementById('lead-status-msg');
+
+    if (consentCheck && submitBtn) {
+      consentCheck.addEventListener('change', function() {
+        if (!this.checked) {
+          submitBtn.style.opacity = '0.5';
+          submitBtn.style.cursor = 'not-allowed';
+        } else {
+          submitBtn.style.opacity = '1';
+          submitBtn.style.cursor = 'pointer';
+        }
+      });
+    }
+
+    function updateDots(activeIdx) {
+      dots.forEach(function(dot, idx) {
+        if (idx === activeIdx) {
+          dot.style.width = '22px';
+          dot.style.borderRadius = '4px';
+          dot.style.background = 'var(--accent)';
+        } else {
+          dot.style.width = '8px';
+          dot.style.borderRadius = '50%';
+          dot.style.background = 'var(--border)';
+        }
+      });
+    }
+
+    cards.forEach(function(card, idx) {
+      card.addEventListener('click', function() {
+        window.selectArticleTariff(this);
+        updateDots(idx);
+        if (window.innerWidth <= 768 && grid) {
+          var targetLeft = card.offsetLeft - (grid.clientWidth - card.clientWidth) / 2;
+          if (grid.scrollTo) {
+            grid.scrollTo({ left: targetLeft, behavior: 'smooth' });
+          } else {
+            grid.scrollLeft = targetLeft;
+          }
+        }
+      });
+    });
+
+    dots.forEach(function(dot, idx) {
+      dot.addEventListener('click', function() {
+        var i = parseInt(this.getAttribute('data-dot') || idx, 10);
+        if (cards[i]) {
+          window.selectArticleTariff(cards[i]);
+          updateDots(i);
+          if (window.innerWidth <= 768 && grid) {
+            var targetLeft = cards[i].offsetLeft - (grid.clientWidth - cards[i].clientWidth) / 2;
+            if (grid.scrollTo) {
+              grid.scrollTo({ left: targetLeft, behavior: 'smooth' });
+            } else {
+              grid.scrollLeft = targetLeft;
+            }
+          }
+        }
+      });
+    });
+
+    if (grid && cards.length) {
+      var scrollTimer = null;
+      grid.addEventListener('scroll', function() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function() {
+          var scrollLeft = grid.scrollLeft;
+          var cardWidth = cards[0].offsetWidth + 12;
+          var activeIndex = Math.round(scrollLeft / cardWidth);
+          if (activeIndex >= 0 && activeIndex < cards.length) {
+            updateDots(activeIndex);
+          }
+        }, 50);
+      }, { passive: true });
+
+      if (window.innerWidth <= 768 && cards[1]) {
+        setTimeout(function() {
+          grid.scrollLeft = cards[1].offsetLeft - (grid.clientWidth - cards[1].clientWidth) / 2;
+        }, 120);
+      }
+    }
+
+    if (!form) return;
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (consentCheck && !consentCheck.checked) {
+        alert('Пожалуйста, подтвердите согласие на обработку персональных данных');
+        consentCheck.focus();
+        return;
+      }
+
+      var contactVal = contactInput ? contactInput.value.trim() : '';
+      var taskVal = taskInput ? taskInput.value.trim() : '';
+
+      if (!contactVal) {
+        if (contactInput) contactInput.focus();
+        return;
+      }
+
+      var originalBtnHtml = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Отправка...</span>';
+      statusMsg.style.display = 'none';
+
+      var tgText = '🚀 Новая заявка со статьи!\n\n' +
+        '📌 <b>Тариф:</b> ' + currentTariff + (currentPrice ? ' (' + currentPrice + ')' : '') + '\n' +
+        '📱 <b>Контакт:</b> ' + contactVal + '\n' +
+        (taskVal ? ('💬 <b>Задача / сайт:</b> ' + taskVal + '\n') : '') +
+        '🔗 <b>Страница:</b> https://void-digital.ru/' + pageSlug;
+
+      fetch('https://api.telegram.org/bot8813612782:AAFvMYJk9uQQjCZhjFIJKQnMzpzx_3wEEhs/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: '7738024017', text: tgText, parse_mode: 'HTML' })
+      }).then(function(res) {
+        return res.json();
+      }).then(function(data) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHtml;
+        if (data && data.ok) {
+          statusMsg.style.display = 'block';
+          statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+          statusMsg.style.border = '1.5px solid var(--accent)';
+          statusMsg.style.color = 'var(--text)';
+          statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+          form.reset();
+          if (consentCheck) consentCheck.checked = true;
+        } else {
+          throw new Error('Telegram API error');
+        }
+      }).catch(function() {
+        fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tariff: currentTariff + (currentPrice ? ' (' + currentPrice + ')' : ''),
+            contact: contactVal,
+            message: taskVal,
+            source: 'https://void-digital.ru/' + pageSlug
+          })
+        }).then(function() {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+          statusMsg.style.display = 'block';
+          statusMsg.style.background = 'color-mix(in srgb, var(--accent) 15%, transparent)';
+          statusMsg.style.border = '1.5px solid var(--accent)';
+          statusMsg.style.color = 'var(--text)';
+          statusMsg.innerHTML = '🎉 <b>Заявка успешно отправлена!</b> Даниил уже получил её в Telegram и свяжется с вами в течение 15 минут.';
+          form.reset();
+          if (consentCheck) consentCheck.checked = true;
+        }).catch(function() {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHtml;
+          statusMsg.style.display = 'block';
+          statusMsg.style.background = 'rgba(239, 68, 68, 0.15)';
+          statusMsg.style.border = '1px solid #ef4444';
+          statusMsg.style.color = 'var(--text)';
+          statusMsg.innerHTML = '⚠️ Не удалось отправить автоматически. Напишите напрямую в Telegram: <a href="https://t.me/Voiddigit" target="_blank" style="color:var(--accent); text-decoration:underline;">@Voiddigit</a>';
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWidget);
+  } else {
+    initWidget();
+  }
+})();
+</script>
 <h2>Наши кейсы в сфере спорта и активного отдыха</h2>
 <div class="portfolio-grid-inline">
 <a class="portfolio-card" href="/portfolio">
@@ -561,205 +829,6 @@
 </footer>
 <script src="/js/main.js?v=1b25cc4c"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
-<script>
-  let selectedTariffName = "";
-  let selectedTariffPrice = "";
 
-  function selectArticleTariff(el) {
-    document.querySelectorAll('.tariff-card').forEach(c => {
-      c.classList.remove('active');
-      const b = c.querySelector('.btn-action');
-      if (b) b.textContent = 'Выбрать этот тариф';
-    });
-    el.classList.add('active');
-    const btn = el.querySelector('.btn-action');
-    if (btn) btn.textContent = 'Выбранный тариф';
-
-    selectedTariffName = el.getAttribute('data-tariff') || "";
-    selectedTariffPrice = el.getAttribute('data-price') || "";
-
-    const titleEl = document.getElementById('selected-tariff-title');
-    const priceEl = document.getElementById('selected-tariff-price');
-    const inputEl = document.getElementById('lead-tariff-input');
-
-    if (titleEl) titleEl.textContent = selectedTariffName;
-    if (priceEl) priceEl.textContent = selectedTariffPrice;
-    if (inputEl) inputEl.value = selectedTariffName + ' (' + selectedTariffPrice + ')';
-
-    const orderBlock = document.getElementById('tariff-order-block');
-    if (orderBlock) {
-      /* scrollIntoView removed to keep user at article reading position */
-    }
-  }
-
-  // Dot click handler
-  dots.forEach((dot, idx) => {
-    dot.style.cursor = 'pointer';
-    dot.addEventListener('click', () => {
-      const allCards = document.querySelectorAll('.tariff-card');
-      if (allCards[idx]) {
-        selectArticleTariff(allCards[idx]);
-        if (window.innerWidth <= 768 && tariffsGrid) {
-          var g = (typeof tariffsGrid !== 'undefined' && tariffsGrid) ? tariffsGrid : (typeof grid !== 'undefined' ? grid : null); var targetCard = (typeof allCards !== 'undefined' ? allCards : cards)[idx]; if (g && targetCard) { var targetLeft = targetCard.offsetLeft - (g.clientWidth - targetCard.clientWidth) / 2; if (g.scrollTo) { g.scrollTo({ left: targetLeft, behavior: 'smooth' }); } else { g.scrollLeft = targetLeft; } }
-        }
-      }
-    });
-  });
-
-  // Auto-center middle tariff on mobile load
-  function centerMiddleTariff() {
-    const cards = document.querySelectorAll('.tariff-card');
-    const g = document.getElementById('landing-tariffs-grid');
-    if (cards.length >= 2 && window.innerWidth <= 768 && g) {
-      g.scrollLeft = cards[1].offsetLeft - (g.clientWidth - cards[1].clientWidth) / 2;
-    }
-  }
-    }
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(centerMiddleTariff, 80);
-      setTimeout(centerMiddleTariff, 300);
-    });
-  } else {
-    setTimeout(centerMiddleTariff, 80);
-    setTimeout(centerMiddleTariff, 300);
-  }
-  window.addEventListener('load', () => setTimeout(centerMiddleTariff, 120));
-
-  // Mobile swipe dots indicator
-  const tariffsGrid = document.getElementById('landing-tariffs-grid');
-  const dots = document.querySelectorAll('.tariff-dot');
-  if (tariffsGrid && dots.length > 0) {
-    tariffsGrid.addEventListener('scroll', () => {
-      const scrollLeft = tariffsGrid.scrollLeft;
-      const cardWidth = tariffsGrid.offsetWidth * 0.82;
-      const activeIndex = Math.round(scrollLeft / cardWidth);
-      dots.forEach((dot, idx) => {
-        if (idx === activeIndex) {
-          dot.style.background = 'var(--accent)';
-          dot.style.width = '20px';
-          dot.style.borderRadius = '4px';
-        } else {
-          dot.style.background = 'var(--border)';
-          dot.style.width = '8px';
-          dot.style.borderRadius = '50%';
-        }
-      });
-    }, { passive: true });
-  }
-
-  // Telegram direct lead submit with fallback
-  async function submitLandingLead(e) {
-    e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector('button[type="submit"]');
-    const statusMsg = document.getElementById('landing-form-status');
-    const name = form.querySelector('[name="name"]').value.trim();
-    const contact = form.querySelector('[name="contact"]').value.trim();
-    const comment = form.querySelector('[name="comment"]') ? form.querySelector('[name="comment"]').value.trim() : "";
-    const tariff = document.getElementById('lead-tariff-input') ? document.getElementById('lead-tariff-input').value : "Не выбран";
-    const pageTitle = document.title;
-    const pageUrl = window.location.href;
-
-    const consent = form.querySelector('input[name="consent"], #lead-consent-check');
-    if (consent && !consent.checked) {
-      if (statusMsg) {
-        statusMsg.textContent = "Пожалуйста, подтвердите согласие на обработку персональных данных.";
-        statusMsg.style.color = "#ef4444";
-      }
-      consent.focus();
-      return;
-    }
-
-    if (!contact) {
-      if (statusMsg) {
-        statusMsg.textContent = "Пожалуйста, укажите телефон или ник в Telegram.";
-        statusMsg.style.color = "#ef4444";
-      }
-      return;
-    }
-
-    btn.disabled = true;
-    const origBtnText = btn.textContent;
-    btn.textContent = "Отправка...";
-
-    const text = `🔥 Новая заявка на разработку сайта!
-
-` +
-                 `📋 Ниша: ${pageTitle}
-` +
-                 `💼 Тариф: ${tariff}
-` +
-                 `👤 Имя: ${name || 'Не указано'}
-` +
-                 `📞 Контакт: ${contact}
-` +
-                 (comment ? `💬 Комментарий: ${comment}
-` : '') +
-                 `🔗 Страница: ${pageUrl}
-` +
-                 `⏱ Время: ${new Date().toLocaleString('ru-RU')}`;
-
-    try {
-      // 1. Direct Telegram Bot Dispatch
-      const botToken = "8418047970:AAFiVzKx33j0OEv1l-U2tE98K1vOvdv_bhs";
-      const chatId = "7738024017";
-      const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: text,
-          parse_mode: "Markdown"
-        })
-      });
-
-      if (tgRes.ok) {
-        if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
-        form.reset();
-        if (statusMsg) {
-          statusMsg.innerHTML = "✅ <strong>Спасибо за заявку!</strong> Мы уже получили сообщение в Telegram и ответим вам в течение 15 минут.";
-          statusMsg.style.color = "#22c55e";
-        }
-      } else {
-        throw new Error("Telegram dispatch failed");
-      }
-    } catch (err) {
-      // 2. Server API fallback
-      try {
-        const fallbackRes = await fetch('/api/lead', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: name,
-            contact: contact,
-            tariff: tariff,
-            comment: comment,
-            source: pageUrl
-          })
-        });
-        if (fallbackRes.ok) {
-          if (typeof ym === 'function') ym(99849202, 'reachGoal', 'lead');
-          form.reset();
-          if (statusMsg) {
-            statusMsg.innerHTML = "✅ <strong>Заявка успешно отправлена!</strong> Мы свяжемся с вами в течение 15 минут.";
-            statusMsg.style.color = "#22c55e";
-          }
-        } else {
-          throw new Error("API fallback failed");
-        }
-      } catch (fbErr) {
-        if (statusMsg) {
-          statusMsg.innerHTML = '⚠️ Не удалось отправить форму напрямую. Пожалуйста, напишите нам в Telegram: <a href="https://t.me/Voiddigit" target="_blank" style="color:var(--accent);text-decoration:underline;">@Voiddigit</a>';
-          statusMsg.style.color = "#ef4444";
-        }
-      }
-    } finally {
-      btn.disabled = false;
-      btn.textContent = origBtnText;
-    }
-  }
-</script>
 </body>
 </html>
